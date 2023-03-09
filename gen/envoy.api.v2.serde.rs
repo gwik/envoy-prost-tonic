@@ -224,7 +224,7 @@ impl serde::Serialize for Cluster {
             struct_ser.serialize_field("perConnectionBufferLimitBytes", v)?;
         }
         if self.lb_policy != 0 {
-            let v = cluster::LbPolicy::from_i32(self.lb_policy)
+            let v = cluster_::LbPolicy::from_i32(self.lb_policy)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.lb_policy)))?;
             struct_ser.serialize_field("lbPolicy", &v)?;
         }
@@ -274,7 +274,7 @@ impl serde::Serialize for Cluster {
             struct_ser.serialize_field("respectDnsTtl", &self.respect_dns_ttl)?;
         }
         if self.dns_lookup_family != 0 {
-            let v = cluster::DnsLookupFamily::from_i32(self.dns_lookup_family)
+            let v = cluster_::DnsLookupFamily::from_i32(self.dns_lookup_family)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.dns_lookup_family)))?;
             struct_ser.serialize_field("dnsLookupFamily", &v)?;
         }
@@ -306,7 +306,7 @@ impl serde::Serialize for Cluster {
             struct_ser.serialize_field("metadata", v)?;
         }
         if self.protocol_selection != 0 {
-            let v = cluster::ClusterProtocolSelection::from_i32(self.protocol_selection)
+            let v = cluster_::ClusterProtocolSelection::from_i32(self.protocol_selection)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.protocol_selection)))?;
             struct_ser.serialize_field("protocolSelection", &v)?;
         }
@@ -333,25 +333,25 @@ impl serde::Serialize for Cluster {
         }
         if let Some(v) = self.cluster_discovery_type.as_ref() {
             match v {
-                cluster::ClusterDiscoveryType::Type(v) => {
-                    let v = cluster::DiscoveryType::from_i32(*v)
+                cluster_::ClusterDiscoveryType::Type(v) => {
+                    let v = cluster_::DiscoveryType::from_i32(*v)
                         .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
                     struct_ser.serialize_field("type", &v)?;
                 }
-                cluster::ClusterDiscoveryType::ClusterType(v) => {
+                cluster_::ClusterDiscoveryType::ClusterType(v) => {
                     struct_ser.serialize_field("clusterType", v)?;
                 }
             }
         }
         if let Some(v) = self.lb_config.as_ref() {
             match v {
-                cluster::LbConfig::RingHashLbConfig(v) => {
+                cluster_::LbConfig::RingHashLbConfig(v) => {
                     struct_ser.serialize_field("ringHashLbConfig", v)?;
                 }
-                cluster::LbConfig::OriginalDstLbConfig(v) => {
+                cluster_::LbConfig::OriginalDstLbConfig(v) => {
                     struct_ser.serialize_field("originalDstLbConfig", v)?;
                 }
-                cluster::LbConfig::LeastRequestLbConfig(v) => {
+                cluster_::LbConfig::LeastRequestLbConfig(v) => {
                     struct_ser.serialize_field("leastRequestLbConfig", v)?;
                 }
             }
@@ -669,7 +669,7 @@ impl<'de> serde::Deserialize<'de> for Cluster {
                             if lb_policy__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lbPolicy"));
                             }
-                            lb_policy__ = Some(map.next_value::<cluster::LbPolicy>()? as i32);
+                            lb_policy__ = Some(map.next_value::<cluster_::LbPolicy>()? as i32);
                         }
                         GeneratedField::Hosts => {
                             if hosts__.is_some() {
@@ -769,7 +769,7 @@ impl<'de> serde::Deserialize<'de> for Cluster {
                             if dns_lookup_family__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("dnsLookupFamily"));
                             }
-                            dns_lookup_family__ = Some(map.next_value::<cluster::DnsLookupFamily>()? as i32);
+                            dns_lookup_family__ = Some(map.next_value::<cluster_::DnsLookupFamily>()? as i32);
                         }
                         GeneratedField::DnsResolvers => {
                             if dns_resolvers__.is_some() {
@@ -829,7 +829,7 @@ impl<'de> serde::Deserialize<'de> for Cluster {
                             if protocol_selection__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("protocolSelection"));
                             }
-                            protocol_selection__ = Some(map.next_value::<cluster::ClusterProtocolSelection>()? as i32);
+                            protocol_selection__ = Some(map.next_value::<cluster_::ClusterProtocolSelection>()? as i32);
                         }
                         GeneratedField::UpstreamConnectionOptions => {
                             if upstream_connection_options__.is_some() {
@@ -877,34 +877,34 @@ impl<'de> serde::Deserialize<'de> for Cluster {
                             if cluster_discovery_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("type"));
                             }
-                            cluster_discovery_type__ = map.next_value::<::std::option::Option<cluster::DiscoveryType>>()?.map(|x| cluster::ClusterDiscoveryType::Type(x as i32));
+                            cluster_discovery_type__ = map.next_value::<::std::option::Option<cluster_::DiscoveryType>>()?.map(|x| cluster_::ClusterDiscoveryType::Type(x as i32));
                         }
                         GeneratedField::ClusterType => {
                             if cluster_discovery_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("clusterType"));
                             }
-                            cluster_discovery_type__ = map.next_value::<::std::option::Option<_>>()?.map(cluster::ClusterDiscoveryType::ClusterType)
+                            cluster_discovery_type__ = map.next_value::<::std::option::Option<_>>()?.map(cluster_::ClusterDiscoveryType::ClusterType)
 ;
                         }
                         GeneratedField::RingHashLbConfig => {
                             if lb_config__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("ringHashLbConfig"));
                             }
-                            lb_config__ = map.next_value::<::std::option::Option<_>>()?.map(cluster::LbConfig::RingHashLbConfig)
+                            lb_config__ = map.next_value::<::std::option::Option<_>>()?.map(cluster_::LbConfig::RingHashLbConfig)
 ;
                         }
                         GeneratedField::OriginalDstLbConfig => {
                             if lb_config__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originalDstLbConfig"));
                             }
-                            lb_config__ = map.next_value::<::std::option::Option<_>>()?.map(cluster::LbConfig::OriginalDstLbConfig)
+                            lb_config__ = map.next_value::<::std::option::Option<_>>()?.map(cluster_::LbConfig::OriginalDstLbConfig)
 ;
                         }
                         GeneratedField::LeastRequestLbConfig => {
                             if lb_config__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("leastRequestLbConfig"));
                             }
-                            lb_config__ = map.next_value::<::std::option::Option<_>>()?.map(cluster::LbConfig::LeastRequestLbConfig)
+                            lb_config__ = map.next_value::<::std::option::Option<_>>()?.map(cluster_::LbConfig::LeastRequestLbConfig)
 ;
                         }
                     }
@@ -958,7 +958,7 @@ impl<'de> serde::Deserialize<'de> for Cluster {
         deserializer.deserialize_struct("envoy.api.v2.Cluster", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::ClusterProtocolSelection {
+impl serde::Serialize for cluster_::ClusterProtocolSelection {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -971,7 +971,7 @@ impl serde::Serialize for cluster::ClusterProtocolSelection {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::ClusterProtocolSelection {
+impl<'de> serde::Deserialize<'de> for cluster_::ClusterProtocolSelection {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -985,7 +985,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ClusterProtocolSelection {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::ClusterProtocolSelection;
+            type Value = cluster_::ClusterProtocolSelection;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -998,7 +998,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ClusterProtocolSelection {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::ClusterProtocolSelection::from_i32)
+                    .and_then(cluster_::ClusterProtocolSelection::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -1011,7 +1011,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ClusterProtocolSelection {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::ClusterProtocolSelection::from_i32)
+                    .and_then(cluster_::ClusterProtocolSelection::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -1022,8 +1022,8 @@ impl<'de> serde::Deserialize<'de> for cluster::ClusterProtocolSelection {
                 E: serde::de::Error,
             {
                 match value {
-                    "USE_CONFIGURED_PROTOCOL" => Ok(cluster::ClusterProtocolSelection::UseConfiguredProtocol),
-                    "USE_DOWNSTREAM_PROTOCOL" => Ok(cluster::ClusterProtocolSelection::UseDownstreamProtocol),
+                    "USE_CONFIGURED_PROTOCOL" => Ok(cluster_::ClusterProtocolSelection::UseConfiguredProtocol),
+                    "USE_DOWNSTREAM_PROTOCOL" => Ok(cluster_::ClusterProtocolSelection::UseDownstreamProtocol),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -1031,7 +1031,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ClusterProtocolSelection {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::CommonLbConfig {
+impl serde::Serialize for cluster_::CommonLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1075,10 +1075,10 @@ impl serde::Serialize for cluster::CommonLbConfig {
         }
         if let Some(v) = self.locality_config_specifier.as_ref() {
             match v {
-                cluster::common_lb_config::LocalityConfigSpecifier::ZoneAwareLbConfig(v) => {
+                cluster_::common_lb_config::LocalityConfigSpecifier::ZoneAwareLbConfig(v) => {
                     struct_ser.serialize_field("zoneAwareLbConfig", v)?;
                 }
-                cluster::common_lb_config::LocalityConfigSpecifier::LocalityWeightedLbConfig(v) => {
+                cluster_::common_lb_config::LocalityConfigSpecifier::LocalityWeightedLbConfig(v) => {
                     struct_ser.serialize_field("localityWeightedLbConfig", v)?;
                 }
             }
@@ -1086,7 +1086,7 @@ impl serde::Serialize for cluster::CommonLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::CommonLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::CommonLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1155,13 +1155,13 @@ impl<'de> serde::Deserialize<'de> for cluster::CommonLbConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::CommonLbConfig;
+            type Value = cluster_::CommonLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.CommonLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::CommonLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::CommonLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1207,19 +1207,19 @@ impl<'de> serde::Deserialize<'de> for cluster::CommonLbConfig {
                             if locality_config_specifier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("zoneAwareLbConfig"));
                             }
-                            locality_config_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(cluster::common_lb_config::LocalityConfigSpecifier::ZoneAwareLbConfig)
+                            locality_config_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(cluster_::common_lb_config::LocalityConfigSpecifier::ZoneAwareLbConfig)
 ;
                         }
                         GeneratedField::LocalityWeightedLbConfig => {
                             if locality_config_specifier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("localityWeightedLbConfig"));
                             }
-                            locality_config_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(cluster::common_lb_config::LocalityConfigSpecifier::LocalityWeightedLbConfig)
+                            locality_config_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(cluster_::common_lb_config::LocalityConfigSpecifier::LocalityWeightedLbConfig)
 ;
                         }
                     }
                 }
-                Ok(cluster::CommonLbConfig {
+                Ok(cluster_::CommonLbConfig {
                     healthy_panic_threshold: healthy_panic_threshold__,
                     update_merge_window: update_merge_window__,
                     ignore_new_hosts_until_first_hc: ignore_new_hosts_until_first_hc__.unwrap_or_default(),
@@ -1232,7 +1232,7 @@ impl<'de> serde::Deserialize<'de> for cluster::CommonLbConfig {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.CommonLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::common_lb_config::ConsistentHashingLbConfig {
+impl serde::Serialize for cluster_::common_lb_config::ConsistentHashingLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1250,7 +1250,7 @@ impl serde::Serialize for cluster::common_lb_config::ConsistentHashingLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ConsistentHashingLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::common_lb_config::ConsistentHashingLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1295,13 +1295,13 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ConsistentHashi
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::common_lb_config::ConsistentHashingLbConfig;
+            type Value = cluster_::common_lb_config::ConsistentHashingLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.CommonLbConfig.ConsistentHashingLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::common_lb_config::ConsistentHashingLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::common_lb_config::ConsistentHashingLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1316,7 +1316,7 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ConsistentHashi
                         }
                     }
                 }
-                Ok(cluster::common_lb_config::ConsistentHashingLbConfig {
+                Ok(cluster_::common_lb_config::ConsistentHashingLbConfig {
                     use_hostname_for_hashing: use_hostname_for_hashing__.unwrap_or_default(),
                 })
             }
@@ -1324,7 +1324,7 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ConsistentHashi
         deserializer.deserialize_struct("envoy.api.v2.Cluster.CommonLbConfig.ConsistentHashingLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::common_lb_config::LocalityWeightedLbConfig {
+impl serde::Serialize for cluster_::common_lb_config::LocalityWeightedLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1336,7 +1336,7 @@ impl serde::Serialize for cluster::common_lb_config::LocalityWeightedLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::LocalityWeightedLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::common_lb_config::LocalityWeightedLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1375,27 +1375,27 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::LocalityWeighte
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::common_lb_config::LocalityWeightedLbConfig;
+            type Value = cluster_::common_lb_config::LocalityWeightedLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.CommonLbConfig.LocalityWeightedLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::common_lb_config::LocalityWeightedLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::common_lb_config::LocalityWeightedLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 while map.next_key::<GeneratedField>()?.is_some() {
                     let _ = map.next_value::<serde::de::IgnoredAny>()?;
                 }
-                Ok(cluster::common_lb_config::LocalityWeightedLbConfig {
+                Ok(cluster_::common_lb_config::LocalityWeightedLbConfig {
                 })
             }
         }
         deserializer.deserialize_struct("envoy.api.v2.Cluster.CommonLbConfig.LocalityWeightedLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::common_lb_config::ZoneAwareLbConfig {
+impl serde::Serialize for cluster_::common_lb_config::ZoneAwareLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1425,7 +1425,7 @@ impl serde::Serialize for cluster::common_lb_config::ZoneAwareLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ZoneAwareLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::common_lb_config::ZoneAwareLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1478,13 +1478,13 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ZoneAwareLbConf
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::common_lb_config::ZoneAwareLbConfig;
+            type Value = cluster_::common_lb_config::ZoneAwareLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.CommonLbConfig.ZoneAwareLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::common_lb_config::ZoneAwareLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::common_lb_config::ZoneAwareLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1513,7 +1513,7 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ZoneAwareLbConf
                         }
                     }
                 }
-                Ok(cluster::common_lb_config::ZoneAwareLbConfig {
+                Ok(cluster_::common_lb_config::ZoneAwareLbConfig {
                     routing_enabled: routing_enabled__,
                     min_cluster_size: min_cluster_size__,
                     fail_traffic_on_panic: fail_traffic_on_panic__.unwrap_or_default(),
@@ -1523,7 +1523,7 @@ impl<'de> serde::Deserialize<'de> for cluster::common_lb_config::ZoneAwareLbConf
         deserializer.deserialize_struct("envoy.api.v2.Cluster.CommonLbConfig.ZoneAwareLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::CustomClusterType {
+impl serde::Serialize for cluster_::CustomClusterType {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1547,7 +1547,7 @@ impl serde::Serialize for cluster::CustomClusterType {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::CustomClusterType {
+impl<'de> serde::Deserialize<'de> for cluster_::CustomClusterType {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1595,13 +1595,13 @@ impl<'de> serde::Deserialize<'de> for cluster::CustomClusterType {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::CustomClusterType;
+            type Value = cluster_::CustomClusterType;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.CustomClusterType")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::CustomClusterType, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::CustomClusterType, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1623,7 +1623,7 @@ impl<'de> serde::Deserialize<'de> for cluster::CustomClusterType {
                         }
                     }
                 }
-                Ok(cluster::CustomClusterType {
+                Ok(cluster_::CustomClusterType {
                     name: name__.unwrap_or_default(),
                     typed_config: typed_config__,
                 })
@@ -1632,7 +1632,7 @@ impl<'de> serde::Deserialize<'de> for cluster::CustomClusterType {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.CustomClusterType", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::DiscoveryType {
+impl serde::Serialize for cluster_::DiscoveryType {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1648,7 +1648,7 @@ impl serde::Serialize for cluster::DiscoveryType {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::DiscoveryType {
+impl<'de> serde::Deserialize<'de> for cluster_::DiscoveryType {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1665,7 +1665,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DiscoveryType {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::DiscoveryType;
+            type Value = cluster_::DiscoveryType;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -1678,7 +1678,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DiscoveryType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::DiscoveryType::from_i32)
+                    .and_then(cluster_::DiscoveryType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -1691,7 +1691,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DiscoveryType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::DiscoveryType::from_i32)
+                    .and_then(cluster_::DiscoveryType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -1702,11 +1702,11 @@ impl<'de> serde::Deserialize<'de> for cluster::DiscoveryType {
                 E: serde::de::Error,
             {
                 match value {
-                    "STATIC" => Ok(cluster::DiscoveryType::Static),
-                    "STRICT_DNS" => Ok(cluster::DiscoveryType::StrictDns),
-                    "LOGICAL_DNS" => Ok(cluster::DiscoveryType::LogicalDns),
-                    "EDS" => Ok(cluster::DiscoveryType::Eds),
-                    "ORIGINAL_DST" => Ok(cluster::DiscoveryType::OriginalDst),
+                    "STATIC" => Ok(cluster_::DiscoveryType::Static),
+                    "STRICT_DNS" => Ok(cluster_::DiscoveryType::StrictDns),
+                    "LOGICAL_DNS" => Ok(cluster_::DiscoveryType::LogicalDns),
+                    "EDS" => Ok(cluster_::DiscoveryType::Eds),
+                    "ORIGINAL_DST" => Ok(cluster_::DiscoveryType::OriginalDst),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -1714,7 +1714,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DiscoveryType {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::DnsLookupFamily {
+impl serde::Serialize for cluster_::DnsLookupFamily {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1728,7 +1728,7 @@ impl serde::Serialize for cluster::DnsLookupFamily {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::DnsLookupFamily {
+impl<'de> serde::Deserialize<'de> for cluster_::DnsLookupFamily {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1743,7 +1743,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DnsLookupFamily {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::DnsLookupFamily;
+            type Value = cluster_::DnsLookupFamily;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -1756,7 +1756,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DnsLookupFamily {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::DnsLookupFamily::from_i32)
+                    .and_then(cluster_::DnsLookupFamily::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -1769,7 +1769,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DnsLookupFamily {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::DnsLookupFamily::from_i32)
+                    .and_then(cluster_::DnsLookupFamily::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -1780,9 +1780,9 @@ impl<'de> serde::Deserialize<'de> for cluster::DnsLookupFamily {
                 E: serde::de::Error,
             {
                 match value {
-                    "AUTO" => Ok(cluster::DnsLookupFamily::Auto),
-                    "V4_ONLY" => Ok(cluster::DnsLookupFamily::V4Only),
-                    "V6_ONLY" => Ok(cluster::DnsLookupFamily::V6Only),
+                    "AUTO" => Ok(cluster_::DnsLookupFamily::Auto),
+                    "V4_ONLY" => Ok(cluster_::DnsLookupFamily::V4Only),
+                    "V6_ONLY" => Ok(cluster_::DnsLookupFamily::V6Only),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -1790,7 +1790,7 @@ impl<'de> serde::Deserialize<'de> for cluster::DnsLookupFamily {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::EdsClusterConfig {
+impl serde::Serialize for cluster_::EdsClusterConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1814,7 +1814,7 @@ impl serde::Serialize for cluster::EdsClusterConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::EdsClusterConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::EdsClusterConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1863,13 +1863,13 @@ impl<'de> serde::Deserialize<'de> for cluster::EdsClusterConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::EdsClusterConfig;
+            type Value = cluster_::EdsClusterConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.EdsClusterConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::EdsClusterConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::EdsClusterConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1891,7 +1891,7 @@ impl<'de> serde::Deserialize<'de> for cluster::EdsClusterConfig {
                         }
                     }
                 }
-                Ok(cluster::EdsClusterConfig {
+                Ok(cluster_::EdsClusterConfig {
                     eds_config: eds_config__,
                     service_name: service_name__.unwrap_or_default(),
                 })
@@ -1900,7 +1900,7 @@ impl<'de> serde::Deserialize<'de> for cluster::EdsClusterConfig {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.EdsClusterConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::LbPolicy {
+impl serde::Serialize for cluster_::LbPolicy {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1919,7 +1919,7 @@ impl serde::Serialize for cluster::LbPolicy {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::LbPolicy {
+impl<'de> serde::Deserialize<'de> for cluster_::LbPolicy {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1939,7 +1939,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbPolicy {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::LbPolicy;
+            type Value = cluster_::LbPolicy;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -1952,7 +1952,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbPolicy {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::LbPolicy::from_i32)
+                    .and_then(cluster_::LbPolicy::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -1965,7 +1965,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbPolicy {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::LbPolicy::from_i32)
+                    .and_then(cluster_::LbPolicy::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -1976,14 +1976,14 @@ impl<'de> serde::Deserialize<'de> for cluster::LbPolicy {
                 E: serde::de::Error,
             {
                 match value {
-                    "ROUND_ROBIN" => Ok(cluster::LbPolicy::RoundRobin),
-                    "LEAST_REQUEST" => Ok(cluster::LbPolicy::LeastRequest),
-                    "RING_HASH" => Ok(cluster::LbPolicy::RingHash),
-                    "RANDOM" => Ok(cluster::LbPolicy::Random),
-                    "ORIGINAL_DST_LB" => Ok(cluster::LbPolicy::OriginalDstLb),
-                    "MAGLEV" => Ok(cluster::LbPolicy::Maglev),
-                    "CLUSTER_PROVIDED" => Ok(cluster::LbPolicy::ClusterProvided),
-                    "LOAD_BALANCING_POLICY_CONFIG" => Ok(cluster::LbPolicy::LoadBalancingPolicyConfig),
+                    "ROUND_ROBIN" => Ok(cluster_::LbPolicy::RoundRobin),
+                    "LEAST_REQUEST" => Ok(cluster_::LbPolicy::LeastRequest),
+                    "RING_HASH" => Ok(cluster_::LbPolicy::RingHash),
+                    "RANDOM" => Ok(cluster_::LbPolicy::Random),
+                    "ORIGINAL_DST_LB" => Ok(cluster_::LbPolicy::OriginalDstLb),
+                    "MAGLEV" => Ok(cluster_::LbPolicy::Maglev),
+                    "CLUSTER_PROVIDED" => Ok(cluster_::LbPolicy::ClusterProvided),
+                    "LOAD_BALANCING_POLICY_CONFIG" => Ok(cluster_::LbPolicy::LoadBalancingPolicyConfig),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -1991,7 +1991,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbPolicy {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::LbSubsetConfig {
+impl serde::Serialize for cluster_::LbSubsetConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2022,7 +2022,7 @@ impl serde::Serialize for cluster::LbSubsetConfig {
         }
         let mut struct_ser = serializer.serialize_struct("envoy.api.v2.Cluster.LbSubsetConfig", len)?;
         if self.fallback_policy != 0 {
-            let v = cluster::lb_subset_config::LbSubsetFallbackPolicy::from_i32(self.fallback_policy)
+            let v = cluster_::lb_subset_config::LbSubsetFallbackPolicy::from_i32(self.fallback_policy)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.fallback_policy)))?;
             struct_ser.serialize_field("fallbackPolicy", &v)?;
         }
@@ -2047,7 +2047,7 @@ impl serde::Serialize for cluster::LbSubsetConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::LbSubsetConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::LbSubsetConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2116,13 +2116,13 @@ impl<'de> serde::Deserialize<'de> for cluster::LbSubsetConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::LbSubsetConfig;
+            type Value = cluster_::LbSubsetConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.LbSubsetConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::LbSubsetConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::LbSubsetConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2139,7 +2139,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbSubsetConfig {
                             if fallback_policy__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fallbackPolicy"));
                             }
-                            fallback_policy__ = Some(map.next_value::<cluster::lb_subset_config::LbSubsetFallbackPolicy>()? as i32);
+                            fallback_policy__ = Some(map.next_value::<cluster_::lb_subset_config::LbSubsetFallbackPolicy>()? as i32);
                         }
                         GeneratedField::DefaultSubset => {
                             if default_subset__.is_some() {
@@ -2179,7 +2179,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbSubsetConfig {
                         }
                     }
                 }
-                Ok(cluster::LbSubsetConfig {
+                Ok(cluster_::LbSubsetConfig {
                     fallback_policy: fallback_policy__.unwrap_or_default(),
                     default_subset: default_subset__,
                     subset_selectors: subset_selectors__.unwrap_or_default(),
@@ -2193,7 +2193,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LbSubsetConfig {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.LbSubsetConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::lb_subset_config::LbSubsetFallbackPolicy {
+impl serde::Serialize for cluster_::lb_subset_config::LbSubsetFallbackPolicy {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2207,7 +2207,7 @@ impl serde::Serialize for cluster::lb_subset_config::LbSubsetFallbackPolicy {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetFallbackPolicy {
+impl<'de> serde::Deserialize<'de> for cluster_::lb_subset_config::LbSubsetFallbackPolicy {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2222,7 +2222,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetFallbac
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::lb_subset_config::LbSubsetFallbackPolicy;
+            type Value = cluster_::lb_subset_config::LbSubsetFallbackPolicy;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2235,7 +2235,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetFallbac
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::lb_subset_config::LbSubsetFallbackPolicy::from_i32)
+                    .and_then(cluster_::lb_subset_config::LbSubsetFallbackPolicy::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2248,7 +2248,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetFallbac
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::lb_subset_config::LbSubsetFallbackPolicy::from_i32)
+                    .and_then(cluster_::lb_subset_config::LbSubsetFallbackPolicy::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2259,9 +2259,9 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetFallbac
                 E: serde::de::Error,
             {
                 match value {
-                    "NO_FALLBACK" => Ok(cluster::lb_subset_config::LbSubsetFallbackPolicy::NoFallback),
-                    "ANY_ENDPOINT" => Ok(cluster::lb_subset_config::LbSubsetFallbackPolicy::AnyEndpoint),
-                    "DEFAULT_SUBSET" => Ok(cluster::lb_subset_config::LbSubsetFallbackPolicy::DefaultSubset),
+                    "NO_FALLBACK" => Ok(cluster_::lb_subset_config::LbSubsetFallbackPolicy::NoFallback),
+                    "ANY_ENDPOINT" => Ok(cluster_::lb_subset_config::LbSubsetFallbackPolicy::AnyEndpoint),
+                    "DEFAULT_SUBSET" => Ok(cluster_::lb_subset_config::LbSubsetFallbackPolicy::DefaultSubset),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2269,7 +2269,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetFallbac
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::lb_subset_config::LbSubsetSelector {
+impl serde::Serialize for cluster_::lb_subset_config::LbSubsetSelector {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2291,7 +2291,7 @@ impl serde::Serialize for cluster::lb_subset_config::LbSubsetSelector {
             struct_ser.serialize_field("keys", &self.keys)?;
         }
         if self.fallback_policy != 0 {
-            let v = cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::from_i32(self.fallback_policy)
+            let v = cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::from_i32(self.fallback_policy)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.fallback_policy)))?;
             struct_ser.serialize_field("fallbackPolicy", &v)?;
         }
@@ -2301,7 +2301,7 @@ impl serde::Serialize for cluster::lb_subset_config::LbSubsetSelector {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetSelector {
+impl<'de> serde::Deserialize<'de> for cluster_::lb_subset_config::LbSubsetSelector {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2353,13 +2353,13 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetSelecto
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::lb_subset_config::LbSubsetSelector;
+            type Value = cluster_::lb_subset_config::LbSubsetSelector;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.LbSubsetConfig.LbSubsetSelector")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::lb_subset_config::LbSubsetSelector, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::lb_subset_config::LbSubsetSelector, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2378,7 +2378,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetSelecto
                             if fallback_policy__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fallbackPolicy"));
                             }
-                            fallback_policy__ = Some(map.next_value::<cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy>()? as i32);
+                            fallback_policy__ = Some(map.next_value::<cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy>()? as i32);
                         }
                         GeneratedField::FallbackKeysSubset => {
                             if fallback_keys_subset__.is_some() {
@@ -2388,7 +2388,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetSelecto
                         }
                     }
                 }
-                Ok(cluster::lb_subset_config::LbSubsetSelector {
+                Ok(cluster_::lb_subset_config::LbSubsetSelector {
                     keys: keys__.unwrap_or_default(),
                     fallback_policy: fallback_policy__.unwrap_or_default(),
                     fallback_keys_subset: fallback_keys_subset__.unwrap_or_default(),
@@ -2398,7 +2398,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::LbSubsetSelecto
         deserializer.deserialize_struct("envoy.api.v2.Cluster.LbSubsetConfig.LbSubsetSelector", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy {
+impl serde::Serialize for cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2414,7 +2414,7 @@ impl serde::Serialize for cluster::lb_subset_config::lb_subset_selector::LbSubse
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy {
+impl<'de> serde::Deserialize<'de> for cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2431,7 +2431,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::lb_subset_selec
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy;
+            type Value = cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2444,7 +2444,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::lb_subset_selec
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::from_i32)
+                    .and_then(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2457,7 +2457,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::lb_subset_selec
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::from_i32)
+                    .and_then(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2468,11 +2468,11 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::lb_subset_selec
                 E: serde::de::Error,
             {
                 match value {
-                    "NOT_DEFINED" => Ok(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::NotDefined),
-                    "NO_FALLBACK" => Ok(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::NoFallback),
-                    "ANY_ENDPOINT" => Ok(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::AnyEndpoint),
-                    "DEFAULT_SUBSET" => Ok(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::DefaultSubset),
-                    "KEYS_SUBSET" => Ok(cluster::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::KeysSubset),
+                    "NOT_DEFINED" => Ok(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::NotDefined),
+                    "NO_FALLBACK" => Ok(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::NoFallback),
+                    "ANY_ENDPOINT" => Ok(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::AnyEndpoint),
+                    "DEFAULT_SUBSET" => Ok(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::DefaultSubset),
+                    "KEYS_SUBSET" => Ok(cluster_::lb_subset_config::lb_subset_selector::LbSubsetSelectorFallbackPolicy::KeysSubset),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2480,7 +2480,7 @@ impl<'de> serde::Deserialize<'de> for cluster::lb_subset_config::lb_subset_selec
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::LeastRequestLbConfig {
+impl serde::Serialize for cluster_::LeastRequestLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2498,7 +2498,7 @@ impl serde::Serialize for cluster::LeastRequestLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::LeastRequestLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::LeastRequestLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2543,13 +2543,13 @@ impl<'de> serde::Deserialize<'de> for cluster::LeastRequestLbConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::LeastRequestLbConfig;
+            type Value = cluster_::LeastRequestLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.LeastRequestLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::LeastRequestLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::LeastRequestLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2564,7 +2564,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LeastRequestLbConfig {
                         }
                     }
                 }
-                Ok(cluster::LeastRequestLbConfig {
+                Ok(cluster_::LeastRequestLbConfig {
                     choice_count: choice_count__,
                 })
             }
@@ -2572,7 +2572,7 @@ impl<'de> serde::Deserialize<'de> for cluster::LeastRequestLbConfig {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.LeastRequestLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::OriginalDstLbConfig {
+impl serde::Serialize for cluster_::OriginalDstLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2590,7 +2590,7 @@ impl serde::Serialize for cluster::OriginalDstLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::OriginalDstLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::OriginalDstLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2635,13 +2635,13 @@ impl<'de> serde::Deserialize<'de> for cluster::OriginalDstLbConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::OriginalDstLbConfig;
+            type Value = cluster_::OriginalDstLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.OriginalDstLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::OriginalDstLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::OriginalDstLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2656,7 +2656,7 @@ impl<'de> serde::Deserialize<'de> for cluster::OriginalDstLbConfig {
                         }
                     }
                 }
-                Ok(cluster::OriginalDstLbConfig {
+                Ok(cluster_::OriginalDstLbConfig {
                     use_http_header: use_http_header__.unwrap_or_default(),
                 })
             }
@@ -2664,7 +2664,7 @@ impl<'de> serde::Deserialize<'de> for cluster::OriginalDstLbConfig {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.OriginalDstLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::RefreshRate {
+impl serde::Serialize for cluster_::RefreshRate {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2688,7 +2688,7 @@ impl serde::Serialize for cluster::RefreshRate {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::RefreshRate {
+impl<'de> serde::Deserialize<'de> for cluster_::RefreshRate {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2737,13 +2737,13 @@ impl<'de> serde::Deserialize<'de> for cluster::RefreshRate {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::RefreshRate;
+            type Value = cluster_::RefreshRate;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.RefreshRate")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::RefreshRate, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::RefreshRate, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2765,7 +2765,7 @@ impl<'de> serde::Deserialize<'de> for cluster::RefreshRate {
                         }
                     }
                 }
-                Ok(cluster::RefreshRate {
+                Ok(cluster_::RefreshRate {
                     base_interval: base_interval__,
                     max_interval: max_interval__,
                 })
@@ -2774,7 +2774,7 @@ impl<'de> serde::Deserialize<'de> for cluster::RefreshRate {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.RefreshRate", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::RingHashLbConfig {
+impl serde::Serialize for cluster_::RingHashLbConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2796,7 +2796,7 @@ impl serde::Serialize for cluster::RingHashLbConfig {
             struct_ser.serialize_field("minimumRingSize", v)?;
         }
         if self.hash_function != 0 {
-            let v = cluster::ring_hash_lb_config::HashFunction::from_i32(self.hash_function)
+            let v = cluster_::ring_hash_lb_config::HashFunction::from_i32(self.hash_function)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.hash_function)))?;
             struct_ser.serialize_field("hashFunction", &v)?;
         }
@@ -2806,7 +2806,7 @@ impl serde::Serialize for cluster::RingHashLbConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::RingHashLbConfig {
+impl<'de> serde::Deserialize<'de> for cluster_::RingHashLbConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2859,13 +2859,13 @@ impl<'de> serde::Deserialize<'de> for cluster::RingHashLbConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::RingHashLbConfig;
+            type Value = cluster_::RingHashLbConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.RingHashLbConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::RingHashLbConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::RingHashLbConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2884,7 +2884,7 @@ impl<'de> serde::Deserialize<'de> for cluster::RingHashLbConfig {
                             if hash_function__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("hashFunction"));
                             }
-                            hash_function__ = Some(map.next_value::<cluster::ring_hash_lb_config::HashFunction>()? as i32);
+                            hash_function__ = Some(map.next_value::<cluster_::ring_hash_lb_config::HashFunction>()? as i32);
                         }
                         GeneratedField::MaximumRingSize => {
                             if maximum_ring_size__.is_some() {
@@ -2894,7 +2894,7 @@ impl<'de> serde::Deserialize<'de> for cluster::RingHashLbConfig {
                         }
                     }
                 }
-                Ok(cluster::RingHashLbConfig {
+                Ok(cluster_::RingHashLbConfig {
                     minimum_ring_size: minimum_ring_size__,
                     hash_function: hash_function__.unwrap_or_default(),
                     maximum_ring_size: maximum_ring_size__,
@@ -2904,7 +2904,7 @@ impl<'de> serde::Deserialize<'de> for cluster::RingHashLbConfig {
         deserializer.deserialize_struct("envoy.api.v2.Cluster.RingHashLbConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::ring_hash_lb_config::HashFunction {
+impl serde::Serialize for cluster_::ring_hash_lb_config::HashFunction {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2917,7 +2917,7 @@ impl serde::Serialize for cluster::ring_hash_lb_config::HashFunction {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::ring_hash_lb_config::HashFunction {
+impl<'de> serde::Deserialize<'de> for cluster_::ring_hash_lb_config::HashFunction {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2931,7 +2931,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ring_hash_lb_config::HashFunction
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::ring_hash_lb_config::HashFunction;
+            type Value = cluster_::ring_hash_lb_config::HashFunction;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2944,7 +2944,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ring_hash_lb_config::HashFunction
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::ring_hash_lb_config::HashFunction::from_i32)
+                    .and_then(cluster_::ring_hash_lb_config::HashFunction::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2957,7 +2957,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ring_hash_lb_config::HashFunction
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(cluster::ring_hash_lb_config::HashFunction::from_i32)
+                    .and_then(cluster_::ring_hash_lb_config::HashFunction::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2968,8 +2968,8 @@ impl<'de> serde::Deserialize<'de> for cluster::ring_hash_lb_config::HashFunction
                 E: serde::de::Error,
             {
                 match value {
-                    "XX_HASH" => Ok(cluster::ring_hash_lb_config::HashFunction::XxHash),
-                    "MURMUR_HASH_2" => Ok(cluster::ring_hash_lb_config::HashFunction::MurmurHash2),
+                    "XX_HASH" => Ok(cluster_::ring_hash_lb_config::HashFunction::XxHash),
+                    "MURMUR_HASH_2" => Ok(cluster_::ring_hash_lb_config::HashFunction::MurmurHash2),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2977,7 +2977,7 @@ impl<'de> serde::Deserialize<'de> for cluster::ring_hash_lb_config::HashFunction
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for cluster::TransportSocketMatch {
+impl serde::Serialize for cluster_::TransportSocketMatch {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -3007,7 +3007,7 @@ impl serde::Serialize for cluster::TransportSocketMatch {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for cluster::TransportSocketMatch {
+impl<'de> serde::Deserialize<'de> for cluster_::TransportSocketMatch {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3058,13 +3058,13 @@ impl<'de> serde::Deserialize<'de> for cluster::TransportSocketMatch {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = cluster::TransportSocketMatch;
+            type Value = cluster_::TransportSocketMatch;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Cluster.TransportSocketMatch")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster::TransportSocketMatch, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<cluster_::TransportSocketMatch, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3093,7 +3093,7 @@ impl<'de> serde::Deserialize<'de> for cluster::TransportSocketMatch {
                         }
                     }
                 }
-                Ok(cluster::TransportSocketMatch {
+                Ok(cluster_::TransportSocketMatch {
                     name: name__.unwrap_or_default(),
                     r#match: r#match__,
                     transport_socket: transport_socket__,
@@ -4463,7 +4463,7 @@ impl serde::Serialize for Listener {
             struct_ser.serialize_field("deprecatedV1", v)?;
         }
         if self.drain_type != 0 {
-            let v = listener::DrainType::from_i32(self.drain_type)
+            let v = listener_::DrainType::from_i32(self.drain_type)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.drain_type)))?;
             struct_ser.serialize_field("drainType", &v)?;
         }
@@ -4710,7 +4710,7 @@ impl<'de> serde::Deserialize<'de> for Listener {
                             if drain_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("drainType"));
                             }
-                            drain_type__ = Some(map.next_value::<listener::DrainType>()? as i32);
+                            drain_type__ = Some(map.next_value::<listener_::DrainType>()? as i32);
                         }
                         GeneratedField::ListenerFilters => {
                             if listener_filters__.is_some() {
@@ -4820,7 +4820,7 @@ impl<'de> serde::Deserialize<'de> for Listener {
         deserializer.deserialize_struct("envoy.api.v2.Listener", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for listener::ConnectionBalanceConfig {
+impl serde::Serialize for listener_::ConnectionBalanceConfig {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4834,7 +4834,7 @@ impl serde::Serialize for listener::ConnectionBalanceConfig {
         let mut struct_ser = serializer.serialize_struct("envoy.api.v2.Listener.ConnectionBalanceConfig", len)?;
         if let Some(v) = self.balance_type.as_ref() {
             match v {
-                listener::connection_balance_config::BalanceType::ExactBalance(v) => {
+                listener_::connection_balance_config::BalanceType::ExactBalance(v) => {
                     struct_ser.serialize_field("exactBalance", v)?;
                 }
             }
@@ -4842,7 +4842,7 @@ impl serde::Serialize for listener::ConnectionBalanceConfig {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for listener::ConnectionBalanceConfig {
+impl<'de> serde::Deserialize<'de> for listener_::ConnectionBalanceConfig {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4887,13 +4887,13 @@ impl<'de> serde::Deserialize<'de> for listener::ConnectionBalanceConfig {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = listener::ConnectionBalanceConfig;
+            type Value = listener_::ConnectionBalanceConfig;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Listener.ConnectionBalanceConfig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<listener::ConnectionBalanceConfig, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<listener_::ConnectionBalanceConfig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4904,12 +4904,12 @@ impl<'de> serde::Deserialize<'de> for listener::ConnectionBalanceConfig {
                             if balance_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("exactBalance"));
                             }
-                            balance_type__ = map.next_value::<::std::option::Option<_>>()?.map(listener::connection_balance_config::BalanceType::ExactBalance)
+                            balance_type__ = map.next_value::<::std::option::Option<_>>()?.map(listener_::connection_balance_config::BalanceType::ExactBalance)
 ;
                         }
                     }
                 }
-                Ok(listener::ConnectionBalanceConfig {
+                Ok(listener_::ConnectionBalanceConfig {
                     balance_type: balance_type__,
                 })
             }
@@ -4917,7 +4917,7 @@ impl<'de> serde::Deserialize<'de> for listener::ConnectionBalanceConfig {
         deserializer.deserialize_struct("envoy.api.v2.Listener.ConnectionBalanceConfig", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for listener::connection_balance_config::ExactBalance {
+impl serde::Serialize for listener_::connection_balance_config::ExactBalance {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4929,7 +4929,7 @@ impl serde::Serialize for listener::connection_balance_config::ExactBalance {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for listener::connection_balance_config::ExactBalance {
+impl<'de> serde::Deserialize<'de> for listener_::connection_balance_config::ExactBalance {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4968,27 +4968,27 @@ impl<'de> serde::Deserialize<'de> for listener::connection_balance_config::Exact
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = listener::connection_balance_config::ExactBalance;
+            type Value = listener_::connection_balance_config::ExactBalance;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Listener.ConnectionBalanceConfig.ExactBalance")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<listener::connection_balance_config::ExactBalance, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<listener_::connection_balance_config::ExactBalance, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 while map.next_key::<GeneratedField>()?.is_some() {
                     let _ = map.next_value::<serde::de::IgnoredAny>()?;
                 }
-                Ok(listener::connection_balance_config::ExactBalance {
+                Ok(listener_::connection_balance_config::ExactBalance {
                 })
             }
         }
         deserializer.deserialize_struct("envoy.api.v2.Listener.ConnectionBalanceConfig.ExactBalance", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for listener::DeprecatedV1 {
+impl serde::Serialize for listener_::DeprecatedV1 {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5006,7 +5006,7 @@ impl serde::Serialize for listener::DeprecatedV1 {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for listener::DeprecatedV1 {
+impl<'de> serde::Deserialize<'de> for listener_::DeprecatedV1 {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5051,13 +5051,13 @@ impl<'de> serde::Deserialize<'de> for listener::DeprecatedV1 {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = listener::DeprecatedV1;
+            type Value = listener_::DeprecatedV1;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct envoy.api.v2.Listener.DeprecatedV1")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<listener::DeprecatedV1, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<listener_::DeprecatedV1, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5072,7 +5072,7 @@ impl<'de> serde::Deserialize<'de> for listener::DeprecatedV1 {
                         }
                     }
                 }
-                Ok(listener::DeprecatedV1 {
+                Ok(listener_::DeprecatedV1 {
                     bind_to_port: bind_to_port__,
                 })
             }
@@ -5080,7 +5080,7 @@ impl<'de> serde::Deserialize<'de> for listener::DeprecatedV1 {
         deserializer.deserialize_struct("envoy.api.v2.Listener.DeprecatedV1", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for listener::DrainType {
+impl serde::Serialize for listener_::DrainType {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5093,7 +5093,7 @@ impl serde::Serialize for listener::DrainType {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for listener::DrainType {
+impl<'de> serde::Deserialize<'de> for listener_::DrainType {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5107,7 +5107,7 @@ impl<'de> serde::Deserialize<'de> for listener::DrainType {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = listener::DrainType;
+            type Value = listener_::DrainType;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -5120,7 +5120,7 @@ impl<'de> serde::Deserialize<'de> for listener::DrainType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(listener::DrainType::from_i32)
+                    .and_then(listener_::DrainType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -5133,7 +5133,7 @@ impl<'de> serde::Deserialize<'de> for listener::DrainType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(listener::DrainType::from_i32)
+                    .and_then(listener_::DrainType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -5144,8 +5144,8 @@ impl<'de> serde::Deserialize<'de> for listener::DrainType {
                 E: serde::de::Error,
             {
                 match value {
-                    "DEFAULT" => Ok(listener::DrainType::Default),
-                    "MODIFY_ONLY" => Ok(listener::DrainType::ModifyOnly),
+                    "DEFAULT" => Ok(listener_::DrainType::Default),
+                    "MODIFY_ONLY" => Ok(listener_::DrainType::ModifyOnly),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }

@@ -30,7 +30,7 @@ impl serde::Serialize for DnsCacheConfig {
             struct_ser.serialize_field("name", &self.name)?;
         }
         if self.dns_lookup_family != 0 {
-            let v = super::super::super::super::api::v2::cluster::DnsLookupFamily::from_i32(self.dns_lookup_family)
+            let v = super::super::super::super::api::v2::cluster_::DnsLookupFamily::from_i32(self.dns_lookup_family)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.dns_lookup_family)))?;
             struct_ser.serialize_field("dnsLookupFamily", &v)?;
         }
@@ -141,7 +141,7 @@ impl<'de> serde::Deserialize<'de> for DnsCacheConfig {
                             if dns_lookup_family__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("dnsLookupFamily"));
                             }
-                            dns_lookup_family__ = Some(map.next_value::<super::super::super::super::api::v2::cluster::DnsLookupFamily>()? as i32);
+                            dns_lookup_family__ = Some(map.next_value::<super::super::super::super::api::v2::cluster_::DnsLookupFamily>()? as i32);
                         }
                         GeneratedField::DnsRefreshRate => {
                             if dns_refresh_rate__.is_some() {
