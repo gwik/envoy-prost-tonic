@@ -1,0 +1,49 @@
+version: v1
+plugins:
+  - remote: buf.build/prost/plugins/prost:v0.2.1-1
+    out: gen
+    opt:
+      - bytes=.
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
+      - file_descriptor_set
+  - remote: buf.build/prost/plugins/serde:v0.2.1-1
+    out: gen
+    opt:
+      - extern_path=.google.protobuf=::pbjson_types
+  - remote: buf.build/prost/plugins/tonic:v0.2.1-1
+    out: gen
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
+  - name: prost-crate
+    out: .
+    strategy: all
+    opt:
+      - gen_crate=Cargo.tpl.toml
+      - include_file=gen/mod.rs
+      - no_features
+
+
+# version: v1
+# plugins:
+#   - name: prost
+#     out: src/gen
+#     opt:
+# #     - bytes=.
+#       - compile_well_known_types
+#       - extern_path=.google.protobuf=::pbjson_types
+#       - file_descriptor_set
+#   - name: prost-serde
+#     out: src/gen
+#   - name: tonic
+#     out: src/gen
+#     opt:
+#       - compile_well_known_types
+#       - extern_path=.google.protobuf=::pbjson_types
+#   - name: prost-crate
+#     out: .
+#     strategy: all
+#     opt:
+#       - include_file=src/gen/mod.rs
+#       - gen_crate
