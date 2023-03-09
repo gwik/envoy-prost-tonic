@@ -1158,7 +1158,7 @@ impl serde::Serialize for ConfigSource {
                 config_source::ConfigSourceSpecifier::Ads(v) => {
                     struct_ser.serialize_field("ads", v)?;
                 }
-                config_source::ConfigSourceSpecifier::Self_(v) => {
+                config_source::ConfigSourceSpecifier::Self(v) => {
                     struct_ser.serialize_field("self", v)?;
                 }
             }

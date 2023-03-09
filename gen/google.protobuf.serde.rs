@@ -1,5 +1,5 @@
 // @generated
-impl serde::Serialize for Any {
+impl serde::Serialize for ::pbjson_types::Any {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -23,7 +23,7 @@ impl serde::Serialize for Any {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Any {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Any {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -71,13 +71,13 @@ impl<'de> serde::Deserialize<'de> for Any {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Any;
+            type Value = ::pbjson_types::Any;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Any")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Any, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Any, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -101,7 +101,7 @@ impl<'de> serde::Deserialize<'de> for Any {
                         }
                     }
                 }
-                Ok(Any {
+                Ok(::pbjson_types::Any {
                     type_url: type_url__.unwrap_or_default(),
                     value: value__.unwrap_or_default(),
                 })
@@ -110,7 +110,7 @@ impl<'de> serde::Deserialize<'de> for Any {
         deserializer.deserialize_struct("google.protobuf.Any", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for BoolValue {
+impl serde::Serialize for ::pbjson_types::BoolValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -128,7 +128,7 @@ impl serde::Serialize for BoolValue {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for BoolValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::BoolValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -172,13 +172,13 @@ impl<'de> serde::Deserialize<'de> for BoolValue {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = BoolValue;
+            type Value = ::pbjson_types::BoolValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.BoolValue")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BoolValue, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::BoolValue, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -193,7 +193,7 @@ impl<'de> serde::Deserialize<'de> for BoolValue {
                         }
                     }
                 }
-                Ok(BoolValue {
+                Ok(::pbjson_types::BoolValue {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -201,7 +201,7 @@ impl<'de> serde::Deserialize<'de> for BoolValue {
         deserializer.deserialize_struct("google.protobuf.BoolValue", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for BytesValue {
+impl serde::Serialize for ::pbjson_types::BytesValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -219,7 +219,7 @@ impl serde::Serialize for BytesValue {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for BytesValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::BytesValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -263,13 +263,13 @@ impl<'de> serde::Deserialize<'de> for BytesValue {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = BytesValue;
+            type Value = ::pbjson_types::BytesValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.BytesValue")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BytesValue, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::BytesValue, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -286,7 +286,7 @@ impl<'de> serde::Deserialize<'de> for BytesValue {
                         }
                     }
                 }
-                Ok(BytesValue {
+                Ok(::pbjson_types::BytesValue {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -294,7 +294,7 @@ impl<'de> serde::Deserialize<'de> for BytesValue {
         deserializer.deserialize_struct("google.protobuf.BytesValue", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for DescriptorProto {
+impl serde::Serialize for ::pbjson_types::DescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -366,7 +366,7 @@ impl serde::Serialize for DescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for DescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::DescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -443,13 +443,13 @@ impl<'de> serde::Deserialize<'de> for DescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = DescriptorProto;
+            type Value = ::pbjson_types::DescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.DescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::DescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -527,7 +527,7 @@ impl<'de> serde::Deserialize<'de> for DescriptorProto {
                         }
                     }
                 }
-                Ok(DescriptorProto {
+                Ok(::pbjson_types::DescriptorProto {
                     name: name__,
                     field: field__.unwrap_or_default(),
                     extension: extension__.unwrap_or_default(),
@@ -544,7 +544,7 @@ impl<'de> serde::Deserialize<'de> for DescriptorProto {
         deserializer.deserialize_struct("google.protobuf.DescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for descriptor_proto::ExtensionRange {
+impl serde::Serialize for ::pbjson_types::descriptor_proto::ExtensionRange {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -574,7 +574,7 @@ impl serde::Serialize for descriptor_proto::ExtensionRange {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for descriptor_proto::ExtensionRange {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::descriptor_proto::ExtensionRange {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -624,13 +624,13 @@ impl<'de> serde::Deserialize<'de> for descriptor_proto::ExtensionRange {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = descriptor_proto::ExtensionRange;
+            type Value = ::pbjson_types::descriptor_proto::ExtensionRange;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.DescriptorProto.ExtensionRange")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<descriptor_proto::ExtensionRange, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::descriptor_proto::ExtensionRange, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -663,7 +663,7 @@ impl<'de> serde::Deserialize<'de> for descriptor_proto::ExtensionRange {
                         }
                     }
                 }
-                Ok(descriptor_proto::ExtensionRange {
+                Ok(::pbjson_types::descriptor_proto::ExtensionRange {
                     start: start__,
                     end: end__,
                     options: options__,
@@ -673,7 +673,7 @@ impl<'de> serde::Deserialize<'de> for descriptor_proto::ExtensionRange {
         deserializer.deserialize_struct("google.protobuf.DescriptorProto.ExtensionRange", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for descriptor_proto::ReservedRange {
+impl serde::Serialize for ::pbjson_types::descriptor_proto::ReservedRange {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -697,7 +697,7 @@ impl serde::Serialize for descriptor_proto::ReservedRange {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for descriptor_proto::ReservedRange {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::descriptor_proto::ReservedRange {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -744,13 +744,13 @@ impl<'de> serde::Deserialize<'de> for descriptor_proto::ReservedRange {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = descriptor_proto::ReservedRange;
+            type Value = ::pbjson_types::descriptor_proto::ReservedRange;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.DescriptorProto.ReservedRange")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<descriptor_proto::ReservedRange, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::descriptor_proto::ReservedRange, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -776,7 +776,7 @@ impl<'de> serde::Deserialize<'de> for descriptor_proto::ReservedRange {
                         }
                     }
                 }
-                Ok(descriptor_proto::ReservedRange {
+                Ok(::pbjson_types::descriptor_proto::ReservedRange {
                     start: start__,
                     end: end__,
                 })
@@ -785,7 +785,7 @@ impl<'de> serde::Deserialize<'de> for descriptor_proto::ReservedRange {
         deserializer.deserialize_struct("google.protobuf.DescriptorProto.ReservedRange", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for DoubleValue {
+impl serde::Serialize for ::pbjson_types::DoubleValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -803,7 +803,7 @@ impl serde::Serialize for DoubleValue {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for DoubleValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::DoubleValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -847,13 +847,13 @@ impl<'de> serde::Deserialize<'de> for DoubleValue {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = DoubleValue;
+            type Value = ::pbjson_types::DoubleValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.DoubleValue")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DoubleValue, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::DoubleValue, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -870,7 +870,7 @@ impl<'de> serde::Deserialize<'de> for DoubleValue {
                         }
                     }
                 }
-                Ok(DoubleValue {
+                Ok(::pbjson_types::DoubleValue {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -878,7 +878,7 @@ impl<'de> serde::Deserialize<'de> for DoubleValue {
         deserializer.deserialize_struct("google.protobuf.DoubleValue", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for Duration {
+impl serde::Serialize for ::pbjson_types::Duration {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -902,7 +902,7 @@ impl serde::Serialize for Duration {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Duration {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Duration {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -949,13 +949,13 @@ impl<'de> serde::Deserialize<'de> for Duration {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Duration;
+            type Value = ::pbjson_types::Duration;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Duration")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Duration, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Duration, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -981,7 +981,7 @@ impl<'de> serde::Deserialize<'de> for Duration {
                         }
                     }
                 }
-                Ok(Duration {
+                Ok(::pbjson_types::Duration {
                     seconds: seconds__.unwrap_or_default(),
                     nanos: nanos__.unwrap_or_default(),
                 })
@@ -990,7 +990,7 @@ impl<'de> serde::Deserialize<'de> for Duration {
         deserializer.deserialize_struct("google.protobuf.Duration", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for Empty {
+impl serde::Serialize for ::pbjson_types::Empty {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1002,7 +1002,7 @@ impl serde::Serialize for Empty {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Empty {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Empty {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1041,27 +1041,27 @@ impl<'de> serde::Deserialize<'de> for Empty {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Empty;
+            type Value = ::pbjson_types::Empty;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Empty")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Empty, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Empty, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 while map.next_key::<GeneratedField>()?.is_some() {
                     let _ = map.next_value::<serde::de::IgnoredAny>()?;
                 }
-                Ok(Empty {
+                Ok(::pbjson_types::Empty {
                 })
             }
         }
         deserializer.deserialize_struct("google.protobuf.Empty", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for EnumDescriptorProto {
+impl serde::Serialize for ::pbjson_types::EnumDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1103,7 +1103,7 @@ impl serde::Serialize for EnumDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for EnumDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::EnumDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1161,13 +1161,13 @@ impl<'de> serde::Deserialize<'de> for EnumDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = EnumDescriptorProto;
+            type Value = ::pbjson_types::EnumDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.EnumDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EnumDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::EnumDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1210,7 +1210,7 @@ impl<'de> serde::Deserialize<'de> for EnumDescriptorProto {
                         }
                     }
                 }
-                Ok(EnumDescriptorProto {
+                Ok(::pbjson_types::EnumDescriptorProto {
                     name: name__,
                     value: value__.unwrap_or_default(),
                     options: options__,
@@ -1222,7 +1222,7 @@ impl<'de> serde::Deserialize<'de> for EnumDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.EnumDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for enum_descriptor_proto::EnumReservedRange {
+impl serde::Serialize for ::pbjson_types::enum_descriptor_proto::EnumReservedRange {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1246,7 +1246,7 @@ impl serde::Serialize for enum_descriptor_proto::EnumReservedRange {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for enum_descriptor_proto::EnumReservedRange {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::enum_descriptor_proto::EnumReservedRange {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1293,13 +1293,13 @@ impl<'de> serde::Deserialize<'de> for enum_descriptor_proto::EnumReservedRange {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = enum_descriptor_proto::EnumReservedRange;
+            type Value = ::pbjson_types::enum_descriptor_proto::EnumReservedRange;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.EnumDescriptorProto.EnumReservedRange")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<enum_descriptor_proto::EnumReservedRange, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::enum_descriptor_proto::EnumReservedRange, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1325,7 +1325,7 @@ impl<'de> serde::Deserialize<'de> for enum_descriptor_proto::EnumReservedRange {
                         }
                     }
                 }
-                Ok(enum_descriptor_proto::EnumReservedRange {
+                Ok(::pbjson_types::enum_descriptor_proto::EnumReservedRange {
                     start: start__,
                     end: end__,
                 })
@@ -1334,7 +1334,7 @@ impl<'de> serde::Deserialize<'de> for enum_descriptor_proto::EnumReservedRange {
         deserializer.deserialize_struct("google.protobuf.EnumDescriptorProto.EnumReservedRange", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for EnumOptions {
+impl serde::Serialize for ::pbjson_types::EnumOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1370,7 +1370,7 @@ impl serde::Serialize for EnumOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for EnumOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::EnumOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1426,13 +1426,13 @@ impl<'de> serde::Deserialize<'de> for EnumOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = EnumOptions;
+            type Value = ::pbjson_types::EnumOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.EnumOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EnumOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::EnumOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1468,7 +1468,7 @@ impl<'de> serde::Deserialize<'de> for EnumOptions {
                         }
                     }
                 }
-                Ok(EnumOptions {
+                Ok(::pbjson_types::EnumOptions {
                     allow_alias: allow_alias__,
                     deprecated: deprecated__,
                     deprecated_legacy_json_field_conflicts: deprecated_legacy_json_field_conflicts__,
@@ -1479,7 +1479,7 @@ impl<'de> serde::Deserialize<'de> for EnumOptions {
         deserializer.deserialize_struct("google.protobuf.EnumOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for EnumValueDescriptorProto {
+impl serde::Serialize for ::pbjson_types::EnumValueDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1509,7 +1509,7 @@ impl serde::Serialize for EnumValueDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for EnumValueDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::EnumValueDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1559,13 +1559,13 @@ impl<'de> serde::Deserialize<'de> for EnumValueDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = EnumValueDescriptorProto;
+            type Value = ::pbjson_types::EnumValueDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.EnumValueDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EnumValueDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::EnumValueDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1596,7 +1596,7 @@ impl<'de> serde::Deserialize<'de> for EnumValueDescriptorProto {
                         }
                     }
                 }
-                Ok(EnumValueDescriptorProto {
+                Ok(::pbjson_types::EnumValueDescriptorProto {
                     name: name__,
                     number: number__,
                     options: options__,
@@ -1606,7 +1606,7 @@ impl<'de> serde::Deserialize<'de> for EnumValueDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.EnumValueDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for EnumValueOptions {
+impl serde::Serialize for ::pbjson_types::EnumValueOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1630,7 +1630,7 @@ impl serde::Serialize for EnumValueOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for EnumValueOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::EnumValueOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1678,13 +1678,13 @@ impl<'de> serde::Deserialize<'de> for EnumValueOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = EnumValueOptions;
+            type Value = ::pbjson_types::EnumValueOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.EnumValueOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EnumValueOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::EnumValueOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1706,7 +1706,7 @@ impl<'de> serde::Deserialize<'de> for EnumValueOptions {
                         }
                     }
                 }
-                Ok(EnumValueOptions {
+                Ok(::pbjson_types::EnumValueOptions {
                     deprecated: deprecated__,
                     uninterpreted_option: uninterpreted_option__.unwrap_or_default(),
                 })
@@ -1715,7 +1715,7 @@ impl<'de> serde::Deserialize<'de> for EnumValueOptions {
         deserializer.deserialize_struct("google.protobuf.EnumValueOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for ExtensionRangeOptions {
+impl serde::Serialize for ::pbjson_types::ExtensionRangeOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1733,7 +1733,7 @@ impl serde::Serialize for ExtensionRangeOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for ExtensionRangeOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::ExtensionRangeOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1778,13 +1778,13 @@ impl<'de> serde::Deserialize<'de> for ExtensionRangeOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = ExtensionRangeOptions;
+            type Value = ::pbjson_types::ExtensionRangeOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.ExtensionRangeOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ExtensionRangeOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::ExtensionRangeOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1799,7 +1799,7 @@ impl<'de> serde::Deserialize<'de> for ExtensionRangeOptions {
                         }
                     }
                 }
-                Ok(ExtensionRangeOptions {
+                Ok(::pbjson_types::ExtensionRangeOptions {
                     uninterpreted_option: uninterpreted_option__.unwrap_or_default(),
                 })
             }
@@ -1807,7 +1807,7 @@ impl<'de> serde::Deserialize<'de> for ExtensionRangeOptions {
         deserializer.deserialize_struct("google.protobuf.ExtensionRangeOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for FieldDescriptorProto {
+impl serde::Serialize for ::pbjson_types::FieldDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -1856,12 +1856,12 @@ impl serde::Serialize for FieldDescriptorProto {
             struct_ser.serialize_field("number", v)?;
         }
         if let Some(v) = self.label.as_ref() {
-            let v = field_descriptor_proto::Label::from_i32(*v)
+            let v = ::pbjson_types::field_descriptor_proto::Label::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("label", &v)?;
         }
         if let Some(v) = self.r#type.as_ref() {
-            let v = field_descriptor_proto::Type::from_i32(*v)
+            let v = ::pbjson_types::field_descriptor_proto::Type::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("type", &v)?;
         }
@@ -1889,7 +1889,7 @@ impl serde::Serialize for FieldDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for FieldDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::FieldDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -1968,13 +1968,13 @@ impl<'de> serde::Deserialize<'de> for FieldDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = FieldDescriptorProto;
+            type Value = ::pbjson_types::FieldDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.FieldDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FieldDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::FieldDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2009,13 +2009,13 @@ impl<'de> serde::Deserialize<'de> for FieldDescriptorProto {
                             if label__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("label"));
                             }
-                            label__ = map.next_value::<::std::option::Option<field_descriptor_proto::Label>>()?.map(|x| x as i32);
+                            label__ = map.next_value::<::std::option::Option<::pbjson_types::field_descriptor_proto::Label>>()?.map(|x| x as i32);
                         }
                         GeneratedField::Type => {
                             if r#type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("type"));
                             }
-                            r#type__ = map.next_value::<::std::option::Option<field_descriptor_proto::Type>>()?.map(|x| x as i32);
+                            r#type__ = map.next_value::<::std::option::Option<::pbjson_types::field_descriptor_proto::Type>>()?.map(|x| x as i32);
                         }
                         GeneratedField::TypeName => {
                             if type_name__.is_some() {
@@ -2063,7 +2063,7 @@ impl<'de> serde::Deserialize<'de> for FieldDescriptorProto {
                         }
                     }
                 }
-                Ok(FieldDescriptorProto {
+                Ok(::pbjson_types::FieldDescriptorProto {
                     name: name__,
                     number: number__,
                     label: label__,
@@ -2081,7 +2081,7 @@ impl<'de> serde::Deserialize<'de> for FieldDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.FieldDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for field_descriptor_proto::Label {
+impl serde::Serialize for ::pbjson_types::field_descriptor_proto::Label {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2095,7 +2095,7 @@ impl serde::Serialize for field_descriptor_proto::Label {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Label {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::field_descriptor_proto::Label {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2110,7 +2110,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Label {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = field_descriptor_proto::Label;
+            type Value = ::pbjson_types::field_descriptor_proto::Label;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2123,7 +2123,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Label {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_descriptor_proto::Label::from_i32)
+                    .and_then(::pbjson_types::field_descriptor_proto::Label::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2136,7 +2136,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Label {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_descriptor_proto::Label::from_i32)
+                    .and_then(::pbjson_types::field_descriptor_proto::Label::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2147,9 +2147,9 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Label {
                 E: serde::de::Error,
             {
                 match value {
-                    "LABEL_OPTIONAL" => Ok(field_descriptor_proto::Label::Optional),
-                    "LABEL_REQUIRED" => Ok(field_descriptor_proto::Label::Required),
-                    "LABEL_REPEATED" => Ok(field_descriptor_proto::Label::Repeated),
+                    "LABEL_OPTIONAL" => Ok(::pbjson_types::field_descriptor_proto::Label::Optional),
+                    "LABEL_REQUIRED" => Ok(::pbjson_types::field_descriptor_proto::Label::Required),
+                    "LABEL_REPEATED" => Ok(::pbjson_types::field_descriptor_proto::Label::Repeated),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2157,7 +2157,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Label {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for field_descriptor_proto::Type {
+impl serde::Serialize for ::pbjson_types::field_descriptor_proto::Type {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2186,7 +2186,7 @@ impl serde::Serialize for field_descriptor_proto::Type {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Type {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::field_descriptor_proto::Type {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2216,7 +2216,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Type {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = field_descriptor_proto::Type;
+            type Value = ::pbjson_types::field_descriptor_proto::Type;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2229,7 +2229,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Type {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_descriptor_proto::Type::from_i32)
+                    .and_then(::pbjson_types::field_descriptor_proto::Type::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2242,7 +2242,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Type {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_descriptor_proto::Type::from_i32)
+                    .and_then(::pbjson_types::field_descriptor_proto::Type::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2253,24 +2253,24 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Type {
                 E: serde::de::Error,
             {
                 match value {
-                    "TYPE_DOUBLE" => Ok(field_descriptor_proto::Type::Double),
-                    "TYPE_FLOAT" => Ok(field_descriptor_proto::Type::Float),
-                    "TYPE_INT64" => Ok(field_descriptor_proto::Type::Int64),
-                    "TYPE_UINT64" => Ok(field_descriptor_proto::Type::Uint64),
-                    "TYPE_INT32" => Ok(field_descriptor_proto::Type::Int32),
-                    "TYPE_FIXED64" => Ok(field_descriptor_proto::Type::Fixed64),
-                    "TYPE_FIXED32" => Ok(field_descriptor_proto::Type::Fixed32),
-                    "TYPE_BOOL" => Ok(field_descriptor_proto::Type::Bool),
-                    "TYPE_STRING" => Ok(field_descriptor_proto::Type::String),
-                    "TYPE_GROUP" => Ok(field_descriptor_proto::Type::Group),
-                    "TYPE_MESSAGE" => Ok(field_descriptor_proto::Type::Message),
-                    "TYPE_BYTES" => Ok(field_descriptor_proto::Type::Bytes),
-                    "TYPE_UINT32" => Ok(field_descriptor_proto::Type::Uint32),
-                    "TYPE_ENUM" => Ok(field_descriptor_proto::Type::Enum),
-                    "TYPE_SFIXED32" => Ok(field_descriptor_proto::Type::Sfixed32),
-                    "TYPE_SFIXED64" => Ok(field_descriptor_proto::Type::Sfixed64),
-                    "TYPE_SINT32" => Ok(field_descriptor_proto::Type::Sint32),
-                    "TYPE_SINT64" => Ok(field_descriptor_proto::Type::Sint64),
+                    "TYPE_DOUBLE" => Ok(::pbjson_types::field_descriptor_proto::Type::Double),
+                    "TYPE_FLOAT" => Ok(::pbjson_types::field_descriptor_proto::Type::Float),
+                    "TYPE_INT64" => Ok(::pbjson_types::field_descriptor_proto::Type::Int64),
+                    "TYPE_UINT64" => Ok(::pbjson_types::field_descriptor_proto::Type::Uint64),
+                    "TYPE_INT32" => Ok(::pbjson_types::field_descriptor_proto::Type::Int32),
+                    "TYPE_FIXED64" => Ok(::pbjson_types::field_descriptor_proto::Type::Fixed64),
+                    "TYPE_FIXED32" => Ok(::pbjson_types::field_descriptor_proto::Type::Fixed32),
+                    "TYPE_BOOL" => Ok(::pbjson_types::field_descriptor_proto::Type::Bool),
+                    "TYPE_STRING" => Ok(::pbjson_types::field_descriptor_proto::Type::String),
+                    "TYPE_GROUP" => Ok(::pbjson_types::field_descriptor_proto::Type::Group),
+                    "TYPE_MESSAGE" => Ok(::pbjson_types::field_descriptor_proto::Type::Message),
+                    "TYPE_BYTES" => Ok(::pbjson_types::field_descriptor_proto::Type::Bytes),
+                    "TYPE_UINT32" => Ok(::pbjson_types::field_descriptor_proto::Type::Uint32),
+                    "TYPE_ENUM" => Ok(::pbjson_types::field_descriptor_proto::Type::Enum),
+                    "TYPE_SFIXED32" => Ok(::pbjson_types::field_descriptor_proto::Type::Sfixed32),
+                    "TYPE_SFIXED64" => Ok(::pbjson_types::field_descriptor_proto::Type::Sfixed64),
+                    "TYPE_SINT32" => Ok(::pbjson_types::field_descriptor_proto::Type::Sint32),
+                    "TYPE_SINT64" => Ok(::pbjson_types::field_descriptor_proto::Type::Sint64),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2278,7 +2278,7 @@ impl<'de> serde::Deserialize<'de> for field_descriptor_proto::Type {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for FieldOptions {
+impl serde::Serialize for ::pbjson_types::FieldOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2321,7 +2321,7 @@ impl serde::Serialize for FieldOptions {
         }
         let mut struct_ser = serializer.serialize_struct("google.protobuf.FieldOptions", len)?;
         if let Some(v) = self.ctype.as_ref() {
-            let v = field_options::CType::from_i32(*v)
+            let v = ::pbjson_types::field_options::CType::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("ctype", &v)?;
         }
@@ -2329,7 +2329,7 @@ impl serde::Serialize for FieldOptions {
             struct_ser.serialize_field("packed", v)?;
         }
         if let Some(v) = self.jstype.as_ref() {
-            let v = field_options::JsType::from_i32(*v)
+            let v = ::pbjson_types::field_options::JsType::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("jstype", &v)?;
         }
@@ -2349,12 +2349,12 @@ impl serde::Serialize for FieldOptions {
             struct_ser.serialize_field("debugRedact", v)?;
         }
         if let Some(v) = self.retention.as_ref() {
-            let v = field_options::OptionRetention::from_i32(*v)
+            let v = ::pbjson_types::field_options::OptionRetention::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("retention", &v)?;
         }
         if let Some(v) = self.target.as_ref() {
-            let v = field_options::OptionTargetType::from_i32(*v)
+            let v = ::pbjson_types::field_options::OptionTargetType::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("target", &v)?;
         }
@@ -2364,7 +2364,7 @@ impl serde::Serialize for FieldOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for FieldOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::FieldOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2441,13 +2441,13 @@ impl<'de> serde::Deserialize<'de> for FieldOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = FieldOptions;
+            type Value = ::pbjson_types::FieldOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.FieldOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FieldOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::FieldOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2468,7 +2468,7 @@ impl<'de> serde::Deserialize<'de> for FieldOptions {
                             if ctype__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("ctype"));
                             }
-                            ctype__ = map.next_value::<::std::option::Option<field_options::CType>>()?.map(|x| x as i32);
+                            ctype__ = map.next_value::<::std::option::Option<::pbjson_types::field_options::CType>>()?.map(|x| x as i32);
                         }
                         GeneratedField::Packed => {
                             if packed__.is_some() {
@@ -2480,7 +2480,7 @@ impl<'de> serde::Deserialize<'de> for FieldOptions {
                             if jstype__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jstype"));
                             }
-                            jstype__ = map.next_value::<::std::option::Option<field_options::JsType>>()?.map(|x| x as i32);
+                            jstype__ = map.next_value::<::std::option::Option<::pbjson_types::field_options::JsType>>()?.map(|x| x as i32);
                         }
                         GeneratedField::Lazy => {
                             if lazy__.is_some() {
@@ -2516,13 +2516,13 @@ impl<'de> serde::Deserialize<'de> for FieldOptions {
                             if retention__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("retention"));
                             }
-                            retention__ = map.next_value::<::std::option::Option<field_options::OptionRetention>>()?.map(|x| x as i32);
+                            retention__ = map.next_value::<::std::option::Option<::pbjson_types::field_options::OptionRetention>>()?.map(|x| x as i32);
                         }
                         GeneratedField::Target => {
                             if target__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("target"));
                             }
-                            target__ = map.next_value::<::std::option::Option<field_options::OptionTargetType>>()?.map(|x| x as i32);
+                            target__ = map.next_value::<::std::option::Option<::pbjson_types::field_options::OptionTargetType>>()?.map(|x| x as i32);
                         }
                         GeneratedField::UninterpretedOption => {
                             if uninterpreted_option__.is_some() {
@@ -2532,7 +2532,7 @@ impl<'de> serde::Deserialize<'de> for FieldOptions {
                         }
                     }
                 }
-                Ok(FieldOptions {
+                Ok(::pbjson_types::FieldOptions {
                     ctype: ctype__,
                     packed: packed__,
                     jstype: jstype__,
@@ -2550,7 +2550,7 @@ impl<'de> serde::Deserialize<'de> for FieldOptions {
         deserializer.deserialize_struct("google.protobuf.FieldOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for field_options::CType {
+impl serde::Serialize for ::pbjson_types::field_options::CType {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2564,7 +2564,7 @@ impl serde::Serialize for field_options::CType {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for field_options::CType {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::field_options::CType {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2579,7 +2579,7 @@ impl<'de> serde::Deserialize<'de> for field_options::CType {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = field_options::CType;
+            type Value = ::pbjson_types::field_options::CType;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2592,7 +2592,7 @@ impl<'de> serde::Deserialize<'de> for field_options::CType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::CType::from_i32)
+                    .and_then(::pbjson_types::field_options::CType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2605,7 +2605,7 @@ impl<'de> serde::Deserialize<'de> for field_options::CType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::CType::from_i32)
+                    .and_then(::pbjson_types::field_options::CType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2616,9 +2616,9 @@ impl<'de> serde::Deserialize<'de> for field_options::CType {
                 E: serde::de::Error,
             {
                 match value {
-                    "STRING" => Ok(field_options::CType::String),
-                    "CORD" => Ok(field_options::CType::Cord),
-                    "STRING_PIECE" => Ok(field_options::CType::StringPiece),
+                    "STRING" => Ok(::pbjson_types::field_options::CType::String),
+                    "CORD" => Ok(::pbjson_types::field_options::CType::Cord),
+                    "STRING_PIECE" => Ok(::pbjson_types::field_options::CType::StringPiece),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2626,7 +2626,7 @@ impl<'de> serde::Deserialize<'de> for field_options::CType {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for field_options::JsType {
+impl serde::Serialize for ::pbjson_types::field_options::JsType {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2640,7 +2640,7 @@ impl serde::Serialize for field_options::JsType {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for field_options::JsType {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::field_options::JsType {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2655,7 +2655,7 @@ impl<'de> serde::Deserialize<'de> for field_options::JsType {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = field_options::JsType;
+            type Value = ::pbjson_types::field_options::JsType;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2668,7 +2668,7 @@ impl<'de> serde::Deserialize<'de> for field_options::JsType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::JsType::from_i32)
+                    .and_then(::pbjson_types::field_options::JsType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2681,7 +2681,7 @@ impl<'de> serde::Deserialize<'de> for field_options::JsType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::JsType::from_i32)
+                    .and_then(::pbjson_types::field_options::JsType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2692,9 +2692,9 @@ impl<'de> serde::Deserialize<'de> for field_options::JsType {
                 E: serde::de::Error,
             {
                 match value {
-                    "JS_NORMAL" => Ok(field_options::JsType::JsNormal),
-                    "JS_STRING" => Ok(field_options::JsType::JsString),
-                    "JS_NUMBER" => Ok(field_options::JsType::JsNumber),
+                    "JS_NORMAL" => Ok(::pbjson_types::field_options::JsType::JsNormal),
+                    "JS_STRING" => Ok(::pbjson_types::field_options::JsType::JsString),
+                    "JS_NUMBER" => Ok(::pbjson_types::field_options::JsType::JsNumber),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2702,7 +2702,7 @@ impl<'de> serde::Deserialize<'de> for field_options::JsType {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for field_options::OptionRetention {
+impl serde::Serialize for ::pbjson_types::field_options::OptionRetention {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2716,7 +2716,7 @@ impl serde::Serialize for field_options::OptionRetention {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for field_options::OptionRetention {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::field_options::OptionRetention {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2731,7 +2731,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionRetention {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = field_options::OptionRetention;
+            type Value = ::pbjson_types::field_options::OptionRetention;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2744,7 +2744,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionRetention {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::OptionRetention::from_i32)
+                    .and_then(::pbjson_types::field_options::OptionRetention::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2757,7 +2757,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionRetention {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::OptionRetention::from_i32)
+                    .and_then(::pbjson_types::field_options::OptionRetention::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2768,9 +2768,9 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionRetention {
                 E: serde::de::Error,
             {
                 match value {
-                    "RETENTION_UNKNOWN" => Ok(field_options::OptionRetention::RetentionUnknown),
-                    "RETENTION_RUNTIME" => Ok(field_options::OptionRetention::RetentionRuntime),
-                    "RETENTION_SOURCE" => Ok(field_options::OptionRetention::RetentionSource),
+                    "RETENTION_UNKNOWN" => Ok(::pbjson_types::field_options::OptionRetention::RetentionUnknown),
+                    "RETENTION_RUNTIME" => Ok(::pbjson_types::field_options::OptionRetention::RetentionRuntime),
+                    "RETENTION_SOURCE" => Ok(::pbjson_types::field_options::OptionRetention::RetentionSource),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2778,7 +2778,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionRetention {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for field_options::OptionTargetType {
+impl serde::Serialize for ::pbjson_types::field_options::OptionTargetType {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2799,7 +2799,7 @@ impl serde::Serialize for field_options::OptionTargetType {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for field_options::OptionTargetType {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::field_options::OptionTargetType {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -2821,7 +2821,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionTargetType {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = field_options::OptionTargetType;
+            type Value = ::pbjson_types::field_options::OptionTargetType;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -2834,7 +2834,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionTargetType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::OptionTargetType::from_i32)
+                    .and_then(::pbjson_types::field_options::OptionTargetType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2847,7 +2847,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionTargetType {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(field_options::OptionTargetType::from_i32)
+                    .and_then(::pbjson_types::field_options::OptionTargetType::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -2858,16 +2858,16 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionTargetType {
                 E: serde::de::Error,
             {
                 match value {
-                    "TARGET_TYPE_UNKNOWN" => Ok(field_options::OptionTargetType::TargetTypeUnknown),
-                    "TARGET_TYPE_FILE" => Ok(field_options::OptionTargetType::TargetTypeFile),
-                    "TARGET_TYPE_EXTENSION_RANGE" => Ok(field_options::OptionTargetType::TargetTypeExtensionRange),
-                    "TARGET_TYPE_MESSAGE" => Ok(field_options::OptionTargetType::TargetTypeMessage),
-                    "TARGET_TYPE_FIELD" => Ok(field_options::OptionTargetType::TargetTypeField),
-                    "TARGET_TYPE_ONEOF" => Ok(field_options::OptionTargetType::TargetTypeOneof),
-                    "TARGET_TYPE_ENUM" => Ok(field_options::OptionTargetType::TargetTypeEnum),
-                    "TARGET_TYPE_ENUM_ENTRY" => Ok(field_options::OptionTargetType::TargetTypeEnumEntry),
-                    "TARGET_TYPE_SERVICE" => Ok(field_options::OptionTargetType::TargetTypeService),
-                    "TARGET_TYPE_METHOD" => Ok(field_options::OptionTargetType::TargetTypeMethod),
+                    "TARGET_TYPE_UNKNOWN" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeUnknown),
+                    "TARGET_TYPE_FILE" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeFile),
+                    "TARGET_TYPE_EXTENSION_RANGE" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeExtensionRange),
+                    "TARGET_TYPE_MESSAGE" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeMessage),
+                    "TARGET_TYPE_FIELD" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeField),
+                    "TARGET_TYPE_ONEOF" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeOneof),
+                    "TARGET_TYPE_ENUM" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeEnum),
+                    "TARGET_TYPE_ENUM_ENTRY" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeEnumEntry),
+                    "TARGET_TYPE_SERVICE" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeService),
+                    "TARGET_TYPE_METHOD" => Ok(::pbjson_types::field_options::OptionTargetType::TargetTypeMethod),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -2875,7 +2875,7 @@ impl<'de> serde::Deserialize<'de> for field_options::OptionTargetType {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for FileDescriptorProto {
+impl serde::Serialize for ::pbjson_types::FileDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -2965,7 +2965,7 @@ impl serde::Serialize for FileDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for FileDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::FileDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3050,13 +3050,13 @@ impl<'de> serde::Deserialize<'de> for FileDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = FileDescriptorProto;
+            type Value = ::pbjson_types::FileDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.FileDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FileDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::FileDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3161,7 +3161,7 @@ impl<'de> serde::Deserialize<'de> for FileDescriptorProto {
                         }
                     }
                 }
-                Ok(FileDescriptorProto {
+                Ok(::pbjson_types::FileDescriptorProto {
                     name: name__,
                     package: package__,
                     dependency: dependency__.unwrap_or_default(),
@@ -3181,7 +3181,7 @@ impl<'de> serde::Deserialize<'de> for FileDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.FileDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for FileDescriptorSet {
+impl serde::Serialize for ::pbjson_types::FileDescriptorSet {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -3199,7 +3199,7 @@ impl serde::Serialize for FileDescriptorSet {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for FileDescriptorSet {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::FileDescriptorSet {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3243,13 +3243,13 @@ impl<'de> serde::Deserialize<'de> for FileDescriptorSet {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = FileDescriptorSet;
+            type Value = ::pbjson_types::FileDescriptorSet;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.FileDescriptorSet")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FileDescriptorSet, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::FileDescriptorSet, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3264,7 +3264,7 @@ impl<'de> serde::Deserialize<'de> for FileDescriptorSet {
                         }
                     }
                 }
-                Ok(FileDescriptorSet {
+                Ok(::pbjson_types::FileDescriptorSet {
                     file: file__.unwrap_or_default(),
                 })
             }
@@ -3272,7 +3272,7 @@ impl<'de> serde::Deserialize<'de> for FileDescriptorSet {
         deserializer.deserialize_struct("google.protobuf.FileDescriptorSet", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for FileOptions {
+impl serde::Serialize for ::pbjson_types::FileOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -3360,7 +3360,7 @@ impl serde::Serialize for FileOptions {
             struct_ser.serialize_field("javaStringCheckUtf8", v)?;
         }
         if let Some(v) = self.optimize_for.as_ref() {
-            let v = file_options::OptimizeMode::from_i32(*v)
+            let v = ::pbjson_types::file_options::OptimizeMode::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("optimizeFor", &v)?;
         }
@@ -3412,7 +3412,7 @@ impl serde::Serialize for FileOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for FileOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::FileOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3536,13 +3536,13 @@ impl<'de> serde::Deserialize<'de> for FileOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = FileOptions;
+            type Value = ::pbjson_types::FileOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.FileOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FileOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::FileOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3603,7 +3603,7 @@ impl<'de> serde::Deserialize<'de> for FileOptions {
                             if optimize_for__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("optimizeFor"));
                             }
-                            optimize_for__ = map.next_value::<::std::option::Option<file_options::OptimizeMode>>()?.map(|x| x as i32);
+                            optimize_for__ = map.next_value::<::std::option::Option<::pbjson_types::file_options::OptimizeMode>>()?.map(|x| x as i32);
                         }
                         GeneratedField::GoPackage => {
                             if go_package__.is_some() {
@@ -3697,7 +3697,7 @@ impl<'de> serde::Deserialize<'de> for FileOptions {
                         }
                     }
                 }
-                Ok(FileOptions {
+                Ok(::pbjson_types::FileOptions {
                     java_package: java_package__,
                     java_outer_classname: java_outer_classname__,
                     java_multiple_files: java_multiple_files__,
@@ -3725,7 +3725,7 @@ impl<'de> serde::Deserialize<'de> for FileOptions {
         deserializer.deserialize_struct("google.protobuf.FileOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for file_options::OptimizeMode {
+impl serde::Serialize for ::pbjson_types::file_options::OptimizeMode {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -3739,7 +3739,7 @@ impl serde::Serialize for file_options::OptimizeMode {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for file_options::OptimizeMode {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::file_options::OptimizeMode {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3754,7 +3754,7 @@ impl<'de> serde::Deserialize<'de> for file_options::OptimizeMode {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = file_options::OptimizeMode;
+            type Value = ::pbjson_types::file_options::OptimizeMode;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -3767,7 +3767,7 @@ impl<'de> serde::Deserialize<'de> for file_options::OptimizeMode {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(file_options::OptimizeMode::from_i32)
+                    .and_then(::pbjson_types::file_options::OptimizeMode::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -3780,7 +3780,7 @@ impl<'de> serde::Deserialize<'de> for file_options::OptimizeMode {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(file_options::OptimizeMode::from_i32)
+                    .and_then(::pbjson_types::file_options::OptimizeMode::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -3791,9 +3791,9 @@ impl<'de> serde::Deserialize<'de> for file_options::OptimizeMode {
                 E: serde::de::Error,
             {
                 match value {
-                    "SPEED" => Ok(file_options::OptimizeMode::Speed),
-                    "CODE_SIZE" => Ok(file_options::OptimizeMode::CodeSize),
-                    "LITE_RUNTIME" => Ok(file_options::OptimizeMode::LiteRuntime),
+                    "SPEED" => Ok(::pbjson_types::file_options::OptimizeMode::Speed),
+                    "CODE_SIZE" => Ok(::pbjson_types::file_options::OptimizeMode::CodeSize),
+                    "LITE_RUNTIME" => Ok(::pbjson_types::file_options::OptimizeMode::LiteRuntime),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -3801,7 +3801,7 @@ impl<'de> serde::Deserialize<'de> for file_options::OptimizeMode {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for FloatValue {
+impl serde::Serialize for ::pbjson_types::FloatValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -3819,7 +3819,7 @@ impl serde::Serialize for FloatValue {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for FloatValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::FloatValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3863,13 +3863,13 @@ impl<'de> serde::Deserialize<'de> for FloatValue {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = FloatValue;
+            type Value = ::pbjson_types::FloatValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.FloatValue")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FloatValue, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::FloatValue, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3886,7 +3886,7 @@ impl<'de> serde::Deserialize<'de> for FloatValue {
                         }
                     }
                 }
-                Ok(FloatValue {
+                Ok(::pbjson_types::FloatValue {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -3894,7 +3894,7 @@ impl<'de> serde::Deserialize<'de> for FloatValue {
         deserializer.deserialize_struct("google.protobuf.FloatValue", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for GeneratedCodeInfo {
+impl serde::Serialize for ::pbjson_types::GeneratedCodeInfo {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -3912,7 +3912,7 @@ impl serde::Serialize for GeneratedCodeInfo {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for GeneratedCodeInfo {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::GeneratedCodeInfo {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -3956,13 +3956,13 @@ impl<'de> serde::Deserialize<'de> for GeneratedCodeInfo {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = GeneratedCodeInfo;
+            type Value = ::pbjson_types::GeneratedCodeInfo;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.GeneratedCodeInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GeneratedCodeInfo, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::GeneratedCodeInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3977,7 +3977,7 @@ impl<'de> serde::Deserialize<'de> for GeneratedCodeInfo {
                         }
                     }
                 }
-                Ok(GeneratedCodeInfo {
+                Ok(::pbjson_types::GeneratedCodeInfo {
                     annotation: annotation__.unwrap_or_default(),
                 })
             }
@@ -3985,7 +3985,7 @@ impl<'de> serde::Deserialize<'de> for GeneratedCodeInfo {
         deserializer.deserialize_struct("google.protobuf.GeneratedCodeInfo", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for generated_code_info::Annotation {
+impl serde::Serialize for ::pbjson_types::generated_code_info::Annotation {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4022,14 +4022,14 @@ impl serde::Serialize for generated_code_info::Annotation {
             struct_ser.serialize_field("end", v)?;
         }
         if let Some(v) = self.semantic.as_ref() {
-            let v = generated_code_info::annotation::Semantic::from_i32(*v)
+            let v = ::pbjson_types::generated_code_info::annotation::Semantic::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("semantic", &v)?;
         }
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for generated_code_info::Annotation {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::generated_code_info::Annotation {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4086,13 +4086,13 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::Annotation {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = generated_code_info::Annotation;
+            type Value = ::pbjson_types::generated_code_info::Annotation;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.GeneratedCodeInfo.Annotation")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<generated_code_info::Annotation, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::generated_code_info::Annotation, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4138,11 +4138,11 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::Annotation {
                             if semantic__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("semantic"));
                             }
-                            semantic__ = map.next_value::<::std::option::Option<generated_code_info::annotation::Semantic>>()?.map(|x| x as i32);
+                            semantic__ = map.next_value::<::std::option::Option<::pbjson_types::generated_code_info::annotation::Semantic>>()?.map(|x| x as i32);
                         }
                     }
                 }
-                Ok(generated_code_info::Annotation {
+                Ok(::pbjson_types::generated_code_info::Annotation {
                     path: path__.unwrap_or_default(),
                     source_file: source_file__,
                     begin: begin__,
@@ -4154,7 +4154,7 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::Annotation {
         deserializer.deserialize_struct("google.protobuf.GeneratedCodeInfo.Annotation", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for generated_code_info::annotation::Semantic {
+impl serde::Serialize for ::pbjson_types::generated_code_info::annotation::Semantic {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4168,7 +4168,7 @@ impl serde::Serialize for generated_code_info::annotation::Semantic {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for generated_code_info::annotation::Semantic {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::generated_code_info::annotation::Semantic {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4183,7 +4183,7 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::annotation::Semantic 
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = generated_code_info::annotation::Semantic;
+            type Value = ::pbjson_types::generated_code_info::annotation::Semantic;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -4196,7 +4196,7 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::annotation::Semantic 
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(generated_code_info::annotation::Semantic::from_i32)
+                    .and_then(::pbjson_types::generated_code_info::annotation::Semantic::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -4209,7 +4209,7 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::annotation::Semantic 
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(generated_code_info::annotation::Semantic::from_i32)
+                    .and_then(::pbjson_types::generated_code_info::annotation::Semantic::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -4220,9 +4220,9 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::annotation::Semantic 
                 E: serde::de::Error,
             {
                 match value {
-                    "NONE" => Ok(generated_code_info::annotation::Semantic::None),
-                    "SET" => Ok(generated_code_info::annotation::Semantic::Set),
-                    "ALIAS" => Ok(generated_code_info::annotation::Semantic::Alias),
+                    "NONE" => Ok(::pbjson_types::generated_code_info::annotation::Semantic::None),
+                    "SET" => Ok(::pbjson_types::generated_code_info::annotation::Semantic::Set),
+                    "ALIAS" => Ok(::pbjson_types::generated_code_info::annotation::Semantic::Alias),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -4230,7 +4230,7 @@ impl<'de> serde::Deserialize<'de> for generated_code_info::annotation::Semantic 
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for Int32Value {
+impl serde::Serialize for ::pbjson_types::Int32Value {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4248,7 +4248,7 @@ impl serde::Serialize for Int32Value {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Int32Value {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Int32Value {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4292,13 +4292,13 @@ impl<'de> serde::Deserialize<'de> for Int32Value {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Int32Value;
+            type Value = ::pbjson_types::Int32Value;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Int32Value")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Int32Value, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Int32Value, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4315,7 +4315,7 @@ impl<'de> serde::Deserialize<'de> for Int32Value {
                         }
                     }
                 }
-                Ok(Int32Value {
+                Ok(::pbjson_types::Int32Value {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -4323,7 +4323,7 @@ impl<'de> serde::Deserialize<'de> for Int32Value {
         deserializer.deserialize_struct("google.protobuf.Int32Value", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for Int64Value {
+impl serde::Serialize for ::pbjson_types::Int64Value {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4341,7 +4341,7 @@ impl serde::Serialize for Int64Value {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Int64Value {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Int64Value {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4385,13 +4385,13 @@ impl<'de> serde::Deserialize<'de> for Int64Value {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Int64Value;
+            type Value = ::pbjson_types::Int64Value;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Int64Value")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Int64Value, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Int64Value, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4408,7 +4408,7 @@ impl<'de> serde::Deserialize<'de> for Int64Value {
                         }
                     }
                 }
-                Ok(Int64Value {
+                Ok(::pbjson_types::Int64Value {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -4416,7 +4416,7 @@ impl<'de> serde::Deserialize<'de> for Int64Value {
         deserializer.deserialize_struct("google.protobuf.Int64Value", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for ListValue {
+impl serde::Serialize for ::pbjson_types::ListValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4434,7 +4434,7 @@ impl serde::Serialize for ListValue {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for ListValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::ListValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4478,13 +4478,13 @@ impl<'de> serde::Deserialize<'de> for ListValue {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = ListValue;
+            type Value = ::pbjson_types::ListValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.ListValue")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ListValue, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::ListValue, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4499,7 +4499,7 @@ impl<'de> serde::Deserialize<'de> for ListValue {
                         }
                     }
                 }
-                Ok(ListValue {
+                Ok(::pbjson_types::ListValue {
                     values: values__.unwrap_or_default(),
                 })
             }
@@ -4507,7 +4507,7 @@ impl<'de> serde::Deserialize<'de> for ListValue {
         deserializer.deserialize_struct("google.protobuf.ListValue", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for MessageOptions {
+impl serde::Serialize for ::pbjson_types::MessageOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4555,7 +4555,7 @@ impl serde::Serialize for MessageOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for MessageOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::MessageOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4619,13 +4619,13 @@ impl<'de> serde::Deserialize<'de> for MessageOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = MessageOptions;
+            type Value = ::pbjson_types::MessageOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.MessageOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MessageOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::MessageOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4675,7 +4675,7 @@ impl<'de> serde::Deserialize<'de> for MessageOptions {
                         }
                     }
                 }
-                Ok(MessageOptions {
+                Ok(::pbjson_types::MessageOptions {
                     message_set_wire_format: message_set_wire_format__,
                     no_standard_descriptor_accessor: no_standard_descriptor_accessor__,
                     deprecated: deprecated__,
@@ -4688,7 +4688,7 @@ impl<'de> serde::Deserialize<'de> for MessageOptions {
         deserializer.deserialize_struct("google.protobuf.MessageOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for MethodDescriptorProto {
+impl serde::Serialize for ::pbjson_types::MethodDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4736,7 +4736,7 @@ impl serde::Serialize for MethodDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for MethodDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::MethodDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4799,13 +4799,13 @@ impl<'de> serde::Deserialize<'de> for MethodDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = MethodDescriptorProto;
+            type Value = ::pbjson_types::MethodDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.MethodDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MethodDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::MethodDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4855,7 +4855,7 @@ impl<'de> serde::Deserialize<'de> for MethodDescriptorProto {
                         }
                     }
                 }
-                Ok(MethodDescriptorProto {
+                Ok(::pbjson_types::MethodDescriptorProto {
                     name: name__,
                     input_type: input_type__,
                     output_type: output_type__,
@@ -4868,7 +4868,7 @@ impl<'de> serde::Deserialize<'de> for MethodDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.MethodDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for MethodOptions {
+impl serde::Serialize for ::pbjson_types::MethodOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -4890,7 +4890,7 @@ impl serde::Serialize for MethodOptions {
             struct_ser.serialize_field("deprecated", v)?;
         }
         if let Some(v) = self.idempotency_level.as_ref() {
-            let v = method_options::IdempotencyLevel::from_i32(*v)
+            let v = ::pbjson_types::method_options::IdempotencyLevel::from_i32(*v)
                 .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("idempotencyLevel", &v)?;
         }
@@ -4900,7 +4900,7 @@ impl serde::Serialize for MethodOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for MethodOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::MethodOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -4952,13 +4952,13 @@ impl<'de> serde::Deserialize<'de> for MethodOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = MethodOptions;
+            type Value = ::pbjson_types::MethodOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.MethodOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MethodOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::MethodOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4977,7 +4977,7 @@ impl<'de> serde::Deserialize<'de> for MethodOptions {
                             if idempotency_level__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("idempotencyLevel"));
                             }
-                            idempotency_level__ = map.next_value::<::std::option::Option<method_options::IdempotencyLevel>>()?.map(|x| x as i32);
+                            idempotency_level__ = map.next_value::<::std::option::Option<::pbjson_types::method_options::IdempotencyLevel>>()?.map(|x| x as i32);
                         }
                         GeneratedField::UninterpretedOption => {
                             if uninterpreted_option__.is_some() {
@@ -4987,7 +4987,7 @@ impl<'de> serde::Deserialize<'de> for MethodOptions {
                         }
                     }
                 }
-                Ok(MethodOptions {
+                Ok(::pbjson_types::MethodOptions {
                     deprecated: deprecated__,
                     idempotency_level: idempotency_level__,
                     uninterpreted_option: uninterpreted_option__.unwrap_or_default(),
@@ -4997,7 +4997,7 @@ impl<'de> serde::Deserialize<'de> for MethodOptions {
         deserializer.deserialize_struct("google.protobuf.MethodOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for method_options::IdempotencyLevel {
+impl serde::Serialize for ::pbjson_types::method_options::IdempotencyLevel {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5011,7 +5011,7 @@ impl serde::Serialize for method_options::IdempotencyLevel {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for method_options::IdempotencyLevel {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::method_options::IdempotencyLevel {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5026,7 +5026,7 @@ impl<'de> serde::Deserialize<'de> for method_options::IdempotencyLevel {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = method_options::IdempotencyLevel;
+            type Value = ::pbjson_types::method_options::IdempotencyLevel;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -5039,7 +5039,7 @@ impl<'de> serde::Deserialize<'de> for method_options::IdempotencyLevel {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(method_options::IdempotencyLevel::from_i32)
+                    .and_then(::pbjson_types::method_options::IdempotencyLevel::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -5052,7 +5052,7 @@ impl<'de> serde::Deserialize<'de> for method_options::IdempotencyLevel {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(method_options::IdempotencyLevel::from_i32)
+                    .and_then(::pbjson_types::method_options::IdempotencyLevel::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -5063,9 +5063,9 @@ impl<'de> serde::Deserialize<'de> for method_options::IdempotencyLevel {
                 E: serde::de::Error,
             {
                 match value {
-                    "IDEMPOTENCY_UNKNOWN" => Ok(method_options::IdempotencyLevel::IdempotencyUnknown),
-                    "NO_SIDE_EFFECTS" => Ok(method_options::IdempotencyLevel::NoSideEffects),
-                    "IDEMPOTENT" => Ok(method_options::IdempotencyLevel::Idempotent),
+                    "IDEMPOTENCY_UNKNOWN" => Ok(::pbjson_types::method_options::IdempotencyLevel::IdempotencyUnknown),
+                    "NO_SIDE_EFFECTS" => Ok(::pbjson_types::method_options::IdempotencyLevel::NoSideEffects),
+                    "IDEMPOTENT" => Ok(::pbjson_types::method_options::IdempotencyLevel::Idempotent),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -5073,7 +5073,7 @@ impl<'de> serde::Deserialize<'de> for method_options::IdempotencyLevel {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for NullValue {
+impl serde::Serialize for ::pbjson_types::NullValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5085,7 +5085,7 @@ impl serde::Serialize for NullValue {
         serializer.serialize_str(variant)
     }
 }
-impl<'de> serde::Deserialize<'de> for NullValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::NullValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5098,7 +5098,7 @@ impl<'de> serde::Deserialize<'de> for NullValue {
         struct GeneratedVisitor;
 
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = NullValue;
+            type Value = ::pbjson_types::NullValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 write!(formatter, "expected one of: {:?}", &FIELDS)
@@ -5111,7 +5111,7 @@ impl<'de> serde::Deserialize<'de> for NullValue {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(NullValue::from_i32)
+                    .and_then(::pbjson_types::NullValue::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -5124,7 +5124,7 @@ impl<'de> serde::Deserialize<'de> for NullValue {
                 use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(NullValue::from_i32)
+                    .and_then(::pbjson_types::NullValue::from_i32)
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -5135,7 +5135,7 @@ impl<'de> serde::Deserialize<'de> for NullValue {
                 E: serde::de::Error,
             {
                 match value {
-                    "NULL_VALUE" => Ok(NullValue::NullValue),
+                    "NULL_VALUE" => Ok(::pbjson_types::NullValue::NullValue),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -5143,7 +5143,7 @@ impl<'de> serde::Deserialize<'de> for NullValue {
         deserializer.deserialize_any(GeneratedVisitor)
     }
 }
-impl serde::Serialize for OneofDescriptorProto {
+impl serde::Serialize for ::pbjson_types::OneofDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5167,7 +5167,7 @@ impl serde::Serialize for OneofDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for OneofDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::OneofDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5214,13 +5214,13 @@ impl<'de> serde::Deserialize<'de> for OneofDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = OneofDescriptorProto;
+            type Value = ::pbjson_types::OneofDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.OneofDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<OneofDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::OneofDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5242,7 +5242,7 @@ impl<'de> serde::Deserialize<'de> for OneofDescriptorProto {
                         }
                     }
                 }
-                Ok(OneofDescriptorProto {
+                Ok(::pbjson_types::OneofDescriptorProto {
                     name: name__,
                     options: options__,
                 })
@@ -5251,7 +5251,7 @@ impl<'de> serde::Deserialize<'de> for OneofDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.OneofDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for OneofOptions {
+impl serde::Serialize for ::pbjson_types::OneofOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5269,7 +5269,7 @@ impl serde::Serialize for OneofOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for OneofOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::OneofOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5314,13 +5314,13 @@ impl<'de> serde::Deserialize<'de> for OneofOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = OneofOptions;
+            type Value = ::pbjson_types::OneofOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.OneofOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<OneofOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::OneofOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5335,7 +5335,7 @@ impl<'de> serde::Deserialize<'de> for OneofOptions {
                         }
                     }
                 }
-                Ok(OneofOptions {
+                Ok(::pbjson_types::OneofOptions {
                     uninterpreted_option: uninterpreted_option__.unwrap_or_default(),
                 })
             }
@@ -5343,7 +5343,7 @@ impl<'de> serde::Deserialize<'de> for OneofOptions {
         deserializer.deserialize_struct("google.protobuf.OneofOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for ServiceDescriptorProto {
+impl serde::Serialize for ::pbjson_types::ServiceDescriptorProto {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5373,7 +5373,7 @@ impl serde::Serialize for ServiceDescriptorProto {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for ServiceDescriptorProto {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::ServiceDescriptorProto {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5423,13 +5423,13 @@ impl<'de> serde::Deserialize<'de> for ServiceDescriptorProto {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = ServiceDescriptorProto;
+            type Value = ::pbjson_types::ServiceDescriptorProto;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.ServiceDescriptorProto")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ServiceDescriptorProto, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::ServiceDescriptorProto, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5458,7 +5458,7 @@ impl<'de> serde::Deserialize<'de> for ServiceDescriptorProto {
                         }
                     }
                 }
-                Ok(ServiceDescriptorProto {
+                Ok(::pbjson_types::ServiceDescriptorProto {
                     name: name__,
                     method: method__.unwrap_or_default(),
                     options: options__,
@@ -5468,7 +5468,7 @@ impl<'de> serde::Deserialize<'de> for ServiceDescriptorProto {
         deserializer.deserialize_struct("google.protobuf.ServiceDescriptorProto", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for ServiceOptions {
+impl serde::Serialize for ::pbjson_types::ServiceOptions {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5492,7 +5492,7 @@ impl serde::Serialize for ServiceOptions {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for ServiceOptions {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::ServiceOptions {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5540,13 +5540,13 @@ impl<'de> serde::Deserialize<'de> for ServiceOptions {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = ServiceOptions;
+            type Value = ::pbjson_types::ServiceOptions;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.ServiceOptions")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ServiceOptions, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::ServiceOptions, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5568,7 +5568,7 @@ impl<'de> serde::Deserialize<'de> for ServiceOptions {
                         }
                     }
                 }
-                Ok(ServiceOptions {
+                Ok(::pbjson_types::ServiceOptions {
                     deprecated: deprecated__,
                     uninterpreted_option: uninterpreted_option__.unwrap_or_default(),
                 })
@@ -5577,7 +5577,7 @@ impl<'de> serde::Deserialize<'de> for ServiceOptions {
         deserializer.deserialize_struct("google.protobuf.ServiceOptions", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for SourceCodeInfo {
+impl serde::Serialize for ::pbjson_types::SourceCodeInfo {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5595,7 +5595,7 @@ impl serde::Serialize for SourceCodeInfo {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for SourceCodeInfo {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::SourceCodeInfo {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5639,13 +5639,13 @@ impl<'de> serde::Deserialize<'de> for SourceCodeInfo {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = SourceCodeInfo;
+            type Value = ::pbjson_types::SourceCodeInfo;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.SourceCodeInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SourceCodeInfo, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::SourceCodeInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5660,7 +5660,7 @@ impl<'de> serde::Deserialize<'de> for SourceCodeInfo {
                         }
                     }
                 }
-                Ok(SourceCodeInfo {
+                Ok(::pbjson_types::SourceCodeInfo {
                     location: location__.unwrap_or_default(),
                 })
             }
@@ -5668,7 +5668,7 @@ impl<'de> serde::Deserialize<'de> for SourceCodeInfo {
         deserializer.deserialize_struct("google.protobuf.SourceCodeInfo", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for source_code_info::Location {
+impl serde::Serialize for ::pbjson_types::source_code_info::Location {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5710,7 +5710,7 @@ impl serde::Serialize for source_code_info::Location {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for source_code_info::Location {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::source_code_info::Location {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5769,13 +5769,13 @@ impl<'de> serde::Deserialize<'de> for source_code_info::Location {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = source_code_info::Location;
+            type Value = ::pbjson_types::source_code_info::Location;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.SourceCodeInfo.Location")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<source_code_info::Location, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::source_code_info::Location, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5824,7 +5824,7 @@ impl<'de> serde::Deserialize<'de> for source_code_info::Location {
                         }
                     }
                 }
-                Ok(source_code_info::Location {
+                Ok(::pbjson_types::source_code_info::Location {
                     path: path__.unwrap_or_default(),
                     span: span__.unwrap_or_default(),
                     leading_comments: leading_comments__,
@@ -5836,7 +5836,7 @@ impl<'de> serde::Deserialize<'de> for source_code_info::Location {
         deserializer.deserialize_struct("google.protobuf.SourceCodeInfo.Location", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for StringValue {
+impl serde::Serialize for ::pbjson_types::StringValue {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5854,7 +5854,7 @@ impl serde::Serialize for StringValue {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for StringValue {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::StringValue {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5898,13 +5898,13 @@ impl<'de> serde::Deserialize<'de> for StringValue {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = StringValue;
+            type Value = ::pbjson_types::StringValue;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.StringValue")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<StringValue, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::StringValue, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -5919,7 +5919,7 @@ impl<'de> serde::Deserialize<'de> for StringValue {
                         }
                     }
                 }
-                Ok(StringValue {
+                Ok(::pbjson_types::StringValue {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -5927,7 +5927,7 @@ impl<'de> serde::Deserialize<'de> for StringValue {
         deserializer.deserialize_struct("google.protobuf.StringValue", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for Struct {
+impl serde::Serialize for ::pbjson_types::Struct {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -5945,7 +5945,7 @@ impl serde::Serialize for Struct {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Struct {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Struct {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -5989,13 +5989,13 @@ impl<'de> serde::Deserialize<'de> for Struct {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Struct;
+            type Value = ::pbjson_types::Struct;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Struct")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Struct, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Struct, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6012,7 +6012,7 @@ impl<'de> serde::Deserialize<'de> for Struct {
                         }
                     }
                 }
-                Ok(Struct {
+                Ok(::pbjson_types::Struct {
                     fields: fields__.unwrap_or_default(),
                 })
             }
@@ -6020,7 +6020,7 @@ impl<'de> serde::Deserialize<'de> for Struct {
         deserializer.deserialize_struct("google.protobuf.Struct", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for Timestamp {
+impl serde::Serialize for ::pbjson_types::Timestamp {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -6044,7 +6044,7 @@ impl serde::Serialize for Timestamp {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Timestamp {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Timestamp {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -6091,13 +6091,13 @@ impl<'de> serde::Deserialize<'de> for Timestamp {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Timestamp;
+            type Value = ::pbjson_types::Timestamp;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Timestamp")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Timestamp, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Timestamp, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6123,7 +6123,7 @@ impl<'de> serde::Deserialize<'de> for Timestamp {
                         }
                     }
                 }
-                Ok(Timestamp {
+                Ok(::pbjson_types::Timestamp {
                     seconds: seconds__.unwrap_or_default(),
                     nanos: nanos__.unwrap_or_default(),
                 })
@@ -6132,7 +6132,7 @@ impl<'de> serde::Deserialize<'de> for Timestamp {
         deserializer.deserialize_struct("google.protobuf.Timestamp", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for UInt32Value {
+impl serde::Serialize for ::pbjson_types::UInt32Value {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -6150,7 +6150,7 @@ impl serde::Serialize for UInt32Value {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for UInt32Value {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::UInt32Value {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -6194,13 +6194,13 @@ impl<'de> serde::Deserialize<'de> for UInt32Value {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = UInt32Value;
+            type Value = ::pbjson_types::UInt32Value;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.UInt32Value")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<UInt32Value, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::UInt32Value, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6217,7 +6217,7 @@ impl<'de> serde::Deserialize<'de> for UInt32Value {
                         }
                     }
                 }
-                Ok(UInt32Value {
+                Ok(::pbjson_types::UInt32Value {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -6225,7 +6225,7 @@ impl<'de> serde::Deserialize<'de> for UInt32Value {
         deserializer.deserialize_struct("google.protobuf.UInt32Value", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for UInt64Value {
+impl serde::Serialize for ::pbjson_types::UInt64Value {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -6243,7 +6243,7 @@ impl serde::Serialize for UInt64Value {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for UInt64Value {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::UInt64Value {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -6287,13 +6287,13 @@ impl<'de> serde::Deserialize<'de> for UInt64Value {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = UInt64Value;
+            type Value = ::pbjson_types::UInt64Value;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.UInt64Value")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<UInt64Value, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::UInt64Value, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6310,7 +6310,7 @@ impl<'de> serde::Deserialize<'de> for UInt64Value {
                         }
                     }
                 }
-                Ok(UInt64Value {
+                Ok(::pbjson_types::UInt64Value {
                     value: value__.unwrap_or_default(),
                 })
             }
@@ -6318,7 +6318,7 @@ impl<'de> serde::Deserialize<'de> for UInt64Value {
         deserializer.deserialize_struct("google.protobuf.UInt64Value", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for UninterpretedOption {
+impl serde::Serialize for ::pbjson_types::UninterpretedOption {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -6372,7 +6372,7 @@ impl serde::Serialize for UninterpretedOption {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for UninterpretedOption {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::UninterpretedOption {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -6440,13 +6440,13 @@ impl<'de> serde::Deserialize<'de> for UninterpretedOption {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = UninterpretedOption;
+            type Value = ::pbjson_types::UninterpretedOption;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.UninterpretedOption")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<UninterpretedOption, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::UninterpretedOption, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6511,7 +6511,7 @@ impl<'de> serde::Deserialize<'de> for UninterpretedOption {
                         }
                     }
                 }
-                Ok(UninterpretedOption {
+                Ok(::pbjson_types::UninterpretedOption {
                     name: name__.unwrap_or_default(),
                     identifier_value: identifier_value__,
                     positive_int_value: positive_int_value__,
@@ -6525,7 +6525,7 @@ impl<'de> serde::Deserialize<'de> for UninterpretedOption {
         deserializer.deserialize_struct("google.protobuf.UninterpretedOption", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for uninterpreted_option::NamePart {
+impl serde::Serialize for ::pbjson_types::uninterpreted_option::NamePart {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -6539,7 +6539,7 @@ impl serde::Serialize for uninterpreted_option::NamePart {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for uninterpreted_option::NamePart {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::uninterpreted_option::NamePart {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -6588,13 +6588,13 @@ impl<'de> serde::Deserialize<'de> for uninterpreted_option::NamePart {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = uninterpreted_option::NamePart;
+            type Value = ::pbjson_types::uninterpreted_option::NamePart;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.UninterpretedOption.NamePart")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<uninterpreted_option::NamePart, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::uninterpreted_option::NamePart, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6616,7 +6616,7 @@ impl<'de> serde::Deserialize<'de> for uninterpreted_option::NamePart {
                         }
                     }
                 }
-                Ok(uninterpreted_option::NamePart {
+                Ok(::pbjson_types::uninterpreted_option::NamePart {
                     name_part: name_part__.ok_or_else(|| serde::de::Error::missing_field("namePart"))?,
                     is_extension: is_extension__.ok_or_else(|| serde::de::Error::missing_field("isExtension"))?,
                 })
@@ -6625,7 +6625,7 @@ impl<'de> serde::Deserialize<'de> for uninterpreted_option::NamePart {
         deserializer.deserialize_struct("google.protobuf.UninterpretedOption.NamePart", FIELDS, GeneratedVisitor)
     }
 }
-impl serde::Serialize for Value {
+impl serde::Serialize for ::pbjson_types::Value {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -6639,24 +6639,24 @@ impl serde::Serialize for Value {
         let mut struct_ser = serializer.serialize_struct("google.protobuf.Value", len)?;
         if let Some(v) = self.kind.as_ref() {
             match v {
-                value::Kind::NullValue(v) => {
-                    let v = NullValue::from_i32(*v)
+                ::pbjson_types::value::Kind::NullValue(v) => {
+                    let v = ::pbjson_types::NullValue::from_i32(*v)
                         .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
                     struct_ser.serialize_field("nullValue", &v)?;
                 }
-                value::Kind::NumberValue(v) => {
+                ::pbjson_types::value::Kind::NumberValue(v) => {
                     struct_ser.serialize_field("numberValue", v)?;
                 }
-                value::Kind::StringValue(v) => {
+                ::pbjson_types::value::Kind::StringValue(v) => {
                     struct_ser.serialize_field("stringValue", v)?;
                 }
-                value::Kind::BoolValue(v) => {
+                ::pbjson_types::value::Kind::BoolValue(v) => {
                     struct_ser.serialize_field("boolValue", v)?;
                 }
-                value::Kind::StructValue(v) => {
+                ::pbjson_types::value::Kind::StructValue(v) => {
                     struct_ser.serialize_field("structValue", v)?;
                 }
-                value::Kind::ListValue(v) => {
+                ::pbjson_types::value::Kind::ListValue(v) => {
                     struct_ser.serialize_field("listValue", v)?;
                 }
             }
@@ -6664,7 +6664,7 @@ impl serde::Serialize for Value {
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for Value {
+impl<'de> serde::Deserialize<'de> for ::pbjson_types::Value {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -6729,13 +6729,13 @@ impl<'de> serde::Deserialize<'de> for Value {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = Value;
+            type Value = ::pbjson_types::Value;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 formatter.write_str("struct google.protobuf.Value")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Value, V::Error>
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<::pbjson_types::Value, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -6746,43 +6746,43 @@ impl<'de> serde::Deserialize<'de> for Value {
                             if kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("nullValue"));
                             }
-                            kind__ = map.next_value::<::std::option::Option<NullValue>>()?.map(|x| value::Kind::NullValue(x as i32));
+                            kind__ = map.next_value::<::std::option::Option<::pbjson_types::NullValue>>()?.map(|x| ::pbjson_types::value::Kind::NullValue(x as i32));
                         }
                         GeneratedField::NumberValue => {
                             if kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("numberValue"));
                             }
-                            kind__ = map.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| value::Kind::NumberValue(x.0));
+                            kind__ = map.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| ::pbjson_types::value::Kind::NumberValue(x.0));
                         }
                         GeneratedField::StringValue => {
                             if kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("stringValue"));
                             }
-                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(value::Kind::StringValue);
+                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(::pbjson_types::value::Kind::StringValue);
                         }
                         GeneratedField::BoolValue => {
                             if kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("boolValue"));
                             }
-                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(value::Kind::BoolValue);
+                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(::pbjson_types::value::Kind::BoolValue);
                         }
                         GeneratedField::StructValue => {
                             if kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("structValue"));
                             }
-                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(value::Kind::StructValue)
+                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(::pbjson_types::value::Kind::StructValue)
 ;
                         }
                         GeneratedField::ListValue => {
                             if kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("listValue"));
                             }
-                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(value::Kind::ListValue)
+                            kind__ = map.next_value::<::std::option::Option<_>>()?.map(::pbjson_types::value::Kind::ListValue)
 ;
                         }
                     }
                 }
-                Ok(Value {
+                Ok(::pbjson_types::Value {
                     kind: kind__,
                 })
             }

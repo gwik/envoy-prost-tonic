@@ -183,7 +183,7 @@ impl serde::Serialize for Constant {
         if let Some(v) = self.constant_kind.as_ref() {
             match v {
                 constant::ConstantKind::NullValue(v) => {
-                    let v = super::super::super::protobuf::NullValue::from_i32(*v)
+                    let v = ::pbjson_types::NullValue::from_i32(*v)
                         .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
                     struct_ser.serialize_field("nullValue", &v)?;
                 }
@@ -310,7 +310,7 @@ impl<'de> serde::Deserialize<'de> for Constant {
                             if constant_kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("nullValue"));
                             }
-                            constant_kind__ = map.next_value::<::std::option::Option<super::super::super::protobuf::NullValue>>()?.map(|x| constant::ConstantKind::NullValue(x as i32));
+                            constant_kind__ = map.next_value::<::std::option::Option<::pbjson_types::NullValue>>()?.map(|x| constant::ConstantKind::NullValue(x as i32));
                         }
                         GeneratedField::BoolValue => {
                             if constant_kind__.is_some() {
@@ -2592,7 +2592,7 @@ impl serde::Serialize for Type {
                     struct_ser.serialize_field("dyn", v)?;
                 }
                 r#type::TypeKind::Null(v) => {
-                    let v = super::super::super::protobuf::NullValue::from_i32(*v)
+                    let v = ::pbjson_types::NullValue::from_i32(*v)
                         .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
                     struct_ser.serialize_field("null", &v)?;
                 }
@@ -2750,7 +2750,7 @@ impl<'de> serde::Deserialize<'de> for Type {
                             if type_kind__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("null"));
                             }
-                            type_kind__ = map.next_value::<::std::option::Option<super::super::super::protobuf::NullValue>>()?.map(|x| r#type::TypeKind::Null(x as i32));
+                            type_kind__ = map.next_value::<::std::option::Option<::pbjson_types::NullValue>>()?.map(|x| r#type::TypeKind::Null(x as i32));
                         }
                         GeneratedField::Primitive => {
                             if type_kind__.is_some() {
