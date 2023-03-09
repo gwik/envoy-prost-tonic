@@ -573,6 +573,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x0c, 0x02, 0x00, 0x03, 0x12, 0x04, 0x82, 0x01, 0x1d, 0x1e, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
-include!("envoy.extensions.filters.network.sip_proxy.tra.v3alpha.serde.rs");
 include!("envoy.extensions.filters.network.sip_proxy.tra.v3alpha.tonic.rs");
 // @@protoc_insertion_point(module)

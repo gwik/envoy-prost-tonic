@@ -2625,11 +2625,6 @@ pub mod google {
             }
         }
     }
-    // @@protoc_insertion_point(attribute:google.protobuf)
-    pub mod protobuf {
-        include!("google.protobuf.rs");
-        // @@protoc_insertion_point(google.protobuf)
-    }
     // @@protoc_insertion_point(attribute:google.rpc)
     pub mod rpc {
         include!("google.rpc.rs");

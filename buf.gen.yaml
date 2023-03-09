@@ -7,10 +7,12 @@ plugins:
       - compile_well_known_types
       - extern_path=.google.protobuf=::pbjson_types
       - file_descriptor_set
-  - remote: buf.build/prost/plugins/serde:v0.2.1-1
-    out: gen
-    opt:
-      - extern_path=.google.protobuf=::pbjson_types
+  # # disabled due to bug that silently skips every
+  # # module with "type" in its name e.g: envoy.type.v3
+  # - remote: buf.build/prost/plugins/serde:v0.2.1-1
+  #   out: gen
+  #   opt:
+  #     - extern_path=.google.protobuf=::pbjson_types
   - remote: buf.build/prost/plugins/tonic:v0.2.1-1
     out: gen
     opt:
