@@ -1158,7 +1158,7 @@ impl serde::Serialize for ConfigSource {
                 config_source::ConfigSourceSpecifier::Ads(v) => {
                     struct_ser.serialize_field("ads", v)?;
                 }
-                config_source::ConfigSourceSpecifier::Self(v) => {
+                config_source::ConfigSourceSpecifier::Self_(v) => {
                     struct_ser.serialize_field("self", v)?;
                 }
             }
@@ -1191,7 +1191,7 @@ impl<'de> serde::Deserialize<'de> for ConfigSource {
             Path,
             ApiConfigSource,
             Ads,
-            Self,
+            Self_,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -1218,7 +1218,7 @@ impl<'de> serde::Deserialize<'de> for ConfigSource {
                             "path" => Ok(GeneratedField::Path),
                             "apiConfigSource" | "api_config_source" => Ok(GeneratedField::ApiConfigSource),
                             "ads" => Ok(GeneratedField::Ads),
-                            "self" => Ok(GeneratedField::Self),
+                            "self" => Ok(GeneratedField::Self_),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -1275,11 +1275,11 @@ impl<'de> serde::Deserialize<'de> for ConfigSource {
                             config_source_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(config_source::ConfigSourceSpecifier::Ads)
 ;
                         }
-                        GeneratedField::Self => {
+                        GeneratedField::Self_ => {
                             if config_source_specifier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("self"));
                             }
-                            config_source_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(config_source::ConfigSourceSpecifier::Self)
+                            config_source_specifier__ = map.next_value::<::std::option::Option<_>>()?.map(config_source::ConfigSourceSpecifier::Self_)
 ;
                         }
                     }
