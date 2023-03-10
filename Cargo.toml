@@ -9,6 +9,10 @@ authors = ["Antonin Amand <antonin.amand@gmail.com>"]
 
 description = "Envoy's protobuf messages and services for rust and tonic"
 
+exclude = [
+	"patches/*",
+]
+
 
 [dependencies]
 bytes = "1"
