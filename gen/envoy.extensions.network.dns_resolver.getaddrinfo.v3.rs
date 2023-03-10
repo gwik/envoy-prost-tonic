@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: getaddrinfo DNS resolver]
-// [#extension: envoy.network.dns_resolver.getaddrinfo]
-
 /// Configuration for getaddrinfo DNS resolver. This resolver will use the system's getaddrinfo()
 /// function to resolve hosts.
 ///
@@ -15,9 +12,9 @@
 ///
 ///    Resolutions currently use a hard coded TTL of 60s because the getaddrinfo() API does not
 ///    provide the actual TTL. Configuration for this can be added in the future if needed.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetAddrInfoDnsResolverConfig {
-}
+pub struct GetAddrInfoDnsResolverConfig {}
 /// Encoded file descriptor set for the `envoy.extensions.network.dns_resolver.getaddrinfo.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf3, 0x09, 0x0a, 0x53, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -101,4 +98,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x1c, 0x08, 0x24, 0x62, 0x06,
     0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.network.dns_resolver.getaddrinfo.v3.serde.rs");
 // @@protoc_insertion_point(module)

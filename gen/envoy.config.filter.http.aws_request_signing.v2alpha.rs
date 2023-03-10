@@ -1,9 +1,6 @@
 // @generated
-// [#protodoc-title: AwsRequestSigning]
-// AwsRequestSigning :ref:`configuration overview <config_http_filters_aws_request_signing>`.
-// [#extension: envoy.filters.http.aws_request_signing]
-
 /// Top level configuration for the AWS request signing filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsRequestSigning {
     /// The `service namespace
@@ -11,13 +8,13 @@ pub struct AwsRequestSigning {
     /// of the HTTP endpoint.
     ///
     /// Example: s3
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub service_name: ::prost::alloc::string::String,
     /// The `region <<https://docs.aws.amazon.com/general/latest/gr/rande.html>`_> hosting the HTTP
     /// endpoint.
     ///
     /// Example: us-west-2
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub region: ::prost::alloc::string::String,
     /// Indicates that before signing headers, the host header will be swapped with
     /// this value. If not set or empty, the original host header value
@@ -28,7 +25,7 @@ pub struct AwsRequestSigning {
     /// :ref:`HCM host rewrite <envoy_api_field_route.RouteAction.host_rewrite>` given that the
     /// value set here would be used for signing whereas the value set in the HCM would be used
     /// for host header forwarding which is not the desired outcome.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub host_rewrite: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.aws_request_signing.v2alpha` package
@@ -170,4 +167,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x2c, 0x09, 0x15, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03,
     0x2c, 0x18, 0x19, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.aws_request_signing.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

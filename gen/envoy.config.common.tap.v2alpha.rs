@@ -1,32 +1,35 @@
 // @generated
-// [#protodoc-title: Common tap extension configuration]
-
 /// Common configuration for all tap extensions.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonExtensionConfig {
-    #[prost(oneof="common_extension_config::ConfigType", tags="1, 2")]
+    #[prost(oneof = "common_extension_config::ConfigType", tags = "1, 2")]
     pub config_type: ::core::option::Option<common_extension_config::ConfigType>,
 }
 /// Nested message and enum types in `CommonExtensionConfig`.
 pub mod common_extension_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
         /// If specified, the tap filter will be configured via an admin handler.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         AdminConfig(super::AdminConfig),
         /// If specified, the tap filter will be configured via a static configuration that cannot be
         /// changed.
-        #[prost(message, tag="2")]
-        StaticConfig(super::super::super::super::super::service::tap::v2alpha::TapConfig),
+        #[prost(message, tag = "2")]
+        StaticConfig(
+            super::super::super::super::super::service::tap::v2alpha::TapConfig,
+        ),
     }
 }
 /// Configuration for the admin handler. See :ref:`here <config_http_filters_tap_admin_handler>` for
 /// more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdminConfig {
     /// Opaque configuration ID. When requests are made to the admin handler, the passed opaque ID is
     /// matched to the configured filter opaque ID to determine which filter to configure.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub config_id: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.config.common.tap.v2alpha` package
@@ -142,4 +145,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x17, 0x41, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x01, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03,
     0x26, 0x18, 0x40, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.common.tap.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Google RE2]
-// [#extension: envoy.regex_engines.google_re2]
-
 /// Google's `RE2 <<https://github.com/google/re2>`_> regex engine. The regex string must adhere to
 /// the documented `syntax <<https://github.com/google/re2/wiki/Syntax>`_.> The engine is designed
 /// to complete execution in linear time as well as limit the amount of memory used.
@@ -9,9 +6,9 @@
 /// Envoy emits two stats for tracking the program size of regexes: the histogram ``re2.program_size``,
 /// which records the program size, and the counter ``re2.exceeded_warn_level``, which is incremented
 /// each time the program size exceeds the warn level threshold.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GoogleRe2 {
-}
+pub struct GoogleRe2 {}
 /// Encoded file descriptor set for the `envoy.extensions.regex_engines.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xcb, 0x08, 0x0a, 0x32, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -84,4 +81,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x6f, 0x67, 0x6c, 0x65, 0x5f, 0x72, 0x65, 0x32, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00,
     0x01, 0x12, 0x03, 0x16, 0x08, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.regex_engines.v3.serde.rs");
 // @@protoc_insertion_point(module)

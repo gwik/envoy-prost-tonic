@@ -1,10 +1,8 @@
 // @generated
-// [#protodoc-title: ExpressionFilter]
-// [#extension: envoy.access_loggers.extension_filters.cel]
-
 /// ExpressionFilter is an access logging filter that evaluates configured
 /// symbolic Common Expression Language expressions to inform the decision
 /// to generate an access log.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExpressionFilter {
     /// Expression that, when evaluated, will be used to filter access logs.
@@ -13,7 +11,7 @@ pub struct ExpressionFilter {
     /// Examples:
     /// - ``response.code >= 400``
     /// - ``(connection.mtls && request.headers\['x-log-mtls'\] == 'true') || request.url_path.contains('v1beta3')``
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub expression: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.access_loggers.filters.cel.v3` package
@@ -100,4 +98,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x12, 0x03, 0x19, 0x09, 0x13, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12,
     0x03, 0x19, 0x16, 0x17, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.access_loggers.filters.cel.v3.serde.rs");
 // @@protoc_insertion_point(module)

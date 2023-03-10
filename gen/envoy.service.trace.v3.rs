@@ -1,25 +1,31 @@
 // @generated
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamTracesResponse {
-}
+pub struct StreamTracesResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamTracesMessage {
     /// Identifier data effectively is a structured metadata.
     /// As a performance optimization this will only be sent in the first message
     /// on the stream.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub identifier: ::core::option::Option<stream_traces_message::Identifier>,
     /// A list of Span entries
-    #[prost(message, repeated, tag="2")]
-    pub spans: ::prost::alloc::vec::Vec<super::super::super::super::opencensus::proto::trace::v1::Span>,
+    #[prost(message, repeated, tag = "2")]
+    pub spans: ::prost::alloc::vec::Vec<
+        super::super::super::super::opencensus::proto::trace::v1::Span,
+    >,
 }
 /// Nested message and enum types in `StreamTracesMessage`.
 pub mod stream_traces_message {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Identifier {
         /// The node sending the access log messages over the stream.
-        #[prost(message, optional, tag="1")]
-        pub node: ::core::option::Option<super::super::super::super::config::core::v3::Node>,
+        #[prost(message, optional, tag = "1")]
+        pub node: ::core::option::Option<
+            super::super::super::super::config::core::v3::Node,
+        >,
     }
 }
 /// Encoded file descriptor set for the `envoy.service.trace.v3` package
@@ -164,5 +170,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x01, 0x02, 0x01, 0x03, 0x12, 0x03, 0x35, 0x32, 0x33, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.trace.v3.serde.rs");
 include!("envoy.service.trace.v3.tonic.rs");
 // @@protoc_insertion_point(module)

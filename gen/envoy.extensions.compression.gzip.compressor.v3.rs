@@ -1,13 +1,11 @@
 // @generated
-// [#protodoc-title: Gzip Compressor]
-// [#extension: envoy.compression.gzip.compressor]
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gzip {
     /// Value from 1 to 9 that controls the amount of internal memory used by zlib. Higher values
     /// use more memory, but are faster and produce better compression results. The default value is 5.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub memory_level: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// A value used for selecting the zlib compression level. This setting will affect speed and
     /// amount of compression applied to the content. "BEST_COMPRESSION" provides higher compression
@@ -16,7 +14,7 @@ pub struct Gzip {
     /// "DEFAULT_COMPRESSION" provides an optimal result between speed and compression. According
     /// to zlib's manual this level gives the same result as "COMPRESSION_LEVEL_6".
     /// This field will be set to "DEFAULT_COMPRESSION" if not specified.
-    #[prost(enumeration="gzip::CompressionLevel", tag="2")]
+    #[prost(enumeration = "gzip_::CompressionLevel", tag = "2")]
     pub compression_level: i32,
     /// A value used for selecting the zlib compression strategy which is directly related to the
     /// characteristics of the content. Most of the time "DEFAULT_STRATEGY" will be the best choice,
@@ -24,22 +22,22 @@ pub struct Gzip {
     /// changing this parameter might produce better results. For example, run-length encoding (RLE)
     /// is typically used when the content is known for having sequences which same data occurs many
     /// consecutive times. For more information about each strategy, please refer to zlib manual.
-    #[prost(enumeration="gzip::CompressionStrategy", tag="3")]
+    #[prost(enumeration = "gzip_::CompressionStrategy", tag = "3")]
     pub compression_strategy: i32,
     /// Value from 9 to 15 that represents the base two logarithmic of the compressor's window size.
     /// Larger window results in better compression at the expense of memory usage. The default is 12
     /// which will produce a 4096 bytes window. For more details about this parameter, please refer to
     /// zlib manual > deflateInit2.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub window_bits: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Value for Zlib's next output buffer. If not set, defaults to 4096.
     /// See <https://www.zlib.net/manual.html> for more details. Also see
     /// <https://github.com/envoyproxy/envoy/issues/8448> for context on this filter's performance.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub chunk_size: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Nested message and enum types in `Gzip`.
-pub mod gzip {
+pub mod gzip_ {
     /// All the values of this enumeration translate directly to zlib's compression strategies.
     /// For more information about each strategy, please refer to zlib manual.
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -63,6 +61,17 @@ pub mod gzip {
                 CompressionStrategy::HuffmanOnly => "HUFFMAN_ONLY",
                 CompressionStrategy::Rle => "RLE",
                 CompressionStrategy::Fixed => "FIXED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT_STRATEGY" => Some(Self::DefaultStrategy),
+                "FILTERED" => Some(Self::Filtered),
+                "HUFFMAN_ONLY" => Some(Self::HuffmanOnly),
+                "RLE" => Some(Self::Rle),
+                "FIXED" => Some(Self::Fixed),
+                _ => None,
             }
         }
     }
@@ -97,6 +106,22 @@ pub mod gzip {
                 CompressionLevel::CompressionLevel7 => "COMPRESSION_LEVEL_7",
                 CompressionLevel::CompressionLevel8 => "COMPRESSION_LEVEL_8",
                 CompressionLevel::CompressionLevel9 => "COMPRESSION_LEVEL_9",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT_COMPRESSION" => Some(Self::DefaultCompression),
+                "BEST_SPEED" => Some(Self::BestSpeed),
+                "COMPRESSION_LEVEL_2" => Some(Self::CompressionLevel2),
+                "COMPRESSION_LEVEL_3" => Some(Self::CompressionLevel3),
+                "COMPRESSION_LEVEL_4" => Some(Self::CompressionLevel4),
+                "COMPRESSION_LEVEL_5" => Some(Self::CompressionLevel5),
+                "COMPRESSION_LEVEL_6" => Some(Self::CompressionLevel6),
+                "COMPRESSION_LEVEL_7" => Some(Self::CompressionLevel7),
+                "COMPRESSION_LEVEL_8" => Some(Self::CompressionLevel8),
+                "COMPRESSION_LEVEL_9" => Some(Self::CompressionLevel9),
+                _ => None,
             }
         }
     }
@@ -416,4 +441,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x4d, 0x2d, 0x5f, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x04, 0x08, 0xaf,
     0x08, 0x05, 0x12, 0x03, 0x4d, 0x2e, 0x5e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.compression.gzip.compressor.v3.serde.rs");
 // @@protoc_insertion_point(module)

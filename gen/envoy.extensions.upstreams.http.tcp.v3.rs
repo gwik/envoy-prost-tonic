@@ -1,11 +1,9 @@
 // @generated
-// [#protodoc-title: Tcp Connection Pool]
-
 /// A connection pool which forwards downstream HTTP as TCP to upstream,
 /// [#extension: envoy.upstreams.http.tcp]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TcpConnectionPoolProto {
-}
+pub struct TcpConnectionPoolProto {}
 /// Encoded file descriptor set for the `envoy.extensions.upstreams.http.tcp.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xaf, 0x05, 0x0a, 0x40, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -53,4 +51,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x10, 0x08, 0x1e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.extensions.upstreams.http.tcp.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,26 +1,24 @@
 // @generated
-// [#protodoc-title: RBAC]
-// Role-Based Access Control :ref:`configuration overview <config_http_filters_rbac>`.
-// [#extension: envoy.filters.http.rbac]
-
 /// RBAC filter config.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Rbac {
     /// Specify the RBAC rules to be applied globally.
     /// If absent, no enforcing RBAC policy will be applied.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub rules: ::core::option::Option<super::super::super::super::rbac::v2::Rbac>,
     /// Shadow rules are not enforced by the filter (i.e., returning a 403)
     /// but will emit stats and logs and can be used for rule testing.
     /// If absent, no shadow RBAC policy will be applied.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub shadow_rules: ::core::option::Option<super::super::super::super::rbac::v2::Rbac>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RbacPerRoute {
     /// Override the global configuration of the filter with this new config.
     /// If absent, the global RBAC policy will be disabled for this route.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub rbac: ::core::option::Option<Rbac>,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.rbac.v2` package
@@ -130,4 +128,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x01, 0x12, 0x03, 0x25, 0x07, 0x0b, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x00, 0x03,
     0x12, 0x03, 0x25, 0x0e, 0x0f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.rbac.v2.serde.rs");
 // @@protoc_insertion_point(module)

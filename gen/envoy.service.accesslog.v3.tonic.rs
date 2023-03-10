@@ -97,7 +97,7 @@ pub mod access_log_service_client {
 pub mod access_log_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with AccessLogServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with AccessLogServiceServer.
     #[async_trait]
     pub trait AccessLogService: Send + Sync + 'static {
         async fn stream_access_logs(

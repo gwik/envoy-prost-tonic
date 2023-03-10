@@ -1,14 +1,14 @@
 // @generated
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EdsDummy {
-}
+pub struct EdsDummy {}
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LedsDummy {
-}
+pub struct LedsDummy {}
 /// Encoded file descriptor set for the `envoy.service.endpoint.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf9, 0x0e, 0x0a, 0x23, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -228,5 +228,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x23, 0x08, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.service.endpoint.v3.serde.rs");
 include!("envoy.service.endpoint.v3.tonic.rs");
 // @@protoc_insertion_point(module)

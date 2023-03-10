@@ -158,10 +158,10 @@ pub mod listener_discovery_service_client {
 pub mod listener_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ListenerDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ListenerDiscoveryServiceServer.
     #[async_trait]
     pub trait ListenerDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaListeners method.
+        /// Server streaming response type for the DeltaListeners method.
         type DeltaListenersStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,
@@ -178,7 +178,7 @@ pub mod listener_discovery_service_server {
                 >,
             >,
         ) -> Result<tonic::Response<Self::DeltaListenersStream>, tonic::Status>;
-        ///Server streaming response type for the StreamListeners method.
+        /// Server streaming response type for the StreamListeners method.
         type StreamListenersStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,

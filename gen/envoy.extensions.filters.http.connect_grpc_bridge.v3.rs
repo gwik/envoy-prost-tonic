@@ -1,12 +1,8 @@
 // @generated
-// [#protodoc-title: Buf Connect to gRPC] Buf Connect to gRPC bridge
-// :ref:`configuration overview <config_http_filters_connect_grpc_bridge>`.
-// [#extension: envoy.filters.http.connect_grpc_bridge]
-
 /// Buf Connect gRPC bridge filter configuration
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FilterConfig {
-}
+pub struct FilterConfig {}
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.connect_grpc_bridge.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf6, 0x06, 0x0a, 0x41, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -66,4 +62,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x64, 0x67, 0x65, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x14, 0x08,
     0x14, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.connect_grpc_bridge.v3.serde.rs");
 // @@protoc_insertion_point(module)

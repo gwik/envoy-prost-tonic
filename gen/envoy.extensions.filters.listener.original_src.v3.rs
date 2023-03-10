@@ -1,21 +1,18 @@
 // @generated
-// [#protodoc-title: Original Src Filter]
-// Use the Original source address on upstream connections.
-// [#extension: envoy.filters.listener.original_src]
-
 /// The Original Src filter binds upstream connections to the original source address determined
 /// for the connection. This address could come from something like the Proxy Protocol filter, or it
 /// could come from trusted http headers.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OriginalSrc {
     /// Whether to bind the port to the one used in the original downstream connection.
     /// \[#not-implemented-hide:\]
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub bind_port: bool,
     /// Sets the SO_MARK option on the upstream connection's socket to the provided value. Used to
     /// ensure that non-local addresses may be routed back through envoy when binding to the original
     /// source address. The option will not be applied if the mark is 0.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub mark: u32,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.listener.original_src.v3` package
@@ -122,4 +119,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x01, 0x01, 0x12, 0x03, 0x1f, 0x09, 0x0d, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x01, 0x03, 0x12, 0x03, 0x1f, 0x10, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.listener.original_src.v3.serde.rs");
 // @@protoc_insertion_point(module)

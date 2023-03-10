@@ -1,9 +1,6 @@
 // @generated
-// [#protodoc-title: gRPC HTTP/1.1 Bridge]
-// gRPC HTTP/1.1 Bridge Filter :ref:`configuration overview <config_http_filters_grpc_bridge>`.
-// [#extension: envoy.filters.http.grpc_http1_bridge]
-
 /// gRPC HTTP/1.1 Bridge filter config.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Config {
     /// If true then requests with content type set to ``application/x-protobuf`` will be automatically converted to gRPC.
@@ -11,7 +8,7 @@ pub struct Config {
     /// Content-Type will be updated accordingly before sending the request.
     /// For the requests that went through this upgrade the filter will also strip the frame before forwarding the
     /// response to the client.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub upgrade_protobuf_to_grpc: bool,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.grpc_http1_bridge.v3` package
@@ -109,4 +106,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x1b, 0x22, 0x23, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.grpc_http1_bridge.v3.serde.rs");
 // @@protoc_insertion_point(module)

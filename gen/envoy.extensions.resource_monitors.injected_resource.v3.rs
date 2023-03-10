@@ -1,14 +1,12 @@
 // @generated
-// [#protodoc-title: Injected resource]
-// [#extension: envoy.resource_monitors.injected_resource]
-
 /// The injected resource monitor allows injecting a synthetic resource pressure into Envoy
 /// via a text file, which must contain a floating-point number in the range \[0..1\] representing
 /// the resource pressure and be updated atomically by a symbolic link swap.
 /// This is intended primarily for integration tests to force Envoy into an overloaded state.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InjectedResourceConfig {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub filename: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.resource_monitors.injected_resource.v3` package
@@ -101,4 +99,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x00, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x19, 0x17, 0x3d, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.resource_monitors.injected_resource.v3.serde.rs");
 // @@protoc_insertion_point(module)

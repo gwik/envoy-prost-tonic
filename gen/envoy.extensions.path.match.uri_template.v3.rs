@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Uri Template Match Config]
-// [#extension: envoy.path.match.uri_template.uri_template_matcher]
-
 /// If specified, the route is a template match rule meaning that the
 /// ``:path`` header (without the query string) must match the given
 /// ``path_template`` pattern.
@@ -27,9 +24,10 @@
 /// * ``/videos/{file}`` would match ``/videos/1080p5000_00001.m4s``
 ///
 /// * ``/**.mpd`` would match ``/content/123/india/dash/55/manifest.mpd``
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UriTemplateMatchConfig {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path_template: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.path.match.uri_template.v3` package
@@ -146,4 +144,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x2a, 0x1b, 0x50, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08,
     0x0e, 0x12, 0x03, 0x2a, 0x1c, 0x4f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.path.match.uri_template.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,17 +1,15 @@
 // @generated
-// [#protodoc-title: Original Src Filter]
-// Use the Original source address on upstream connections.
-
 /// The Original Src filter binds upstream connections to the original source address determined
 /// for the request. This address could come from something like the Proxy Protocol filter, or it
 /// could come from trusted http headers.
 /// [#extension: envoy.filters.http.original_src]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OriginalSrc {
     /// Sets the SO_MARK option on the upstream connection's socket to the provided value. Used to
     /// ensure that non-local addresses may be routed back through envoy when binding to the original
     /// source address. The option will not be applied if the mark is 0.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub mark: u32,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.original_src.v2alpha1` package
@@ -103,4 +101,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x1a, 0x10, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.config.filter.http.original_src.v2alpha1.serde.rs");
 // @@protoc_insertion_point(module)

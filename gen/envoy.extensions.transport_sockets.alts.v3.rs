@@ -1,19 +1,17 @@
 // @generated
-// [#protodoc-title: ALTS]
-// [#extension: envoy.transport_sockets.alts]
-
 /// Configuration for ALTS transport socket. This provides Google's ALTS protocol to Envoy.
 /// Store the peer identity in dynamic metadata, namespace is "envoy.transport_socket.peer_information", key is "peer_identity".
 /// <https://cloud.google.com/security/encryption-in-transit/application-layer-transport-security/>
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Alts {
     /// The location of a handshaker service, this is usually 169.254.169.254:8080
     /// on GCE.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub handshaker_service: ::prost::alloc::string::String,
     /// The acceptable service accounts from peer, peers not in the list will be rejected in the
     /// handshake validation step. If empty, no validation will be performed.
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub peer_service_accounts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.alts.v3` package
@@ -117,4 +115,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x01, 0x01, 0x12, 0x03, 0x1e, 0x12, 0x27, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x01,
     0x03, 0x12, 0x03, 0x1e, 0x2a, 0x2b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.alts.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,23 +1,20 @@
 // @generated
-// [#protodoc-title: Language]
-// Language :ref:`configuration overview <config_http_filters_language>`.
-// [#extension: envoy.filters.http.language]
-
 /// Language detection filter config.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Language {
     /// The default language to be used as a fallback.
     /// The value will be included in the list of the supported languages.
     ///
     /// See <https://unicode-org.github.io/icu/userguide/locale/>
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub default_language: ::prost::alloc::string::String,
     /// The set of supported languages. There is no order priority.
     /// The order will be determined by the Accept-Language header priority list
     /// of the client.
     ///
     /// See <https://unicode-org.github.io/icu/userguide/locale/>
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub supported_languages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.language.v3alpha` package
@@ -114,4 +111,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x12, 0x12, 0x04, 0x1e, 0x2b, 0x22, 0x03, 0x62, 0x06,
     0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.language.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

@@ -93,7 +93,7 @@ pub mod rate_limit_service_client {
 pub mod rate_limit_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with RateLimitServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with RateLimitServiceServer.
     #[async_trait]
     pub trait RateLimitService: Send + Sync + 'static {
         async fn should_rate_limit(

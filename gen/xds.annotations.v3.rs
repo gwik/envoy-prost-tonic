@@ -1,29 +1,33 @@
 // @generated
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileStatusAnnotation {
     /// The entity is work-in-progress and subject to breaking changes.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub work_in_progress: bool,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MessageStatusAnnotation {
     /// The entity is work-in-progress and subject to breaking changes.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub work_in_progress: bool,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldStatusAnnotation {
     /// The entity is work-in-progress and subject to breaking changes.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub work_in_progress: bool,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatusAnnotation {
     /// The entity is work-in-progress and subject to breaking changes.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub work_in_progress: bool,
     /// The entity belongs to a package with the given version status.
-    #[prost(enumeration="PackageVersionStatus", tag="2")]
+    #[prost(enumeration = "PackageVersionStatus", tag = "2")]
     pub package_version_status: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -49,7 +53,19 @@ impl PackageVersionStatus {
             PackageVersionStatus::Unknown => "UNKNOWN",
             PackageVersionStatus::Frozen => "FROZEN",
             PackageVersionStatus::Active => "ACTIVE",
-            PackageVersionStatus::NextMajorVersionCandidate => "NEXT_MAJOR_VERSION_CANDIDATE",
+            PackageVersionStatus::NextMajorVersionCandidate => {
+                "NEXT_MAJOR_VERSION_CANDIDATE"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN" => Some(Self::Unknown),
+            "FROZEN" => Some(Self::Frozen),
+            "ACTIVE" => Some(Self::Active),
+            "NEXT_MAJOR_VERSION_CANDIDATE" => Some(Self::NextMajorVersionCandidate),
+            _ => None,
         }
     }
 }
@@ -213,4 +229,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x03, 0x02, 0x01, 0x03, 0x12, 0x03, 0x39, 0x30, 0x31, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("xds.annotations.v3.serde.rs");
 // @@protoc_insertion_point(module)

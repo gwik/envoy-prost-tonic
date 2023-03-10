@@ -1,8 +1,6 @@
 // @generated
-// [#protodoc-title: Zstd Compressor]
-// [#extension: envoy.compression.zstd.compressor]
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Zstd {
     /// Set compression parameters according to pre-defined compression level table.
@@ -13,31 +11,43 @@ pub struct Zstd {
     /// to default. Setting this will however eventually dynamically impact the compression
     /// parameters which have not been manually set. The manually set
     /// ones will 'stick'.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub compression_level: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// A 32-bits checksum of content is written at end of frame. If not set, defaults to false.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub enable_checksum: bool,
     /// The higher the value of selected strategy, the more complex it is,
     /// resulting in stronger and slower compression.
     /// Special: value 0 means "use default strategy".
-    #[prost(enumeration="zstd::Strategy", tag="3")]
+    #[prost(enumeration = "zstd::Strategy", tag = "3")]
     pub strategy: i32,
     /// A dictionary for compression. Zstd offers dictionary compression, which greatly improves
     /// efficiency on small files and messages. Each dictionary will be generated with a dictionary ID
     /// that can be used to search the same dictionary during decompression.
     /// Please refer to `zstd manual <<https://github.com/facebook/zstd/blob/dev/programs/zstd.1.md#dictionary-builder>`_>
     /// to train a specific dictionary for compression.
-    #[prost(message, optional, tag="4")]
-    pub dictionary: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "4")]
+    pub dictionary: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Value for compressor's next output buffer. If not set, defaults to 4096.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub chunk_size: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Nested message and enum types in `Zstd`.
 pub mod zstd {
     /// Reference to <http://facebook.github.io/zstd/zstd_manual.html>
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Strategy {
         Default = 0,
@@ -68,6 +78,22 @@ pub mod zstd {
                 Strategy::Btopt => "BTOPT",
                 Strategy::Btultra => "BTULTRA",
                 Strategy::Btultra2 => "BTULTRA2",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT" => Some(Self::Default),
+                "FAST" => Some(Self::Fast),
+                "DFAST" => Some(Self::Dfast),
+                "GREEDY" => Some(Self::Greedy),
+                "LAZY" => Some(Self::Lazy),
+                "LAZY2" => Some(Self::Lazy2),
+                "BTLAZY2" => Some(Self::Btlazy2),
+                "BTOPT" => Some(Self::Btopt),
+                "BTULTRA" => Some(Self::Btultra),
+                "BTULTRA2" => Some(Self::Btultra2),
+                _ => None,
             }
         }
     }
@@ -289,4 +315,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x3e, 0x2d, 0x5f, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x04, 0x08, 0xaf,
     0x08, 0x05, 0x12, 0x03, 0x3e, 0x2e, 0x5e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.compression.zstd.compressor.v3.serde.rs");
 // @@protoc_insertion_point(module)

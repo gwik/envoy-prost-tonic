@@ -1,29 +1,33 @@
 // @generated
-// [#protodoc-title: Local Response Policy for Custom Response]
-// [#extension: envoy.http.custom_response.local_response_policy]
-
 /// Custom response policy to serve a locally stored response to the
 /// downstream.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalResponsePolicy {
     /// Optional new local reply body text. It will be used
     /// in the `%LOCAL_REPLY_BODY%` command operator in the `body_format`.
-    #[prost(message, optional, tag="1")]
-    pub body: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub body: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Optional body format to be used for this response. If `body_format` is  not
     /// provided, and `body` is, the contents of `body` will be used to populate
     /// the body of the local reply without formatting.
-    #[prost(message, optional, tag="2")]
-    pub body_format: ::core::option::Option<super::super::super::super::super::config::core::v3::SubstitutionFormatString>,
+    #[prost(message, optional, tag = "2")]
+    pub body_format: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::SubstitutionFormatString,
+    >,
     /// The new response status code if specified.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub status_code: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// HTTP headers to add to the response. This allows the
     /// response policy to append, to add or to override headers of
     /// the original response for local body, or the custom response from the
     /// remote body, before it is sent to a downstream client.
-    #[prost(message, repeated, tag="4")]
-    pub response_headers_to_add: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::HeaderValueOption>,
+    #[prost(message, repeated, tag = "4")]
+    pub response_headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::HeaderValueOption,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.http.custom_response.local_response_policy.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -176,4 +180,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x08, 0xaf, 0x08, 0x12, 0x12, 0x03, 0x2c, 0x07, 0x34, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.extensions.http.custom_response.local_response_policy.v3.serde.rs");
 // @@protoc_insertion_point(module)

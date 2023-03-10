@@ -1,17 +1,18 @@
 // @generated
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221>
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RtdsDummy {
-}
+pub struct RtdsDummy {}
 /// RTDS resource type. This describes a layer in the runtime virtual filesystem.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Runtime {
     /// Runtime resource name. This makes the Runtime a self-describing xDS
     /// resource.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub layer: ::core::option::Option<::pbjson_types::Struct>,
 }
 /// Encoded file descriptor set for the `envoy.service.runtime.v3` package
@@ -165,5 +166,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x01, 0x02, 0x01, 0x01, 0x12, 0x03, 0x38, 0x19, 0x1e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01,
     0x02, 0x01, 0x03, 0x12, 0x03, 0x38, 0x21, 0x22, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.runtime.v3.serde.rs");
 include!("envoy.service.runtime.v3.tonic.rs");
 // @@protoc_insertion_point(module)

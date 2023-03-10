@@ -1,17 +1,18 @@
 // @generated
-// [#protodoc-title: Omit host metadata retry predicate]
-
 /// A retry host predicate that can be used to reject a host based on
 /// predefined metadata match criteria.
 /// [#extension: envoy.retry_host_predicates.omit_host_metadata]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OmitHostMetadataConfig {
     /// Retry host predicate metadata match criteria. The hosts in
     /// the upstream cluster with matching metadata will be omitted while
     /// attempting a retry of a failed request. The metadata should be specified
     /// under the *envoy.lb* key.
-    #[prost(message, optional, tag="1")]
-    pub metadata_match: ::core::option::Option<super::super::super::super::api::v2::core::Metadata>,
+    #[prost(message, optional, tag = "1")]
+    pub metadata_match: ::core::option::Option<
+        super::super::super::super::api::v2::core::Metadata,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.retry.omit_host_metadata.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -98,4 +99,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x01, 0x12, 0x03, 0x1b, 0x17, 0x25, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03,
     0x12, 0x03, 0x1b, 0x28, 0x29, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.retry.omit_host_metadata.v2.serde.rs");
 // @@protoc_insertion_point(module)

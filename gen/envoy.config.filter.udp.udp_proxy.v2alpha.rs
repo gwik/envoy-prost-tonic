@@ -1,27 +1,25 @@
 // @generated
-// [#protodoc-title: UDP proxy]
-// UDP proxy :ref:`configuration overview <config_udp_listener_filters_udp_proxy>`.
-// [#extension: envoy.filters.udp_listener.udp_proxy]
-
 /// Configuration for the UDP proxy filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UdpProxyConfig {
     /// The stat prefix used when emitting UDP proxy filter stats.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The idle timeout for sessions. Idle is defined as no datagrams between received or sent by
     /// the session. The default if not specified is 1 minute.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
-    #[prost(oneof="udp_proxy_config::RouteSpecifier", tags="2")]
+    #[prost(oneof = "udp_proxy_config::RouteSpecifier", tags = "2")]
     pub route_specifier: ::core::option::Option<udp_proxy_config::RouteSpecifier>,
 }
 /// Nested message and enum types in `UdpProxyConfig`.
 pub mod udp_proxy_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RouteSpecifier {
         /// The upstream cluster to connect to.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Cluster(::prost::alloc::string::String),
     }
 }
@@ -130,4 +128,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x24, 0x2a, 0x2b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.config.filter.udp.udp_proxy.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

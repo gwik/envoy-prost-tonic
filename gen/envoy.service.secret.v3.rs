@@ -1,9 +1,9 @@
 // @generated
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221>
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SdsDummy {
-}
+pub struct SdsDummy {}
 /// Encoded file descriptor set for the `envoy.service.secret.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xa5, 0x0d, 0x0a, 0x21, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -114,5 +114,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x08, 0x04, 0x00, 0x07, 0xd3, 0x88, 0xe1, 0x03, 0x01, 0x12, 0x04, 0x28, 0x02, 0x29, 0x2c,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.secret.v3.serde.rs");
 include!("envoy.service.secret.v3.tonic.rs");
 // @@protoc_insertion_point(module)

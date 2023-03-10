@@ -1,15 +1,13 @@
 // @generated
-// [#protodoc-title: Redirect Policy for Custom Response]
-// [#extension: envoy.http.custom_response.redirect_policy]
-
 /// Custom response policy to internally redirect the original response to a different
 /// upstream.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RedirectPolicy {
     /// The new response status code if specified. This is used to override the
     /// status code of the response from the new upstream if it is not an error status.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub status_code: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// HTTP headers to add to the response. This allows the
     /// response policy to append, to add or to override headers of
@@ -17,21 +15,30 @@ pub struct RedirectPolicy {
     /// remote body, before it is sent to a downstream client.
     /// Note that these are not applied if the redirected response is an error
     /// response.
-    #[prost(message, repeated, tag="4")]
-    pub response_headers_to_add: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::HeaderValueOption>,
+    #[prost(message, repeated, tag = "4")]
+    pub response_headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::HeaderValueOption,
+    >,
     /// HTTP headers to add to the request before it is internally redirected.
-    #[prost(message, repeated, tag="5")]
-    pub request_headers_to_add: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::HeaderValueOption>,
+    #[prost(message, repeated, tag = "5")]
+    pub request_headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::HeaderValueOption,
+    >,
     /// Custom action to modify request headers before selection of the
     /// redirected route.
     /// [#comment: TODO(pradeepcrao) add an extension category.]
-    #[prost(message, optional, tag="6")]
-    pub modify_request_headers_action: ::core::option::Option<super::super::super::super::super::config::core::v3::TypedExtensionConfig>,
-    #[prost(oneof="redirect_policy::RedirectActionSpecifier", tags="1, 2")]
-    pub redirect_action_specifier: ::core::option::Option<redirect_policy::RedirectActionSpecifier>,
+    #[prost(message, optional, tag = "6")]
+    pub modify_request_headers_action: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
+    #[prost(oneof = "redirect_policy::RedirectActionSpecifier", tags = "1, 2")]
+    pub redirect_action_specifier: ::core::option::Option<
+        redirect_policy::RedirectActionSpecifier,
+    >,
 }
 /// Nested message and enum types in `RedirectPolicy`.
 pub mod redirect_policy {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RedirectActionSpecifier {
         /// The Http URI to redirect the original request to, to get the custom
@@ -44,7 +51,7 @@ pub mod redirect_policy {
         ///
         ///     uri: <https://www.mydomain.com/path/to/404.txt>
         ///
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Uri(::prost::alloc::string::String),
         /// Specify elements of the redirect url individually.
         /// Note: Do not specify the `response_code` field in `redirect_action`, use
@@ -53,8 +60,10 @@ pub mod redirect_policy {
         /// and specifying them will cause the config to be rejected:
         /// - `prefix_rewrite`
         /// - `regex_rewrite`
-        #[prost(message, tag="2")]
-        RedirectAction(super::super::super::super::super::super::config::route::v3::RedirectAction),
+        #[prost(message, tag = "2")]
+        RedirectAction(
+            super::super::super::super::super::super::config::route::v3::RedirectAction,
+        ),
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.http.custom_response.redirect_policy.v3` package
@@ -278,4 +287,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x4a, 0x26, 0x43, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x05, 0x03, 0x12, 0x03, 0x4a,
     0x46, 0x47, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.http.custom_response.redirect_policy.v3.serde.rs");
 // @@protoc_insertion_point(module)

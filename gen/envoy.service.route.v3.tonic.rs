@@ -156,10 +156,10 @@ pub mod route_discovery_service_client {
 pub mod route_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with RouteDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with RouteDiscoveryServiceServer.
     #[async_trait]
     pub trait RouteDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamRoutes method.
+        /// Server streaming response type for the StreamRoutes method.
         type StreamRoutesStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,
@@ -174,7 +174,7 @@ pub mod route_discovery_service_server {
                 tonic::Streaming<super::super::super::discovery::v3::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamRoutesStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaRoutes method.
+        /// Server streaming response type for the DeltaRoutes method.
         type DeltaRoutesStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,
@@ -553,10 +553,10 @@ pub mod virtual_host_discovery_service_client {
 pub mod virtual_host_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with VirtualHostDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with VirtualHostDiscoveryServiceServer.
     #[async_trait]
     pub trait VirtualHostDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaVirtualHosts method.
+        /// Server streaming response type for the DeltaVirtualHosts method.
         type DeltaVirtualHostsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,
@@ -893,10 +893,10 @@ pub mod scoped_routes_discovery_service_client {
 pub mod scoped_routes_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ScopedRoutesDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ScopedRoutesDiscoveryServiceServer.
     #[async_trait]
     pub trait ScopedRoutesDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamScopedRoutes method.
+        /// Server streaming response type for the StreamScopedRoutes method.
         type StreamScopedRoutesStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,
@@ -911,7 +911,7 @@ pub mod scoped_routes_discovery_service_server {
                 tonic::Streaming<super::super::super::discovery::v3::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamScopedRoutesStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaScopedRoutes method.
+        /// Server streaming response type for the DeltaScopedRoutes method.
         type DeltaScopedRoutesStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,

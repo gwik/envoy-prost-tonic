@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Metadata]
-
 /// MetadataKey provides a general interface using `key` and `path` to retrieve value from
 /// :ref:`Metadata <envoy_api_msg_core.Metadata>`.
 ///
@@ -24,11 +22,12 @@
 ///     - key: prop
 ///     - key: foo
 ///
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataKey {
     /// The key name of Metadata to retrieve the Struct from the metadata.
     /// Typically, it represents a builtin subsystem or custom extension.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub key: ::prost::alloc::string::String,
     /// The path to retrieve the Value from the Struct. It can be a prefix or a full path,
     /// e.g. ``[prop, xyz]`` for a struct or ``[prop, foo]`` for a string in the example,
@@ -36,66 +35,70 @@ pub struct MetadataKey {
     ///
     /// Note: Due to that only the key type segment is supported, the path can not specify a list
     /// unless the list is the last segment.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub path: ::prost::alloc::vec::Vec<metadata_key::PathSegment>,
 }
 /// Nested message and enum types in `MetadataKey`.
 pub mod metadata_key {
     /// Specifies the segment in a path to retrieve value from Metadata.
     /// Currently it is only supported to specify the key, i.e. field name, as one segment of a path.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PathSegment {
-        #[prost(oneof="path_segment::Segment", tags="1")]
+        #[prost(oneof = "path_segment::Segment", tags = "1")]
         pub segment: ::core::option::Option<path_segment::Segment>,
     }
     /// Nested message and enum types in `PathSegment`.
     pub mod path_segment {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Segment {
             /// If specified, use the key to retrieve the value in a Struct.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             Key(::prost::alloc::string::String),
         }
     }
 }
 /// Describes what kind of metadata.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataKind {
-    #[prost(oneof="metadata_kind::Kind", tags="1, 2, 3, 4")]
+    #[prost(oneof = "metadata_kind::Kind", tags = "1, 2, 3, 4")]
     pub kind: ::core::option::Option<metadata_kind::Kind>,
 }
 /// Nested message and enum types in `MetadataKind`.
 pub mod metadata_kind {
     /// Represents dynamic metadata associated with the request.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Request {
-    }
+    pub struct Request {}
     /// Represents metadata from :ref:`the route<envoy_api_field_route.Route.metadata>`.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Route {
-    }
+    pub struct Route {}
     /// Represents metadata from :ref:`the upstream cluster<envoy_api_field_Cluster.metadata>`.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Cluster {
-    }
+    pub struct Cluster {}
     /// Represents metadata from :ref:`the upstream
     /// host<envoy_api_field_endpoint.LbEndpoint.metadata>`.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Host {
-    }
+    pub struct Host {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Kind {
         /// Request kind of metadata.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         Request(Request),
         /// Route kind of metadata.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Route(Route),
         /// Cluster kind of metadata.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         Cluster(Cluster),
         /// Host kind of metadata.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         Host(Host),
     }
 }
@@ -327,4 +330,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x03, 0x03, 0x12, 0x03, 0x61, 0x10, 0x11, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.type.metadata.v2.serde.rs");
 // @@protoc_insertion_point(module)

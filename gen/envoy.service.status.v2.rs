@@ -1,48 +1,57 @@
 // @generated
 /// Request for client status of clients identified by a list of NodeMatchers.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientStatusRequest {
     /// Management server can use these match criteria to identify clients.
     /// The match follows OR semantics.
-    #[prost(message, repeated, tag="1")]
-    pub node_matchers: ::prost::alloc::vec::Vec<super::super::super::r#type::matcher::NodeMatcher>,
+    #[prost(message, repeated, tag = "1")]
+    pub node_matchers: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::matcher::NodeMatcher,
+    >,
 }
 /// Detailed config (per xDS) with status.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PerXdsConfig {
-    #[prost(enumeration="ConfigStatus", tag="1")]
+    #[prost(enumeration = "ConfigStatus", tag = "1")]
     pub status: i32,
-    #[prost(oneof="per_xds_config::PerXdsConfig", tags="2, 3, 4, 5")]
+    #[prost(oneof = "per_xds_config::PerXdsConfig", tags = "2, 3, 4, 5")]
     pub per_xds_config: ::core::option::Option<per_xds_config::PerXdsConfig>,
 }
 /// Nested message and enum types in `PerXdsConfig`.
 pub mod per_xds_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum PerXdsConfig {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         ListenerConfig(super::super::super::super::admin::v2alpha::ListenersConfigDump),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         ClusterConfig(super::super::super::super::admin::v2alpha::ClustersConfigDump),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         RouteConfig(super::super::super::super::admin::v2alpha::RoutesConfigDump),
-        #[prost(message, tag="5")]
-        ScopedRouteConfig(super::super::super::super::admin::v2alpha::ScopedRoutesConfigDump),
+        #[prost(message, tag = "5")]
+        ScopedRouteConfig(
+            super::super::super::super::admin::v2alpha::ScopedRoutesConfigDump,
+        ),
     }
 }
 /// All xds configs for a particular client.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientConfig {
     /// Node for a particular client.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub node: ::core::option::Option<super::super::super::api::v2::core::Node>,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub xds_config: ::prost::alloc::vec::Vec<PerXdsConfig>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientStatusResponse {
     /// Client configs for the clients specified in the ClientStatusRequest.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub config: ::prost::alloc::vec::Vec<ClientConfig>,
 }
 /// Status of a config.
@@ -73,6 +82,17 @@ impl ConfigStatus {
             ConfigStatus::NotSent => "NOT_SENT",
             ConfigStatus::Stale => "STALE",
             ConfigStatus::Error => "ERROR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN" => Some(Self::Unknown),
+            "SYNCED" => Some(Self::Synced),
+            "NOT_SENT" => Some(Self::NotSent),
+            "STALE" => Some(Self::Stale),
+            "ERROR" => Some(Self::Error),
+            _ => None,
         }
     }
 }
@@ -320,5 +340,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x1e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x03, 0x02, 0x00, 0x03, 0x12, 0x03, 0x56, 0x21, 0x22, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.status.v2.serde.rs");
 include!("envoy.service.status.v2.tonic.rs");
 // @@protoc_insertion_point(module)

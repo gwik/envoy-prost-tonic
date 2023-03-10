@@ -1,11 +1,12 @@
 // @generated
 /// \[#not-implemented-hide:\]
 /// An events envoy sends to the management server.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamEventsRequest {
     /// Identifier data that will only be sent in the first message on the stream. This is effectively
     /// structured metadata and is a performance optimization.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub identifier: ::core::option::Option<stream_events_request::Identifier>,
     /// Batch of events. When the stream is already active, it will be the events occurred
     /// since the last message had been sent. If the server receives unknown event type, it should
@@ -15,16 +16,19 @@ pub struct StreamEventsRequest {
     ///
     /// * :ref:`HealthCheckEvent <envoy_api_msg_data.core.v2alpha.HealthCheckEvent>`
     /// * :ref:`OutlierDetectionEvent <envoy_api_msg_data.cluster.v2alpha.OutlierDetectionEvent>`
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub events: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
 }
 /// Nested message and enum types in `StreamEventsRequest`.
 pub mod stream_events_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Identifier {
         /// The node sending the event messages over the stream.
-        #[prost(message, optional, tag="1")]
-        pub node: ::core::option::Option<super::super::super::super::api::v2::core::Node>,
+        #[prost(message, optional, tag = "1")]
+        pub node: ::core::option::Option<
+            super::super::super::super::api::v2::core::Node,
+        >,
     }
 }
 /// \[#not-implemented-hide:\]
@@ -32,9 +36,9 @@ pub mod stream_events_request {
 /// is interested in. In future, with aggregated event reporting service, this message will
 /// contain, for example, clusters the envoy should send events for, or event types the server
 /// wants to process.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamEventsResponse {
-}
+pub struct StreamEventsResponse {}
 /// Encoded file descriptor set for the `envoy.service.event_reporting.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x86, 0x18, 0x0a, 0x43, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -231,5 +235,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x65, 0x73, 0x73, 0x2e, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x01, 0x01, 0x12, 0x03, 0x3c, 0x08,
     0x1c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.event_reporting.v2alpha.serde.rs");
 include!("envoy.service.event_reporting.v2alpha.tonic.rs");
 // @@protoc_insertion_point(module)

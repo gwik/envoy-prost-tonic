@@ -1,14 +1,13 @@
 // @generated
-// [#protodoc-title: Regex matcher]
-
 /// A regex matcher designed for safety when used with untrusted input.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegexMatcher {
     /// The regex match string. The string must be supported by the configured engine. The regex is matched
     /// against the full string, not as a partial match.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub regex: ::prost::alloc::string::String,
-    #[prost(oneof="regex_matcher::EngineType", tags="1")]
+    #[prost(oneof = "regex_matcher::EngineType", tags = "1")]
     pub engine_type: ::core::option::Option<regex_matcher::EngineType>,
 }
 /// Nested message and enum types in `RegexMatcher`.
@@ -26,6 +25,7 @@ pub mod regex_matcher {
     /// Envoy emits two stats for tracking the program size of regexes: the histogram ``re2.program_size``,
     /// which records the program size, and the counter ``re2.exceeded_warn_level``, which is incremented
     /// each time the program size exceeds the warn level threshold.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct GoogleRe2 {
         /// This field controls the RE2 "program size" which is a rough estimate of how complex a
@@ -42,18 +42,20 @@ pub mod regex_matcher {
         ///   global ``re2.max_program_size.error_level`` runtime value.
         ///
         #[deprecated]
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub max_program_size: ::core::option::Option<::pbjson_types::UInt32Value>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum EngineType {
         /// Google's RE2 regex engine.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         GoogleRe2(GoogleRe2),
     }
 }
 /// Describes how to match a string and then produce a new string using a regular
 /// expression and a substitution string.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegexMatchAndSubstitute {
     /// The regular expression used to find portions of a string (hereafter called
@@ -65,7 +67,7 @@ pub struct RegexMatchAndSubstitute {
     /// so as to replace just one occurrence of a pattern. Capture groups can be
     /// used in the pattern to extract portions of the subject string, and then
     /// referenced in the substitution string.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub pattern: ::core::option::Option<RegexMatcher>,
     /// The string that should be substituted into matching portions of the
     /// subject string during a substitution operation to produce a new string.
@@ -76,25 +78,25 @@ pub struct RegexMatchAndSubstitute {
     /// backslash followed by the capture group number to denote a numbered
     /// capture group. E.g., ``\1`` refers to capture group 1, and ``\2`` refers
     /// to capture group 2.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub substitution: ::prost::alloc::string::String,
 }
-// [#protodoc-title: String matcher]
-
 /// Specifies the way to match a string.
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StringMatcher {
     /// If true, indicates the exact/prefix/suffix/contains matching should be case insensitive. This
     /// has no effect for the safe_regex match.
     /// For example, the matcher ``data`` will match both input string ``Data`` and ``data`` if set to true.
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub ignore_case: bool,
-    #[prost(oneof="string_matcher::MatchPattern", tags="1, 2, 3, 5, 7")]
+    #[prost(oneof = "string_matcher::MatchPattern", tags = "1, 2, 3, 5, 7")]
     pub match_pattern: ::core::option::Option<string_matcher::MatchPattern>,
 }
 /// Nested message and enum types in `StringMatcher`.
 pub mod string_matcher {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MatchPattern {
         /// The input string must match exactly the string specified here.
@@ -102,7 +104,7 @@ pub mod string_matcher {
         /// Examples:
         ///
         /// * ``abc`` only matches the value ``abc``.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Exact(::prost::alloc::string::String),
         /// The input string must have the prefix specified here.
         /// Note: empty prefix is not allowed, please use regex instead.
@@ -110,7 +112,7 @@ pub mod string_matcher {
         /// Examples:
         ///
         /// * ``abc`` matches the value ``abc.xyz``
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Prefix(::prost::alloc::string::String),
         /// The input string must have the suffix specified here.
         /// Note: empty prefix is not allowed, please use regex instead.
@@ -118,10 +120,10 @@ pub mod string_matcher {
         /// Examples:
         ///
         /// * ``abc`` matches the value ``xyz.abc``
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         Suffix(::prost::alloc::string::String),
         /// The input string must match the regular expression specified here.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         SafeRegex(super::RegexMatcher),
         /// The input string must have the substring specified here.
         /// Note: empty contains match is not allowed, please use regex instead.
@@ -129,173 +131,116 @@ pub mod string_matcher {
         /// Examples:
         ///
         /// * ``abc`` matches the value ``xyz.abc.def``
-        #[prost(string, tag="7")]
+        #[prost(string, tag = "7")]
         Contains(::prost::alloc::string::String),
     }
 }
 /// Specifies a list of ways to match a string.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStringMatcher {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub patterns: ::prost::alloc::vec::Vec<StringMatcher>,
 }
-// [#protodoc-title: Number matcher]
-
 /// Specifies the way to match a double value.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DoubleMatcher {
-    #[prost(oneof="double_matcher::MatchPattern", tags="1, 2")]
+    #[prost(oneof = "double_matcher::MatchPattern", tags = "1, 2")]
     pub match_pattern: ::core::option::Option<double_matcher::MatchPattern>,
 }
 /// Nested message and enum types in `DoubleMatcher`.
 pub mod double_matcher {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MatchPattern {
         /// If specified, the input double value must be in the range specified here.
         /// Note: The range is using half-open interval semantics [start, end).
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         Range(super::super::super::v3::DoubleRange),
         /// If specified, the input double value must be equal to the value specified here.
-        #[prost(double, tag="2")]
+        #[prost(double, tag = "2")]
         Exact(f64),
     }
 }
-// [#protodoc-title: Value matcher]
-
 /// Specifies the way to match a ProtobufWkt::Value. Primitive values and ListValue are supported.
 /// StructValue is not supported and is always not matched.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValueMatcher {
     /// Specifies how to match a value.
-    #[prost(oneof="value_matcher::MatchPattern", tags="1, 2, 3, 4, 5, 6")]
+    #[prost(oneof = "value_matcher::MatchPattern", tags = "1, 2, 3, 4, 5, 6")]
     pub match_pattern: ::core::option::Option<value_matcher::MatchPattern>,
 }
 /// Nested message and enum types in `ValueMatcher`.
 pub mod value_matcher {
     /// NullMatch is an empty message to specify a null value.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct NullMatch {
-    }
+    pub struct NullMatch {}
     /// Specifies how to match a value.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MatchPattern {
         /// If specified, a match occurs if and only if the target value is a NullValue.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         NullMatch(NullMatch),
         /// If specified, a match occurs if and only if the target value is a double value and is
         /// matched to this field.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         DoubleMatch(super::DoubleMatcher),
         /// If specified, a match occurs if and only if the target value is a string value and is
         /// matched to this field.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         StringMatch(super::StringMatcher),
         /// If specified, a match occurs if and only if the target value is a bool value and is equal
         /// to this field.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         BoolMatch(bool),
         /// If specified, value match will be performed based on whether the path is referring to a
         /// valid primitive value in the metadata. If the path is referring to a non-primitive value,
         /// the result is always not matched.
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag = "5")]
         PresentMatch(bool),
         /// If specified, a match occurs if and only if the target value is a list value and
         /// is matched to this field.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         ListMatch(::prost::alloc::boxed::Box<super::ListMatcher>),
     }
 }
 /// Specifies the way to match a list value.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMatcher {
-    #[prost(oneof="list_matcher::MatchPattern", tags="1")]
+    #[prost(oneof = "list_matcher::MatchPattern", tags = "1")]
     pub match_pattern: ::core::option::Option<list_matcher::MatchPattern>,
 }
 /// Nested message and enum types in `ListMatcher`.
 pub mod list_matcher {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MatchPattern {
         /// If specified, at least one of the values in the list must match the value specified.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         OneOf(::prost::alloc::boxed::Box<super::ValueMatcher>),
     }
 }
-// [#protodoc-title: Metadata matcher]
-
-// MetadataMatcher provides a general interface to check if a given value is matched in
-// :ref:`Metadata <envoy_v3_api_msg_config.core.v3.Metadata>`. It uses `filter` and `path` to retrieve the value
-// from the Metadata and then check if it's matched to the specified value.
-//
-// For example, for the following Metadata:
-//
-// .. code-block:: yaml
-//
-//     filter_metadata:
-//       envoy.filters.http.rbac:
-//         fields:
-//           a:
-//             struct_value:
-//               fields:
-//                 b:
-//                   struct_value:
-//                     fields:
-//                       c:
-//                         string_value: pro
-//                 t:
-//                   list_value:
-//                     values:
-//                       - string_value: m
-//                       - string_value: n
-//
-// The following MetadataMatcher is matched as the path [a, b, c] will retrieve a string value "pro"
-// from the Metadata which is matched to the specified prefix match.
-//
-// .. code-block:: yaml
-//
-//     filter: envoy.filters.http.rbac
-//     path:
-//     - key: a
-//     - key: b
-//     - key: c
-//     value:
-//       string_match:
-//         prefix: pr
-//
-// The following MetadataMatcher is matched as the code will match one of the string values in the
-// list at the path [a, t].
-//
-// .. code-block:: yaml
-//
-//     filter: envoy.filters.http.rbac
-//     path:
-//     - key: a
-//     - key: t
-//     value:
-//       list_match:
-//         one_of:
-//           string_match:
-//             exact: m
-//
-// An example use of MetadataMatcher is specifying additional metadata in envoy.filters.http.rbac to
-// enforce access control based on dynamic metadata in a request. See :ref:`Permission
-// <envoy_v3_api_msg_config.rbac.v3.Permission>` and :ref:`Principal
-// <envoy_v3_api_msg_config.rbac.v3.Principal>`.
-
 /// [#next-major-version: MetadataMatcher should use StructMatcher]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataMatcher {
     /// The filter name to retrieve the Struct from the Metadata.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub filter: ::prost::alloc::string::String,
     /// The path to retrieve the Value from the Struct.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub path: ::prost::alloc::vec::Vec<metadata_matcher::PathSegment>,
     /// The MetadataMatcher is matched if the value retrieved by path is matched to this value.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub value: ::core::option::Option<ValueMatcher>,
     /// If true, the match result will be inverted.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub invert: bool,
 }
 /// Nested message and enum types in `MetadataMatcher`.
@@ -303,62 +248,62 @@ pub mod metadata_matcher {
     /// Specifies the segment in a path to retrieve value from Metadata.
     /// Note: Currently it's not supported to retrieve a value from a list in Metadata. This means that
     /// if the segment key refers to a list, it has to be the last segment in a path.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PathSegment {
-        #[prost(oneof="path_segment::Segment", tags="1")]
+        #[prost(oneof = "path_segment::Segment", tags = "1")]
         pub segment: ::core::option::Option<path_segment::Segment>,
     }
     /// Nested message and enum types in `PathSegment`.
     pub mod path_segment {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Segment {
             /// If specified, use the key to retrieve the value in a Struct.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             Key(::prost::alloc::string::String),
         }
     }
 }
-// [#protodoc-title: Filter state matcher]
-
 /// FilterStateMatcher provides a general interface for matching the filter state objects.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterStateMatcher {
     /// The filter state key to retrieve the object.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub key: ::prost::alloc::string::String,
-    #[prost(oneof="filter_state_matcher::Matcher", tags="2")]
+    #[prost(oneof = "filter_state_matcher::Matcher", tags = "2")]
     pub matcher: ::core::option::Option<filter_state_matcher::Matcher>,
 }
 /// Nested message and enum types in `FilterStateMatcher`.
 pub mod filter_state_matcher {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Matcher {
         /// Matches the filter state object as a string value.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         StringMatch(super::StringMatcher),
     }
 }
-// [#protodoc-title: Path matcher]
-
 /// Specifies the way to match a path on HTTP request.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PathMatcher {
-    #[prost(oneof="path_matcher::Rule", tags="1")]
+    #[prost(oneof = "path_matcher::Rule", tags = "1")]
     pub rule: ::core::option::Option<path_matcher::Rule>,
 }
 /// Nested message and enum types in `PathMatcher`.
 pub mod path_matcher {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Rule {
         /// The ``path`` must match the URL path portion of the :path header. The query and fragment
         /// string (if present) are removed in the URL path portion.
         /// For example, the path ``/data`` will match the ``:path`` header ``/data#fragment?param=value``.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         Path(super::StringMatcher),
     }
 }
-// [#protodoc-title: Struct matcher]
-
 /// StructMatcher provides a general interface to check if a given value is matched in
 /// google.protobuf.Struct. It uses ``path`` to retrieve the value
 /// from the struct and then check if it's matched to the specified value.
@@ -410,58 +355,59 @@ pub mod path_matcher {
 ///             exact: m
 ///
 /// An example use of StructMatcher is to match metadata in envoy.v*.core.Node.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StructMatcher {
     /// The path to retrieve the Value from the Struct.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub path: ::prost::alloc::vec::Vec<struct_matcher::PathSegment>,
     /// The StructMatcher is matched if the value retrieved by path is matched to this value.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub value: ::core::option::Option<ValueMatcher>,
 }
 /// Nested message and enum types in `StructMatcher`.
 pub mod struct_matcher {
     /// Specifies the segment in a path to retrieve value from Struct.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PathSegment {
-        #[prost(oneof="path_segment::Segment", tags="1")]
+        #[prost(oneof = "path_segment::Segment", tags = "1")]
         pub segment: ::core::option::Option<path_segment::Segment>,
     }
     /// Nested message and enum types in `PathSegment`.
     pub mod path_segment {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Segment {
             /// If specified, use the key to retrieve the value in a Struct.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             Key(::prost::alloc::string::String),
         }
     }
 }
-// [#protodoc-title: Node matcher]
-
 /// Specifies the way to match a Node.
 /// The match follows AND semantics.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeMatcher {
     /// Specifies match criteria on the node id.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub node_id: ::core::option::Option<StringMatcher>,
     /// Specifies match criteria on the node metadata.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub node_metadatas: ::prost::alloc::vec::Vec<StructMatcher>,
 }
-// [#protodoc-title: Common HTTP inputs]
-
 /// Match input indicates that matching should be done on a specific request header.
 /// The resulting input string will be all headers for the given key joined by a comma,
 /// e.g. if the request contains two 'foo' headers with value 'bar' and 'baz', the input
 /// string will be 'bar,baz'.
 /// [#comment:TODO(snowp): Link to unified matching docs.]
 /// [#extension: envoy.matching.inputs.request_headers]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRequestHeaderMatchInput {
     /// The request header to match on.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub header_name: ::prost::alloc::string::String,
 }
 /// Match input indicates that matching should be done on a specific request trailer.
@@ -470,10 +416,11 @@ pub struct HttpRequestHeaderMatchInput {
 /// string will be 'bar,baz'.
 /// [#comment:TODO(snowp): Link to unified matching docs.]
 /// [#extension: envoy.matching.inputs.request_trailers]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRequestTrailerMatchInput {
     /// The request trailer to match on.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub header_name: ::prost::alloc::string::String,
 }
 /// Match input indicating that matching should be done on a specific response header.
@@ -482,10 +429,11 @@ pub struct HttpRequestTrailerMatchInput {
 /// string will be 'bar,baz'.
 /// [#comment:TODO(snowp): Link to unified matching docs.]
 /// [#extension: envoy.matching.inputs.response_headers]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpResponseHeaderMatchInput {
     /// The response header to match on.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub header_name: ::prost::alloc::string::String,
 }
 /// Match input indicates that matching should be done on a specific response trailer.
@@ -494,34 +442,34 @@ pub struct HttpResponseHeaderMatchInput {
 /// string will be 'bar,baz'.
 /// [#comment:TODO(snowp): Link to unified matching docs.]
 /// [#extension: envoy.matching.inputs.response_trailers]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpResponseTrailerMatchInput {
     /// The response trailer to match on.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub header_name: ::prost::alloc::string::String,
 }
 /// Match input indicates that matching should be done on a specific query parameter.
 /// The resulting input string will be the first query parameter for the value
 /// 'query_param'.
 /// [#extension: envoy.matching.inputs.query_params]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRequestQueryParamMatchInput {
     /// The query parameter to match on.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub query_param: ::prost::alloc::string::String,
 }
-// [#protodoc-title: Common HTTP Inputs]
-
 /// Match input indicates that matching should be done on the response status
 /// code.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HttpResponseStatusCodeMatchInput {
-}
+pub struct HttpResponseStatusCodeMatchInput {}
 /// Match input indicates that the matching should be done on the class of the
 /// response status code. For eg: 1xx, 2xx, 3xx, 4xx or 5xx.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HttpResponseStatusCodeClassMatchInput {
-}
+pub struct HttpResponseStatusCodeClassMatchInput {}
 /// Encoded file descriptor set for the `envoy.type.matcher.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xe1, 0x27, 0x0a, 0x21, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x2f,
@@ -2191,4 +2139,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x78, 0x78, 0x2e, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x01, 0x01, 0x12, 0x03, 0x15, 0x08, 0x2d,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.type.matcher.v3.serde.rs");
 // @@protoc_insertion_point(module)

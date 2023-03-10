@@ -1,101 +1,115 @@
 // @generated
-// [#protodoc-title: Overload Manager]
-
-// The Overload Manager provides an extensible framework to protect Envoy instances
-// from overload of various resources (memory, cpu, file descriptors, etc).
-// It monitors a configurable set of resources and notifies registered listeners
-// when triggers related to those resources fire.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceMonitor {
     /// The name of the resource monitor to instantiate. Must match a registered
     /// resource monitor type.
     /// See the :ref:`extensions listed in typed_config below <extension_category_envoy.resource_monitors>` for the default list of available resource monitor.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Configuration for the resource monitor being instantiated.
     /// [#extension-category: envoy.resource_monitors]
-    #[prost(oneof="resource_monitor::ConfigType", tags="3")]
+    #[prost(oneof = "resource_monitor::ConfigType", tags = "3")]
     pub config_type: ::core::option::Option<resource_monitor::ConfigType>,
 }
 /// Nested message and enum types in `ResourceMonitor`.
 pub mod resource_monitor {
     /// Configuration for the resource monitor being instantiated.
     /// [#extension-category: envoy.resource_monitors]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThresholdTrigger {
     /// If the resource pressure is greater than or equal to this value, the trigger
     /// will enter saturation.
-    #[prost(double, tag="1")]
+    #[prost(double, tag = "1")]
     pub value: f64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScaledTrigger {
     /// If the resource pressure is greater than this value, the trigger will be in the
     /// :ref:`scaling <arch_overview_overload_manager-triggers-state>` state with value
     /// ``(pressure - scaling_threshold) / (saturation_threshold - scaling_threshold)``.
-    #[prost(double, tag="1")]
+    #[prost(double, tag = "1")]
     pub scaling_threshold: f64,
     /// If the resource pressure is greater than this value, the trigger will enter saturation.
-    #[prost(double, tag="2")]
+    #[prost(double, tag = "2")]
     pub saturation_threshold: f64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Trigger {
     /// The name of the resource this is a trigger for.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(oneof="trigger::TriggerOneof", tags="2, 3")]
+    #[prost(oneof = "trigger::TriggerOneof", tags = "2, 3")]
     pub trigger_oneof: ::core::option::Option<trigger::TriggerOneof>,
 }
 /// Nested message and enum types in `Trigger`.
 pub mod trigger {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum TriggerOneof {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Threshold(super::ThresholdTrigger),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         Scaled(super::ScaledTrigger),
     }
 }
 /// Typed configuration for the "envoy.overload_actions.reduce_timeouts" action. See
 /// :ref:`the docs <config_overload_manager_reducing_timeouts>` for an example of how to configure
 /// the action with different timeouts and minimum values.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScaleTimersOverloadActionConfig {
     /// A set of timer scaling rules to be applied.
-    #[prost(message, repeated, tag="1")]
-    pub timer_scale_factors: ::prost::alloc::vec::Vec<scale_timers_overload_action_config::ScaleTimer>,
+    #[prost(message, repeated, tag = "1")]
+    pub timer_scale_factors: ::prost::alloc::vec::Vec<
+        scale_timers_overload_action_config::ScaleTimer,
+    >,
 }
 /// Nested message and enum types in `ScaleTimersOverloadActionConfig`.
 pub mod scale_timers_overload_action_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ScaleTimer {
         /// The type of timer this minimum applies to.
-        #[prost(enumeration="TimerType", tag="1")]
+        #[prost(enumeration = "TimerType", tag = "1")]
         pub timer: i32,
-        #[prost(oneof="scale_timer::OverloadAdjust", tags="2, 3")]
+        #[prost(oneof = "scale_timer::OverloadAdjust", tags = "2, 3")]
         pub overload_adjust: ::core::option::Option<scale_timer::OverloadAdjust>,
     }
     /// Nested message and enum types in `ScaleTimer`.
     pub mod scale_timer {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum OverloadAdjust {
             /// Sets the minimum duration as an absolute value.
-            #[prost(message, tag="2")]
+            #[prost(message, tag = "2")]
             MinTimeout(::pbjson_types::Duration),
             /// Sets the minimum duration as a percentage of the maximum value.
-            #[prost(message, tag="3")]
+            #[prost(message, tag = "3")]
             MinScale(super::super::super::super::super::r#type::v3::Percent),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TimerType {
         /// Unsupported value; users must explicitly specify the timer they want scaled.
@@ -123,31 +137,47 @@ pub mod scale_timers_overload_action_config {
         pub fn as_str_name(&self) -> &'static str {
             match self {
                 TimerType::Unspecified => "UNSPECIFIED",
-                TimerType::HttpDownstreamConnectionIdle => "HTTP_DOWNSTREAM_CONNECTION_IDLE",
+                TimerType::HttpDownstreamConnectionIdle => {
+                    "HTTP_DOWNSTREAM_CONNECTION_IDLE"
+                }
                 TimerType::HttpDownstreamStreamIdle => "HTTP_DOWNSTREAM_STREAM_IDLE",
                 TimerType::TransportSocketConnect => "TRANSPORT_SOCKET_CONNECT",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "HTTP_DOWNSTREAM_CONNECTION_IDLE" => {
+                    Some(Self::HttpDownstreamConnectionIdle)
+                }
+                "HTTP_DOWNSTREAM_STREAM_IDLE" => Some(Self::HttpDownstreamStreamIdle),
+                "TRANSPORT_SOCKET_CONNECT" => Some(Self::TransportSocketConnect),
+                _ => None,
+            }
+        }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OverloadAction {
     /// The name of the overload action. This is just a well-known string that listeners can
     /// use for registering callbacks. Custom overload actions should be named using reverse
     /// DNS to ensure uniqueness.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A set of triggers for this action. The state of the action is the maximum
     /// state of all triggers, which can be scaling between 0 and 1 or saturated. Listeners
     /// are notified when the overload action changes state.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub triggers: ::prost::alloc::vec::Vec<Trigger>,
     /// Configuration for the action being instantiated.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub typed_config: ::core::option::Option<::pbjson_types::Any>,
 }
 /// Configuration for which accounts the WatermarkBuffer Factories should
 /// track.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BufferFactoryConfig {
     /// The minimum power of two at which Envoy starts tracking an account.
@@ -164,22 +194,23 @@ pub struct BufferFactoryConfig {
     /// we don't expect the proxy to be holding 2^56 bytes.
     ///
     /// If omitted, Envoy should not do any tracking.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub minimum_account_to_track_power_of_two: u32,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OverloadManager {
     /// The interval for refreshing resource usage.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub refresh_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// The set of resources to monitor.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub resource_monitors: ::prost::alloc::vec::Vec<ResourceMonitor>,
     /// The set of overload actions.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub actions: ::prost::alloc::vec::Vec<OverloadAction>,
     /// Configuration for buffer factory.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub buffer_factory_config: ::core::option::Option<BufferFactoryConfig>,
 }
 /// Encoded file descriptor set for the `envoy.config.overload.v3` package
@@ -752,4 +783,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0xb2, 0x01, 0x16, 0x2b, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x07, 0x02, 0x03, 0x03, 0x12, 0x04, 0xb2,
     0x01, 0x2e, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.overload.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,13 +1,12 @@
 // @generated
-// [#protodoc-title: Direct response]
-// Direct response :ref:`configuration overview <config_network_filters_direct_response>`.
-// [#extension: envoy.filters.network.direct_response]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Config {
     /// Response data as a data source.
-    #[prost(message, optional, tag="1")]
-    pub response: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub response: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.direct_response.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -79,4 +78,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x01, 0x12, 0x03, 0x18, 0x1c, 0x24, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03,
     0x12, 0x03, 0x18, 0x27, 0x28, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.direct_response.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,13 +1,11 @@
 // @generated
-// [#protodoc-title: Fixed heap]
-// [#extension: envoy.resource_monitors.fixed_heap]
-
 /// The fixed heap resource monitor reports the Envoy process memory pressure, computed as a
 /// fraction of currently reserved heap memory divided by a statically configured maximum
 /// specified in the FixedHeapConfig.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FixedHeapConfig {
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub max_heap_size_bytes: u64,
 }
 /// Encoded file descriptor set for the `envoy.config.resource_monitor.fixed_heap.v2alpha` package
@@ -77,4 +75,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x06, 0x12, 0x03, 0x14, 0x22, 0x43, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.resource_monitor.fixed_heap.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

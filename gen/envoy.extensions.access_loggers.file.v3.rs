@@ -1,21 +1,20 @@
 // @generated
-// [#protodoc-title: File access log]
-// [#extension: envoy.access_loggers.file]
-
 /// Custom configuration for an :ref:`AccessLog <envoy_v3_api_msg_config.accesslog.v3.AccessLog>`
 /// that writes log entries directly to a file. Configures the built-in ``envoy.access_loggers.file``
 /// AccessLog.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileAccessLog {
     /// A path to a local file to which to write the access log entries.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
-    #[prost(oneof="file_access_log::AccessLogFormat", tags="2, 3, 4, 5")]
+    #[prost(oneof = "file_access_log::AccessLogFormat", tags = "2, 3, 4, 5")]
     pub access_log_format: ::core::option::Option<file_access_log::AccessLogFormat>,
 }
 /// Nested message and enum types in `FileAccessLog`.
 pub mod file_access_log {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AccessLogFormat {
         /// Access log :ref:`format string<config_access_log_format_strings>`.
@@ -23,13 +22,13 @@ pub mod file_access_log {
         /// :ref:`default format <config_access_log_default_format>`.
         /// This field is deprecated.
         /// Please use :ref:`log_format <envoy_v3_api_field_extensions.access_loggers.file.v3.FileAccessLog.log_format>`.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Format(::prost::alloc::string::String),
         /// Access log :ref:`format dictionary<config_access_log_format_dictionaries>`. All values
         /// are rendered as strings.
         /// This field is deprecated.
         /// Please use :ref:`log_format <envoy_v3_api_field_extensions.access_loggers.file.v3.FileAccessLog.log_format>`.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         JsonFormat(::pbjson_types::Struct),
         /// Access log :ref:`format dictionary<config_access_log_format_dictionaries>`. Values are
         /// rendered as strings, numbers, or boolean values as appropriate. Nested JSON objects may
@@ -37,12 +36,14 @@ pub mod file_access_log {
         /// documentation for a specific command operator for details.
         /// This field is deprecated.
         /// Please use :ref:`log_format <envoy_v3_api_field_extensions.access_loggers.file.v3.FileAccessLog.log_format>`.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TypedJsonFormat(::pbjson_types::Struct),
         /// Configuration to form access log data and format.
         /// If not specified, use :ref:`default format <config_access_log_default_format>`.
-        #[prost(message, tag="5")]
-        LogFormat(super::super::super::super::super::config::core::v3::SubstitutionFormatString),
+        #[prost(message, tag = "5")]
+        LogFormat(
+            super::super::super::super::super::config::core::v3::SubstitutionFormatString,
+        ),
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.access_loggers.file.v3` package
@@ -252,4 +253,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x04, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x3c, 0x09, 0x34, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.access_loggers.file.v3.serde.rs");
 // @@protoc_insertion_point(module)

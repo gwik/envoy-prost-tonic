@@ -1,20 +1,19 @@
 // @generated
-// [#protodoc-title: TCP Proxy]
-// TCP Proxy :ref:`configuration overview <config_network_filters_tcp_proxy>`.
-// [#extension: envoy.filters.network.tcp_proxy]
-
 /// [#next-free-field: 13]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TcpProxy {
     /// The prefix to use when emitting :ref:`statistics
     /// <config_network_filters_tcp_proxy_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// Optional endpoint metadata match criteria. Only endpoints in the upstream
     /// cluster with metadata matching that set in metadata_match will be
     /// considered. The filter name should be specified as *envoy.lb*.
-    #[prost(message, optional, tag="9")]
-    pub metadata_match: ::core::option::Option<super::super::super::super::super::api::v2::core::Metadata>,
+    #[prost(message, optional, tag = "9")]
+    pub metadata_match: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::Metadata,
+    >,
     /// The idle timeout for connections managed by the TCP proxy filter. The idle timeout
     /// is defined as the period in which there are no bytes sent or received on either
     /// the upstream or downstream connection. If not set, the default idle timeout is 1 hour. If set
@@ -23,7 +22,7 @@ pub struct TcpProxy {
     /// .. warning::
     ///    Disabling this timeout has a highly likelihood of yielding connection leaks due to lost TCP
     ///    FIN packets, etc.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// \[#not-implemented-hide:\] The idle timeout for connections managed by the TCP proxy
     /// filter. The idle timeout is defined as the period in which there is no
@@ -31,46 +30,51 @@ pub struct TcpProxy {
     /// is reached the connection will be closed. The distinction between
     /// downstream_idle_timeout/upstream_idle_timeout provides a means to set
     /// timeout based on the last byte sent on the downstream/upstream connection.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub downstream_idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub upstream_idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Configuration for :ref:`access logs <arch_overview_access_logs>`
     /// emitted by the this tcp_proxy.
-    #[prost(message, repeated, tag="5")]
-    pub access_log: ::prost::alloc::vec::Vec<super::super::super::accesslog::v2::AccessLog>,
+    #[prost(message, repeated, tag = "5")]
+    pub access_log: ::prost::alloc::vec::Vec<
+        super::super::super::accesslog::v2::AccessLog,
+    >,
     /// \[#not-implemented-hide:\] Deprecated.
     #[deprecated]
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub deprecated_v1: ::core::option::Option<tcp_proxy::DeprecatedV1>,
     /// The maximum number of unsuccessful connection attempts that will be made before
     /// giving up. If the parameter is not specified, 1 connection attempt will be made.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub max_connect_attempts: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Optional configuration for TCP proxy hash policy. If hash_policy is not set, the hash-based
     /// load balancing algorithms will select a host randomly. Currently the number of hash policies is
     /// limited to 1.
-    #[prost(message, repeated, tag="11")]
-    pub hash_policy: ::prost::alloc::vec::Vec<super::super::super::super::super::r#type::HashPolicy>,
+    #[prost(message, repeated, tag = "11")]
+    pub hash_policy: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::r#type::HashPolicy,
+    >,
     /// \[#not-implemented-hide:\] feature in progress
     /// If set, this configures tunneling, e.g. configuration options to tunnel multiple TCP
     /// payloads over a shared HTTP/2 tunnel. If this message is absent, the payload
     /// will be proxied upstream as per usual.
-    #[prost(message, optional, tag="12")]
+    #[prost(message, optional, tag = "12")]
     pub tunneling_config: ::core::option::Option<tcp_proxy::TunnelingConfig>,
-    #[prost(oneof="tcp_proxy::ClusterSpecifier", tags="2, 10")]
+    #[prost(oneof = "tcp_proxy::ClusterSpecifier", tags = "2, 10")]
     pub cluster_specifier: ::core::option::Option<tcp_proxy::ClusterSpecifier>,
 }
 /// Nested message and enum types in `TcpProxy`.
 pub mod tcp_proxy {
     /// \[#not-implemented-hide:\] Deprecated.
     /// TCP Proxy filter configuration using V1 format.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DeprecatedV1 {
         /// The route table for the filter. All filter instances must have a route
         /// table, even if it is empty.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub routes: ::prost::alloc::vec::Vec<deprecated_v1::TcpRoute>,
     }
     /// Nested message and enum types in `DeprecatedV1`.
@@ -83,11 +87,12 @@ pub mod tcp_proxy {
         /// is closed. A route with no criteria is valid and always produces a
         /// match.
         /// [#next-free-field: 6]
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct TcpRoute {
             /// The cluster to connect to when a the downstream network connection
             /// matches the specified criteria.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             pub cluster: ::prost::alloc::string::String,
             /// An optional list of IP address subnets in the form
             /// “ip_address/xx”. The criteria is satisfied if the destination IP
@@ -97,8 +102,10 @@ pub mod tcp_proxy {
             /// address of the downstream connection might be different from the
             /// addresses on which the proxy is listening if the connection has been
             /// redirected.
-            #[prost(message, repeated, tag="2")]
-            pub destination_ip_list: ::prost::alloc::vec::Vec<super::super::super::super::super::super::super::api::v2::core::CidrRange>,
+            #[prost(message, repeated, tag = "2")]
+            pub destination_ip_list: ::prost::alloc::vec::Vec<
+                super::super::super::super::super::super::super::api::v2::core::CidrRange,
+            >,
             /// An optional string containing a comma-separated list of port numbers
             /// or ranges. The criteria is satisfied if the destination port of the
             /// downstream connection is contained in at least one of the specified
@@ -106,44 +113,48 @@ pub mod tcp_proxy {
             /// ignored. The destination port address of the downstream connection
             /// might be different from the port on which the proxy is listening if
             /// the connection has been redirected.
-            #[prost(string, tag="3")]
+            #[prost(string, tag = "3")]
             pub destination_ports: ::prost::alloc::string::String,
             /// An optional list of IP address subnets in the form
             /// “ip_address/xx”. The criteria is satisfied if the source IP address
             /// of the downstream connection is contained in at least one of the
             /// specified subnets. If the parameter is not specified or the list is
             /// empty, the source IP address is ignored.
-            #[prost(message, repeated, tag="4")]
-            pub source_ip_list: ::prost::alloc::vec::Vec<super::super::super::super::super::super::super::api::v2::core::CidrRange>,
+            #[prost(message, repeated, tag = "4")]
+            pub source_ip_list: ::prost::alloc::vec::Vec<
+                super::super::super::super::super::super::super::api::v2::core::CidrRange,
+            >,
             /// An optional string containing a comma-separated list of port numbers
             /// or ranges. The criteria is satisfied if the source port of the
             /// downstream connection is contained in at least one of the specified
             /// ranges. If the parameter is not specified, the source port is
             /// ignored.
-            #[prost(string, tag="5")]
+            #[prost(string, tag = "5")]
             pub source_ports: ::prost::alloc::string::String,
         }
     }
     /// Allows for specification of multiple upstream clusters along with weights
     /// that indicate the percentage of traffic to be forwarded to each cluster.
     /// The router selects an upstream cluster based on these weights.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct WeightedCluster {
         /// Specifies one or more upstream clusters associated with the route.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub clusters: ::prost::alloc::vec::Vec<weighted_cluster::ClusterWeight>,
     }
     /// Nested message and enum types in `WeightedCluster`.
     pub mod weighted_cluster {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct ClusterWeight {
             /// Name of the upstream cluster.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             pub name: ::prost::alloc::string::String,
             /// When a request matches the route, the choice of an upstream cluster is
             /// determined by its weight. The sum of weights across all entries in the
             /// clusters array determines the total weight.
-            #[prost(uint32, tag="2")]
+            #[prost(uint32, tag = "2")]
             pub weight: u32,
             /// Optional endpoint metadata match criteria used by the subset load balancer. Only endpoints
             /// in the upstream cluster with metadata matching what is set in this field will be considered
@@ -151,28 +162,32 @@ pub mod tcp_proxy {
             /// :ref:`TcpProxy.metadata_match
             /// <envoy_api_field_config.filter.network.tcp_proxy.v2.TcpProxy.metadata_match>`, with values
             /// here taking precedence. The filter name should be specified as *envoy.lb*.
-            #[prost(message, optional, tag="3")]
-            pub metadata_match: ::core::option::Option<super::super::super::super::super::super::super::api::v2::core::Metadata>,
+            #[prost(message, optional, tag = "3")]
+            pub metadata_match: ::core::option::Option<
+                super::super::super::super::super::super::super::api::v2::core::Metadata,
+            >,
         }
     }
     /// Configuration for tunneling TCP over other transports or application layers.
     /// Currently, only HTTP/2 is supported. When other options exist, HTTP/2 will
     /// remain the default.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TunnelingConfig {
         /// The hostname to send in the synthesized CONNECT headers to the upstream proxy.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub hostname: ::prost::alloc::string::String,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ClusterSpecifier {
         /// The upstream cluster to connect to.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Cluster(::prost::alloc::string::String),
         /// Multiple upstream clusters can be specified for a given route. The
         /// request is routed to one of the upstream clusters based on weights
         /// assigned to each cluster.
-        #[prost(message, tag="10")]
+        #[prost(message, tag = "10")]
         WeightedClusters(WeightedCluster),
     }
 }
@@ -845,4 +860,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x12, 0x04, 0xb7, 0x01, 0x12, 0x22, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x0b, 0x03,
     0x12, 0x04, 0xb7, 0x01, 0x25, 0x27, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.tcp_proxy.v2.serde.rs");
 // @@protoc_insertion_point(module)

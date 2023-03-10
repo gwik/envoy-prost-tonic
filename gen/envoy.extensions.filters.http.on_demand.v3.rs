@@ -1,28 +1,23 @@
 // @generated
-// [#protodoc-title: On Demand Discovery]
-// On Demand Discovery :ref:`configuration overview <config_http_filters_on_demand>`.
-// [#extension: envoy.filters.http.on_demand]
-//
-// .. warning::
-//
-//     Envoy currently only supports On-demand CDS when using Incremental-xDS and not State-of-the-World.
-//
-
 /// Configuration of on-demand CDS.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OnDemandCds {
     /// A configuration source for the service that will be used for
     /// on-demand cluster discovery.
-    #[prost(message, optional, tag="1")]
-    pub source: ::core::option::Option<super::super::super::super::super::config::core::v3::ConfigSource>,
+    #[prost(message, optional, tag = "1")]
+    pub source: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::ConfigSource,
+    >,
     /// xdstp:// resource locator for on-demand cluster collection.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub resources_locator: ::prost::alloc::string::String,
     /// The timeout for on demand cluster lookup. If not set, defaults to 5 seconds.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub timeout: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// On Demand Discovery filter config.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OnDemand {
     /// An optional configuration for on-demand cluster discovery
@@ -31,10 +26,11 @@ pub struct OnDemand {
     /// request to an unknown cluster and will begin a cluster discovery
     /// process. When the discovery is finished (successfully or not), the
     /// request will be resumed for further processing.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub odcds: ::core::option::Option<OnDemandCds>,
 }
 /// Per-route configuration for On Demand Discovery.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PerRouteConfig {
     /// An optional configuration for on-demand cluster discovery
@@ -43,7 +39,7 @@ pub struct PerRouteConfig {
     /// request to an unknown cluster and will begin a cluster discovery
     /// process. When the discovery is finished (successfully or not), the
     /// request will be resumed for further processing.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub odcds: ::core::option::Option<OnDemandCds>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.on_demand.v3` package
@@ -230,4 +226,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x3e, 0x0e, 0x13, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x02, 0x02, 0x00, 0x03, 0x12, 0x03,
     0x3e, 0x16, 0x17, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.on_demand.v3.serde.rs");
 // @@protoc_insertion_point(module)

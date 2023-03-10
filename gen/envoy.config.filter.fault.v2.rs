@@ -1,19 +1,20 @@
 // @generated
-// [#protodoc-title: Common fault injection types]
-
 /// Delay specification is used to inject latency into the
 /// HTTP/gRPC/Mongo/Redis operation or delay proxying of TCP connections.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FaultDelay {
     /// Unused and deprecated. Will be removed in the next release.
     #[deprecated]
-    #[prost(enumeration="fault_delay::FaultDelayType", tag="1")]
+    #[prost(enumeration = "fault_delay::FaultDelayType", tag = "1")]
     pub r#type: i32,
     /// The percentage of operations/connections/requests on which the delay will be injected.
-    #[prost(message, optional, tag="4")]
-    pub percentage: ::core::option::Option<super::super::super::super::r#type::FractionalPercent>,
-    #[prost(oneof="fault_delay::FaultDelaySecifier", tags="3, 5")]
+    #[prost(message, optional, tag = "4")]
+    pub percentage: ::core::option::Option<
+        super::super::super::super::r#type::FractionalPercent,
+    >,
+    #[prost(oneof = "fault_delay::FaultDelaySecifier", tags = "3, 5")]
     pub fault_delay_secifier: ::core::option::Option<fault_delay::FaultDelaySecifier>,
 }
 /// Nested message and enum types in `FaultDelay`.
@@ -21,10 +22,20 @@ pub mod fault_delay {
     /// Fault delays are controlled via an HTTP header (if applicable). See the
     /// :ref:`HTTP fault filter <config_http_filters_fault_injection_http_header>` documentation for
     /// more information.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct HeaderDelay {
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    pub struct HeaderDelay {}
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FaultDelayType {
         /// Unused and deprecated.
@@ -40,7 +51,15 @@ pub mod fault_delay {
                 FaultDelayType::Fixed => "FIXED",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "FIXED" => Some(Self::Fixed),
+                _ => None,
+            }
+        }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum FaultDelaySecifier {
         /// Add a fixed delay before forwarding the operation upstream. See
@@ -49,44 +68,49 @@ pub mod fault_delay {
         /// delay will be injected before a new request/operation. For TCP
         /// connections, the proxying of the connection upstream will be delayed
         /// for the specified period. This is required if type is FIXED.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         FixedDelay(::pbjson_types::Duration),
         /// Fault delays are controlled via an HTTP header (if applicable).
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         HeaderDelay(HeaderDelay),
     }
 }
 /// Describes a rate limit to be applied.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FaultRateLimit {
     /// The percentage of operations/connections/requests on which the rate limit will be injected.
-    #[prost(message, optional, tag="2")]
-    pub percentage: ::core::option::Option<super::super::super::super::r#type::FractionalPercent>,
-    #[prost(oneof="fault_rate_limit::LimitType", tags="1, 3")]
+    #[prost(message, optional, tag = "2")]
+    pub percentage: ::core::option::Option<
+        super::super::super::super::r#type::FractionalPercent,
+    >,
+    #[prost(oneof = "fault_rate_limit::LimitType", tags = "1, 3")]
     pub limit_type: ::core::option::Option<fault_rate_limit::LimitType>,
 }
 /// Nested message and enum types in `FaultRateLimit`.
 pub mod fault_rate_limit {
     /// Describes a fixed/constant rate limit.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct FixedLimit {
         /// The limit supplied in KiB/s.
-        #[prost(uint64, tag="1")]
+        #[prost(uint64, tag = "1")]
         pub limit_kbps: u64,
     }
     /// Rate limits are controlled via an HTTP header (if applicable). See the
     /// :ref:`HTTP fault filter <config_http_filters_fault_injection_http_header>` documentation for
     /// more information.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct HeaderLimit {
-    }
+    pub struct HeaderLimit {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum LimitType {
         /// A fixed rate limit.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         FixedLimit(FixedLimit),
         /// Rate limits are controlled via an HTTP header (if applicable).
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         HeaderLimit(HeaderLimit),
     }
 }
@@ -339,4 +363,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x01, 0x02, 0x02, 0x03, 0x12, 0x03, 0x56, 0x26, 0x27, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.fault.v2.serde.rs");
 // @@protoc_insertion_point(module)

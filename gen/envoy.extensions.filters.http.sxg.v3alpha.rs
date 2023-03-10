@@ -1,48 +1,49 @@
 // @generated
-// [#protodoc-title: Signed HTTP Exchange Filter]
-// SXG :ref:`configuration overview <config_http_filters_sxg>`.
-// [#extension: envoy.filters.http.sxg]
-
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Sxg {
     /// The SDS configuration for the public key data for the SSL certificate that will be used to sign the
     /// SXG response.
-    #[prost(message, optional, tag="1")]
-    pub certificate: ::core::option::Option<super::super::super::super::transport_sockets::tls::v3::SdsSecretConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub certificate: ::core::option::Option<
+        super::super::super::super::transport_sockets::tls::v3::SdsSecretConfig,
+    >,
     /// The SDS configuration for the private key data for the SSL certificate that will be used to sign the
     /// SXG response.
-    #[prost(message, optional, tag="2")]
-    pub private_key: ::core::option::Option<super::super::super::super::transport_sockets::tls::v3::SdsSecretConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub private_key: ::core::option::Option<
+        super::super::super::super::transport_sockets::tls::v3::SdsSecretConfig,
+    >,
     /// The duration for which the generated SXG package will be valid. Default is 604800s (7 days in seconds).
     /// Note that in order to account for clock skew, the timestamp will be backdated by a day. So, if duration
     /// is set to 7 days, that will be 7 days from 24 hours ago (6 days from now). Also note that while 6/7 days
     /// is appropriate for most content, if the downstream service is serving Javascript, or HTML with inline
     /// Javascript, 1 day (so, with backdated expiry, 2 days, or 172800 seconds) is more appropriate.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub duration: ::core::option::Option<::pbjson_types::Duration>,
     /// The SXG response payload is Merkle Integrity Content Encoding (MICE) encoded (specification is \[here\](<https://datatracker.ietf.org/doc/html/draft-thomson-http-mice-03>))
     /// This value indicates the record size in the encoded payload. The default value is 4096.
-    #[prost(uint64, tag="4")]
+    #[prost(uint64, tag = "4")]
     pub mi_record_size: u64,
     /// The URI of certificate CBOR file published. Since it is required that the certificate CBOR file
     /// be served from the same domain as the SXG document, this should be a relative URI.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub cbor_url: ::prost::alloc::string::String,
     /// URL to retrieve validity data for signature, a CBOR map. See specification \[here\](<https://tools.ietf.org/html/draft-yasskin-httpbis-origin-signed-exchanges-impl-00#section-3.6>)
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub validity_url: ::prost::alloc::string::String,
     /// Header that will be set if it is determined that the client can accept SXG (typically ``accept: application/signed-exchange;v=b3``)
     /// If not set, filter will default to: ``x-client-can-accept-sxg``
-    #[prost(string, tag="7")]
+    #[prost(string, tag = "7")]
     pub client_can_accept_sxg_header: ::prost::alloc::string::String,
     /// Header set by downstream service to signal that the response should be transformed to SXG If not set,
     /// filter will default to: ``x-should-encode-sxg``
-    #[prost(string, tag="8")]
+    #[prost(string, tag = "8")]
     pub should_encode_sxg_header: ::prost::alloc::string::String,
     /// Headers that will be stripped from the SXG document, by listing a prefix (i.e. ``x-custom-`` will cause
     /// all headers prefixed by ``x-custom-`` to be omitted from the SXG document)
-    #[prost(string, repeated, tag="9")]
+    #[prost(string, repeated, tag = "9")]
     pub header_prefix_filters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.sxg.v3alpha` package
@@ -300,4 +301,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x04, 0x40, 0x2c, 0x42, 0x03, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x08, 0x08, 0xaf,
     0x08, 0x12, 0x12, 0x03, 0x41, 0x04, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.sxg.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,11 +1,7 @@
 // @generated
-// [#protodoc-title: SNI Cluster Filter]
-// Set the upstream cluster name from the SNI field in the TLS connection.
-// [#extension: envoy.filters.network.sni_cluster]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SniCluster {
-}
+pub struct SniCluster {}
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.sni_cluster.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xcb, 0x06, 0x0a, 0x41, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -62,4 +58,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x02, 0x13, 0x3e, 0x0a, 0x10, 0x0a, 0x08, 0x04, 0x00, 0x07, 0xd3, 0x88, 0xe1, 0x03, 0x01,
     0x12, 0x04, 0x12, 0x02, 0x13, 0x3e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.sni_cluster.v3.serde.rs");
 // @@protoc_insertion_point(module)

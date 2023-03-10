@@ -1,22 +1,21 @@
 // @generated
-// [#protodoc-title: Compressor]
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Compressor {
     /// Minimum response length, in bytes, which will trigger compression. The default value is 30.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub content_length: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Set of strings that allows specifying which mime-types yield compression; e.g.,
     /// application/json, text/html, etc. When this field is not defined, compression will be applied
     /// to the following mime-types: "application/javascript", "application/json",
     /// "application/xhtml+xml", "image/svg+xml", "text/css", "text/html", "text/plain", "text/xml"
     /// and their synonyms.
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub content_type: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If true, disables compression when the response contains an etag header. When it is false, the
     /// filter will preserve weak etags and remove the ones that require strong validation.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub disable_on_etag_header: bool,
     /// If true, removes accept-encoding from the request headers before dispatching it to the upstream
     /// so that responses do not get compressed before reaching the filter.
@@ -24,12 +23,14 @@ pub struct Compressor {
     ///
     ///     To avoid interfering with other compression filters in the same chain use this option in
     ///     the filter closest to the upstream.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub remove_accept_encoding_header: bool,
     /// Runtime flag that controls whether the filter is enabled or not. If set to false, the
     /// filter will operate as a pass-through filter. If not specified, defaults to enabled.
-    #[prost(message, optional, tag="5")]
-    pub runtime_enabled: ::core::option::Option<super::super::super::super::super::api::v2::core::RuntimeFeatureFlag>,
+    #[prost(message, optional, tag = "5")]
+    pub runtime_enabled: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::RuntimeFeatureFlag,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.compressor.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -191,4 +192,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x2f, 0x21, 0x30, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x04, 0x03, 0x12, 0x03,
     0x2f, 0x33, 0x34, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.compressor.v2.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,12 +1,9 @@
 // @generated
-// [#protodoc-title: Kafka Broker]
-// Kafka Broker :ref:`configuration overview <config_network_filters_kafka_broker>`.
-// [#extension: envoy.filters.network.kafka_broker]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KafkaBroker {
     /// The prefix to use when emitting :ref:`statistics <config_network_filters_kafka_broker_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.kafka_broker.v3` package
@@ -84,4 +81,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x17, 0x1a, 0x40, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.filters.network.kafka_broker.v3.serde.rs");
 // @@protoc_insertion_point(module)

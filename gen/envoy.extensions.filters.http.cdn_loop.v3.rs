@@ -1,9 +1,7 @@
 // @generated
-// [#protodoc-title: HTTP CDN-Loop Filter]
-// [#extension: envoy.filters.http.cdn_loop]
-
 /// CDN-Loop Header filter config. See the :ref:`configuration overview
 /// <config_http_filters_cdn_loop>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CdnLoopConfig {
     /// The CDN identifier to use for loop checks and to append to the
@@ -13,7 +11,7 @@ pub struct CdnLoopConfig {
     /// pseudonym or hostname the CDN is in control of.
     ///
     /// cdn_id must not be empty.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cdn_id: ::prost::alloc::string::String,
     /// The maximum allowed count of cdn_id in the downstream CDN-Loop
     /// request header.
@@ -21,7 +19,7 @@ pub struct CdnLoopConfig {
     /// The default of 0 means a request can transit the CdnLoopFilter
     /// once. A value of 1 means that a request can transit the
     /// CdnLoopFilter twice and so on.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub max_allowed_occurrences: u32,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.cdn_loop.v3` package
@@ -118,4 +116,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x01, 0x12, 0x03, 0x22, 0x09, 0x20, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x01, 0x03,
     0x12, 0x03, 0x22, 0x23, 0x24, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.cdn_loop.v3.serde.rs");
 // @@protoc_insertion_point(module)

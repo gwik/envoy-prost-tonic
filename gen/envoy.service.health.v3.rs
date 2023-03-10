@@ -1,16 +1,27 @@
 // @generated
 /// Defines supported protocols etc, so the management server can assign proper
 /// endpoints to healthcheck.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Capability {
-    #[prost(enumeration="capability::Protocol", repeated, tag="1")]
+    #[prost(enumeration = "capability::Protocol", repeated, tag = "1")]
     pub health_check_protocols: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `Capability`.
 pub mod capability {
     /// Different Envoy instances may have different capabilities (e.g. Redis)
     /// and/or have ports enabled for different protocols.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Protocol {
         Http = 0,
@@ -29,107 +40,148 @@ pub mod capability {
                 Protocol::Redis => "REDIS",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "HTTP" => Some(Self::Http),
+                "TCP" => Some(Self::Tcp),
+                "REDIS" => Some(Self::Redis),
+                _ => None,
+            }
+        }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckRequest {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub node: ::core::option::Option<super::super::super::config::core::v3::Node>,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub capability: ::core::option::Option<Capability>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EndpointHealth {
-    #[prost(message, optional, tag="1")]
-    pub endpoint: ::core::option::Option<super::super::super::config::endpoint::v3::Endpoint>,
-    #[prost(enumeration="super::super::super::config::core::v3::HealthStatus", tag="2")]
+    #[prost(message, optional, tag = "1")]
+    pub endpoint: ::core::option::Option<
+        super::super::super::config::endpoint::v3::Endpoint,
+    >,
+    #[prost(
+        enumeration = "super::super::super::config::core::v3::HealthStatus",
+        tag = "2"
+    )]
     pub health_status: i32,
 }
 /// Group endpoint health by locality under each cluster.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalityEndpointsHealth {
-    #[prost(message, optional, tag="1")]
-    pub locality: ::core::option::Option<super::super::super::config::core::v3::Locality>,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, optional, tag = "1")]
+    pub locality: ::core::option::Option<
+        super::super::super::config::core::v3::Locality,
+    >,
+    #[prost(message, repeated, tag = "2")]
     pub endpoints_health: ::prost::alloc::vec::Vec<EndpointHealth>,
 }
 /// The health status of endpoints in a cluster. The cluster name and locality
 /// should match the corresponding fields in ClusterHealthCheck message.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterEndpointsHealth {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cluster_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub locality_endpoints_health: ::prost::alloc::vec::Vec<LocalityEndpointsHealth>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EndpointHealthResponse {
     /// Deprecated - Flat list of endpoint health information.
     #[deprecated]
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub endpoints_health: ::prost::alloc::vec::Vec<EndpointHealth>,
     /// Organize Endpoint health information by cluster.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub cluster_endpoints_health: ::prost::alloc::vec::Vec<ClusterEndpointsHealth>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckRequestOrEndpointHealthResponse {
-    #[prost(oneof="health_check_request_or_endpoint_health_response::RequestType", tags="1, 2")]
-    pub request_type: ::core::option::Option<health_check_request_or_endpoint_health_response::RequestType>,
+    #[prost(
+        oneof = "health_check_request_or_endpoint_health_response::RequestType",
+        tags = "1, 2"
+    )]
+    pub request_type: ::core::option::Option<
+        health_check_request_or_endpoint_health_response::RequestType,
+    >,
 }
 /// Nested message and enum types in `HealthCheckRequestOrEndpointHealthResponse`.
 pub mod health_check_request_or_endpoint_health_response {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RequestType {
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         HealthCheckRequest(super::HealthCheckRequest),
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         EndpointHealthResponse(super::EndpointHealthResponse),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalityEndpoints {
-    #[prost(message, optional, tag="1")]
-    pub locality: ::core::option::Option<super::super::super::config::core::v3::Locality>,
-    #[prost(message, repeated, tag="2")]
-    pub endpoints: ::prost::alloc::vec::Vec<super::super::super::config::endpoint::v3::Endpoint>,
+    #[prost(message, optional, tag = "1")]
+    pub locality: ::core::option::Option<
+        super::super::super::config::core::v3::Locality,
+    >,
+    #[prost(message, repeated, tag = "2")]
+    pub endpoints: ::prost::alloc::vec::Vec<
+        super::super::super::config::endpoint::v3::Endpoint,
+    >,
 }
 /// The cluster name and locality is provided to Envoy for the endpoints that it
 /// health checks to support statistics reporting, logging and debugging by the
 /// Envoy instance (outside of HDS). For maximum usefulness, it should match the
 /// same cluster structure as that provided by EDS.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterHealthCheck {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cluster_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="2")]
-    pub health_checks: ::prost::alloc::vec::Vec<super::super::super::config::core::v3::HealthCheck>,
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "2")]
+    pub health_checks: ::prost::alloc::vec::Vec<
+        super::super::super::config::core::v3::HealthCheck,
+    >,
+    #[prost(message, repeated, tag = "3")]
     pub locality_endpoints: ::prost::alloc::vec::Vec<LocalityEndpoints>,
     /// Optional map that gets filtered by :ref:`health_checks.transport_socket_match_criteria <envoy_v3_api_field_config.core.v3.HealthCheck.transport_socket_match_criteria>`
     /// on connection when health checking. For more details, see
     /// :ref:`config.cluster.v3.Cluster.transport_socket_matches <envoy_v3_api_field_config.cluster.v3.Cluster.transport_socket_matches>`.
-    #[prost(message, repeated, tag="4")]
-    pub transport_socket_matches: ::prost::alloc::vec::Vec<super::super::super::config::cluster::v3::cluster::TransportSocketMatch>,
+    #[prost(message, repeated, tag = "4")]
+    pub transport_socket_matches: ::prost::alloc::vec::Vec<
+        super::super::super::config::cluster::v3::cluster::TransportSocketMatch,
+    >,
     /// Optional configuration used to bind newly established upstream connections.
     /// If the address and port are empty, no bind will be performed.
-    #[prost(message, optional, tag="5")]
-    pub upstream_bind_config: ::core::option::Option<super::super::super::config::core::v3::BindConfig>,
+    #[prost(message, optional, tag = "5")]
+    pub upstream_bind_config: ::core::option::Option<
+        super::super::super::config::core::v3::BindConfig,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckSpecifier {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub cluster_health_checks: ::prost::alloc::vec::Vec<ClusterHealthCheck>,
     /// The default is 1 second.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub interval: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HdsDummy {
-}
+pub struct HdsDummy {}
 /// Encoded file descriptor set for the `envoy.service.health.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xa5, 0x51, 0x0a, 0x21, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -784,5 +836,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x65, 0x2e, 0x0a, 0x0a, 0x0b, 0x0a, 0x03, 0x04, 0x0a, 0x01, 0x12, 0x04, 0xc5, 0x01, 0x08, 0x10,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.health.v3.serde.rs");
 include!("envoy.service.health.v3.tonic.rs");
 // @@protoc_insertion_point(module)

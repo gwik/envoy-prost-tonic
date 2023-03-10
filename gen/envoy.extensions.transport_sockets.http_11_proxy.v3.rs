@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Upstream HTTP/1.1 Proxy]
-// [#extension: envoy.transport_sockets.http_11_proxy]
-
 /// Configuration for HTTP/1.1 proxy transport sockets.
 /// This is intended for use in Envoy Mobile, though may eventually be extended
 /// for upstream Envoy use.
@@ -16,11 +13,14 @@
 /// * Plaintext HTTP/1.1 connections will be sent with a fully qualified URL.
 ///
 /// This transport socket is not compatible with HTTP/3, plaintext HTTP/2, or raw TCP.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Http11ProxyUpstreamTransport {
     /// The underlying transport socket being wrapped.
-    #[prost(message, optional, tag="1")]
-    pub transport_socket: ::core::option::Option<super::super::super::super::config::core::v3::TransportSocket>,
+    #[prost(message, optional, tag = "1")]
+    pub transport_socket: ::core::option::Option<
+        super::super::super::super::config::core::v3::TransportSocket,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.http_11_proxy.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -139,4 +139,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x22, 0x37, 0x62, 0x62, 0x06,
     0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.http_11_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

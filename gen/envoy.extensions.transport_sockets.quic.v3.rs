@@ -1,22 +1,25 @@
 // @generated
-// [#protodoc-title: quic transport]
-// [#comment:#extension: envoy.transport_sockets.quic]
-
 /// Configuration for Downstream QUIC transport socket. This provides Google's implementation of Google QUIC and IETF QUIC to Envoy.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuicDownstreamTransport {
-    #[prost(message, optional, tag="1")]
-    pub downstream_tls_context: ::core::option::Option<super::super::tls::v3::DownstreamTlsContext>,
+    #[prost(message, optional, tag = "1")]
+    pub downstream_tls_context: ::core::option::Option<
+        super::super::tls::v3::DownstreamTlsContext,
+    >,
     /// If false, QUIC will tell TLS to reject any early data and to stop issuing 0-RTT credentials with resumption session tickets. This will prevent clients from sending 0-RTT requests.
     /// Default to true.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub enable_early_data: ::core::option::Option<::pbjson_types::BoolValue>,
 }
 /// Configuration for Upstream QUIC transport socket. This provides Google's implementation of Google QUIC and IETF QUIC to Envoy.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuicUpstreamTransport {
-    #[prost(message, optional, tag="1")]
-    pub upstream_tls_context: ::core::option::Option<super::super::tls::v3::UpstreamTlsContext>,
+    #[prost(message, optional, tag = "1")]
+    pub upstream_tls_context: ::core::option::Option<
+        super::super::tls::v3::UpstreamTlsContext,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.quic.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -136,4 +139,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x20, 0x35, 0x62, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x01, 0x02, 0x00, 0x08, 0xaf,
     0x08, 0x11, 0x12, 0x03, 0x20, 0x36, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.quic.v3.serde.rs");
 // @@protoc_insertion_point(module)

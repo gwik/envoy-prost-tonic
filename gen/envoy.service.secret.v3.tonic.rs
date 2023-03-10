@@ -158,10 +158,10 @@ pub mod secret_discovery_service_client {
 pub mod secret_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with SecretDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with SecretDiscoveryServiceServer.
     #[async_trait]
     pub trait SecretDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaSecrets method.
+        /// Server streaming response type for the DeltaSecrets method.
         type DeltaSecretsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,
@@ -178,7 +178,7 @@ pub mod secret_discovery_service_server {
                 >,
             >,
         ) -> Result<tonic::Response<Self::DeltaSecretsStream>, tonic::Status>;
-        ///Server streaming response type for the StreamSecrets method.
+        /// Server streaming response type for the StreamSecrets method.
         type StreamSecretsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,

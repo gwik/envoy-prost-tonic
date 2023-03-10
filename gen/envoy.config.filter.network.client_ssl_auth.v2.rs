@@ -1,32 +1,30 @@
 // @generated
-// [#protodoc-title: Client TLS authentication]
-// Client TLS authentication
-// :ref:`configuration overview <config_network_filters_client_ssl_auth>`.
-// [#extension: envoy.filters.network.client_ssl_auth]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientSslAuth {
     /// The :ref:`cluster manager <arch_overview_cluster_manager>` cluster that runs
     /// the authentication service. The filter will connect to the service every 60s to fetch the list
     /// of principals. The service must support the expected :ref:`REST API
     /// <config_network_filters_client_ssl_auth_rest_api>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub auth_api_cluster: ::prost::alloc::string::String,
     /// The prefix to use when emitting :ref:`statistics
     /// <config_network_filters_client_ssl_auth_stats>`.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// Time in milliseconds between principal refreshes from the
     /// authentication service. Default is 60000 (60s). The actual fetch time
     /// will be this value plus a random jittered value between
     /// 0-refresh_delay_ms milliseconds.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub refresh_delay: ::core::option::Option<::pbjson_types::Duration>,
     /// An optional list of IP address and subnet masks that should be white
     /// listed for access by the filter. If no list is provided, there is no
     /// IP allowlist.
-    #[prost(message, repeated, tag="4")]
-    pub ip_white_list: ::prost::alloc::vec::Vec<super::super::super::super::super::api::v2::core::CidrRange>,
+    #[prost(message, repeated, tag = "4")]
+    pub ip_white_list: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::api::v2::core::CidrRange,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.network.client_ssl_auth.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -176,4 +174,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x2d, 0x21, 0x2e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x2d, 0x31,
     0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.client_ssl_auth.v2.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,25 +1,18 @@
 // @generated
-// [#protodoc-title: Path Transformations API]
-
-// PathTransformation defines an API to apply a sequence of operations that can be used to alter
-// text before it is used for matching or routing. Multiple actions can be applied in the same
-// Transformation, forming a sequential pipeline. The transformations will be performed in the order
-// that they appear.
-//
-// This API is a work in progress.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PathTransformation {
     /// A list of operations to apply. Transformations will be performed in the order that they appear.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub operations: ::prost::alloc::vec::Vec<path_transformation::Operation>,
 }
 /// Nested message and enum types in `PathTransformation`.
 pub mod path_transformation {
     /// A type of operation to alter text.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Operation {
-        #[prost(oneof="operation::OperationSpecifier", tags="2, 3")]
+        #[prost(oneof = "operation::OperationSpecifier", tags = "2, 3")]
         pub operation_specifier: ::core::option::Option<operation::OperationSpecifier>,
     }
     /// Nested message and enum types in `Operation`.
@@ -31,45 +24,45 @@ pub mod path_transformation {
         /// <<https://tools.ietf.org/html/rfc3986#section-6>`_> for details of normalization. Note that
         /// this options does not perform `case normalization
         /// <<https://tools.ietf.org/html/rfc3986#section-6.2.2.1>`_>
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct NormalizePathRfc3986 {
-        }
+        pub struct NormalizePathRfc3986 {}
         /// Determines if adjacent slashes are merged into one. A common use case is for a request path
         /// header. Using this option in ``:ref: PathNormalizationOptions
         /// <envoy_v3_api_msg_extensions.filters.network.http_connection_manager.v3.HttpConnectionManager.PathNormalizationOptions>``
         /// will allow incoming requests with path ``//dir///file`` to match against route with ``prefix``
         /// match set to ``/dir``. When using for header transformations, note that slash merging is not
         /// part of `HTTP spec <<https://tools.ietf.org/html/rfc3986>`_> and is provided for convenience.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct MergeSlashes {
-        }
+        pub struct MergeSlashes {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum OperationSpecifier {
             /// Enable path normalization per RFC 3986.
-            #[prost(message, tag="2")]
+            #[prost(message, tag = "2")]
             NormalizePathRfc3986(NormalizePathRfc3986),
             /// Enable merging adjacent slashes.
-            #[prost(message, tag="3")]
+            #[prost(message, tag = "3")]
             MergeSlashes(MergeSlashes),
         }
     }
 }
-// [#protodoc-title: HTTP cookie API]
-
 /// Cookie defines an API for obtaining or generating HTTP cookie.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cookie {
     /// The name that will be used to obtain cookie value from downstream HTTP request or generate
     /// new cookie for downstream.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Duration of cookie. This will be used to set the expiry time of a new cookie when it is
     /// generated. Set this to 0 to use a session cookie.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub ttl: ::core::option::Option<::pbjson_types::Duration>,
     /// Path of cookie. This will be used to set the path of a new cookie when it is generated.
     /// If no path is specified here, no path will be set for the cookie.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub path: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.type.http.v3` package
@@ -342,4 +335,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x1d, 0x09, 0x0d, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x1d,
     0x10, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.type.http.v3.serde.rs");
 // @@protoc_insertion_point(module)

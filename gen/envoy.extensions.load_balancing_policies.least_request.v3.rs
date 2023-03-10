@@ -1,15 +1,13 @@
 // @generated
-// [#protodoc-title: Least Request Load Balancing Policy]
-// [#extension: envoy.load_balancing_policies.least_request]
-
 /// This configuration allows the built-in LEAST_REQUEST LB policy to be configured via the LB policy
 /// extension point. See the :ref:`load balancing architecture overview
 /// <arch_overview_load_balancing_types>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LeastRequest {
     /// The number of random healthy hosts from which the host with the fewest active requests will
     /// be chosen. Defaults to 2 so that we perform two-choice selection if the field is not set.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub choice_count: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The following formula is used to calculate the dynamic weights when hosts have different load
     /// balancing weights:
@@ -34,15 +32,21 @@ pub struct LeastRequest {
     ///
     /// .. note::
     ///    This setting only takes effect if all host weights are not equal.
-    #[prost(message, optional, tag="2")]
-    pub active_request_bias: ::core::option::Option<super::super::super::super::config::core::v3::RuntimeDouble>,
+    #[prost(message, optional, tag = "2")]
+    pub active_request_bias: ::core::option::Option<
+        super::super::super::super::config::core::v3::RuntimeDouble,
+    >,
     /// Configuration for slow start mode.
     /// If this configuration is not set, slow start will not be not enabled.
-    #[prost(message, optional, tag="3")]
-    pub slow_start_config: ::core::option::Option<super::super::common::v3::SlowStartConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub slow_start_config: ::core::option::Option<
+        super::super::common::v3::SlowStartConfig,
+    >,
     /// Configuration for local zone aware load balancing or locality weighted load balancing.
-    #[prost(message, optional, tag="4")]
-    pub locality_lb_config: ::core::option::Option<super::super::common::v3::LocalityLbConfig>,
+    #[prost(message, optional, tag = "4")]
+    pub locality_lb_config: ::core::option::Option<
+        super::super::common::v3::LocalityLbConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.load_balancing_policies.least_request.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -249,4 +253,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x3b, 0x32, 0x33, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.load_balancing_policies.least_request.v3.serde.rs");
 // @@protoc_insertion_point(module)

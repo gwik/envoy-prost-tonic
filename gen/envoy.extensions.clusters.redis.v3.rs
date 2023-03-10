@@ -1,70 +1,32 @@
 // @generated
-// [#protodoc-title: Redis Cluster Configuration]
-// This cluster adds support for `Redis Cluster <<https://redis.io/topics/cluster-spec>`_,> as part
-// of :ref:`Envoy's support for Redis Cluster <arch_overview_redis>`.
-//
-// Redis Cluster is an extension of Redis which supports sharding and high availability (where a
-// shard that loses its primary fails over to a replica, and designates it as the new primary).
-// However, as there is no unified frontend or proxy service in front of Redis Cluster, the client
-// (in this case Envoy) must locally maintain the state of the Redis Cluster, specifically the
-// topology. A random node in the cluster is queried for the topology using the `CLUSTER SLOTS
-// command <<https://redis.io/commands/cluster-slots>`_.> This result is then stored locally, and
-// updated at user-configured intervals.
-//
-// Additionally, if
-// :ref:`enable_redirection<envoy_v3_api_field_extensions.filters.network.redis_proxy.v3.RedisProxy.ConnPoolSettings.enable_redirection>`
-// is true, then moved and ask redirection errors from upstream servers will trigger a topology
-// refresh when they exceed a user-configured error threshold.
-//
-// Example:
-//
-// .. code-block:: yaml
-//
-//      name: name
-//      connect_timeout: 0.25s
-//      dns_lookup_family: V4_ONLY
-//      hosts:
-//      - socket_address:
-//        address: foo.bar.com
-//        port_value: 22120
-//      cluster_type:
-//      name: envoy.clusters.redis
-//      typed_config:
-//        "@type": type.googleapis.com/google.protobuf.Struct
-//        value:
-//          cluster_refresh_rate: 30s
-//          cluster_refresh_timeout: 0.5s
-//          redirect_refresh_interval: 10s
-//          redirect_refresh_threshold: 10
-// [#extension: envoy.clusters.redis]
-
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RedisClusterConfig {
     /// Interval between successive topology refresh requests. If not set, this defaults to 5s.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub cluster_refresh_rate: ::core::option::Option<::pbjson_types::Duration>,
     /// Timeout for topology refresh request. If not set, this defaults to 3s.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub cluster_refresh_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The minimum interval that must pass after triggering a topology refresh request before a new
     /// request can possibly be triggered again. Any errors received during one of these
     /// time intervals are ignored. If not set, this defaults to 5s.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub redirect_refresh_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// The number of redirection errors that must be received before
     /// triggering a topology refresh request. If not set, this defaults to 5.
     /// If this is set to 0, topology refresh after redirect is disabled.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub redirect_refresh_threshold: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The number of failures that must be received before triggering a topology refresh request.
     /// If not set, this defaults to 0, which disables the topology refresh due to failure.
-    #[prost(uint32, tag="5")]
+    #[prost(uint32, tag = "5")]
     pub failure_refresh_threshold: u32,
     /// The number of hosts became degraded or unhealthy before triggering a topology refresh request.
     /// If not set, this defaults to 0, which disables the topology refresh due to degraded or
     /// unhealthy host.
-    #[prost(uint32, tag="6")]
+    #[prost(uint32, tag = "6")]
     pub host_degraded_refresh_threshold: u32,
 }
 /// Encoded file descriptor set for the `envoy.extensions.clusters.redis.v3` package
@@ -340,4 +302,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x05, 0x01, 0x12, 0x03, 0x54, 0x09, 0x28, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00,
     0x02, 0x05, 0x03, 0x12, 0x03, 0x54, 0x2b, 0x2c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.clusters.redis.v3.serde.rs");
 // @@protoc_insertion_point(module)

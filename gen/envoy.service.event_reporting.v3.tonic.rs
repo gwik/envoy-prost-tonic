@@ -98,10 +98,10 @@ pub mod event_reporting_service_client {
 pub mod event_reporting_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with EventReportingServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with EventReportingServiceServer.
     #[async_trait]
     pub trait EventReportingService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamEvents method.
+        /// Server streaming response type for the StreamEvents method.
         type StreamEventsStream: futures_core::Stream<
                 Item = Result<super::StreamEventsResponse, tonic::Status>,
             >

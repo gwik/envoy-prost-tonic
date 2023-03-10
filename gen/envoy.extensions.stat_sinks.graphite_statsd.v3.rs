@@ -1,16 +1,10 @@
 // @generated
-// [#protodoc-title: Graphite+Statsd]
-// Stats configuration proto schema for ``envoy.stat_sinks.graphite_statsd`` sink.
-// The sink emits stats with `Graphite <<https://graphite.readthedocs.io/en/latest/tags.html>`_>
-// compatible tags. Tags are configurable via :ref:`StatsConfig
-// <envoy_v3_api_msg_config.metrics.v3.StatsConfig>`.
-// [#extension: envoy.stat_sinks.graphite_statsd]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GraphiteStatsdSink {
     /// Optional custom metric name prefix. See :ref:`StatsdSink's prefix field
     /// <envoy_v3_api_field_config.metrics.v3.StatsdSink.prefix>` for more details.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub prefix: ::prost::alloc::string::String,
     /// Optional max datagram size to use when sending UDP messages. By default Envoy
     /// will emit one metric per datagram. By specifying a max-size larger than a single
@@ -18,18 +12,19 @@ pub struct GraphiteStatsdSink {
     /// size should not exceed your network's MTU.
     ///
     /// Note that this value may not be respected if smaller than a single metric.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub max_bytes_per_datagram: ::core::option::Option<::pbjson_types::UInt64Value>,
-    #[prost(oneof="graphite_statsd_sink::StatsdSpecifier", tags="1")]
+    #[prost(oneof = "graphite_statsd_sink::StatsdSpecifier", tags = "1")]
     pub statsd_specifier: ::core::option::Option<graphite_statsd_sink::StatsdSpecifier>,
 }
 /// Nested message and enum types in `GraphiteStatsdSink`.
 pub mod graphite_statsd_sink {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum StatsdSpecifier {
         /// The UDP address of a running Graphite-compliant listener. If specified,
         /// statistics will be flushed to this address.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         Address(super::super::super::super::super::config::core::v3::Address),
     }
 }
@@ -171,4 +166,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x2b, 0x39, 0x5c, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x02, 0x08, 0xaf, 0x08, 0x06, 0x12,
     0x03, 0x2b, 0x3a, 0x5b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.stat_sinks.graphite_statsd.v3.serde.rs");
 // @@protoc_insertion_point(module)

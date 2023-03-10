@@ -1,57 +1,63 @@
 // @generated
-// [#protodoc-title: HTTP connection manager]
-// HTTP connection manager :ref:`configuration overview <config_http_conn_man>`.
-// [#extension: envoy.filters.network.http_connection_manager]
-
 /// [#next-free-field: 37]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpConnectionManager {
     /// Supplies the type of codec that the connection manager should use.
-    #[prost(enumeration="http_connection_manager::CodecType", tag="1")]
+    #[prost(enumeration = "http_connection_manager::CodecType", tag = "1")]
     pub codec_type: i32,
     /// The human readable prefix to use when emitting statistics for the
     /// connection manager. See the :ref:`statistics documentation <config_http_conn_man_stats>` for
     /// more information.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// A list of individual HTTP filters that make up the filter chain for
     /// requests made to the connection manager. :ref:`Order matters <arch_overview_http_filters_ordering>`
     /// as the filters are processed sequentially as request events happen.
-    #[prost(message, repeated, tag="5")]
+    #[prost(message, repeated, tag = "5")]
     pub http_filters: ::prost::alloc::vec::Vec<HttpFilter>,
     /// Whether the connection manager manipulates the :ref:`config_http_conn_man_headers_user-agent`
     /// and :ref:`config_http_conn_man_headers_downstream-service-cluster` headers. See the linked
     /// documentation for more information. Defaults to false.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub add_user_agent: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Presence of the object defines whether the connection manager
     /// emits :ref:`tracing <arch_overview_tracing>` data to the :ref:`configured tracing provider
     /// <envoy_api_msg_config.trace.v2.Tracing>`.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub tracing: ::core::option::Option<http_connection_manager::Tracing>,
     /// Additional settings for HTTP requests handled by the connection manager. These will be
     /// applicable to both HTTP1 and HTTP2 requests.
-    #[prost(message, optional, tag="35")]
-    pub common_http_protocol_options: ::core::option::Option<super::super::super::super::super::api::v2::core::HttpProtocolOptions>,
+    #[prost(message, optional, tag = "35")]
+    pub common_http_protocol_options: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::HttpProtocolOptions,
+    >,
     /// Additional HTTP/1 settings that are passed to the HTTP/1 codec.
-    #[prost(message, optional, tag="8")]
-    pub http_protocol_options: ::core::option::Option<super::super::super::super::super::api::v2::core::Http1ProtocolOptions>,
+    #[prost(message, optional, tag = "8")]
+    pub http_protocol_options: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::Http1ProtocolOptions,
+    >,
     /// Additional HTTP/2 settings that are passed directly to the HTTP/2 codec.
-    #[prost(message, optional, tag="9")]
-    pub http2_protocol_options: ::core::option::Option<super::super::super::super::super::api::v2::core::Http2ProtocolOptions>,
+    #[prost(message, optional, tag = "9")]
+    pub http2_protocol_options: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::Http2ProtocolOptions,
+    >,
     /// An optional override that the connection manager will write to the server
     /// header in responses. If not set, the default is *envoy*.
-    #[prost(string, tag="10")]
+    #[prost(string, tag = "10")]
     pub server_name: ::prost::alloc::string::String,
     /// Defines the action to be applied to the Server header on the response path.
     /// By default, Envoy will overwrite the header with the value specified in
     /// server_name.
-    #[prost(enumeration="http_connection_manager::ServerHeaderTransformation", tag="34")]
+    #[prost(
+        enumeration = "http_connection_manager::ServerHeaderTransformation",
+        tag = "34"
+    )]
     pub server_header_transformation: i32,
     /// The maximum request headers size for incoming connections.
     /// If unconfigured, the default max request headers allowed is 60 KiB.
     /// Requests that exceed this limit will receive a 431 response.
-    #[prost(message, optional, tag="29")]
+    #[prost(message, optional, tag = "29")]
     pub max_request_headers_kb: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The idle timeout for connections managed by the connection manager. The
     /// idle timeout is defined as the period in which there are no active
@@ -62,7 +68,7 @@ pub struct HttpConnectionManager {
     /// <envoy_api_field_config.filter.network.http_connection_manager.v2.HttpConnectionManager.common_http_protocol_options>`
     /// instead.
     #[deprecated]
-    #[prost(message, optional, tag="11")]
+    #[prost(message, optional, tag = "11")]
     pub idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The stream idle timeout for connections managed by the connection manager.
     /// If not specified, this defaults to 5 minutes. The default value was selected
@@ -99,13 +105,13 @@ pub struct HttpConnectionManager {
     ///
     /// A value of 0 will completely disable the connection manager stream idle
     /// timeout, although per-route idle timeout overrides will continue to apply.
-    #[prost(message, optional, tag="24")]
+    #[prost(message, optional, tag = "24")]
     pub stream_idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The amount of time that Envoy will wait for the entire request to be received.
     /// The timer is activated when the request is initiated, and is disarmed when the last byte of the
     /// request is sent upstream (i.e. all decoding filters have processed the request), OR when the
     /// response is initiated. If not specified or set to 0, this timeout is disabled.
-    #[prost(message, optional, tag="28")]
+    #[prost(message, optional, tag = "28")]
     pub request_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The time that Envoy will wait between sending an HTTP/2 “shutdown
     /// notification” (GOAWAY frame with max stream ID) and a final GOAWAY frame.
@@ -116,7 +122,7 @@ pub struct HttpConnectionManager {
     /// both when a connection hits the idle timeout or during general server
     /// draining. The default grace period is 5000 milliseconds (5 seconds) if this
     /// option is not specified.
-    #[prost(message, optional, tag="12")]
+    #[prost(message, optional, tag = "12")]
     pub drain_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The delayed close timeout is for downstream connections managed by the HTTP connection manager.
     /// It is defined as a grace period after connection close processing has been locally initiated
@@ -148,12 +154,14 @@ pub struct HttpConnectionManager {
     ///     A value of 0 will completely disable delayed close processing. When disabled, the downstream
     ///     connection's socket will be closed immediately after the write flush is completed or will
     ///     never close if the write flush does not complete.
-    #[prost(message, optional, tag="26")]
+    #[prost(message, optional, tag = "26")]
     pub delayed_close_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Configuration for :ref:`HTTP access logs <arch_overview_access_logs>`
     /// emitted by the connection manager.
-    #[prost(message, repeated, tag="13")]
-    pub access_log: ::prost::alloc::vec::Vec<super::super::super::accesslog::v2::AccessLog>,
+    #[prost(message, repeated, tag = "13")]
+    pub access_log: ::prost::alloc::vec::Vec<
+        super::super::super::accesslog::v2::AccessLog,
+    >,
     /// If set to true, the connection manager will use the real remote address
     /// of the client connection when determining internal versus external origin and manipulating
     /// various headers. If set to false or absent, the connection manager will use the
@@ -161,21 +169,23 @@ pub struct HttpConnectionManager {
     /// :ref:`config_http_conn_man_headers_x-forwarded-for`,
     /// :ref:`config_http_conn_man_headers_x-envoy-internal`, and
     /// :ref:`config_http_conn_man_headers_x-envoy-external-address` for more information.
-    #[prost(message, optional, tag="14")]
+    #[prost(message, optional, tag = "14")]
     pub use_remote_address: ::core::option::Option<::pbjson_types::BoolValue>,
     /// The number of additional ingress proxy hops from the right side of the
     /// :ref:`config_http_conn_man_headers_x-forwarded-for` HTTP header to trust when
     /// determining the origin client's IP address. The default is zero if this option
     /// is not specified. See the documentation for
     /// :ref:`config_http_conn_man_headers_x-forwarded-for` for more information.
-    #[prost(uint32, tag="19")]
+    #[prost(uint32, tag = "19")]
     pub xff_num_trusted_hops: u32,
     /// Configures what network addresses are considered internal for stats and header sanitation
     /// purposes. If unspecified, only RFC1918 IP addresses will be considered internal.
     /// See the documentation for :ref:`config_http_conn_man_headers_x-envoy-internal` for more
     /// information about internal/external addresses.
-    #[prost(message, optional, tag="25")]
-    pub internal_address_config: ::core::option::Option<http_connection_manager::InternalAddressConfig>,
+    #[prost(message, optional, tag = "25")]
+    pub internal_address_config: ::core::option::Option<
+        http_connection_manager::InternalAddressConfig,
+    >,
     /// If set, Envoy will not append the remote address to the
     /// :ref:`config_http_conn_man_headers_x-forwarded-for` HTTP header. This may be used in
     /// conjunction with HTTP filters that explicitly manipulate XFF after the HTTP connection manager
@@ -184,27 +194,30 @@ pub struct HttpConnectionManager {
     /// will also suppress XFF addition, it has consequences for logging and other
     /// Envoy uses of the remote address, so *skip_xff_append* should be used
     /// when only an elision of XFF addition is intended.
-    #[prost(bool, tag="21")]
+    #[prost(bool, tag = "21")]
     pub skip_xff_append: bool,
     /// Via header value to append to request and response headers. If this is
     /// empty, no via header will be appended.
-    #[prost(string, tag="22")]
+    #[prost(string, tag = "22")]
     pub via: ::prost::alloc::string::String,
     /// Whether the connection manager will generate the :ref:`x-request-id
     /// <config_http_conn_man_headers_x-request-id>` header if it does not exist. This defaults to
     /// true. Generating a random UUID4 is expensive so in high throughput scenarios where this feature
     /// is not desired it can be disabled.
-    #[prost(message, optional, tag="15")]
+    #[prost(message, optional, tag = "15")]
     pub generate_request_id: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Whether the connection manager will keep the :ref:`x-request-id
     /// <config_http_conn_man_headers_x-request-id>` header if passed for a request that is edge
     /// (Edge request is the request from external clients to front Envoy) and not reset it, which
     /// is the current Envoy behaviour. This defaults to false.
-    #[prost(bool, tag="32")]
+    #[prost(bool, tag = "32")]
     pub preserve_external_request_id: bool,
     /// How to handle the :ref:`config_http_conn_man_headers_x-forwarded-client-cert` (XFCC) HTTP
     /// header.
-    #[prost(enumeration="http_connection_manager::ForwardClientCertDetails", tag="16")]
+    #[prost(
+        enumeration = "http_connection_manager::ForwardClientCertDetails",
+        tag = "16"
+    )]
     pub forward_client_cert_details: i32,
     /// This field is valid only when :ref:`forward_client_cert_details
     /// <envoy_api_field_config.filter.network.http_connection_manager.v2.HttpConnectionManager.forward_client_cert_details>`
@@ -213,13 +226,15 @@ pub struct HttpConnectionManager {
     /// :ref:`config_http_conn_man_headers_x-forwarded-client-cert` header, *Hash* is always set, and
     /// *By* is always set when the client certificate presents the URI type Subject Alternative Name
     /// value.
-    #[prost(message, optional, tag="17")]
-    pub set_current_client_cert_details: ::core::option::Option<http_connection_manager::SetCurrentClientCertDetails>,
+    #[prost(message, optional, tag = "17")]
+    pub set_current_client_cert_details: ::core::option::Option<
+        http_connection_manager::SetCurrentClientCertDetails,
+    >,
     /// If proxy_100_continue is true, Envoy will proxy incoming "Expect:
     /// 100-continue" headers upstream, and forward "100 Continue" responses
     /// downstream. If this is false or not set, Envoy will instead strip the
     /// "Expect: 100-continue" header, and send a "100 Continue" response itself.
-    #[prost(bool, tag="18")]
+    #[prost(bool, tag = "18")]
     pub proxy_100_continue: bool,
     /// If
     /// :ref:`use_remote_address
@@ -234,10 +249,12 @@ pub struct HttpConnectionManager {
     /// <config_http_conn_man_runtime_represent_ipv4_remote_address_as_ipv4_mapped_ipv6>` for runtime
     /// control.
     /// \[#not-implemented-hide:\]
-    #[prost(bool, tag="20")]
+    #[prost(bool, tag = "20")]
     pub represent_ipv4_remote_address_as_ipv4_mapped_ipv6: bool,
-    #[prost(message, repeated, tag="23")]
-    pub upgrade_configs: ::prost::alloc::vec::Vec<http_connection_manager::UpgradeConfig>,
+    #[prost(message, repeated, tag = "23")]
+    pub upgrade_configs: ::prost::alloc::vec::Vec<
+        http_connection_manager::UpgradeConfig,
+    >,
     /// Should paths be normalized according to RFC 3986 before any processing of
     /// requests by HTTP filters or routing? This affects the upstream *:path* header
     /// as well. For paths that fail this check, Envoy will respond with 400 to
@@ -249,14 +266,14 @@ pub struct HttpConnectionManager {
     /// for details of normalization.
     /// Note that Envoy does not perform
     /// `case normalization <<https://tools.ietf.org/html/rfc3986#section-6.2.2.1>`_>
-    #[prost(message, optional, tag="30")]
+    #[prost(message, optional, tag = "30")]
     pub normalize_path: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Determines if adjacent slashes in the path are merged into one before any processing of
     /// requests by HTTP filters or routing. This affects the upstream *:path* header as well. Without
     /// setting this option, incoming requests with path `//dir///file` will not match against route
     /// with `prefix` match set to `/dir`. Defaults to `false`. Note that slash merging is not part of
     /// `HTTP spec <<https://tools.ietf.org/html/rfc3986>`_> and is provided for convenience.
-    #[prost(bool, tag="33")]
+    #[prost(bool, tag = "33")]
     pub merge_slashes: bool,
     /// The configuration of the request ID extension. This includes operations such as
     /// generation, validation, and associated tracing operations.
@@ -268,14 +285,15 @@ pub struct HttpConnectionManager {
     /// 2. Request ID is a universally unique identifier (UUID).
     ///
     /// 3. Tracing decision (sampled, forced, etc) is set in 14th byte of the UUID.
-    #[prost(message, optional, tag="36")]
+    #[prost(message, optional, tag = "36")]
     pub request_id_extension: ::core::option::Option<RequestIdExtension>,
-    #[prost(oneof="http_connection_manager::RouteSpecifier", tags="3, 4, 31")]
+    #[prost(oneof = "http_connection_manager::RouteSpecifier", tags = "3, 4, 31")]
     pub route_specifier: ::core::option::Option<http_connection_manager::RouteSpecifier>,
 }
 /// Nested message and enum types in `HttpConnectionManager`.
 pub mod http_connection_manager {
     /// [#next-free-field: 10]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Tracing {
         /// The span name will be derived from this field. If
@@ -285,7 +303,7 @@ pub mod http_connection_manager {
         /// .. attention::
         ///   This field has been deprecated in favor of `traffic_direction`.
         #[deprecated]
-        #[prost(enumeration="tracing::OperationName", tag="1")]
+        #[prost(enumeration = "tracing::OperationName", tag = "1")]
         pub operation_name: i32,
         /// A list of header names used to create tags for the active span. The header name is used to
         /// populate the tag name, and the header value is used to populate the tag value. The tag is
@@ -295,23 +313,29 @@ pub mod http_connection_manager {
         ///   This field has been deprecated in favor of :ref:`custom_tags
         ///   <envoy_api_field_config.filter.network.http_connection_manager.v2.HttpConnectionManager.tracing.custom_tags>`.
         #[deprecated]
-        #[prost(string, repeated, tag="2")]
-        pub request_headers_for_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+        #[prost(string, repeated, tag = "2")]
+        pub request_headers_for_tags: ::prost::alloc::vec::Vec<
+            ::prost::alloc::string::String,
+        >,
         /// Target percentage of requests managed by this HTTP connection manager that will be force
         /// traced if the :ref:`x-client-trace-id <config_http_conn_man_headers_x-client-trace-id>`
         /// header is set. This field is a direct analog for the runtime variable
         /// 'tracing.client_sampling' in the :ref:`HTTP Connection Manager
         /// <config_http_conn_man_runtime>`.
         /// Default: 100%
-        #[prost(message, optional, tag="3")]
-        pub client_sampling: ::core::option::Option<super::super::super::super::super::super::r#type::Percent>,
+        #[prost(message, optional, tag = "3")]
+        pub client_sampling: ::core::option::Option<
+            super::super::super::super::super::super::r#type::Percent,
+        >,
         /// Target percentage of requests managed by this HTTP connection manager that will be randomly
         /// selected for trace generation, if not requested by the client or not forced. This field is
         /// a direct analog for the runtime variable 'tracing.random_sampling' in the
         /// :ref:`HTTP Connection Manager <config_http_conn_man_runtime>`.
         /// Default: 100%
-        #[prost(message, optional, tag="4")]
-        pub random_sampling: ::core::option::Option<super::super::super::super::super::super::r#type::Percent>,
+        #[prost(message, optional, tag = "4")]
+        pub random_sampling: ::core::option::Option<
+            super::super::super::super::super::super::r#type::Percent,
+        >,
         /// Target percentage of requests managed by this HTTP connection manager that will be traced
         /// after all other sampling checks have been applied (client-directed, force tracing, random
         /// sampling). This field functions as an upper limit on the total configured sampling rate. For
@@ -320,20 +344,24 @@ pub mod http_connection_manager {
         /// analog for the runtime variable 'tracing.global_enabled' in the
         /// :ref:`HTTP Connection Manager <config_http_conn_man_runtime>`.
         /// Default: 100%
-        #[prost(message, optional, tag="5")]
-        pub overall_sampling: ::core::option::Option<super::super::super::super::super::super::r#type::Percent>,
+        #[prost(message, optional, tag = "5")]
+        pub overall_sampling: ::core::option::Option<
+            super::super::super::super::super::super::r#type::Percent,
+        >,
         /// Whether to annotate spans with additional data. If true, spans will include logs for stream
         /// events.
-        #[prost(bool, tag="6")]
+        #[prost(bool, tag = "6")]
         pub verbose: bool,
         /// Maximum length of the request path to extract and include in the HttpUrl tag. Used to
         /// truncate lengthy request paths to meet the needs of a tracing backend.
         /// Default: 256
-        #[prost(message, optional, tag="7")]
+        #[prost(message, optional, tag = "7")]
         pub max_path_tag_length: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// A list of custom tags with unique tag name to create tags for the active span.
-        #[prost(message, repeated, tag="8")]
-        pub custom_tags: ::prost::alloc::vec::Vec<super::super::super::super::super::super::r#type::tracing::v2::CustomTag>,
+        #[prost(message, repeated, tag = "8")]
+        pub custom_tags: ::prost::alloc::vec::Vec<
+            super::super::super::super::super::super::r#type::tracing::v2::CustomTag,
+        >,
         /// Configuration for an external tracing provider.
         /// If not specified, no tracing will be performed.
         ///
@@ -344,12 +372,24 @@ pub mod http_connection_manager {
         ///    will be rejected.
         ///    Such a constraint is inherent to OpenCensus itself. It cannot be overcome without changes
         ///    on OpenCensus side.
-        #[prost(message, optional, tag="9")]
-        pub provider: ::core::option::Option<super::super::super::super::super::trace::v2::tracing::Http>,
+        #[prost(message, optional, tag = "9")]
+        pub provider: ::core::option::Option<
+            super::super::super::super::super::trace::v2::tracing::Http,
+        >,
     }
     /// Nested message and enum types in `Tracing`.
     pub mod tracing {
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum OperationName {
             /// The HTTP listener is used for ingress/incoming requests.
@@ -368,38 +408,48 @@ pub mod http_connection_manager {
                     OperationName::Egress => "EGRESS",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "INGRESS" => Some(Self::Ingress),
+                    "EGRESS" => Some(Self::Egress),
+                    _ => None,
+                }
+            }
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct InternalAddressConfig {
         /// Whether unix socket addresses should be considered internal.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         pub unix_sockets: bool,
     }
     /// [#next-free-field: 7]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SetCurrentClientCertDetails {
         /// Whether to forward the subject of the client cert. Defaults to false.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub subject: ::core::option::Option<::pbjson_types::BoolValue>,
         /// Whether to forward the entire client cert in URL encoded PEM format. This will appear in the
         /// XFCC header comma separated from other values with the value Cert="PEM".
         /// Defaults to false.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         pub cert: bool,
         /// Whether to forward the entire client cert chain (including the leaf cert) in URL encoded PEM
         /// format. This will appear in the XFCC header comma separated from other values with the value
         /// Chain="PEM".
         /// Defaults to false.
-        #[prost(bool, tag="6")]
+        #[prost(bool, tag = "6")]
         pub chain: bool,
         /// Whether to forward the DNS type Subject Alternative Names of the client cert.
         /// Defaults to false.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         pub dns: bool,
         /// Whether to forward the URI type Subject Alternative Name of the client cert. Defaults to
         /// false.
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag = "5")]
         pub uri: bool,
     }
     /// The configuration for HTTP upgrades.
@@ -414,27 +464,38 @@ pub mod http_connection_manager {
     /// .. warning::
     ///     The current implementation of upgrade headers does not work with HTTP/2
     ///     upstreams.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct UpgradeConfig {
         /// The case-insensitive name of this upgrade, e.g. "websocket".
         /// For each upgrade type present in upgrade_configs, requests with
         /// Upgrade: \[upgrade_type\]
         /// will be proxied upstream.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub upgrade_type: ::prost::alloc::string::String,
         /// If present, this represents the filter chain which will be created for
         /// this type of upgrade. If no filters are present, the filter chain for
         /// HTTP connections will be used for this upgrade type.
-        #[prost(message, repeated, tag="2")]
+        #[prost(message, repeated, tag = "2")]
         pub filters: ::prost::alloc::vec::Vec<super::HttpFilter>,
         /// Determines if upgrades are enabled or disabled by default. Defaults to true.
         /// This can be overridden on a per-route basis with :ref:`cluster
         /// <envoy_api_field_route.RouteAction.upgrade_configs>` as documented in the
         /// :ref:`upgrade documentation <arch_overview_upgrades>`.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub enabled: ::core::option::Option<::pbjson_types::BoolValue>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CodecType {
         /// For every new connection, the connection manager will determine which
@@ -467,8 +528,28 @@ pub mod http_connection_manager {
                 CodecType::Http3 => "HTTP3",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "AUTO" => Some(Self::Auto),
+                "HTTP1" => Some(Self::Http1),
+                "HTTP2" => Some(Self::Http2),
+                "HTTP3" => Some(Self::Http3),
+                _ => None,
+            }
+        }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ServerHeaderTransformation {
         /// Overwrite any Server header with the contents of server_name.
@@ -492,10 +573,29 @@ pub mod http_connection_manager {
                 ServerHeaderTransformation::PassThrough => "PASS_THROUGH",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OVERWRITE" => Some(Self::Overwrite),
+                "APPEND_IF_ABSENT" => Some(Self::AppendIfAbsent),
+                "PASS_THROUGH" => Some(Self::PassThrough),
+                _ => None,
+            }
+        }
     }
     /// How to handle the :ref:`config_http_conn_man_headers_x-forwarded-client-cert` (XFCC) HTTP
     /// header.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ForwardClientCertDetails {
         /// Do not send the XFCC header to the next hop. This is the default value.
@@ -527,55 +627,78 @@ pub mod http_connection_manager {
                 ForwardClientCertDetails::AlwaysForwardOnly => "ALWAYS_FORWARD_ONLY",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SANITIZE" => Some(Self::Sanitize),
+                "FORWARD_ONLY" => Some(Self::ForwardOnly),
+                "APPEND_FORWARD" => Some(Self::AppendForward),
+                "SANITIZE_SET" => Some(Self::SanitizeSet),
+                "ALWAYS_FORWARD_ONLY" => Some(Self::AlwaysForwardOnly),
+                _ => None,
+            }
+        }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RouteSpecifier {
         /// The connection manager’s route table will be dynamically loaded via the RDS API.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         Rds(super::Rds),
         /// The route table for the connection manager is static and is specified in this property.
-        #[prost(message, tag="4")]
-        RouteConfig(super::super::super::super::super::super::api::v2::RouteConfiguration),
+        #[prost(message, tag = "4")]
+        RouteConfig(
+            super::super::super::super::super::super::api::v2::RouteConfiguration,
+        ),
         /// A route table will be dynamically assigned to each request based on request attributes
         /// (e.g., the value of a header). The "routing scopes" (i.e., route tables) and "scope keys" are
         /// specified in this message.
-        #[prost(message, tag="31")]
+        #[prost(message, tag = "31")]
         ScopedRoutes(super::ScopedRoutes),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Rds {
     /// Configuration source specifier for RDS.
-    #[prost(message, optional, tag="1")]
-    pub config_source: ::core::option::Option<super::super::super::super::super::api::v2::core::ConfigSource>,
+    #[prost(message, optional, tag = "1")]
+    pub config_source: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::ConfigSource,
+    >,
     /// The name of the route configuration. This name will be passed to the RDS
     /// API. This allows an Envoy configuration with multiple HTTP listeners (and
     /// associated HTTP connection manager filters) to use different route
     /// configurations.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub route_config_name: ::prost::alloc::string::String,
 }
 /// This message is used to work around the limitations with 'oneof' and repeated fields.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScopedRouteConfigurationsList {
-    #[prost(message, repeated, tag="1")]
-    pub scoped_route_configurations: ::prost::alloc::vec::Vec<super::super::super::super::super::api::v2::ScopedRouteConfiguration>,
+    #[prost(message, repeated, tag = "1")]
+    pub scoped_route_configurations: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::api::v2::ScopedRouteConfiguration,
+    >,
 }
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScopedRoutes {
     /// The name assigned to the scoped routing configuration.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The algorithm to use for constructing a scope key for each request.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub scope_key_builder: ::core::option::Option<scoped_routes::ScopeKeyBuilder>,
     /// Configuration source specifier for RDS.
     /// This config source is used to subscribe to RouteConfiguration resources specified in
     /// ScopedRouteConfiguration messages.
-    #[prost(message, optional, tag="3")]
-    pub rds_config_source: ::core::option::Option<super::super::super::super::super::api::v2::core::ConfigSource>,
-    #[prost(oneof="scoped_routes::ConfigSpecifier", tags="4, 5")]
+    #[prost(message, optional, tag = "3")]
+    pub rds_config_source: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::ConfigSource,
+    >,
+    #[prost(oneof = "scoped_routes::ConfigSpecifier", tags = "4, 5")]
     pub config_specifier: ::core::option::Option<scoped_routes::ConfigSpecifier>,
 }
 /// Nested message and enum types in `ScopedRoutes`.
@@ -589,20 +712,22 @@ pub mod scoped_routes {
     /// Upon receiving a request's headers, the Router will build a key using the algorithm specified
     /// by this message. This key will be used to look up the routing table (i.e., the
     /// :ref:`RouteConfiguration<envoy_api_msg_RouteConfiguration>`) to use for the request.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ScopeKeyBuilder {
         /// The final(built) scope key consists of the ordered union of these fragments, which are compared in order with the
         /// fragments of a :ref:`ScopedRouteConfiguration<envoy_api_msg_ScopedRouteConfiguration>`.
         /// A missing fragment during comparison will make the key invalid, i.e., the computed key doesn't match any key.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub fragments: ::prost::alloc::vec::Vec<scope_key_builder::FragmentBuilder>,
     }
     /// Nested message and enum types in `ScopeKeyBuilder`.
     pub mod scope_key_builder {
         /// Specifies the mechanism for constructing key fragments which are composed into scope keys.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct FragmentBuilder {
-            #[prost(oneof="fragment_builder::Type", tags="1")]
+            #[prost(oneof = "fragment_builder::Type", tags = "1")]
             pub r#type: ::core::option::Option<fragment_builder::Type>,
         }
         /// Nested message and enum types in `FragmentBuilder`.
@@ -624,6 +749,7 @@ pub mod scoped_routes {
             ///     \----> <name>
             ///
             ///     Each 'a=b' key-value pair constitutes an 'element' of the header field.
+            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct HeaderValueExtractor {
                 /// The name of the header field to extract the value from.
@@ -631,20 +757,23 @@ pub mod scoped_routes {
                 /// .. note::
                 ///
                 ///    If the header appears multiple times only the first value is used.
-                #[prost(string, tag="1")]
+                #[prost(string, tag = "1")]
                 pub name: ::prost::alloc::string::String,
                 /// The element separator (e.g., ';' separates 'a;b;c;d').
                 /// Default: empty string. This causes the entirety of the header field to be extracted.
                 /// If this field is set to an empty string and 'index' is used in the oneof below, 'index'
                 /// must be set to 0.
-                #[prost(string, tag="2")]
+                #[prost(string, tag = "2")]
                 pub element_separator: ::prost::alloc::string::String,
-                #[prost(oneof="header_value_extractor::ExtractType", tags="3, 4")]
-                pub extract_type: ::core::option::Option<header_value_extractor::ExtractType>,
+                #[prost(oneof = "header_value_extractor::ExtractType", tags = "3, 4")]
+                pub extract_type: ::core::option::Option<
+                    header_value_extractor::ExtractType,
+                >,
             }
             /// Nested message and enum types in `HeaderValueExtractor`.
             pub mod header_value_extractor {
                 /// Specifies a header field's key value pair to match on.
+                #[allow(clippy::derive_partial_eq_without_eq)]
                 #[derive(Clone, PartialEq, ::prost::Message)]
                 pub struct KvElement {
                     /// The separator between key and value (e.g., '=' separates 'k=v;...').
@@ -652,32 +781,35 @@ pub mod scoped_routes {
                     /// If an element contains no separator, the whole element is parsed as key and the
                     /// fragment value is an empty string.
                     /// If there are multiple values for a matched key, the first value is returned.
-                    #[prost(string, tag="1")]
+                    #[prost(string, tag = "1")]
                     pub separator: ::prost::alloc::string::String,
                     /// The key to match on.
-                    #[prost(string, tag="2")]
+                    #[prost(string, tag = "2")]
                     pub key: ::prost::alloc::string::String,
                 }
+                #[allow(clippy::derive_partial_eq_without_eq)]
                 #[derive(Clone, PartialEq, ::prost::Oneof)]
                 pub enum ExtractType {
                     /// Specifies the zero based index of the element to extract.
                     /// Note Envoy concatenates multiple values of the same header key into a comma separated
                     /// string, the splitting always happens after the concatenation.
-                    #[prost(uint32, tag="3")]
+                    #[prost(uint32, tag = "3")]
                     Index(u32),
                     /// Specifies the key value pair to extract the value from.
-                    #[prost(message, tag="4")]
+                    #[prost(message, tag = "4")]
                     Element(KvElement),
                 }
             }
+            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Oneof)]
             pub enum Type {
                 /// Specifies how a header field's value should be extracted.
-                #[prost(message, tag="1")]
+                #[prost(message, tag = "1")]
                 HeaderValueExtractor(HeaderValueExtractor),
             }
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigSpecifier {
         /// The set of routing scopes corresponding to the HCM. A scope is assigned to a request by
@@ -685,50 +817,56 @@ pub mod scoped_routes {
         /// by the
         /// :ref:`ScopeKeyBuilder<envoy_api_msg_config.filter.network.http_connection_manager.v2.ScopedRoutes.ScopeKeyBuilder>`
         /// in this message.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         ScopedRouteConfigurationsList(super::ScopedRouteConfigurationsList),
         /// The set of routing scopes associated with the HCM will be dynamically loaded via the SRDS
         /// API. A scope is assigned to a request by matching a key constructed from the request's
         /// attributes according to the algorithm specified by the
         /// :ref:`ScopeKeyBuilder<envoy_api_msg_config.filter.network.http_connection_manager.v2.ScopedRoutes.ScopeKeyBuilder>`
         /// in this message.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         ScopedRds(super::ScopedRds),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScopedRds {
     /// Configuration source specifier for scoped RDS.
-    #[prost(message, optional, tag="1")]
-    pub scoped_rds_config_source: ::core::option::Option<super::super::super::super::super::api::v2::core::ConfigSource>,
+    #[prost(message, optional, tag = "1")]
+    pub scoped_rds_config_source: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::ConfigSource,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpFilter {
     /// The name of the filter to instantiate. The name must match a
     /// :ref:`supported filter <config_http_filters>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter specific configuration which depends on the filter being instantiated. See the supported
     /// filters for further documentation.
-    #[prost(oneof="http_filter::ConfigType", tags="2, 4")]
+    #[prost(oneof = "http_filter::ConfigType", tags = "2, 4")]
     pub config_type: ::core::option::Option<http_filter::ConfigType>,
 }
 /// Nested message and enum types in `HttpFilter`.
 pub mod http_filter {
     /// Filter specific configuration which depends on the filter being instantiated. See the supported
     /// filters for further documentation.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TypedConfig(::pbjson_types::Any),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestIdExtension {
     /// Request ID extension specific configuration.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub typed_config: ::core::option::Option<::pbjson_types::Any>,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.network.http_connection_manager.v2` package
@@ -3269,4 +3407,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x06, 0x02, 0x00, 0x03, 0x12, 0x04, 0xa6, 0x05, 0x25, 0x26, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.http_connection_manager.v2.serde.rs");
 // @@protoc_insertion_point(module)

@@ -44,50 +44,57 @@
 /// Optionally the descriptor can contain a limit override under a "limit" key, that specifies
 /// the number of requests per unit to use instead of the number configured in the
 /// rate limiting service.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitDescriptor {
     /// Descriptor entries.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub entries: ::prost::alloc::vec::Vec<rate_limit_descriptor::Entry>,
     /// Optional rate limit override to supply to the ratelimit service.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub limit: ::core::option::Option<rate_limit_descriptor::RateLimitOverride>,
 }
 /// Nested message and enum types in `RateLimitDescriptor`.
 pub mod rate_limit_descriptor {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Entry {
         /// Descriptor key.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub key: ::prost::alloc::string::String,
         /// Descriptor value.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub value: ::prost::alloc::string::String,
     }
     /// Override rate limit to apply to this descriptor instead of the limit
     /// configured in the rate limit service. See :ref:`rate limit override
     /// <config_http_filters_rate_limit_rate_limit_override>` for more information.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RateLimitOverride {
         /// The number of requests per unit of time.
-        #[prost(uint32, tag="1")]
+        #[prost(uint32, tag = "1")]
         pub requests_per_unit: u32,
         /// The unit of time.
-        #[prost(enumeration="super::super::super::super::super::r#type::v3::RateLimitUnit", tag="2")]
+        #[prost(
+            enumeration = "super::super::super::super::super::r#type::v3::RateLimitUnit",
+            tag = "2"
+        )]
         pub unit: i32,
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalRateLimitDescriptor {
     /// Descriptor entries.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub entries: ::prost::alloc::vec::Vec<rate_limit_descriptor::Entry>,
     /// Token Bucket algorithm for local ratelimiting.
-    #[prost(message, optional, tag="2")]
-    pub token_bucket: ::core::option::Option<super::super::super::super::r#type::v3::TokenBucket>,
+    #[prost(message, optional, tag = "2")]
+    pub token_bucket: ::core::option::Option<
+        super::super::super::super::r#type::v3::TokenBucket,
+    >,
 }
-// [#protodoc-title: Common rate limit components]
-
 /// Defines the version of the standard to use for X-RateLimit headers.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -116,6 +123,14 @@ impl XRateLimitHeadersRfcVersion {
             XRateLimitHeadersRfcVersion::DraftVersion03 => "DRAFT_VERSION_03",
         }
     }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OFF" => Some(Self::Off),
+            "DRAFT_VERSION_03" => Some(Self::DraftVersion03),
+            _ => None,
+        }
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -137,6 +152,15 @@ impl VhRateLimitsOptions {
             VhRateLimitsOptions::Override => "OVERRIDE",
             VhRateLimitsOptions::Include => "INCLUDE",
             VhRateLimitsOptions::Ignore => "IGNORE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OVERRIDE" => Some(Self::Override),
+            "INCLUDE" => Some(Self::Include),
+            "IGNORE" => Some(Self::Ignore),
+            _ => None,
         }
     }
 }
@@ -518,4 +542,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x01, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x04, 0x82, 0x01, 0x28, 0x53, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.common.ratelimit.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,72 +1,71 @@
 // @generated
-// [#protodoc-title: Hyperscan matcher]
-// [#extension: envoy.matching.input_matchers.hyperscan]
-
 /// `Hyperscan <<https://github.com/intel/hyperscan>`_> regex matcher. The matcher uses the Hyperscan
 /// engine which exploits x86 SIMD instructions to accelerate matching large numbers of regular
 /// expressions simultaneously across streams of data.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hyperscan {
     /// Specifies a set of regex expressions that the input should match on.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub regexes: ::prost::alloc::vec::Vec<hyperscan::Regex>,
 }
 /// Nested message and enum types in `Hyperscan`.
 pub mod hyperscan {
     /// [#next-free-field: 11]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Regex {
         /// The regex expression.
         ///
         /// The expression must represent only the pattern to be matched, with no delimiters or flags.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub regex: ::prost::alloc::string::String,
         /// The ID of the regex expression.
         ///
         /// This option is designed to be used on the sub-expressions in logical combinations.
-        #[prost(uint32, tag="2")]
+        #[prost(uint32, tag = "2")]
         pub id: u32,
         /// Matching will be performed case-insensitively.
         ///
         /// The expression may still use PCRE tokens (notably ``(?i)`` and ``(?-i)``) to switch
         /// case-insensitive matching on and off.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         pub caseless: bool,
         /// Matching a ``.`` will not exclude newlines.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         pub dot_all: bool,
         /// ``^`` and ``$`` anchors match any newlines in data.
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag = "5")]
         pub multiline: bool,
         /// Allow expressions which can match against an empty string.
         ///
         /// This option instructs the compiler to allow expressions that can match against empty buffers,
         /// such as ``.?``, ``.*``, ``(a|)``. Since Hyperscan can return every possible match for an expression,
         /// such expressions generally execute very slowly.
-        #[prost(bool, tag="6")]
+        #[prost(bool, tag = "6")]
         pub allow_empty: bool,
         /// Treat the pattern as a sequence of UTF-8 characters.
-        #[prost(bool, tag="7")]
+        #[prost(bool, tag = "7")]
         pub utf8: bool,
         /// Use Unicode properties for character classes.
         ///
         /// This option instructs Hyperscan to use Unicode properties, rather than the default ASCII
         /// interpretations, for character mnemonics like ``\w`` and ``\s`` as well as the POSIX character
         /// classes. It is only meaningful in conjunction with ``utf8``.
-        #[prost(bool, tag="8")]
+        #[prost(bool, tag = "8")]
         pub ucp: bool,
         /// Logical combination.
         ///
         /// This option instructs Hyperscan to parse this expression as logical combination syntax.
         /// Logical constraints consist of operands, operators and parentheses. The operands are
         /// expression indices, and operators can be ``!``, ``&`` or ``|``.
-        #[prost(bool, tag="9")]
+        #[prost(bool, tag = "9")]
         pub combination: bool,
         /// Don’t do any match reporting.
         ///
         /// This option instructs Hyperscan to ignore match reporting for this expression. It is
         /// designed to be used on the sub-expressions in logical combinations.
-        #[prost(bool, tag="10")]
+        #[prost(bool, tag = "10")]
         pub quiet: bool,
     }
 }
@@ -315,4 +314,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x4c, 0x1d, 0x49, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf,
     0x08, 0x12, 0x12, 0x03, 0x4c, 0x1e, 0x48, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.matching.input_matchers.hyperscan.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

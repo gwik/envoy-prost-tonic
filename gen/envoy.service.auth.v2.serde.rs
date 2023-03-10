@@ -1,0 +1,1133 @@
+// @generated
+impl serde::Serialize for AttributeContext {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.source.is_some() {
+            len += 1;
+        }
+        if self.destination.is_some() {
+            len += 1;
+        }
+        if self.request.is_some() {
+            len += 1;
+        }
+        if !self.context_extensions.is_empty() {
+            len += 1;
+        }
+        if self.metadata_context.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.AttributeContext", len)?;
+        if let Some(v) = self.source.as_ref() {
+            struct_ser.serialize_field("source", v)?;
+        }
+        if let Some(v) = self.destination.as_ref() {
+            struct_ser.serialize_field("destination", v)?;
+        }
+        if let Some(v) = self.request.as_ref() {
+            struct_ser.serialize_field("request", v)?;
+        }
+        if !self.context_extensions.is_empty() {
+            struct_ser.serialize_field("contextExtensions", &self.context_extensions)?;
+        }
+        if let Some(v) = self.metadata_context.as_ref() {
+            struct_ser.serialize_field("metadataContext", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for AttributeContext {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "source",
+            "destination",
+            "request",
+            "context_extensions",
+            "contextExtensions",
+            "metadata_context",
+            "metadataContext",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Source,
+            Destination,
+            Request,
+            ContextExtensions,
+            MetadataContext,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "source" => Ok(GeneratedField::Source),
+                            "destination" => Ok(GeneratedField::Destination),
+                            "request" => Ok(GeneratedField::Request),
+                            "contextExtensions" | "context_extensions" => Ok(GeneratedField::ContextExtensions),
+                            "metadataContext" | "metadata_context" => Ok(GeneratedField::MetadataContext),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = AttributeContext;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.AttributeContext")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<AttributeContext, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut source__ = None;
+                let mut destination__ = None;
+                let mut request__ = None;
+                let mut context_extensions__ = None;
+                let mut metadata_context__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Source => {
+                            if source__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("source"));
+                            }
+                            source__ = map.next_value()?;
+                        }
+                        GeneratedField::Destination => {
+                            if destination__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("destination"));
+                            }
+                            destination__ = map.next_value()?;
+                        }
+                        GeneratedField::Request => {
+                            if request__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("request"));
+                            }
+                            request__ = map.next_value()?;
+                        }
+                        GeneratedField::ContextExtensions => {
+                            if context_extensions__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("contextExtensions"));
+                            }
+                            context_extensions__ = Some(
+                                map.next_value::<std::collections::HashMap<_, _>>()?
+                            );
+                        }
+                        GeneratedField::MetadataContext => {
+                            if metadata_context__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("metadataContext"));
+                            }
+                            metadata_context__ = map.next_value()?;
+                        }
+                    }
+                }
+                Ok(AttributeContext {
+                    source: source__,
+                    destination: destination__,
+                    request: request__,
+                    context_extensions: context_extensions__.unwrap_or_default(),
+                    metadata_context: metadata_context__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.AttributeContext", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for attribute_context::HttpRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.id.is_empty() {
+            len += 1;
+        }
+        if !self.method.is_empty() {
+            len += 1;
+        }
+        if !self.headers.is_empty() {
+            len += 1;
+        }
+        if !self.path.is_empty() {
+            len += 1;
+        }
+        if !self.host.is_empty() {
+            len += 1;
+        }
+        if !self.scheme.is_empty() {
+            len += 1;
+        }
+        if !self.query.is_empty() {
+            len += 1;
+        }
+        if !self.fragment.is_empty() {
+            len += 1;
+        }
+        if self.size != 0 {
+            len += 1;
+        }
+        if !self.protocol.is_empty() {
+            len += 1;
+        }
+        if !self.body.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.AttributeContext.HttpRequest", len)?;
+        if !self.id.is_empty() {
+            struct_ser.serialize_field("id", &self.id)?;
+        }
+        if !self.method.is_empty() {
+            struct_ser.serialize_field("method", &self.method)?;
+        }
+        if !self.headers.is_empty() {
+            struct_ser.serialize_field("headers", &self.headers)?;
+        }
+        if !self.path.is_empty() {
+            struct_ser.serialize_field("path", &self.path)?;
+        }
+        if !self.host.is_empty() {
+            struct_ser.serialize_field("host", &self.host)?;
+        }
+        if !self.scheme.is_empty() {
+            struct_ser.serialize_field("scheme", &self.scheme)?;
+        }
+        if !self.query.is_empty() {
+            struct_ser.serialize_field("query", &self.query)?;
+        }
+        if !self.fragment.is_empty() {
+            struct_ser.serialize_field("fragment", &self.fragment)?;
+        }
+        if self.size != 0 {
+            struct_ser.serialize_field("size", ToString::to_string(&self.size).as_str())?;
+        }
+        if !self.protocol.is_empty() {
+            struct_ser.serialize_field("protocol", &self.protocol)?;
+        }
+        if !self.body.is_empty() {
+            struct_ser.serialize_field("body", &self.body)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for attribute_context::HttpRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "id",
+            "method",
+            "headers",
+            "path",
+            "host",
+            "scheme",
+            "query",
+            "fragment",
+            "size",
+            "protocol",
+            "body",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Id,
+            Method,
+            Headers,
+            Path,
+            Host,
+            Scheme,
+            Query,
+            Fragment,
+            Size,
+            Protocol,
+            Body,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "id" => Ok(GeneratedField::Id),
+                            "method" => Ok(GeneratedField::Method),
+                            "headers" => Ok(GeneratedField::Headers),
+                            "path" => Ok(GeneratedField::Path),
+                            "host" => Ok(GeneratedField::Host),
+                            "scheme" => Ok(GeneratedField::Scheme),
+                            "query" => Ok(GeneratedField::Query),
+                            "fragment" => Ok(GeneratedField::Fragment),
+                            "size" => Ok(GeneratedField::Size),
+                            "protocol" => Ok(GeneratedField::Protocol),
+                            "body" => Ok(GeneratedField::Body),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = attribute_context::HttpRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.AttributeContext.HttpRequest")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<attribute_context::HttpRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut id__ = None;
+                let mut method__ = None;
+                let mut headers__ = None;
+                let mut path__ = None;
+                let mut host__ = None;
+                let mut scheme__ = None;
+                let mut query__ = None;
+                let mut fragment__ = None;
+                let mut size__ = None;
+                let mut protocol__ = None;
+                let mut body__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Id => {
+                            if id__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("id"));
+                            }
+                            id__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Method => {
+                            if method__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("method"));
+                            }
+                            method__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Headers => {
+                            if headers__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("headers"));
+                            }
+                            headers__ = Some(
+                                map.next_value::<std::collections::HashMap<_, _>>()?
+                            );
+                        }
+                        GeneratedField::Path => {
+                            if path__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("path"));
+                            }
+                            path__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Host => {
+                            if host__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("host"));
+                            }
+                            host__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Scheme => {
+                            if scheme__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("scheme"));
+                            }
+                            scheme__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Query => {
+                            if query__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("query"));
+                            }
+                            query__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Fragment => {
+                            if fragment__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("fragment"));
+                            }
+                            fragment__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Size => {
+                            if size__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("size"));
+                            }
+                            size__ = 
+                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Protocol => {
+                            if protocol__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("protocol"));
+                            }
+                            protocol__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Body => {
+                            if body__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("body"));
+                            }
+                            body__ = Some(map.next_value()?);
+                        }
+                    }
+                }
+                Ok(attribute_context::HttpRequest {
+                    id: id__.unwrap_or_default(),
+                    method: method__.unwrap_or_default(),
+                    headers: headers__.unwrap_or_default(),
+                    path: path__.unwrap_or_default(),
+                    host: host__.unwrap_or_default(),
+                    scheme: scheme__.unwrap_or_default(),
+                    query: query__.unwrap_or_default(),
+                    fragment: fragment__.unwrap_or_default(),
+                    size: size__.unwrap_or_default(),
+                    protocol: protocol__.unwrap_or_default(),
+                    body: body__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.AttributeContext.HttpRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for attribute_context::Peer {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.address.is_some() {
+            len += 1;
+        }
+        if !self.service.is_empty() {
+            len += 1;
+        }
+        if !self.labels.is_empty() {
+            len += 1;
+        }
+        if !self.principal.is_empty() {
+            len += 1;
+        }
+        if !self.certificate.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.AttributeContext.Peer", len)?;
+        if let Some(v) = self.address.as_ref() {
+            struct_ser.serialize_field("address", v)?;
+        }
+        if !self.service.is_empty() {
+            struct_ser.serialize_field("service", &self.service)?;
+        }
+        if !self.labels.is_empty() {
+            struct_ser.serialize_field("labels", &self.labels)?;
+        }
+        if !self.principal.is_empty() {
+            struct_ser.serialize_field("principal", &self.principal)?;
+        }
+        if !self.certificate.is_empty() {
+            struct_ser.serialize_field("certificate", &self.certificate)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for attribute_context::Peer {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "address",
+            "service",
+            "labels",
+            "principal",
+            "certificate",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Address,
+            Service,
+            Labels,
+            Principal,
+            Certificate,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "address" => Ok(GeneratedField::Address),
+                            "service" => Ok(GeneratedField::Service),
+                            "labels" => Ok(GeneratedField::Labels),
+                            "principal" => Ok(GeneratedField::Principal),
+                            "certificate" => Ok(GeneratedField::Certificate),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = attribute_context::Peer;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.AttributeContext.Peer")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<attribute_context::Peer, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut address__ = None;
+                let mut service__ = None;
+                let mut labels__ = None;
+                let mut principal__ = None;
+                let mut certificate__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Address => {
+                            if address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("address"));
+                            }
+                            address__ = map.next_value()?;
+                        }
+                        GeneratedField::Service => {
+                            if service__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("service"));
+                            }
+                            service__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Labels => {
+                            if labels__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("labels"));
+                            }
+                            labels__ = Some(
+                                map.next_value::<std::collections::HashMap<_, _>>()?
+                            );
+                        }
+                        GeneratedField::Principal => {
+                            if principal__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("principal"));
+                            }
+                            principal__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Certificate => {
+                            if certificate__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("certificate"));
+                            }
+                            certificate__ = Some(map.next_value()?);
+                        }
+                    }
+                }
+                Ok(attribute_context::Peer {
+                    address: address__,
+                    service: service__.unwrap_or_default(),
+                    labels: labels__.unwrap_or_default(),
+                    principal: principal__.unwrap_or_default(),
+                    certificate: certificate__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.AttributeContext.Peer", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for attribute_context::Request {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.time.is_some() {
+            len += 1;
+        }
+        if self.http.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.AttributeContext.Request", len)?;
+        if let Some(v) = self.time.as_ref() {
+            struct_ser.serialize_field("time", v)?;
+        }
+        if let Some(v) = self.http.as_ref() {
+            struct_ser.serialize_field("http", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for attribute_context::Request {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "time",
+            "http",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Time,
+            Http,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "time" => Ok(GeneratedField::Time),
+                            "http" => Ok(GeneratedField::Http),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = attribute_context::Request;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.AttributeContext.Request")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<attribute_context::Request, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut time__ = None;
+                let mut http__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Time => {
+                            if time__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("time"));
+                            }
+                            time__ = map.next_value()?;
+                        }
+                        GeneratedField::Http => {
+                            if http__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("http"));
+                            }
+                            http__ = map.next_value()?;
+                        }
+                    }
+                }
+                Ok(attribute_context::Request {
+                    time: time__,
+                    http: http__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.AttributeContext.Request", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for CheckRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.attributes.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.CheckRequest", len)?;
+        if let Some(v) = self.attributes.as_ref() {
+            struct_ser.serialize_field("attributes", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for CheckRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "attributes",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Attributes,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "attributes" => Ok(GeneratedField::Attributes),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = CheckRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.CheckRequest")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<CheckRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut attributes__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Attributes => {
+                            if attributes__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("attributes"));
+                            }
+                            attributes__ = map.next_value()?;
+                        }
+                    }
+                }
+                Ok(CheckRequest {
+                    attributes: attributes__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.CheckRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for CheckResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.status.is_some() {
+            len += 1;
+        }
+        if self.http_response.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.CheckResponse", len)?;
+        if let Some(v) = self.status.as_ref() {
+            struct_ser.serialize_field("status", v)?;
+        }
+        if let Some(v) = self.http_response.as_ref() {
+            match v {
+                check_response::HttpResponse::DeniedResponse(v) => {
+                    struct_ser.serialize_field("deniedResponse", v)?;
+                }
+                check_response::HttpResponse::OkResponse(v) => {
+                    struct_ser.serialize_field("okResponse", v)?;
+                }
+            }
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for CheckResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "status",
+            "denied_response",
+            "deniedResponse",
+            "ok_response",
+            "okResponse",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Status,
+            DeniedResponse,
+            OkResponse,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "status" => Ok(GeneratedField::Status),
+                            "deniedResponse" | "denied_response" => Ok(GeneratedField::DeniedResponse),
+                            "okResponse" | "ok_response" => Ok(GeneratedField::OkResponse),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = CheckResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.CheckResponse")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<CheckResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut status__ = None;
+                let mut http_response__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Status => {
+                            if status__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("status"));
+                            }
+                            status__ = map.next_value()?;
+                        }
+                        GeneratedField::DeniedResponse => {
+                            if http_response__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("deniedResponse"));
+                            }
+                            http_response__ = map.next_value::<::std::option::Option<_>>()?.map(check_response::HttpResponse::DeniedResponse)
+;
+                        }
+                        GeneratedField::OkResponse => {
+                            if http_response__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("okResponse"));
+                            }
+                            http_response__ = map.next_value::<::std::option::Option<_>>()?.map(check_response::HttpResponse::OkResponse)
+;
+                        }
+                    }
+                }
+                Ok(CheckResponse {
+                    status: status__,
+                    http_response: http_response__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.CheckResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for DeniedHttpResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.status.is_some() {
+            len += 1;
+        }
+        if !self.headers.is_empty() {
+            len += 1;
+        }
+        if !self.body.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.DeniedHttpResponse", len)?;
+        if let Some(v) = self.status.as_ref() {
+            struct_ser.serialize_field("status", v)?;
+        }
+        if !self.headers.is_empty() {
+            struct_ser.serialize_field("headers", &self.headers)?;
+        }
+        if !self.body.is_empty() {
+            struct_ser.serialize_field("body", &self.body)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for DeniedHttpResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "status",
+            "headers",
+            "body",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Status,
+            Headers,
+            Body,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "status" => Ok(GeneratedField::Status),
+                            "headers" => Ok(GeneratedField::Headers),
+                            "body" => Ok(GeneratedField::Body),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = DeniedHttpResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.DeniedHttpResponse")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<DeniedHttpResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut status__ = None;
+                let mut headers__ = None;
+                let mut body__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Status => {
+                            if status__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("status"));
+                            }
+                            status__ = map.next_value()?;
+                        }
+                        GeneratedField::Headers => {
+                            if headers__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("headers"));
+                            }
+                            headers__ = Some(map.next_value()?);
+                        }
+                        GeneratedField::Body => {
+                            if body__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("body"));
+                            }
+                            body__ = Some(map.next_value()?);
+                        }
+                    }
+                }
+                Ok(DeniedHttpResponse {
+                    status: status__,
+                    headers: headers__.unwrap_or_default(),
+                    body: body__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.DeniedHttpResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for OkHttpResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.headers.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("envoy.service.auth.v2.OkHttpResponse", len)?;
+        if !self.headers.is_empty() {
+            struct_ser.serialize_field("headers", &self.headers)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for OkHttpResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "headers",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Headers,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "headers" => Ok(GeneratedField::Headers),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = OkHttpResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct envoy.service.auth.v2.OkHttpResponse")
+            }
+
+            fn visit_map<V>(self, mut map: V) -> std::result::Result<OkHttpResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut headers__ = None;
+                while let Some(k) = map.next_key()? {
+                    match k {
+                        GeneratedField::Headers => {
+                            if headers__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("headers"));
+                            }
+                            headers__ = Some(map.next_value()?);
+                        }
+                    }
+                }
+                Ok(OkHttpResponse {
+                    headers: headers__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("envoy.service.auth.v2.OkHttpResponse", FIELDS, GeneratedVisitor)
+    }
+}

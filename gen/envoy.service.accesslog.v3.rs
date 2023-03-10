@@ -1,52 +1,63 @@
 // @generated
 /// Empty response for the StreamAccessLogs API. Will never be sent. See below.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamAccessLogsResponse {
-}
+pub struct StreamAccessLogsResponse {}
 /// Stream message for the StreamAccessLogs API. Envoy will open a stream to the server and stream
 /// access logs without ever expecting a response.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamAccessLogsMessage {
     /// Identifier data that will only be sent in the first message on the stream. This is effectively
     /// structured metadata and is a performance optimization.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub identifier: ::core::option::Option<stream_access_logs_message::Identifier>,
     /// Batches of log entries of a single type. Generally speaking, a given stream should only
     /// ever include one type of log entry.
-    #[prost(oneof="stream_access_logs_message::LogEntries", tags="2, 3")]
+    #[prost(oneof = "stream_access_logs_message::LogEntries", tags = "2, 3")]
     pub log_entries: ::core::option::Option<stream_access_logs_message::LogEntries>,
 }
 /// Nested message and enum types in `StreamAccessLogsMessage`.
 pub mod stream_access_logs_message {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Identifier {
         /// The node sending the access log messages over the stream.
-        #[prost(message, optional, tag="1")]
-        pub node: ::core::option::Option<super::super::super::super::config::core::v3::Node>,
+        #[prost(message, optional, tag = "1")]
+        pub node: ::core::option::Option<
+            super::super::super::super::config::core::v3::Node,
+        >,
         /// The friendly name of the log configured in :ref:`CommonGrpcAccessLogConfig
         /// <envoy_v3_api_msg_extensions.access_loggers.grpc.v3.CommonGrpcAccessLogConfig>`.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub log_name: ::prost::alloc::string::String,
     }
     /// Wrapper for batches of HTTP access log entries.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct HttpAccessLogEntries {
-        #[prost(message, repeated, tag="1")]
-        pub log_entry: ::prost::alloc::vec::Vec<super::super::super::super::data::accesslog::v3::HttpAccessLogEntry>,
+        #[prost(message, repeated, tag = "1")]
+        pub log_entry: ::prost::alloc::vec::Vec<
+            super::super::super::super::data::accesslog::v3::HttpAccessLogEntry,
+        >,
     }
     /// Wrapper for batches of TCP access log entries.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TcpAccessLogEntries {
-        #[prost(message, repeated, tag="1")]
-        pub log_entry: ::prost::alloc::vec::Vec<super::super::super::super::data::accesslog::v3::TcpAccessLogEntry>,
+        #[prost(message, repeated, tag = "1")]
+        pub log_entry: ::prost::alloc::vec::Vec<
+            super::super::super::super::data::accesslog::v3::TcpAccessLogEntry,
+        >,
     }
     /// Batches of log entries of a single type. Generally speaking, a given stream should only
     /// ever include one type of log entry.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum LogEntries {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         HttpLogs(HttpAccessLogEntries),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TcpLogs(TcpAccessLogEntries),
     }
 }
@@ -322,5 +333,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x54, 0x18, 0x20, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x02, 0x03, 0x12, 0x03, 0x54, 0x23,
     0x24, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.accesslog.v3.serde.rs");
 include!("envoy.service.accesslog.v3.tonic.rs");
 // @@protoc_insertion_point(module)

@@ -1,29 +1,28 @@
 // @generated
-// [#protodoc-title: Buffer]
-// Buffer :ref:`configuration overview <config_http_filters_buffer>`.
-// [#extension: envoy.filters.http.buffer]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Buffer {
     /// The maximum request size that the filter will buffer before the connection
     /// manager will stop buffering and return a 413 response.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub max_request_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BufferPerRoute {
-    #[prost(oneof="buffer_per_route::Override", tags="1, 2")]
+    #[prost(oneof = "buffer_per_route::Override", tags = "1, 2")]
     pub r#override: ::core::option::Option<buffer_per_route::Override>,
 }
 /// Nested message and enum types in `BufferPerRoute`.
 pub mod buffer_per_route {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Override {
         /// Disable the buffer filter for this particular vhost or route.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         Disabled(bool),
         /// Override the global configuration of the filter with this new config.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Buffer(super::Buffer),
     }
 }
@@ -139,4 +138,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x26, 0x16, 0x43, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x01, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x11, 0x12,
     0x03, 0x26, 0x17, 0x42, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.buffer.v2.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,24 +1,26 @@
 // @generated
-// [#protodoc-title: Maglev Load Balancing Policy]
-// [#extension: envoy.load_balancing_policies.maglev]
-
 /// This configuration allows the built-in Maglev LB policy to be configured via the LB policy
 /// extension point. See the :ref:`load balancing architecture overview
 /// <arch_overview_load_balancing_types>` and :ref:`Maglev<arch_overview_load_balancing_types_maglev>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Maglev {
     /// The table size for Maglev hashing. Maglev aims for "minimal disruption" rather than an absolute guarantee.
     /// Minimal disruption means that when the set of upstream hosts change, a connection will likely be sent to the same
     /// upstream as it was before. Increasing the table size reduces the amount of disruption.
     /// The table size must be prime number limited to 5000011. If it is not specified, the default is 65537.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub table_size: ::core::option::Option<::pbjson_types::UInt64Value>,
     /// Common configuration for hashing-based load balancing policies.
-    #[prost(message, optional, tag="2")]
-    pub consistent_hashing_lb_config: ::core::option::Option<super::super::common::v3::ConsistentHashingLbConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub consistent_hashing_lb_config: ::core::option::Option<
+        super::super::common::v3::ConsistentHashingLbConfig,
+    >,
     /// Enable locality weighted load balancing for maglev lb explicitly.
-    #[prost(message, optional, tag="3")]
-    pub locality_weighted_lb_config: ::core::option::Option<super::super::common::v3::locality_lb_config::LocalityWeightedLbConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub locality_weighted_lb_config: ::core::option::Option<
+        super::super::common::v3::locality_lb_config::LocalityWeightedLbConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.load_balancing_policies.maglev.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -162,4 +164,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x22, 0x54, 0x55, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.load_balancing_policies.maglev.v3.serde.rs");
 // @@protoc_insertion_point(module)

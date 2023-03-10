@@ -119,10 +119,10 @@ pub mod client_status_discovery_service_client {
 pub mod client_status_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ClientStatusDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ClientStatusDiscoveryServiceServer.
     #[async_trait]
     pub trait ClientStatusDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamClientStatus method.
+        /// Server streaming response type for the StreamClientStatus method.
         type StreamClientStatusStream: futures_core::Stream<
                 Item = Result<super::ClientStatusResponse, tonic::Status>,
             >

@@ -1,8 +1,4 @@
 // @generated
-// [#protodoc-title: Composite]
-// Composite Filter :ref:`configuration overview <config_http_filters_composite>`.
-// [#extension: envoy.filters.http.composite]
-
 /// :ref:`Composite filter <config_http_filters_composite>` config. The composite filter config
 /// allows delegating filter handling to another filter as determined by matching on the request
 /// headers. This makes it possible to use different filters or filter configurations based on the
@@ -13,15 +9,18 @@
 /// where a match tree is specified that indicates (via
 /// :ref:`ExecuteFilterAction <envoy_v3_api_msg_extensions.filters.http.composite.v3.ExecuteFilterAction>`)
 /// which filter configuration to create and delegate to.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Composite {
-}
+pub struct Composite {}
 /// Composite match action (see :ref:`matching docs <arch_overview_matching_api>` for more info on match actions).
 /// This specifies the filter configuration of the filter that the composite filter should delegate filter interactions to.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecuteFilterAction {
-    #[prost(message, optional, tag="1")]
-    pub typed_config: ::core::option::Option<super::super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub typed_config: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.composite.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -144,4 +143,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x00, 0x03, 0x12, 0x03, 0x25, 0x35, 0x36, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.composite.v3.serde.rs");
 // @@protoc_insertion_point(module)

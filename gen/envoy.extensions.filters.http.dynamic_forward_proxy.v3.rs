@@ -1,31 +1,36 @@
 // @generated
-// [#protodoc-title: Dynamic forward proxy]
-
 /// Configuration for the dynamic forward proxy HTTP filter. See the :ref:`architecture overview
 /// <arch_overview_http_dynamic_forward_proxy>` for more information.
 /// [#extension: envoy.filters.http.dynamic_forward_proxy]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterConfig {
     /// The DNS cache configuration that the filter will attach to. Note this configuration must
     /// match that of associated :ref:`dynamic forward proxy cluster configuration
     /// <envoy_v3_api_field_extensions.clusters.dynamic_forward_proxy.v3.ClusterConfig.dns_cache_config>`.
-    #[prost(message, optional, tag="1")]
-    pub dns_cache_config: ::core::option::Option<super::super::super::super::common::dynamic_forward_proxy::v3::DnsCacheConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub dns_cache_config: ::core::option::Option<
+        super::super::super::super::common::dynamic_forward_proxy::v3::DnsCacheConfig,
+    >,
     /// When this flag is set, the filter will add the resolved upstream address in the filter
     /// state. The state should be saved with key
     /// ``envoy.stream.upstream_address`` (See
     /// :repo:`upstream_address.h<source/common/stream_info/upstream_address.h>`).
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub save_upstream_address: bool,
 }
 /// Per route Configuration for the dynamic forward proxy HTTP filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PerRouteConfig {
-    #[prost(oneof="per_route_config::HostRewriteSpecifier", tags="1, 2")]
-    pub host_rewrite_specifier: ::core::option::Option<per_route_config::HostRewriteSpecifier>,
+    #[prost(oneof = "per_route_config::HostRewriteSpecifier", tags = "1, 2")]
+    pub host_rewrite_specifier: ::core::option::Option<
+        per_route_config::HostRewriteSpecifier,
+    >,
 }
 /// Nested message and enum types in `PerRouteConfig`.
 pub mod per_route_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum HostRewriteSpecifier {
         /// Indicates that before DNS lookup, the host header will be swapped with
@@ -37,7 +42,7 @@ pub mod per_route_config {
         /// :ref:`HCM host rewrite <envoy_v3_api_field_config.route.v3.RouteAction.host_rewrite_literal>` given that the
         /// value set here would be used for DNS lookups whereas the value set in the HCM would be used
         /// for host header forwarding which is not the desired outcome.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         HostRewriteLiteral(::prost::alloc::string::String),
         /// Indicates that before DNS lookup, the host header will be swapped with
         /// the value of this header. If not set or empty, the original host header
@@ -52,7 +57,7 @@ pub mod per_route_config {
         /// .. note::
         ///
         ///    If the header appears multiple times only the first value is used.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         HostRewriteHeader(::prost::alloc::string::String),
     }
 }
@@ -290,4 +295,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x44, 0x0b, 0x1e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x01, 0x03, 0x12, 0x03, 0x44, 0x21,
     0x22, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.dynamic_forward_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,13 +1,11 @@
 // @generated
-// [#protodoc-title: Downstream connections]
-// [#extension: envoy.resource_monitors.downstream_connections]
-
 /// The downstream connections resource monitor tracks the global number of open downstream connections.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DownstreamConnectionsConfig {
     /// Maximum threshold for global open downstream connections, defaults to 0.
     /// If monitor is enabled in Overload manager api, this field should be explicitly configured with value greater than 0.
-    #[prost(int64, tag="1")]
+    #[prost(int64, tag = "1")]
     pub max_active_downstream_connections: i64,
 }
 /// Encoded file descriptor set for the `envoy.extensions.resource_monitors.downstream_connections.v3` package
@@ -97,4 +95,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x04, 0x12, 0x03, 0x17, 0x2f,
     0x4f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.resource_monitors.downstream_connections.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,25 +1,34 @@
 // @generated
-// [#protodoc-title: Kill Request]
-// Kill Request :ref:`configuration overview <config_http_filters_kill_request>`.
-// [#extension: envoy.filters.http.kill_request]
-
 /// Configuration for KillRequest filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KillRequest {
     /// The probability that a Kill request will be triggered.
-    #[prost(message, optional, tag="1")]
-    pub probability: ::core::option::Option<super::super::super::super::super::r#type::v3::FractionalPercent>,
+    #[prost(message, optional, tag = "1")]
+    pub probability: ::core::option::Option<
+        super::super::super::super::super::r#type::v3::FractionalPercent,
+    >,
     /// The name of the kill request header. If this field is not empty, it will override the :ref:`default header <config_http_filters_kill_request_http_header>` name. Otherwise the default header name will be used.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub kill_request_header: ::prost::alloc::string::String,
-    #[prost(enumeration="kill_request::Direction", tag="3")]
+    #[prost(enumeration = "kill_request::Direction", tag = "3")]
     pub direction: i32,
 }
 /// Nested message and enum types in `KillRequest`.
 pub mod kill_request {
     /// On which direction should the filter check for the ``kill_request_header``.
     /// Default to ``REQUEST`` if unspecified.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Direction {
         Request = 0,
@@ -34,6 +43,14 @@ pub mod kill_request {
             match self {
                 Direction::Request => "REQUEST",
                 Direction::Response => "RESPONSE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "REQUEST" => Some(Self::Request),
+                "RESPONSE" => Some(Self::Response),
+                _ => None,
             }
         }
     }
@@ -157,4 +174,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0xaf, 0x08, 0x10, 0x12, 0x03, 0x23, 0x1b, 0x47, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.filters.http.kill_request.v3.serde.rs");
 // @@protoc_insertion_point(module)

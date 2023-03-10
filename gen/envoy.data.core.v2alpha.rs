@@ -1,72 +1,74 @@
 // @generated
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckEvent {
-    #[prost(enumeration="HealthCheckerType", tag="1")]
+    #[prost(enumeration = "HealthCheckerType", tag = "1")]
     pub health_checker_type: i32,
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub host: ::core::option::Option<super::super::super::api::v2::core::Address>,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub cluster_name: ::prost::alloc::string::String,
     /// Timestamp for event.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
-    #[prost(oneof="health_check_event::Event", tags="4, 5, 7, 8, 9")]
+    #[prost(oneof = "health_check_event::Event", tags = "4, 5, 7, 8, 9")]
     pub event: ::core::option::Option<health_check_event::Event>,
 }
 /// Nested message and enum types in `HealthCheckEvent`.
 pub mod health_check_event {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Event {
         /// Host ejection.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         EjectUnhealthyEvent(super::HealthCheckEjectUnhealthy),
         /// Host addition.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         AddHealthyEvent(super::HealthCheckAddHealthy),
         /// Host failure.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         HealthCheckFailureEvent(super::HealthCheckFailure),
         /// Healthy host became degraded.
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         DegradedHealthyHost(super::DegradedHealthyHost),
         /// A degraded host returned to being healthy.
-        #[prost(message, tag="9")]
+        #[prost(message, tag = "9")]
         NoLongerDegradedHost(super::NoLongerDegradedHost),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckEjectUnhealthy {
     /// The type of failure that caused this ejection.
-    #[prost(enumeration="HealthCheckFailureType", tag="1")]
+    #[prost(enumeration = "HealthCheckFailureType", tag = "1")]
     pub failure_type: i32,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckAddHealthy {
     /// Whether this addition is the result of the first ever health check on a host, in which case
     /// the configured :ref:`healthy threshold <envoy_api_field_core.HealthCheck.healthy_threshold>`
     /// is bypassed and the host is immediately added.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub first_check: bool,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheckFailure {
     /// The type of failure that caused this event.
-    #[prost(enumeration="HealthCheckFailureType", tag="1")]
+    #[prost(enumeration = "HealthCheckFailureType", tag = "1")]
     pub failure_type: i32,
     /// Whether this event is the result of the first ever health check on a host.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub first_check: bool,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DegradedHealthyHost {
-}
+pub struct DegradedHealthyHost {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NoLongerDegradedHost {
-}
-// [#protodoc-title: Health check logging events]
-// :ref:`Health check logging <arch_overview_health_check_logging>`.
-
+pub struct NoLongerDegradedHost {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum HealthCheckFailureType {
@@ -84,6 +86,15 @@ impl HealthCheckFailureType {
             HealthCheckFailureType::Active => "ACTIVE",
             HealthCheckFailureType::Passive => "PASSIVE",
             HealthCheckFailureType::Network => "NETWORK",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ACTIVE" => Some(Self::Active),
+            "PASSIVE" => Some(Self::Passive),
+            "NETWORK" => Some(Self::Network),
+            _ => None,
         }
     }
 }
@@ -106,6 +117,16 @@ impl HealthCheckerType {
             HealthCheckerType::Tcp => "TCP",
             HealthCheckerType::Grpc => "GRPC",
             HealthCheckerType::Redis => "REDIS",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "HTTP" => Some(Self::Http),
+            "TCP" => Some(Self::Tcp),
+            "GRPC" => Some(Self::Grpc),
+            "REDIS" => Some(Self::Redis),
+            _ => None,
         }
     }
 }
@@ -358,4 +379,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x03, 0x04, 0x05, 0x01, 0x12, 0x03, 0x57, 0x08, 0x1c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.data.core.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

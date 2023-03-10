@@ -1,83 +1,86 @@
 // @generated
-// [#protodoc-title: Sip Proxy Route Configuration]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteConfiguration {
     /// The name of the route configuration. Reserved for future use in asynchronous route discovery.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The list of routes that will be matched, in order, against incoming requests. The first route
     /// that matches will be used.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub routes: ::prost::alloc::vec::Vec<Route>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Route {
     /// Route matching parameters.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub r#match: ::core::option::Option<RouteMatch>,
     /// Route request to some upstream cluster.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub route: ::core::option::Option<RouteAction>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteMatch {
     /// The header to get match parameter, default is "Route".
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub header: ::prost::alloc::string::String,
     /// The parameter to get domain, default is "host".
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub parameter: ::prost::alloc::string::String,
-    #[prost(oneof="route_match::MatchSpecifier", tags="1")]
+    #[prost(oneof = "route_match::MatchSpecifier", tags = "1")]
     pub match_specifier: ::core::option::Option<route_match::MatchSpecifier>,
 }
 /// Nested message and enum types in `RouteMatch`.
 pub mod route_match {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MatchSpecifier {
         /// The domain from Request URI or Route Header.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Domain(::prost::alloc::string::String),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteAction {
-    #[prost(oneof="route_action::ClusterSpecifier", tags="1")]
+    #[prost(oneof = "route_action::ClusterSpecifier", tags = "1")]
     pub cluster_specifier: ::core::option::Option<route_action::ClusterSpecifier>,
 }
 /// Nested message and enum types in `RouteAction`.
 pub mod route_action {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ClusterSpecifier {
         /// Indicates a single upstream cluster to which the request should be routed
         /// to.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Cluster(::prost::alloc::string::String),
     }
 }
-// [#protodoc-title: Sip Proxy]
-// [#extension: envoy.filters.network.sip_proxy]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SipProxy {
     /// The human readable prefix to use when emitting statistics.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The route table for the connection manager is static and is specified in this property.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub route_config: ::core::option::Option<RouteConfiguration>,
     /// A list of individual Sip filters that make up the filter chain for requests made to the
     /// Sip proxy. Order matters as the filters are processed sequentially. For backwards
     /// compatibility, if no sip_filters are specified, a default Sip router filter
     /// (``envoy.filters.sip.router``) is used.
     /// [#extension-category: envoy.sip_proxy.filters]
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub sip_filters: ::prost::alloc::vec::Vec<SipFilter>,
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub settings: ::core::option::Option<sip_proxy::SipSettings>,
 }
 /// Nested message and enum types in `SipProxy`.
 pub mod sip_proxy {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct SipSettings {
         /// transaction timeout timer [Timer B] unit is milliseconds, default value 64*T1.
@@ -117,104 +120,113 @@ pub mod sip_proxy {
         /// | Timer K | T4 for UDP              | 17.1.2.2 | Wait time for response re-transmissions                                      |
         /// |         | 0 sec. for TCP and SCTP |          |                                                                              |
         /// +---------+-------------------------+----------+------------------------------------------------------------------------------+
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub transaction_timeout: ::core::option::Option<::pbjson_types::Duration>,
         /// The service to match for ep insert
-        #[prost(message, repeated, tag="2")]
+        #[prost(message, repeated, tag = "2")]
         pub local_services: ::prost::alloc::vec::Vec<super::LocalService>,
-        #[prost(message, optional, tag="3")]
-        pub tra_service_config: ::core::option::Option<super::super::tra::v3alpha::TraServiceConfig>,
+        #[prost(message, optional, tag = "3")]
+        pub tra_service_config: ::core::option::Option<
+            super::super::tra::v3alpha::TraServiceConfig,
+        >,
         /// Whether via header is operated, including add via for request and pop via for response
         /// False: sip service proxy
         /// True:  sip load balancer
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         pub operate_via: bool,
     }
 }
 /// SipFilter configures a Sip filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SipFilter {
     /// The name of the filter to instantiate. The name must match a supported
     /// filter. The built-in filters are:
     ///
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter specific configuration which depends on the filter being instantiated. See the supported
     /// filters for further documentation.
-    #[prost(oneof="sip_filter::ConfigType", tags="3")]
+    #[prost(oneof = "sip_filter::ConfigType", tags = "3")]
     pub config_type: ::core::option::Option<sip_filter::ConfigType>,
 }
 /// Nested message and enum types in `SipFilter`.
 pub mod sip_filter {
     /// Filter specific configuration which depends on the filter being instantiated. See the supported
     /// filters for further documentation.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
 /// SipProtocolOptions specifies Sip upstream protocol options. This object is used in
 /// :ref:`typed_extension_protocol_options<envoy_v3_api_field_config.cluster.v3.Cluster.typed_extension_protocol_options>`,
 /// keyed by the name ``envoy.filters.network.sip_proxy``.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SipProtocolOptions {
     /// All sip messages in one dialog should go to the same endpoint.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub session_affinity: bool,
     /// The Register with Authorization header should go to the same endpoint which send out the 401 Unauthorized.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub registration_affinity: bool,
     /// Customized affinity
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub customized_affinity: ::core::option::Option<CustomizedAffinity>,
 }
 /// For affinity
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomizedAffinity {
     /// Affinity rules to conclude the upstream endpoint
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub entries: ::prost::alloc::vec::Vec<CustomizedAffinityEntry>,
     /// Configures whether load balance should be stopped or continued after affinity handling.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub stop_load_balance: bool,
 }
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomizedAffinityEntry {
     /// The header name to match, e.g. "From", if not specified, default is "Route"
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub header: ::prost::alloc::string::String,
     /// Affinity key for TRA query/subscribe, e.g. "lskpmc", if key_name is "text" means use the header content as key.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub key_name: ::prost::alloc::string::String,
     /// Whether subscribe to TRA is required
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub subscribe: bool,
     /// Whether query to TRA is required
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub query: bool,
     /// Local cache
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub cache: ::core::option::Option<Cache>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cache {
     /// Affinity local cache item max number
-    #[prost(int32, tag="1")]
+    #[prost(int32, tag = "1")]
     pub max_cache_item: i32,
     /// Whether query result can be added to local cache
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub add_query_to_cache: bool,
 }
 /// Local Service
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalService {
     /// The domain need to matched
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub domain: ::prost::alloc::string::String,
     /// The parameter to get domain
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub parameter: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.sip_proxy.v3alpha` package
@@ -1037,4 +1049,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x12, 0x04, 0x9f, 0x01, 0x09, 0x12, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x06, 0x02, 0x01, 0x03,
     0x12, 0x04, 0x9f, 0x01, 0x15, 0x16, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.sip_proxy.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

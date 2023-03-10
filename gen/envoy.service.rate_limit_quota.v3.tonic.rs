@@ -98,10 +98,10 @@ pub mod rate_limit_quota_service_client {
 pub mod rate_limit_quota_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with RateLimitQuotaServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with RateLimitQuotaServiceServer.
     #[async_trait]
     pub trait RateLimitQuotaService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamRateLimitQuotas method.
+        /// Server streaming response type for the StreamRateLimitQuotas method.
         type StreamRateLimitQuotasStream: futures_core::Stream<
                 Item = Result<super::RateLimitQuotaResponse, tonic::Status>,
             >

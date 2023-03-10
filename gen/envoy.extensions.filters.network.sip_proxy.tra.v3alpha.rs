@@ -1,119 +1,159 @@
 // @generated
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TraServiceConfig {
     /// Specifies the gRPC service that hosts the rate limit service. The client
     /// will connect to this cluster when it needs to make rate limit service
     /// requests.
-    #[prost(message, optional, tag="1")]
-    pub grpc_service: ::core::option::Option<super::super::super::super::super::super::config::core::v3::GrpcService>,
+    #[prost(message, optional, tag = "1")]
+    pub grpc_service: ::core::option::Option<
+        super::super::super::super::super::super::config::core::v3::GrpcService,
+    >,
     /// API version for rate limit transport protocol. This describes the rate limit gRPC endpoint and
     /// version of messages used on the wire.
-    #[prost(enumeration="super::super::super::super::super::super::config::core::v3::ApiVersion", tag="2")]
+    #[prost(
+        enumeration = "super::super::super::super::super::super::config::core::v3::ApiVersion",
+        tag = "2"
+    )]
     pub transport_api_version: i32,
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub timeout: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TraServiceRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub r#type: ::prost::alloc::string::String,
-    #[prost(oneof="tra_service_request::Request", tags="2, 3, 4, 5, 6")]
+    #[prost(oneof = "tra_service_request::Request", tags = "2, 3, 4, 5, 6")]
     pub request: ::core::option::Option<tra_service_request::Request>,
 }
 /// Nested message and enum types in `TraServiceRequest`.
 pub mod tra_service_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Request {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         CreateRequest(super::CreateRequest),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         UpdateRequest(super::UpdateRequest),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         RetrieveRequest(super::RetrieveRequest),
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         DeleteRequest(super::DeleteRequest),
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         SubscribeRequest(super::SubscribeRequest),
     }
 }
 /// [#next-free-field: 9]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TraServiceResponse {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub r#type: ::prost::alloc::string::String,
-    #[prost(int32, tag="2")]
+    #[prost(int32, tag = "2")]
     pub ret: i32,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub reason: ::prost::alloc::string::String,
-    #[prost(oneof="tra_service_response::Response", tags="4, 5, 6, 7, 8")]
+    #[prost(oneof = "tra_service_response::Response", tags = "4, 5, 6, 7, 8")]
     pub response: ::core::option::Option<tra_service_response::Response>,
 }
 /// Nested message and enum types in `TraServiceResponse`.
 pub mod tra_service_response {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Response {
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         CreateResponse(super::CreateResponse),
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         UpdateResponse(super::UpdateResponse),
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         RetrieveResponse(super::RetrieveResponse),
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         DeleteResponse(super::DeleteResponse),
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         SubscribeResponse(super::SubscribeResponse),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRequest {
-    #[prost(map="string, string", tag="1")]
-    pub data: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-    #[prost(map="string, string", tag="2")]
-    pub context: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "1")]
+    pub data: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(map = "string, string", tag = "2")]
+    pub context: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CreateResponse {
-}
+pub struct CreateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRequest {
-    #[prost(map="string, string", tag="1")]
-    pub data: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
-    #[prost(map="string, string", tag="2")]
-    pub context: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "1")]
+    pub data: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(map = "string, string", tag = "2")]
+    pub context: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateResponse {
-}
+pub struct UpdateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub key: ::prost::alloc::string::String,
-    #[prost(map="string, string", tag="2")]
-    pub context: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "2")]
+    pub context: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RetrieveResponse {
-    #[prost(map="string, string", tag="1")]
-    pub data: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "1")]
+    pub data: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRequest {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub key: ::prost::alloc::string::String,
-    #[prost(map="string, string", tag="2")]
-    pub context: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "2")]
+    pub context: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeleteResponse {
-}
+pub struct DeleteResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SubscribeRequest {
-}
+pub struct SubscribeRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubscribeResponse {
-    #[prost(map="string, string", tag="1")]
-    pub data: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "1")]
+    pub data: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.sip_proxy.tra.v3alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -573,5 +613,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x0c, 0x02, 0x00, 0x03, 0x12, 0x04, 0x82, 0x01, 0x1d, 0x1e, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.sip_proxy.tra.v3alpha.serde.rs");
 include!("envoy.extensions.filters.network.sip_proxy.tra.v3alpha.tonic.rs");
 // @@protoc_insertion_point(module)

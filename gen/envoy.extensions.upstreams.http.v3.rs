@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: HTTP Protocol Options]
-// [#extension: envoy.upstreams.http.http_protocol_options]
-
 /// HttpProtocolOptions specifies Http upstream protocol options. This object
 /// is used in
 /// :ref:`typed_extension_protocol_options<envoy_v3_api_field_config.cluster.v3.Cluster.typed_extension_protocol_options>`,
@@ -44,14 +41,19 @@
 ///                max_concurrent_streams: 100
 ///         .... [further cluster config]
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpProtocolOptions {
     /// This contains options common across HTTP/1 and HTTP/2
-    #[prost(message, optional, tag="1")]
-    pub common_http_protocol_options: ::core::option::Option<super::super::super::super::config::core::v3::HttpProtocolOptions>,
+    #[prost(message, optional, tag = "1")]
+    pub common_http_protocol_options: ::core::option::Option<
+        super::super::super::super::config::core::v3::HttpProtocolOptions,
+    >,
     /// This contains common protocol options which are only applied upstream.
-    #[prost(message, optional, tag="2")]
-    pub upstream_http_protocol_options: ::core::option::Option<super::super::super::super::config::core::v3::UpstreamHttpProtocolOptions>,
+    #[prost(message, optional, tag = "2")]
+    pub upstream_http_protocol_options: ::core::option::Option<
+        super::super::super::super::config::core::v3::UpstreamHttpProtocolOptions,
+    >,
     /// .. note::
     ///    Upstream HTTP filters are currently in alpha.
     ///
@@ -64,8 +66,10 @@ pub struct HttpProtocolOptions {
     /// upstream filters will not trigger retries, and local errors sent by
     /// upstream filters will count as a final response if hedging is configured.
     /// [#extension-category: envoy.filters.http.upstream]
-    #[prost(message, repeated, tag="6")]
-    pub http_filters: ::prost::alloc::vec::Vec<super::super::super::filters::network::http_connection_manager::v3::HttpFilter>,
+    #[prost(message, repeated, tag = "6")]
+    pub http_filters: ::prost::alloc::vec::Vec<
+        super::super::super::filters::network::http_connection_manager::v3::HttpFilter,
+    >,
     /// Configuration options for Unified Header Validation (UHV).
     /// UHV is an extensible mechanism for checking validity of HTTP responses.
     ///
@@ -74,34 +78,48 @@ pub struct HttpProtocolOptions {
     ///
     /// \[#not-implemented-hide:\]
     /// [#extension-category: envoy.http.header_validators]
-    #[prost(message, optional, tag="7")]
-    pub header_validation_config: ::core::option::Option<super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "7")]
+    pub header_validation_config: ::core::option::Option<
+        super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
     /// This controls the actual protocol to be used upstream.
-    #[prost(oneof="http_protocol_options::UpstreamProtocolOptions", tags="3, 4, 5")]
-    pub upstream_protocol_options: ::core::option::Option<http_protocol_options::UpstreamProtocolOptions>,
+    #[prost(oneof = "http_protocol_options::UpstreamProtocolOptions", tags = "3, 4, 5")]
+    pub upstream_protocol_options: ::core::option::Option<
+        http_protocol_options::UpstreamProtocolOptions,
+    >,
 }
 /// Nested message and enum types in `HttpProtocolOptions`.
 pub mod http_protocol_options {
     /// If this is used, the cluster will only operate on one of the possible upstream protocols.
     /// Note that HTTP/2 or above should generally be used for upstream gRPC clusters.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ExplicitHttpConfig {
-        #[prost(oneof="explicit_http_config::ProtocolConfig", tags="1, 2, 3")]
-        pub protocol_config: ::core::option::Option<explicit_http_config::ProtocolConfig>,
+        #[prost(oneof = "explicit_http_config::ProtocolConfig", tags = "1, 2, 3")]
+        pub protocol_config: ::core::option::Option<
+            explicit_http_config::ProtocolConfig,
+        >,
     }
     /// Nested message and enum types in `ExplicitHttpConfig`.
     pub mod explicit_http_config {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum ProtocolConfig {
-            #[prost(message, tag="1")]
-            HttpProtocolOptions(super::super::super::super::super::super::config::core::v3::Http1ProtocolOptions),
-            #[prost(message, tag="2")]
-            Http2ProtocolOptions(super::super::super::super::super::super::config::core::v3::Http2ProtocolOptions),
+            #[prost(message, tag = "1")]
+            HttpProtocolOptions(
+                super::super::super::super::super::super::config::core::v3::Http1ProtocolOptions,
+            ),
+            #[prost(message, tag = "2")]
+            Http2ProtocolOptions(
+                super::super::super::super::super::super::config::core::v3::Http2ProtocolOptions,
+            ),
             /// .. warning::
             ///    QUIC upstream support is currently not ready for internet use.
             ///    Please see :ref:`here <arch_overview_http3>` for details.
-            #[prost(message, tag="3")]
-            Http3ProtocolOptions(super::super::super::super::super::super::config::core::v3::Http3ProtocolOptions),
+            #[prost(message, tag = "3")]
+            Http3ProtocolOptions(
+                super::super::super::super::super::super::config::core::v3::Http3ProtocolOptions,
+            ),
         }
     }
     /// If this is used, the cluster can use either of the configured protocols, and
@@ -109,17 +127,24 @@ pub mod http_protocol_options {
     ///
     /// If HTTP/3 is configured for downstream and not configured for upstream,
     /// HTTP/3 requests will fail over to HTTP/2.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct UseDownstreamHttpConfig {
-        #[prost(message, optional, tag="1")]
-        pub http_protocol_options: ::core::option::Option<super::super::super::super::super::config::core::v3::Http1ProtocolOptions>,
-        #[prost(message, optional, tag="2")]
-        pub http2_protocol_options: ::core::option::Option<super::super::super::super::super::config::core::v3::Http2ProtocolOptions>,
+        #[prost(message, optional, tag = "1")]
+        pub http_protocol_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::Http1ProtocolOptions,
+        >,
+        #[prost(message, optional, tag = "2")]
+        pub http2_protocol_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::Http2ProtocolOptions,
+        >,
         /// .. warning::
         ///    QUIC upstream support is currently not ready for internet use.
         ///    Please see :ref:`here <arch_overview_http3>` for details.
-        #[prost(message, optional, tag="3")]
-        pub http3_protocol_options: ::core::option::Option<super::super::super::super::super::config::core::v3::Http3ProtocolOptions>,
+        #[prost(message, optional, tag = "3")]
+        pub http3_protocol_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::Http3ProtocolOptions,
+        >,
     }
     /// If this is used, the cluster can use either HTTP/1 or HTTP/2, and will use whichever
     /// protocol is negotiated by ALPN with the upstream.
@@ -130,12 +155,17 @@ pub mod http_protocol_options {
     /// transport socket which does not support ALPN will result in configuration
     /// failure. The transport layer may be configured with custom ALPN, but the default ALPN
     /// for the cluster (or if custom ALPN fails) will be "h2,http/1.1".
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AutoHttpConfig {
-        #[prost(message, optional, tag="1")]
-        pub http_protocol_options: ::core::option::Option<super::super::super::super::super::config::core::v3::Http1ProtocolOptions>,
-        #[prost(message, optional, tag="2")]
-        pub http2_protocol_options: ::core::option::Option<super::super::super::super::super::config::core::v3::Http2ProtocolOptions>,
+        #[prost(message, optional, tag = "1")]
+        pub http_protocol_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::Http1ProtocolOptions,
+        >,
+        #[prost(message, optional, tag = "2")]
+        pub http2_protocol_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::Http2ProtocolOptions,
+        >,
         /// Unlike HTTP/1 and HTTP/2, HTTP/3 will not be configured unless it is
         /// present, and (soon) only if there is an indication of server side
         /// support.
@@ -145,8 +175,10 @@ pub mod http_protocol_options {
         /// .. warning::
         ///    QUIC upstream support is currently not ready for internet use.
         ///    Please see :ref:`here <arch_overview_http3>` for details.
-        #[prost(message, optional, tag="3")]
-        pub http3_protocol_options: ::core::option::Option<super::super::super::super::super::config::core::v3::Http3ProtocolOptions>,
+        #[prost(message, optional, tag = "3")]
+        pub http3_protocol_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::Http3ProtocolOptions,
+        >,
         /// The presence of alternate protocols cache options causes the use of the
         /// alternate protocols cache, which is responsible for parsing and caching
         /// HTTP Alt-Svc headers. This enables the use of HTTP/3 for origins that
@@ -154,22 +186,25 @@ pub mod http_protocol_options {
         ///
         /// .. note::
         ///    This is required when HTTP/3 is enabled.
-        #[prost(message, optional, tag="4")]
-        pub alternate_protocols_cache_options: ::core::option::Option<super::super::super::super::super::config::core::v3::AlternateProtocolsCacheOptions>,
+        #[prost(message, optional, tag = "4")]
+        pub alternate_protocols_cache_options: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::AlternateProtocolsCacheOptions,
+        >,
     }
     /// This controls the actual protocol to be used upstream.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum UpstreamProtocolOptions {
         /// To explicitly configure either HTTP/1 or HTTP/2 (but not both!) use ``explicit_http_config``.
         /// If the ``explicit_http_config`` is empty, HTTP/1.1 is used.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         ExplicitHttpConfig(ExplicitHttpConfig),
         /// This allows switching on protocol based on what protocol the downstream
         /// connection used.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         UseDownstreamProtocolConfig(UseDownstreamHttpConfig),
         /// This allows switching on protocol based on ALPN
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         AutoConfig(AutoHttpConfig),
     }
 }
@@ -752,4 +787,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x26, 0x3e, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x06, 0x03, 0x12, 0x04, 0xaf, 0x01, 0x41,
     0x42, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.upstreams.http.v3.serde.rs");
 // @@protoc_insertion_point(module)

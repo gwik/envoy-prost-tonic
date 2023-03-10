@@ -1,26 +1,26 @@
 // @generated
-// [#protodoc-title: Thrift Proxy Route Configuration]
-// Thrift Proxy :ref:`configuration overview <config_network_filters_thrift_proxy>`.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteConfiguration {
     /// The name of the route configuration. Reserved for future use in asynchronous route discovery.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The list of routes that will be matched, in order, against incoming requests. The first route
     /// that matches will be used.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub routes: ::prost::alloc::vec::Vec<Route>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Route {
     /// Route matching parameters.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub r#match: ::core::option::Option<RouteMatch>,
     /// Route request to some upstream cluster.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub route: ::core::option::Option<RouteAction>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteMatch {
     /// Inverts whatever matching is done in the :ref:`method_name
@@ -35,34 +35,38 @@ pub struct RouteMatch {
     ///    <envoy_api_field_config.filter.network.thrift_proxy.v2alpha1.RouteMatch.headers>` field. To
     ///    invert header matching, see :ref:`invert_match
     ///    <envoy_api_field_route.HeaderMatcher.invert_match>`.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub invert: bool,
     /// Specifies a set of headers that the route should match on. The router will check the request’s
     /// headers against all the specified headers in the route config. A match will happen if all the
     /// headers in the route are present in the request with the same values (or based on presence if
     /// the value field is not in the config). Note that this only applies for Thrift transports and/or
     /// protocols that support headers.
-    #[prost(message, repeated, tag="4")]
-    pub headers: ::prost::alloc::vec::Vec<super::super::super::super::super::api::v2::route::HeaderMatcher>,
-    #[prost(oneof="route_match::MatchSpecifier", tags="1, 2")]
+    #[prost(message, repeated, tag = "4")]
+    pub headers: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::api::v2::route::HeaderMatcher,
+    >,
+    #[prost(oneof = "route_match::MatchSpecifier", tags = "1, 2")]
     pub match_specifier: ::core::option::Option<route_match::MatchSpecifier>,
 }
 /// Nested message and enum types in `RouteMatch`.
 pub mod route_match {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum MatchSpecifier {
         /// If specified, the route must exactly match the request method name. As a special case, an
         /// empty string matches any request method name.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         MethodName(::prost::alloc::string::String),
         /// If specified, the route must have the service name as the request method name prefix. As a
         /// special case, an empty string matches any service name. Only relevant when service
         /// multiplexing.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         ServiceName(::prost::alloc::string::String),
     }
 }
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteAction {
     /// Optional endpoint metadata match criteria used by the subset load balancer. Only endpoints in
@@ -71,62 +75,69 @@ pub struct RouteAction {
     /// <envoy_api_field_config.filter.network.thrift_proxy.v2alpha1.WeightedCluster.ClusterWeight.metadata_match>`,
     /// with values there taking precedence. Keys and values should be provided under the "envoy.lb"
     /// metadata key.
-    #[prost(message, optional, tag="3")]
-    pub metadata_match: ::core::option::Option<super::super::super::super::super::api::v2::core::Metadata>,
+    #[prost(message, optional, tag = "3")]
+    pub metadata_match: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::Metadata,
+    >,
     /// Specifies a set of rate limit configurations that could be applied to the route.
     /// N.B. Thrift service or method name matching can be achieved by specifying a RequestHeaders
     /// action with the header name ":method-name".
-    #[prost(message, repeated, tag="4")]
-    pub rate_limits: ::prost::alloc::vec::Vec<super::super::super::super::super::api::v2::route::RateLimit>,
+    #[prost(message, repeated, tag = "4")]
+    pub rate_limits: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::api::v2::route::RateLimit,
+    >,
     /// Strip the service prefix from the method name, if there's a prefix. For
     /// example, the method call Service:method would end up being just method.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub strip_service_name: bool,
-    #[prost(oneof="route_action::ClusterSpecifier", tags="1, 2, 6")]
+    #[prost(oneof = "route_action::ClusterSpecifier", tags = "1, 2, 6")]
     pub cluster_specifier: ::core::option::Option<route_action::ClusterSpecifier>,
 }
 /// Nested message and enum types in `RouteAction`.
 pub mod route_action {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ClusterSpecifier {
         /// Indicates a single upstream cluster to which the request should be routed
         /// to.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Cluster(::prost::alloc::string::String),
         /// Multiple upstream clusters can be specified for a given route. The
         /// request is routed to one of the upstream clusters based on weights
         /// assigned to each cluster.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         WeightedClusters(super::WeightedCluster),
         /// Envoy will determine the cluster to route to by reading the value of the
         /// Thrift header named by cluster_header from the request headers. If the
         /// header is not found or the referenced cluster does not exist Envoy will
         /// respond with an unknown method exception or an internal error exception,
         /// respectively.
-        #[prost(string, tag="6")]
+        #[prost(string, tag = "6")]
         ClusterHeader(::prost::alloc::string::String),
     }
 }
 /// Allows for specification of multiple upstream clusters along with weights that indicate the
 /// percentage of traffic to be forwarded to each cluster. The router selects an upstream cluster
 /// based on these weights.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WeightedCluster {
     /// Specifies one or more upstream clusters associated with the route.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub clusters: ::prost::alloc::vec::Vec<weighted_cluster::ClusterWeight>,
 }
 /// Nested message and enum types in `WeightedCluster`.
 pub mod weighted_cluster {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ClusterWeight {
         /// Name of the upstream cluster.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// When a request matches the route, the choice of an upstream cluster is determined by its
         /// weight. The sum of weights across all entries in the clusters array determines the total
         /// weight.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub weight: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// Optional endpoint metadata match criteria used by the subset load balancer. Only endpoints in
         /// the upstream cluster with metadata matching what is set in this field, combined with what's
@@ -134,35 +145,39 @@ pub mod weighted_cluster {
         /// <envoy_api_field_config.filter.network.thrift_proxy.v2alpha1.RouteAction.metadata_match>`,
         /// will be considered. Values here will take precedence. Keys and values should be provided
         /// under the "envoy.lb" metadata key.
-        #[prost(message, optional, tag="3")]
-        pub metadata_match: ::core::option::Option<super::super::super::super::super::super::api::v2::core::Metadata>,
+        #[prost(message, optional, tag = "3")]
+        pub metadata_match: ::core::option::Option<
+            super::super::super::super::super::super::api::v2::core::Metadata,
+        >,
     }
 }
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThriftProxy {
     /// Supplies the type of transport that the Thrift proxy should use. Defaults to
     /// :ref:`AUTO_TRANSPORT<envoy_api_enum_value_config.filter.network.thrift_proxy.v2alpha1.TransportType.AUTO_TRANSPORT>`.
-    #[prost(enumeration="TransportType", tag="2")]
+    #[prost(enumeration = "TransportType", tag = "2")]
     pub transport: i32,
     /// Supplies the type of protocol that the Thrift proxy should use. Defaults to
     /// :ref:`AUTO_PROTOCOL<envoy_api_enum_value_config.filter.network.thrift_proxy.v2alpha1.ProtocolType.AUTO_PROTOCOL>`.
-    #[prost(enumeration="ProtocolType", tag="3")]
+    #[prost(enumeration = "ProtocolType", tag = "3")]
     pub protocol: i32,
     /// The human readable prefix to use when emitting statistics.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The route table for the connection manager is static and is specified in this property.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub route_config: ::core::option::Option<RouteConfiguration>,
     /// A list of individual Thrift filters that make up the filter chain for requests made to the
     /// Thrift proxy. Order matters as the filters are processed sequentially. For backwards
     /// compatibility, if no thrift_filters are specified, a default Thrift router filter
     /// (`envoy.filters.thrift.router`) is used.
-    #[prost(message, repeated, tag="5")]
+    #[prost(message, repeated, tag = "5")]
     pub thrift_filters: ::prost::alloc::vec::Vec<ThriftFilter>,
 }
 /// ThriftFilter configures a Thrift filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThriftFilter {
     /// The name of the filter to instantiate. The name must match a supported
@@ -171,22 +186,23 @@ pub struct ThriftFilter {
     /// [#comment:TODO(zuercher): Auto generate the following list]
     /// * :ref:`envoy.filters.thrift.router <config_thrift_filters_router>`
     /// * :ref:`envoy.filters.thrift.rate_limit <config_thrift_filters_rate_limit>`
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter specific configuration which depends on the filter being instantiated. See the supported
     /// filters for further documentation.
-    #[prost(oneof="thrift_filter::ConfigType", tags="2, 3")]
+    #[prost(oneof = "thrift_filter::ConfigType", tags = "2, 3")]
     pub config_type: ::core::option::Option<thrift_filter::ConfigType>,
 }
 /// Nested message and enum types in `ThriftFilter`.
 pub mod thrift_filter {
     /// Filter specific configuration which depends on the filter being instantiated. See the supported
     /// filters for further documentation.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
@@ -194,25 +210,22 @@ pub mod thrift_filter {
 /// in
 /// :ref:`typed_extension_protocol_options<envoy_api_field_Cluster.typed_extension_protocol_options>`,
 /// keyed by the name `envoy.filters.network.thrift_proxy`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThriftProtocolOptions {
     /// Supplies the type of transport that the Thrift proxy should use for upstream connections.
     /// Selecting
     /// :ref:`AUTO_TRANSPORT<envoy_api_enum_value_config.filter.network.thrift_proxy.v2alpha1.TransportType.AUTO_TRANSPORT>`,
     /// which is the default, causes the proxy to use the same transport as the downstream connection.
-    #[prost(enumeration="TransportType", tag="1")]
+    #[prost(enumeration = "TransportType", tag = "1")]
     pub transport: i32,
     /// Supplies the type of protocol that the Thrift proxy should use for upstream connections.
     /// Selecting
     /// :ref:`AUTO_PROTOCOL<envoy_api_enum_value_config.filter.network.thrift_proxy.v2alpha1.ProtocolType.AUTO_PROTOCOL>`,
     /// which is the default, causes the proxy to use the same protocol as the downstream connection.
-    #[prost(enumeration="ProtocolType", tag="2")]
+    #[prost(enumeration = "ProtocolType", tag = "2")]
     pub protocol: i32,
 }
-// [#protodoc-title: Thrift Proxy]
-// Thrift Proxy :ref:`configuration overview <config_network_filters_thrift_proxy>`.
-// [#extension: envoy.filters.network.thrift_proxy]
-
 /// Thrift transport types supported by Envoy.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -239,6 +252,16 @@ impl TransportType {
             TransportType::Framed => "FRAMED",
             TransportType::Unframed => "UNFRAMED",
             TransportType::Header => "HEADER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "AUTO_TRANSPORT" => Some(Self::AutoTransport),
+            "FRAMED" => Some(Self::Framed),
+            "UNFRAMED" => Some(Self::Unframed),
+            "HEADER" => Some(Self::Header),
+            _ => None,
         }
     }
 }
@@ -272,6 +295,17 @@ impl ProtocolType {
             ProtocolType::LaxBinary => "LAX_BINARY",
             ProtocolType::Compact => "COMPACT",
             ProtocolType::Twitter => "TWITTER",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "AUTO_PROTOCOL" => Some(Self::AutoProtocol),
+            "BINARY" => Some(Self::Binary),
+            "LAX_BINARY" => Some(Self::LaxBinary),
+            "COMPACT" => Some(Self::Compact),
+            "TWITTER" => Some(Self::Twitter),
+            _ => None,
         }
     }
 }
@@ -1190,4 +1224,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x08, 0x04, 0x02, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x10, 0x12, 0x03, 0x78, 0x1d, 0x49, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.thrift_proxy.v2alpha1.serde.rs");
 // @@protoc_insertion_point(module)

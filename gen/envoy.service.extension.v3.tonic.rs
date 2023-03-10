@@ -159,10 +159,10 @@ pub mod extension_config_discovery_service_client {
 pub mod extension_config_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ExtensionConfigDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ExtensionConfigDiscoveryServiceServer.
     #[async_trait]
     pub trait ExtensionConfigDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamExtensionConfigs method.
+        /// Server streaming response type for the StreamExtensionConfigs method.
         type StreamExtensionConfigsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,
@@ -178,7 +178,7 @@ pub mod extension_config_discovery_service_server {
                 tonic::Streaming<super::super::super::discovery::v3::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamExtensionConfigsStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaExtensionConfigs method.
+        /// Server streaming response type for the DeltaExtensionConfigs method.
         type DeltaExtensionConfigsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,

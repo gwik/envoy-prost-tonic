@@ -1,81 +1,81 @@
 // @generated
-// [#protodoc-title: Bootstrap]
-// This proto is supplied via the :option:`-c` CLI flag and acts as the root
-// of the Envoy v2 configuration. See the :ref:`v2 configuration overview
-// <config_overview_bootstrap>` for more detail.
-
 /// Bootstrap :ref:`configuration overview <config_overview_bootstrap>`.
 /// [#next-free-field: 21]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Bootstrap {
     /// Node identity to present to the management server and for instance
     /// identification purposes (e.g. in generated headers).
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub node: ::core::option::Option<super::super::super::api::v2::core::Node>,
     /// Statically specified resources.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub static_resources: ::core::option::Option<bootstrap::StaticResources>,
     /// xDS configuration sources.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub dynamic_resources: ::core::option::Option<bootstrap::DynamicResources>,
     /// Configuration for the cluster manager which owns all upstream clusters
     /// within the server.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub cluster_manager: ::core::option::Option<ClusterManager>,
     /// Health discovery service config option.
     /// (:ref:`core.ApiConfigSource <envoy_api_msg_core.ApiConfigSource>`)
-    #[prost(message, optional, tag="14")]
-    pub hds_config: ::core::option::Option<super::super::super::api::v2::core::ApiConfigSource>,
+    #[prost(message, optional, tag = "14")]
+    pub hds_config: ::core::option::Option<
+        super::super::super::api::v2::core::ApiConfigSource,
+    >,
     /// Optional file system path to search for startup flag files.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub flags_path: ::prost::alloc::string::String,
     /// Optional set of stats sinks.
-    #[prost(message, repeated, tag="6")]
+    #[prost(message, repeated, tag = "6")]
     pub stats_sinks: ::prost::alloc::vec::Vec<super::super::metrics::v2::StatsSink>,
     /// Configuration for internal processing of stats.
-    #[prost(message, optional, tag="13")]
+    #[prost(message, optional, tag = "13")]
     pub stats_config: ::core::option::Option<super::super::metrics::v2::StatsConfig>,
     /// Optional duration between flushes to configured stats sinks. For
     /// performance reasons Envoy latches counters and only flushes counters and
     /// gauges at a periodic interval. If not specified the default is 5000ms (5
     /// seconds).
     /// Duration must be at least 1ms and at most 5 min.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub stats_flush_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// Optional watchdog configuration.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub watchdog: ::core::option::Option<Watchdog>,
     /// Configuration for an external tracing provider.
     ///
     /// .. attention::
     ///   This field has been deprecated in favor of :ref:`HttpConnectionManager.Tracing.provider
     ///   <envoy_api_field_config.filter.network.http_connection_manager.v2.HttpConnectionManager.Tracing.provider>`.
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub tracing: ::core::option::Option<super::super::trace::v2::Tracing>,
     /// Configuration for the runtime configuration provider (deprecated). If not
     /// specified, a “null” provider will be used which will result in all defaults
     /// being used.
     #[deprecated]
-    #[prost(message, optional, tag="11")]
+    #[prost(message, optional, tag = "11")]
     pub runtime: ::core::option::Option<Runtime>,
     /// Configuration for the runtime configuration provider. If not
     /// specified, a “null” provider will be used which will result in all defaults
     /// being used.
-    #[prost(message, optional, tag="17")]
+    #[prost(message, optional, tag = "17")]
     pub layered_runtime: ::core::option::Option<LayeredRuntime>,
     /// Configuration for the local administration HTTP server.
-    #[prost(message, optional, tag="12")]
+    #[prost(message, optional, tag = "12")]
     pub admin: ::core::option::Option<Admin>,
     /// Optional overload manager configuration.
-    #[prost(message, optional, tag="15")]
-    pub overload_manager: ::core::option::Option<super::super::overload::v2alpha::OverloadManager>,
+    #[prost(message, optional, tag = "15")]
+    pub overload_manager: ::core::option::Option<
+        super::super::overload::v2alpha::OverloadManager,
+    >,
     /// Enable :ref:`stats for event dispatcher <operations_performance>`, defaults to false.
     /// Note that this records a value for each iteration of the event loop on every thread. This
     /// should normally be minimal overhead, but when using
     /// :ref:`statsd <envoy_api_msg_config.metrics.v2.StatsdSink>`, it will send each observed value
     /// over the wire individually because the statsd protocol doesn't have any way to represent a
     /// histogram summary. Be aware that this can be a very large volume of data.
-    #[prost(bool, tag="16")]
+    #[prost(bool, tag = "16")]
     pub enable_dispatcher_stats: bool,
     /// Optional string which will be used in lieu of x-envoy in prefixing headers.
     ///
@@ -86,13 +86,15 @@ pub struct Bootstrap {
     /// headers Envoy will trust for core code and core extensions only. Be VERY careful making
     /// changes to this string, especially in multi-layer Envoy deployments or deployments using
     /// extensions which are not upstream.
-    #[prost(string, tag="18")]
+    #[prost(string, tag = "18")]
     pub header_prefix: ::prost::alloc::string::String,
     /// Optional proxy version which will be used to set the value of :ref:`server.version statistic
     /// <server_statistics>` if specified. Envoy will not process this value, it will be sent as is to
     /// :ref:`stats sinks <envoy_api_msg_config.metrics.v2.StatsSink>`.
-    #[prost(message, optional, tag="19")]
-    pub stats_server_version_override: ::core::option::Option<::pbjson_types::UInt64Value>,
+    #[prost(message, optional, tag = "19")]
+    pub stats_server_version_override: ::core::option::Option<
+        ::pbjson_types::UInt64Value,
+    >,
     /// Always use TCP queries instead of UDP queries for DNS lookups.
     /// This may be overridden on a per-cluster basis in cds_config,
     /// when :ref:`dns_resolvers <envoy_api_field_Cluster.dns_resolvers>` and
@@ -101,41 +103,53 @@ pub struct Bootstrap {
     /// Setting this value causes failure if the
     /// ``envoy.restart_features.use_apple_api_for_dns_lookups`` runtime value is true during
     /// server startup. Apple' API only uses UDP for DNS resolution.
-    #[prost(bool, tag="20")]
+    #[prost(bool, tag = "20")]
     pub use_tcp_for_dns_lookups: bool,
 }
 /// Nested message and enum types in `Bootstrap`.
 pub mod bootstrap {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct StaticResources {
         /// Static :ref:`Listeners <envoy_api_msg_Listener>`. These listeners are
         /// available regardless of LDS configuration.
-        #[prost(message, repeated, tag="1")]
-        pub listeners: ::prost::alloc::vec::Vec<super::super::super::super::api::v2::Listener>,
+        #[prost(message, repeated, tag = "1")]
+        pub listeners: ::prost::alloc::vec::Vec<
+            super::super::super::super::api::v2::Listener,
+        >,
         /// If a network based configuration source is specified for :ref:`cds_config
         /// <envoy_api_field_config.bootstrap.v2.Bootstrap.DynamicResources.cds_config>`, it's necessary
         /// to have some initial cluster definitions available to allow Envoy to know
         /// how to speak to the management server. These cluster definitions may not
         /// use :ref:`EDS <arch_overview_dynamic_config_eds>` (i.e. they should be static
         /// IP or DNS-based).
-        #[prost(message, repeated, tag="2")]
-        pub clusters: ::prost::alloc::vec::Vec<super::super::super::super::api::v2::Cluster>,
+        #[prost(message, repeated, tag = "2")]
+        pub clusters: ::prost::alloc::vec::Vec<
+            super::super::super::super::api::v2::Cluster,
+        >,
         /// These static secrets can be used by :ref:`SdsSecretConfig
         /// <envoy_api_msg_auth.SdsSecretConfig>`
-        #[prost(message, repeated, tag="3")]
-        pub secrets: ::prost::alloc::vec::Vec<super::super::super::super::api::v2::auth::Secret>,
+        #[prost(message, repeated, tag = "3")]
+        pub secrets: ::prost::alloc::vec::Vec<
+            super::super::super::super::api::v2::auth::Secret,
+        >,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicResources {
         /// All :ref:`Listeners <envoy_api_msg_Listener>` are provided by a single
         /// :ref:`LDS <arch_overview_dynamic_config_lds>` configuration source.
-        #[prost(message, optional, tag="1")]
-        pub lds_config: ::core::option::Option<super::super::super::super::api::v2::core::ConfigSource>,
+        #[prost(message, optional, tag = "1")]
+        pub lds_config: ::core::option::Option<
+            super::super::super::super::api::v2::core::ConfigSource,
+        >,
         /// All post-bootstrap :ref:`Cluster <envoy_api_msg_Cluster>` definitions are
         /// provided by a single :ref:`CDS <arch_overview_dynamic_config_cds>`
         /// configuration source.
-        #[prost(message, optional, tag="2")]
-        pub cds_config: ::core::option::Option<super::super::super::super::api::v2::core::ConfigSource>,
+        #[prost(message, optional, tag = "2")]
+        pub cds_config: ::core::option::Option<
+            super::super::super::super::api::v2::core::ConfigSource,
+        >,
         /// A single :ref:`ADS <config_overview_ads>` source may be optionally
         /// specified. This must have :ref:`api_type
         /// <envoy_api_field_core.ApiConfigSource.api_type>` :ref:`GRPC
@@ -143,33 +157,39 @@ pub mod bootstrap {
         /// :ref:`ConfigSources <envoy_api_msg_core.ConfigSource>` that have
         /// the :ref:`ads <envoy_api_field_core.ConfigSource.ads>` field set will be
         /// streamed on the ADS channel.
-        #[prost(message, optional, tag="3")]
-        pub ads_config: ::core::option::Option<super::super::super::super::api::v2::core::ApiConfigSource>,
+        #[prost(message, optional, tag = "3")]
+        pub ads_config: ::core::option::Option<
+            super::super::super::super::api::v2::core::ApiConfigSource,
+        >,
     }
 }
 /// Administration interface :ref:`operations documentation
 /// <operations_admin_interface>`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Admin {
     /// The path to write the access log for the administration server. If no
     /// access log is desired specify ‘/dev/null’. This is only required if
     /// :ref:`address <envoy_api_field_config.bootstrap.v2.Admin.address>` is set.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub access_log_path: ::prost::alloc::string::String,
     /// The cpu profiler output path for the administration server. If no profile
     /// path is specified, the default is ‘/var/log/envoy/envoy.prof’.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub profile_path: ::prost::alloc::string::String,
     /// The TCP address that the administration server will listen on.
     /// If not specified, Envoy will not start an administration server.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub address: ::core::option::Option<super::super::super::api::v2::core::Address>,
     /// Additional socket options that may not be present in Envoy source code or
     /// precompiled binaries.
-    #[prost(message, repeated, tag="4")]
-    pub socket_options: ::prost::alloc::vec::Vec<super::super::super::api::v2::core::SocketOption>,
+    #[prost(message, repeated, tag = "4")]
+    pub socket_options: ::prost::alloc::vec::Vec<
+        super::super::super::api::v2::core::SocketOption,
+    >,
 }
 /// Cluster manager :ref:`architecture overview <arch_overview_cluster_manager>`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterManager {
     /// Name of the local cluster (i.e., the cluster that owns the Envoy running
@@ -181,62 +201,71 @@ pub struct ClusterManager {
     /// <envoy_api_field_config.bootstrap.v2.Bootstrap.StaticResources.clusters>`. This is unrelated to
     /// the :option:`--service-cluster` option which does not `affect zone aware
     /// routing <<https://github.com/envoyproxy/envoy/issues/774>`_.>
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub local_cluster_name: ::prost::alloc::string::String,
     /// Optional global configuration for outlier detection.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub outlier_detection: ::core::option::Option<cluster_manager::OutlierDetection>,
     /// Optional configuration used to bind newly established upstream connections.
     /// This may be overridden on a per-cluster basis by upstream_bind_config in the cds_config.
-    #[prost(message, optional, tag="3")]
-    pub upstream_bind_config: ::core::option::Option<super::super::super::api::v2::core::BindConfig>,
+    #[prost(message, optional, tag = "3")]
+    pub upstream_bind_config: ::core::option::Option<
+        super::super::super::api::v2::core::BindConfig,
+    >,
     /// A management server endpoint to stream load stats to via
     /// *StreamLoadStats*. This must have :ref:`api_type
     /// <envoy_api_field_core.ApiConfigSource.api_type>` :ref:`GRPC
     /// <envoy_api_enum_value_core.ApiConfigSource.ApiType.GRPC>`.
-    #[prost(message, optional, tag="4")]
-    pub load_stats_config: ::core::option::Option<super::super::super::api::v2::core::ApiConfigSource>,
+    #[prost(message, optional, tag = "4")]
+    pub load_stats_config: ::core::option::Option<
+        super::super::super::api::v2::core::ApiConfigSource,
+    >,
 }
 /// Nested message and enum types in `ClusterManager`.
 pub mod cluster_manager {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct OutlierDetection {
         /// Specifies the path to the outlier event log.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub event_log_path: ::prost::alloc::string::String,
         /// \[#not-implemented-hide:\]
         /// The gRPC service for the outlier detection event service.
         /// If empty, outlier detection events won't be sent to a remote endpoint.
-        #[prost(message, optional, tag="2")]
-        pub event_service: ::core::option::Option<super::super::super::super::api::v2::core::EventServiceConfig>,
+        #[prost(message, optional, tag = "2")]
+        pub event_service: ::core::option::Option<
+            super::super::super::super::api::v2::core::EventServiceConfig,
+        >,
     }
 }
 /// Envoy process watchdog configuration. When configured, this monitors for
 /// nonresponsive threads and kills the process after the configured thresholds.
 /// See the :ref:`watchdog documentation <operations_performance_watchdog>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Watchdog {
     /// The duration after which Envoy counts a nonresponsive thread in the
     /// *watchdog_miss* statistic. If not specified the default is 200ms.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub miss_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The duration after which Envoy counts a nonresponsive thread in the
     /// *watchdog_mega_miss* statistic. If not specified the default is
     /// 1000ms.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub megamiss_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// If a watched thread has been nonresponsive for this duration, assume a
     /// programming error and kill the entire Envoy process. Set to 0 to disable
     /// kill behavior. If not specified the default is 0 (disabled).
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub kill_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// If at least two watched threads have been nonresponsive for at least this
     /// duration assume a true deadlock and kill the entire Envoy process. Set to 0
     /// to disable this behavior. If not specified the default is 0 (disabled).
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub multikill_timeout: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Runtime :ref:`configuration overview <config_runtime>` (deprecated).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Runtime {
     /// The implementation assumes that the file system tree is accessed via a
@@ -245,12 +274,12 @@ pub struct Runtime {
     /// will watch the location for changes and reload the file system tree when
     /// they happen. If this parameter is not set, there will be no disk based
     /// runtime.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub symlink_root: ::prost::alloc::string::String,
     /// Specifies the subdirectory to load within the root directory. This is
     /// useful if multiple systems share the same delivery mechanism. Envoy
     /// configuration elements can be contained in a dedicated subdirectory.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub subdirectory: ::prost::alloc::string::String,
     /// Specifies an optional subdirectory to load within the root directory. If
     /// specified and the directory exists, configuration values within this
@@ -258,28 +287,30 @@ pub struct Runtime {
     /// useful when Envoy is deployed across many different types of servers.
     /// Sometimes it is useful to have a per service cluster directory for runtime
     /// configuration. See below for exactly how the override directory is used.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub override_subdirectory: ::prost::alloc::string::String,
     /// Static base runtime. This will be :ref:`overridden
     /// <config_runtime_layering>` by other runtime layers, e.g.
     /// disk or admin. This follows the :ref:`runtime protobuf JSON representation
     /// encoding <config_runtime_proto_json>`.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub base: ::core::option::Option<::pbjson_types::Struct>,
 }
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RuntimeLayer {
     /// Descriptive name for the runtime layer. This is only used for the runtime
     /// :http:get:`/runtime` output.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(oneof="runtime_layer::LayerSpecifier", tags="2, 3, 4, 5")]
+    #[prost(oneof = "runtime_layer::LayerSpecifier", tags = "2, 3, 4, 5")]
     pub layer_specifier: ::core::option::Option<runtime_layer::LayerSpecifier>,
 }
 /// Nested message and enum types in `RuntimeLayer`.
 pub mod runtime_layer {
     /// :ref:`Disk runtime <config_runtime_local_disk>` layer.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DiskLayer {
         /// The implementation assumes that the file system tree is accessed via a
@@ -289,54 +320,59 @@ pub mod runtime_layer {
         /// when they happen. See documentation on runtime :ref:`atomicity
         /// <config_runtime_atomicity>` for further details on how reloads are
         /// treated.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub symlink_root: ::prost::alloc::string::String,
         /// Specifies the subdirectory to load within the root directory. This is
         /// useful if multiple systems share the same delivery mechanism. Envoy
         /// configuration elements can be contained in a dedicated subdirectory.
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         pub subdirectory: ::prost::alloc::string::String,
         /// :ref:`Append <config_runtime_local_disk_service_cluster_subdirs>` the
         /// service cluster to the path under symlink root.
-        #[prost(bool, tag="2")]
+        #[prost(bool, tag = "2")]
         pub append_service_cluster: bool,
     }
     /// :ref:`Admin console runtime <config_runtime_admin>` layer.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AdminLayer {
-    }
+    pub struct AdminLayer {}
     /// :ref:`Runtime Discovery Service (RTDS) <config_runtime_rtds>` layer.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RtdsLayer {
         /// Resource to subscribe to at *rtds_config* for the RTDS layer.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// RTDS configuration source.
-        #[prost(message, optional, tag="2")]
-        pub rtds_config: ::core::option::Option<super::super::super::super::api::v2::core::ConfigSource>,
+        #[prost(message, optional, tag = "2")]
+        pub rtds_config: ::core::option::Option<
+            super::super::super::super::api::v2::core::ConfigSource,
+        >,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum LayerSpecifier {
         /// :ref:`Static runtime <config_runtime_bootstrap>` layer.
         /// This follows the :ref:`runtime protobuf JSON representation encoding
         /// <config_runtime_proto_json>`. Unlike static xDS resources, this static
         /// layer is overridable by later layers in the runtime virtual filesystem.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         StaticLayer(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         DiskLayer(DiskLayer),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         AdminLayer(AdminLayer),
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         RtdsLayer(RtdsLayer),
     }
 }
 /// Runtime :ref:`configuration overview <config_runtime>`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LayeredRuntime {
     /// The :ref:`layers <config_runtime_layering>` of the runtime. This is ordered
     /// such that later layers in the list overlay earlier entries.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub layers: ::prost::alloc::vec::Vec<RuntimeLayer>,
 }
 /// Encoded file descriptor set for the `envoy.config.bootstrap.v2` package
@@ -1578,4 +1614,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x04, 0xdf, 0x02, 0x18, 0x1e, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x06, 0x02, 0x00, 0x03, 0x12,
     0x04, 0xdf, 0x02, 0x21, 0x22, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.bootstrap.v2.serde.rs");
 // @@protoc_insertion_point(module)

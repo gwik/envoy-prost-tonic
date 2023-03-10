@@ -1,11 +1,12 @@
 // @generated
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatusAnnotation {
     /// The entity is work-in-progress and subject to breaking changes.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub work_in_progress: bool,
     /// The entity belongs to a package with the given version status.
-    #[prost(enumeration="PackageVersionStatus", tag="2")]
+    #[prost(enumeration = "PackageVersionStatus", tag = "2")]
     pub package_version_status: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -31,51 +32,68 @@ impl PackageVersionStatus {
             PackageVersionStatus::Unknown => "UNKNOWN",
             PackageVersionStatus::Frozen => "FROZEN",
             PackageVersionStatus::Active => "ACTIVE",
-            PackageVersionStatus::NextMajorVersionCandidate => "NEXT_MAJOR_VERSION_CANDIDATE",
+            PackageVersionStatus::NextMajorVersionCandidate => {
+                "NEXT_MAJOR_VERSION_CANDIDATE"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "UNKNOWN" => Some(Self::Unknown),
+            "FROZEN" => Some(Self::Frozen),
+            "ACTIVE" => Some(Self::Active),
+            "NEXT_MAJOR_VERSION_CANDIDATE" => Some(Self::NextMajorVersionCandidate),
+            _ => None,
         }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VersioningAnnotation {
     /// Track the previous message type. E.g. this message might be
     /// udpa.foo.v3alpha.Foo and it was previously udpa.bar.v2.Bar. This
     /// information is consumed by UDPA via proto descriptors.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub previous_message_type: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MigrateAnnotation {
     /// Rename the message/enum/enum value in next version.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub rename: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldMigrateAnnotation {
     /// Rename the field in next version.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub rename: ::prost::alloc::string::String,
     /// Add the field to a named oneof in next version. If this already exists, the
     /// field will join its siblings under the oneof, otherwise a new oneof will be
     /// created with the given name.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub oneof_promotion: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileMigrateAnnotation {
     /// Move all types in the file to another package, this implies changing proto
     /// file path.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub move_to_package: ::prost::alloc::string::String,
 }
 /// These annotations indicate metadata for the purpose of understanding the
 /// security significance of fields.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldSecurityAnnotation {
     /// Field should be set in the presence of untrusted downstreams.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub configure_for_untrusted_downstream: bool,
     /// Field should be set in the presence of untrusted upstreams.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub configure_for_untrusted_upstream: bool,
 }
 /// Encoded file descriptor set for the `udpa.annotations` package
@@ -521,4 +539,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x20, 0x07, 0x27, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x01, 0x03, 0x12, 0x03,
     0x20, 0x2a, 0x2b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("udpa.annotations.serde.rs");
 // @@protoc_insertion_point(module)

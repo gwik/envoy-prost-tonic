@@ -1,12 +1,12 @@
 // @generated
-// [#protodoc-title: Default early header mutation extension]
-// [#extension: envoy.http.early_header_mutation.header_mutation]
-
 /// This extension allows for early header mutation by the substitution formatter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeaderMutation {
-    #[prost(message, repeated, tag="1")]
-    pub mutations: ::prost::alloc::vec::Vec<super::super::super::super::super::config::common::mutation_rules::v3::HeaderMutation>,
+    #[prost(message, repeated, tag = "1")]
+    pub mutations: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::common::mutation_rules::v3::HeaderMutation,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.http.early_header_mutation.header_mutation.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -82,4 +82,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x15, 0x06, 0x32, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x12, 0x12,
     0x03, 0x15, 0x07, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.http.early_header_mutation.header_mutation.v3.serde.rs");
 // @@protoc_insertion_point(module)

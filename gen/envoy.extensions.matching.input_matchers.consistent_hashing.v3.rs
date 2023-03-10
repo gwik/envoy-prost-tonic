@@ -1,29 +1,27 @@
 // @generated
-// [#protodoc-title: Consistent hashing matcher]
-// [#extension: envoy.matching.matchers.consistent_hashing]
-
 /// The consistent hashing matchers computes a consistent hash from the input and matches if the resulting hash
 /// is within the configured threshold.
 /// More specifically, this matcher evaluates to true if hash(input, seed) % modulo >= threshold.
 /// Note that the consistency of the match result relies on the internal hash function (xxhash) remaining
 /// unchanged. While this is unlikely to happen intentionally, this could cause inconsistent match results
 /// between deployments.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConsistentHashing {
     /// The threshold the resulting hash must be over in order for this matcher to evaluate to true.
     /// This value must be below the configured modulo value.
     /// Setting this to 0 is equivalent to this matcher always matching.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub threshold: u32,
     /// The value to use for the modulus in the calculation. This effectively  bounds the hash output,
     /// specifying the range of possible values.
     /// This value must be above the configured threshold.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub modulo: u32,
     /// Optional seed passed through the hash function. This allows using additional information when computing
     /// the hash value: by changing the seed value, a different partition of matching and non-matching inputs will
     /// be created that remains consistent for that seed value.
-    #[prost(uint64, tag="3")]
+    #[prost(uint64, tag = "3")]
     pub seed: u64,
 }
 /// Encoded file descriptor set for the `envoy.extensions.matching.input_matchers.consistent_hashing.v3` package
@@ -168,4 +166,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0d, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x24, 0x10, 0x11, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.matching.input_matchers.consistent_hashing.v3.serde.rs");
 // @@protoc_insertion_point(module)

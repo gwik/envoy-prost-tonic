@@ -1,42 +1,43 @@
 // @generated
-// [#protodoc-title: gRPC access logs]
-// Envoy access logs describe incoming interaction with Envoy over a fixed
-// period of time, and typically cover a single request/response exchange,
-// (e.g. HTTP), stream (e.g. over HTTP/gRPC), or proxied connection (e.g. TCP).
-// Access logs contain fields defined in protocol-specific protobuf messages.
-//
-// Except where explicitly declared otherwise, all fields describe
-// *downstream* interaction between Envoy and a connected client.
-// Fields describing *upstream* interaction will explicitly include ``upstream``
-// in their name.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TcpAccessLogEntry {
     /// Common properties shared by all Envoy access logs.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub common_properties: ::core::option::Option<AccessLogCommon>,
     /// Properties of the TCP connection.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub connection_properties: ::core::option::Option<ConnectionProperties>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpAccessLogEntry {
     /// Common properties shared by all Envoy access logs.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub common_properties: ::core::option::Option<AccessLogCommon>,
-    #[prost(enumeration="http_access_log_entry::HttpVersion", tag="2")]
+    #[prost(enumeration = "http_access_log_entry::HttpVersion", tag = "2")]
     pub protocol_version: i32,
     /// Description of the incoming HTTP request.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub request: ::core::option::Option<HttpRequestProperties>,
     /// Description of the outgoing HTTP response.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub response: ::core::option::Option<HttpResponseProperties>,
 }
 /// Nested message and enum types in `HTTPAccessLogEntry`.
 pub mod http_access_log_entry {
     /// HTTP version
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum HttpVersion {
         ProtocolUnspecified = 0,
@@ -59,92 +60,117 @@ pub mod http_access_log_entry {
                 HttpVersion::Http3 => "HTTP3",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "PROTOCOL_UNSPECIFIED" => Some(Self::ProtocolUnspecified),
+                "HTTP10" => Some(Self::Http10),
+                "HTTP11" => Some(Self::Http11),
+                "HTTP2" => Some(Self::Http2),
+                "HTTP3" => Some(Self::Http3),
+                _ => None,
+            }
+        }
     }
 }
 /// Defines fields for a connection
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConnectionProperties {
     /// Number of bytes received from downstream.
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub received_bytes: u64,
     /// Number of bytes sent to downstream.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub sent_bytes: u64,
 }
 /// Defines fields that are shared by all Envoy access logs.
 /// [#next-free-field: 22]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessLogCommon {
     /// \[#not-implemented-hide:\]
     /// This field indicates the rate at which this log entry was sampled.
     /// Valid range is (0.0, 1.0].
-    #[prost(double, tag="1")]
+    #[prost(double, tag = "1")]
     pub sample_rate: f64,
     /// This field is the remote/origin address on which the request from the user was received.
     /// Note: This may not be the physical peer. E.g, if the remote address is inferred from for
     /// example the x-forwarder-for header, proxy protocol, etc.
-    #[prost(message, optional, tag="2")]
-    pub downstream_remote_address: ::core::option::Option<super::super::super::api::v2::core::Address>,
+    #[prost(message, optional, tag = "2")]
+    pub downstream_remote_address: ::core::option::Option<
+        super::super::super::api::v2::core::Address,
+    >,
     /// This field is the local/destination address on which the request from the user was received.
-    #[prost(message, optional, tag="3")]
-    pub downstream_local_address: ::core::option::Option<super::super::super::api::v2::core::Address>,
+    #[prost(message, optional, tag = "3")]
+    pub downstream_local_address: ::core::option::Option<
+        super::super::super::api::v2::core::Address,
+    >,
     /// If the connection is secure,S this field will contain TLS properties.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub tls_properties: ::core::option::Option<TlsProperties>,
     /// The time that Envoy started servicing this request. This is effectively the time that the first
     /// downstream byte is received.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub start_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// Interval between the first downstream byte received and the last
     /// downstream byte received (i.e. time it takes to receive a request).
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub time_to_last_rx_byte: ::core::option::Option<::pbjson_types::Duration>,
     /// Interval between the first downstream byte received and the first upstream byte sent. There may
     /// by considerable delta between *time_to_last_rx_byte* and this value due to filters.
     /// Additionally, the same caveats apply as documented in *time_to_last_downstream_tx_byte* about
     /// not accounting for kernel socket buffer time, etc.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub time_to_first_upstream_tx_byte: ::core::option::Option<::pbjson_types::Duration>,
     /// Interval between the first downstream byte received and the last upstream byte sent. There may
     /// by considerable delta between *time_to_last_rx_byte* and this value due to filters.
     /// Additionally, the same caveats apply as documented in *time_to_last_downstream_tx_byte* about
     /// not accounting for kernel socket buffer time, etc.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub time_to_last_upstream_tx_byte: ::core::option::Option<::pbjson_types::Duration>,
     /// Interval between the first downstream byte received and the first upstream
     /// byte received (i.e. time it takes to start receiving a response).
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub time_to_first_upstream_rx_byte: ::core::option::Option<::pbjson_types::Duration>,
     /// Interval between the first downstream byte received and the last upstream
     /// byte received (i.e. time it takes to receive a complete response).
-    #[prost(message, optional, tag="10")]
+    #[prost(message, optional, tag = "10")]
     pub time_to_last_upstream_rx_byte: ::core::option::Option<::pbjson_types::Duration>,
     /// Interval between the first downstream byte received and the first downstream byte sent.
     /// There may be a considerable delta between the *time_to_first_upstream_rx_byte* and this field
     /// due to filters. Additionally, the same caveats apply as documented in
     /// *time_to_last_downstream_tx_byte* about not accounting for kernel socket buffer time, etc.
-    #[prost(message, optional, tag="11")]
-    pub time_to_first_downstream_tx_byte: ::core::option::Option<::pbjson_types::Duration>,
+    #[prost(message, optional, tag = "11")]
+    pub time_to_first_downstream_tx_byte: ::core::option::Option<
+        ::pbjson_types::Duration,
+    >,
     /// Interval between the first downstream byte received and the last downstream byte sent.
     /// Depending on protocol, buffering, windowing, filters, etc. there may be a considerable delta
     /// between *time_to_last_upstream_rx_byte* and this field. Note also that this is an approximate
     /// time. In the current implementation it does not include kernel socket buffer time. In the
     /// current implementation it also does not include send window buffering inside the HTTP/2 codec.
     /// In the future it is likely that work will be done to make this duration more accurate.
-    #[prost(message, optional, tag="12")]
-    pub time_to_last_downstream_tx_byte: ::core::option::Option<::pbjson_types::Duration>,
+    #[prost(message, optional, tag = "12")]
+    pub time_to_last_downstream_tx_byte: ::core::option::Option<
+        ::pbjson_types::Duration,
+    >,
     /// The upstream remote/destination address that handles this exchange. This does not include
     /// retries.
-    #[prost(message, optional, tag="13")]
-    pub upstream_remote_address: ::core::option::Option<super::super::super::api::v2::core::Address>,
+    #[prost(message, optional, tag = "13")]
+    pub upstream_remote_address: ::core::option::Option<
+        super::super::super::api::v2::core::Address,
+    >,
     /// The upstream local/origin address that handles this exchange. This does not include retries.
-    #[prost(message, optional, tag="14")]
-    pub upstream_local_address: ::core::option::Option<super::super::super::api::v2::core::Address>,
+    #[prost(message, optional, tag = "14")]
+    pub upstream_local_address: ::core::option::Option<
+        super::super::super::api::v2::core::Address,
+    >,
     /// The upstream cluster that *upstream_remote_address* belongs to.
-    #[prost(string, tag="15")]
+    #[prost(string, tag = "15")]
     pub upstream_cluster: ::prost::alloc::string::String,
     /// Flags indicating occurrences during request/response processing.
-    #[prost(message, optional, tag="16")]
+    #[prost(message, optional, tag = "16")]
     pub response_flags: ::core::option::Option<ResponseFlags>,
     /// All metadata encountered during request processing, including endpoint
     /// selection.
@@ -154,102 +180,119 @@ pub struct AccessLogCommon {
     /// route created from a higher level forwarding rule with some ID can place
     /// that ID in this field and cross reference later. It can also be used to
     /// determine if a canary endpoint was used or not.
-    #[prost(message, optional, tag="17")]
+    #[prost(message, optional, tag = "17")]
     pub metadata: ::core::option::Option<super::super::super::api::v2::core::Metadata>,
     /// If upstream connection failed due to transport socket (e.g. TLS handshake), provides the
     /// failure reason from the transport socket. The format of this field depends on the configured
     /// upstream transport socket. Common TLS failures are in
     /// :ref:`TLS trouble shooting <arch_overview_ssl_trouble_shooting>`.
-    #[prost(string, tag="18")]
+    #[prost(string, tag = "18")]
     pub upstream_transport_failure_reason: ::prost::alloc::string::String,
     /// The name of the route
-    #[prost(string, tag="19")]
+    #[prost(string, tag = "19")]
     pub route_name: ::prost::alloc::string::String,
     /// This field is the downstream direct remote address on which the request from the user was
     /// received. Note: This is always the physical peer, even if the remote address is inferred from
     /// for example the x-forwarder-for header, proxy protocol, etc.
-    #[prost(message, optional, tag="20")]
-    pub downstream_direct_remote_address: ::core::option::Option<super::super::super::api::v2::core::Address>,
+    #[prost(message, optional, tag = "20")]
+    pub downstream_direct_remote_address: ::core::option::Option<
+        super::super::super::api::v2::core::Address,
+    >,
     /// Map of filter state in stream info that have been configured to be logged. If the filter
     /// state serialized to any message other than `google.protobuf.Any` it will be packed into
     /// `google.protobuf.Any`.
-    #[prost(map="string, message", tag="21")]
-    pub filter_state_objects: ::std::collections::HashMap<::prost::alloc::string::String, ::pbjson_types::Any>,
+    #[prost(map = "string, message", tag = "21")]
+    pub filter_state_objects: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::pbjson_types::Any,
+    >,
 }
 /// Flags indicating occurrences during request/response processing.
 /// [#next-free-field: 20]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResponseFlags {
     /// Indicates local server healthcheck failed.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub failed_local_healthcheck: bool,
     /// Indicates there was no healthy upstream.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub no_healthy_upstream: bool,
     /// Indicates an there was an upstream request timeout.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub upstream_request_timeout: bool,
     /// Indicates local codec level reset was sent on the stream.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub local_reset: bool,
     /// Indicates remote codec level reset was received on the stream.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub upstream_remote_reset: bool,
     /// Indicates there was a local reset by a connection pool due to an initial connection failure.
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub upstream_connection_failure: bool,
     /// Indicates the stream was reset due to an upstream connection termination.
-    #[prost(bool, tag="7")]
+    #[prost(bool, tag = "7")]
     pub upstream_connection_termination: bool,
     /// Indicates the stream was reset because of a resource overflow.
-    #[prost(bool, tag="8")]
+    #[prost(bool, tag = "8")]
     pub upstream_overflow: bool,
     /// Indicates no route was found for the request.
-    #[prost(bool, tag="9")]
+    #[prost(bool, tag = "9")]
     pub no_route_found: bool,
     /// Indicates that the request was delayed before proxying.
-    #[prost(bool, tag="10")]
+    #[prost(bool, tag = "10")]
     pub delay_injected: bool,
     /// Indicates that the request was aborted with an injected error code.
-    #[prost(bool, tag="11")]
+    #[prost(bool, tag = "11")]
     pub fault_injected: bool,
     /// Indicates that the request was rate-limited locally.
-    #[prost(bool, tag="12")]
+    #[prost(bool, tag = "12")]
     pub rate_limited: bool,
     /// Indicates if the request was deemed unauthorized and the reason for it.
-    #[prost(message, optional, tag="13")]
+    #[prost(message, optional, tag = "13")]
     pub unauthorized_details: ::core::option::Option<response_flags::Unauthorized>,
     /// Indicates that the request was rejected because there was an error in rate limit service.
-    #[prost(bool, tag="14")]
+    #[prost(bool, tag = "14")]
     pub rate_limit_service_error: bool,
     /// Indicates the stream was reset due to a downstream connection termination.
-    #[prost(bool, tag="15")]
+    #[prost(bool, tag = "15")]
     pub downstream_connection_termination: bool,
     /// Indicates that the upstream retry limit was exceeded, resulting in a downstream error.
-    #[prost(bool, tag="16")]
+    #[prost(bool, tag = "16")]
     pub upstream_retry_limit_exceeded: bool,
     /// Indicates that the stream idle timeout was hit, resulting in a downstream 408.
-    #[prost(bool, tag="17")]
+    #[prost(bool, tag = "17")]
     pub stream_idle_timeout: bool,
     /// Indicates that the request was rejected because an envoy request header failed strict
     /// validation.
-    #[prost(bool, tag="18")]
+    #[prost(bool, tag = "18")]
     pub invalid_envoy_request_headers: bool,
     /// Indicates there was an HTTP protocol error on the downstream request.
-    #[prost(bool, tag="19")]
+    #[prost(bool, tag = "19")]
     pub downstream_protocol_error: bool,
 }
 /// Nested message and enum types in `ResponseFlags`.
 pub mod response_flags {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Unauthorized {
-        #[prost(enumeration="unauthorized::Reason", tag="1")]
+        #[prost(enumeration = "unauthorized::Reason", tag = "1")]
         pub reason: i32,
     }
     /// Nested message and enum types in `Unauthorized`.
     pub mod unauthorized {
         /// Reasons why the request was unauthorized
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum Reason {
             Unspecified = 0,
@@ -267,67 +310,95 @@ pub mod response_flags {
                     Reason::ExternalService => "EXTERNAL_SERVICE",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
+                    "EXTERNAL_SERVICE" => Some(Self::ExternalService),
+                    _ => None,
+                }
+            }
         }
     }
 }
 /// Properties of a negotiated TLS connection.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsProperties {
     /// Version of TLS that was negotiated.
-    #[prost(enumeration="tls_properties::TlsVersion", tag="1")]
+    #[prost(enumeration = "tls_properties::TlsVersion", tag = "1")]
     pub tls_version: i32,
     /// TLS cipher suite negotiated during handshake. The value is a
     /// four-digit hex code defined by the IANA TLS Cipher Suite Registry
     /// (e.g. ``009C`` for ``TLS_RSA_WITH_AES_128_GCM_SHA256``).
     ///
     /// Here it is expressed as an integer.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub tls_cipher_suite: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// SNI hostname from handshake.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub tls_sni_hostname: ::prost::alloc::string::String,
     /// Properties of the local certificate used to negotiate TLS.
-    #[prost(message, optional, tag="4")]
-    pub local_certificate_properties: ::core::option::Option<tls_properties::CertificateProperties>,
+    #[prost(message, optional, tag = "4")]
+    pub local_certificate_properties: ::core::option::Option<
+        tls_properties::CertificateProperties,
+    >,
     /// Properties of the peer certificate used to negotiate TLS.
-    #[prost(message, optional, tag="5")]
-    pub peer_certificate_properties: ::core::option::Option<tls_properties::CertificateProperties>,
+    #[prost(message, optional, tag = "5")]
+    pub peer_certificate_properties: ::core::option::Option<
+        tls_properties::CertificateProperties,
+    >,
     /// The TLS session ID.
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub tls_session_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TLSProperties`.
 pub mod tls_properties {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CertificateProperties {
         /// SANs present in the certificate.
-        #[prost(message, repeated, tag="1")]
-        pub subject_alt_name: ::prost::alloc::vec::Vec<certificate_properties::SubjectAltName>,
+        #[prost(message, repeated, tag = "1")]
+        pub subject_alt_name: ::prost::alloc::vec::Vec<
+            certificate_properties::SubjectAltName,
+        >,
         /// The subject field of the certificate.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub subject: ::prost::alloc::string::String,
     }
     /// Nested message and enum types in `CertificateProperties`.
     pub mod certificate_properties {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct SubjectAltName {
-            #[prost(oneof="subject_alt_name::San", tags="1, 2")]
+            #[prost(oneof = "subject_alt_name::San", tags = "1, 2")]
             pub san: ::core::option::Option<subject_alt_name::San>,
         }
         /// Nested message and enum types in `SubjectAltName`.
         pub mod subject_alt_name {
+            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Oneof)]
             pub enum San {
-                #[prost(string, tag="1")]
+                #[prost(string, tag = "1")]
                 Uri(::prost::alloc::string::String),
                 /// \[#not-implemented-hide:\]
-                #[prost(string, tag="2")]
+                #[prost(string, tag = "2")]
                 Dns(::prost::alloc::string::String),
             }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TlsVersion {
         VersionUnspecified = 0,
@@ -350,88 +421,113 @@ pub mod tls_properties {
                 TlsVersion::TlSv13 => "TLSv1_3",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VERSION_UNSPECIFIED" => Some(Self::VersionUnspecified),
+                "TLSv1" => Some(Self::TlSv1),
+                "TLSv1_1" => Some(Self::TlSv11),
+                "TLSv1_2" => Some(Self::TlSv12),
+                "TLSv1_3" => Some(Self::TlSv13),
+                _ => None,
+            }
+        }
     }
 }
 /// [#next-free-field: 14]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpRequestProperties {
     /// The request method (RFC 7231/2616).
-    #[prost(enumeration="super::super::super::api::v2::core::RequestMethod", tag="1")]
+    #[prost(
+        enumeration = "super::super::super::api::v2::core::RequestMethod",
+        tag = "1"
+    )]
     pub request_method: i32,
     /// The scheme portion of the incoming request URI.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub scheme: ::prost::alloc::string::String,
     /// HTTP/2 ``:authority`` or HTTP/1.1 ``Host`` header value.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub authority: ::prost::alloc::string::String,
     /// The port of the incoming request URI
     /// (unused currently, as port is composed onto authority).
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub port: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The path portion from the incoming request URI.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub path: ::prost::alloc::string::String,
     /// Value of the ``User-Agent`` request header.
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub user_agent: ::prost::alloc::string::String,
     /// Value of the ``Referer`` request header.
-    #[prost(string, tag="7")]
+    #[prost(string, tag = "7")]
     pub referer: ::prost::alloc::string::String,
     /// Value of the ``X-Forwarded-For`` request header.
-    #[prost(string, tag="8")]
+    #[prost(string, tag = "8")]
     pub forwarded_for: ::prost::alloc::string::String,
     /// Value of the ``X-Request-Id`` request header
     ///
     /// This header is used by Envoy to uniquely identify a request.
     /// It will be generated for all external requests and internal requests that
     /// do not already have a request ID.
-    #[prost(string, tag="9")]
+    #[prost(string, tag = "9")]
     pub request_id: ::prost::alloc::string::String,
     /// Value of the ``X-Envoy-Original-Path`` request header.
-    #[prost(string, tag="10")]
+    #[prost(string, tag = "10")]
     pub original_path: ::prost::alloc::string::String,
     /// Size of the HTTP request headers in bytes.
     ///
     /// This value is captured from the OSI layer 7 perspective, i.e. it does not
     /// include overhead from framing or encoding at other networking layers.
-    #[prost(uint64, tag="11")]
+    #[prost(uint64, tag = "11")]
     pub request_headers_bytes: u64,
     /// Size of the HTTP request body in bytes.
     ///
     /// This value is captured from the OSI layer 7 perspective, i.e. it does not
     /// include overhead from framing or encoding at other networking layers.
-    #[prost(uint64, tag="12")]
+    #[prost(uint64, tag = "12")]
     pub request_body_bytes: u64,
     /// Map of additional headers that have been configured to be logged.
-    #[prost(map="string, string", tag="13")]
-    pub request_headers: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "13")]
+    pub request_headers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpResponseProperties {
     /// The HTTP response code returned by Envoy.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub response_code: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Size of the HTTP response headers in bytes.
     ///
     /// This value is captured from the OSI layer 7 perspective, i.e. it does not
     /// include overhead from framing or encoding at other networking layers.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub response_headers_bytes: u64,
     /// Size of the HTTP response body in bytes.
     ///
     /// This value is captured from the OSI layer 7 perspective, i.e. it does not
     /// include overhead from framing or encoding at other networking layers.
-    #[prost(uint64, tag="3")]
+    #[prost(uint64, tag = "3")]
     pub response_body_bytes: u64,
     /// Map of additional headers configured to be logged.
-    #[prost(map="string, string", tag="4")]
-    pub response_headers: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "4")]
+    pub response_headers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// Map of trailers configured to be logged.
-    #[prost(map="string, string", tag="5")]
-    pub response_trailers: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub response_trailers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// The HTTP response code details.
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub response_code_details: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.data.accesslog.v2` package
@@ -1781,4 +1877,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x07, 0x02, 0x05, 0x03, 0x12, 0x04, 0xf9, 0x02, 0x21, 0x22, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.data.accesslog.v2.serde.rs");
 // @@protoc_insertion_point(module)

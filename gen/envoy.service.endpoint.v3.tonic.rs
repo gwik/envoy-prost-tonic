@@ -158,10 +158,10 @@ pub mod endpoint_discovery_service_client {
 pub mod endpoint_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with EndpointDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with EndpointDiscoveryServiceServer.
     #[async_trait]
     pub trait EndpointDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamEndpoints method.
+        /// Server streaming response type for the StreamEndpoints method.
         type StreamEndpointsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,
@@ -176,7 +176,7 @@ pub mod endpoint_discovery_service_server {
                 tonic::Streaming<super::super::super::discovery::v3::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamEndpointsStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaEndpoints method.
+        /// Server streaming response type for the DeltaEndpoints method.
         type DeltaEndpointsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,
@@ -543,10 +543,10 @@ pub mod locality_endpoint_discovery_service_client {
 pub mod locality_endpoint_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with LocalityEndpointDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with LocalityEndpointDiscoveryServiceServer.
     #[async_trait]
     pub trait LocalityEndpointDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaLocalityEndpoints method.
+        /// Server streaming response type for the DeltaLocalityEndpoints method.
         type DeltaLocalityEndpointsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,

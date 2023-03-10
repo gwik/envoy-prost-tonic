@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Custom header original IP detection extension]
-
 /// This extension allows for the original downstream remote IP to be detected
 /// by reading the value from a configured header name. If the value is successfully parsed
 /// as an IP, it'll be treated as the effective downstream remote address and seen as such
@@ -10,24 +8,27 @@
 /// to detect the remote IP.
 ///
 /// [#extension: envoy.http.original_ip_detection.custom_header]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomHeaderConfig {
     /// The header name containing the original downstream remote address, if present.
     ///
     /// Note: in the case of a multi-valued header, only the first value is tried and the rest are ignored.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub header_name: ::prost::alloc::string::String,
     /// If set to true, the extension could decide that the detected address should be treated as
     /// trusted by the HCM. If the address is considered :ref:`trusted<config_http_conn_man_headers_x-forwarded-for_trusted_client_address>`,
     /// it might be used as input to determine if the request is internal (among other things).
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub allow_extension_to_set_address_as_trusted: bool,
     /// If this is set, the request will be rejected when detection fails using it as the HTTP response status.
     ///
     /// .. note::
     ///    If this is set to < 400 or > 511, the default status 403 will be used instead.
-    #[prost(message, optional, tag="3")]
-    pub reject_with_status: ::core::option::Option<super::super::super::super::super::r#type::v3::HttpStatus>,
+    #[prost(message, optional, tag = "3")]
+    pub reject_with_status: ::core::option::Option<
+        super::super::super::super::super::r#type::v3::HttpStatus,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.http.original_ip_detection.custom_header.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -188,4 +189,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x02, 0x01, 0x12, 0x03, 0x2a, 0x15, 0x27, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x02, 0x03, 0x12, 0x03, 0x2a, 0x2a, 0x2b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.http.original_ip_detection.custom_header.v3.serde.rs");
 // @@protoc_insertion_point(module)

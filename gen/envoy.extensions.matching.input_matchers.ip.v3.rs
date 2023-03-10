@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: IP matcher]
-// [#extension: envoy.matching.matchers.ip]
-
 /// This input matcher matches IPv4 or IPv6 addresses against a list of CIDR
 /// ranges. It returns true if and only if the input IP belongs to at least one
 /// of these CIDR ranges. Internally, it uses a Level-Compressed trie, as
@@ -9,11 +6,14 @@
 /// <<https://www.nada.kth.se/~snilsson/publications/IP-address-lookup-using-LC-tries/>`_>
 /// by S. Nilsson and G. Karlsson. For "big" lists of IPs, this matcher is more
 /// efficient than multiple single IP matcher, that would have a linear cost.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Ip {
     /// Match if the IP belongs to any of these CIDR ranges.
-    #[prost(message, repeated, tag="1")]
-    pub cidr_ranges: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::CidrRange>,
+    #[prost(message, repeated, tag = "1")]
+    pub cidr_ranges: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::CidrRange,
+    >,
     /// The human readable prefix to use when emitting statistics for the IP input
     /// matcher. Names in the table below are concatenated to this prefix.
     ///
@@ -22,7 +22,7 @@ pub struct Ip {
     ///     :widths: 1, 1, 2
     ///
     ///     ip_parsing_failed, Counter, Total number of IP addresses the matcher was unable to parse
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub stat_prefix: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.matching.input_matchers.ip.v3` package
@@ -145,4 +145,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x25, 0x1a, 0x40, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.matching.input_matchers.ip.v3.serde.rs");
 // @@protoc_insertion_point(module)

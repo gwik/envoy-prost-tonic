@@ -1,10 +1,9 @@
 // @generated
-// [#protodoc-title: Percent]
-
 /// Identifies a percentage, in the range [0.0, 100.0].
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Percent {
-    #[prost(double, tag="1")]
+    #[prost(double, tag = "1")]
     pub value: f64,
 }
 /// A fractional percentage is used in cases in which for performance reasons performing floating
@@ -13,20 +12,31 @@ pub struct Percent {
 ///
 /// * **Example**: 1/100 = 1%.
 /// * **Example**: 3/10000 = 0.03%.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FractionalPercent {
     /// Specifies the numerator. Defaults to 0.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub numerator: u32,
     /// Specifies the denominator. If the denominator specified is less than the numerator, the final
     /// fractional percentage is capped at 1 (100%).
-    #[prost(enumeration="fractional_percent::DenominatorType", tag="2")]
+    #[prost(enumeration = "fractional_percent::DenominatorType", tag = "2")]
     pub denominator: i32,
 }
 /// Nested message and enum types in `FractionalPercent`.
 pub mod fractional_percent {
     /// Fraction percentages support several fixed denominator values.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DenominatorType {
         /// 100.
@@ -54,24 +64,30 @@ pub mod fractional_percent {
                 DenominatorType::Million => "MILLION",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "HUNDRED" => Some(Self::Hundred),
+                "TEN_THOUSAND" => Some(Self::TenThousand),
+                "MILLION" => Some(Self::Million),
+                _ => None,
+            }
+        }
     }
 }
-// [#protodoc-title: Semantic Version]
-
 /// Envoy uses SemVer (<https://semver.org/>). Major/minor versions indicate
 /// expected behaviors and APIs, the patch version field is used only
 /// for security fixes and can be generally ignored.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SemanticVersion {
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub major_number: u32,
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub minor_number: u32,
-    #[prost(uint32, tag="3")]
+    #[prost(uint32, tag = "3")]
     pub patch: u32,
 }
-// [#protodoc-title: HTTP]
-
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum CodecClientType {
@@ -94,51 +110,60 @@ impl CodecClientType {
             CodecClientType::Http3 => "HTTP3",
         }
     }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "HTTP1" => Some(Self::Http1),
+            "HTTP2" => Some(Self::Http2),
+            "HTTP3" => Some(Self::Http3),
+            _ => None,
+        }
+    }
 }
-// [#protodoc-title: Range]
-
 /// Specifies the int64 start and end of the range using half-open interval semantics [start,
 /// end).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Int64Range {
     /// start of the range (inclusive)
-    #[prost(int64, tag="1")]
+    #[prost(int64, tag = "1")]
     pub start: i64,
     /// end of the range (exclusive)
-    #[prost(int64, tag="2")]
+    #[prost(int64, tag = "2")]
     pub end: i64,
 }
 /// Specifies the int32 start and end of the range using half-open interval semantics [start,
 /// end).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Int32Range {
     /// start of the range (inclusive)
-    #[prost(int32, tag="1")]
+    #[prost(int32, tag = "1")]
     pub start: i32,
     /// end of the range (exclusive)
-    #[prost(int32, tag="2")]
+    #[prost(int32, tag = "2")]
     pub end: i32,
 }
 /// Specifies the double start and end of the range using half-open interval semantics [start,
 /// end).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DoubleRange {
     /// start of the range (inclusive)
-    #[prost(double, tag="1")]
+    #[prost(double, tag = "1")]
     pub start: f64,
     /// end of the range (exclusive)
-    #[prost(double, tag="2")]
+    #[prost(double, tag = "2")]
     pub end: f64,
 }
 /// HTTP status.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpStatus {
     /// Supplies HTTP response code.
-    #[prost(enumeration="StatusCode", tag="1")]
+    #[prost(enumeration = "StatusCode", tag = "1")]
     pub code: i32,
 }
-// [#protodoc-title: HTTP status codes]
-
 /// HTTP response codes supported in Envoy.
 /// For more details: <https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml>
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -270,44 +295,106 @@ impl StatusCode {
             StatusCode::NetworkAuthenticationRequired => "NetworkAuthenticationRequired",
         }
     }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "Empty" => Some(Self::Empty),
+            "Continue" => Some(Self::Continue),
+            "OK" => Some(Self::Ok),
+            "Created" => Some(Self::Created),
+            "Accepted" => Some(Self::Accepted),
+            "NonAuthoritativeInformation" => Some(Self::NonAuthoritativeInformation),
+            "NoContent" => Some(Self::NoContent),
+            "ResetContent" => Some(Self::ResetContent),
+            "PartialContent" => Some(Self::PartialContent),
+            "MultiStatus" => Some(Self::MultiStatus),
+            "AlreadyReported" => Some(Self::AlreadyReported),
+            "IMUsed" => Some(Self::ImUsed),
+            "MultipleChoices" => Some(Self::MultipleChoices),
+            "MovedPermanently" => Some(Self::MovedPermanently),
+            "Found" => Some(Self::Found),
+            "SeeOther" => Some(Self::SeeOther),
+            "NotModified" => Some(Self::NotModified),
+            "UseProxy" => Some(Self::UseProxy),
+            "TemporaryRedirect" => Some(Self::TemporaryRedirect),
+            "PermanentRedirect" => Some(Self::PermanentRedirect),
+            "BadRequest" => Some(Self::BadRequest),
+            "Unauthorized" => Some(Self::Unauthorized),
+            "PaymentRequired" => Some(Self::PaymentRequired),
+            "Forbidden" => Some(Self::Forbidden),
+            "NotFound" => Some(Self::NotFound),
+            "MethodNotAllowed" => Some(Self::MethodNotAllowed),
+            "NotAcceptable" => Some(Self::NotAcceptable),
+            "ProxyAuthenticationRequired" => Some(Self::ProxyAuthenticationRequired),
+            "RequestTimeout" => Some(Self::RequestTimeout),
+            "Conflict" => Some(Self::Conflict),
+            "Gone" => Some(Self::Gone),
+            "LengthRequired" => Some(Self::LengthRequired),
+            "PreconditionFailed" => Some(Self::PreconditionFailed),
+            "PayloadTooLarge" => Some(Self::PayloadTooLarge),
+            "URITooLong" => Some(Self::UriTooLong),
+            "UnsupportedMediaType" => Some(Self::UnsupportedMediaType),
+            "RangeNotSatisfiable" => Some(Self::RangeNotSatisfiable),
+            "ExpectationFailed" => Some(Self::ExpectationFailed),
+            "MisdirectedRequest" => Some(Self::MisdirectedRequest),
+            "UnprocessableEntity" => Some(Self::UnprocessableEntity),
+            "Locked" => Some(Self::Locked),
+            "FailedDependency" => Some(Self::FailedDependency),
+            "UpgradeRequired" => Some(Self::UpgradeRequired),
+            "PreconditionRequired" => Some(Self::PreconditionRequired),
+            "TooManyRequests" => Some(Self::TooManyRequests),
+            "RequestHeaderFieldsTooLarge" => Some(Self::RequestHeaderFieldsTooLarge),
+            "InternalServerError" => Some(Self::InternalServerError),
+            "NotImplemented" => Some(Self::NotImplemented),
+            "BadGateway" => Some(Self::BadGateway),
+            "ServiceUnavailable" => Some(Self::ServiceUnavailable),
+            "GatewayTimeout" => Some(Self::GatewayTimeout),
+            "HTTPVersionNotSupported" => Some(Self::HttpVersionNotSupported),
+            "VariantAlsoNegotiates" => Some(Self::VariantAlsoNegotiates),
+            "InsufficientStorage" => Some(Self::InsufficientStorage),
+            "LoopDetected" => Some(Self::LoopDetected),
+            "NotExtended" => Some(Self::NotExtended),
+            "NetworkAuthenticationRequired" => Some(Self::NetworkAuthenticationRequired),
+            _ => None,
+        }
+    }
 }
-// [#protodoc-title: Token bucket]
-
 /// Configures a token bucket, typically used for rate limiting.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TokenBucket {
     /// The maximum tokens that the bucket can hold. This is also the number of tokens that the bucket
     /// initially contains.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub max_tokens: u32,
     /// The number of tokens added to the bucket during each fill interval. If not specified, defaults
     /// to a single token.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub tokens_per_fill: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The fill interval that tokens are added to the bucket. During each fill interval
     /// `tokens_per_fill` are added to the bucket. The bucket will never contain more than
     /// `max_tokens` tokens.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub fill_interval: ::core::option::Option<::pbjson_types::Duration>,
 }
-// [#protodoc-title: Hash Policy]
-
 /// Specifies the hash policy
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HashPolicy {
-    #[prost(oneof="hash_policy::PolicySpecifier", tags="1")]
+    #[prost(oneof = "hash_policy::PolicySpecifier", tags = "1")]
     pub policy_specifier: ::core::option::Option<hash_policy::PolicySpecifier>,
 }
 /// Nested message and enum types in `HashPolicy`.
 pub mod hash_policy {
     /// The source IP will be used to compute the hash used by hash-based load balancing
     /// algorithms.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SourceIp {
-    }
+    pub struct SourceIp {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum PolicySpecifier {
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         SourceIp(SourceIp),
     }
 }
@@ -1050,4 +1137,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x00, 0x01, 0x12, 0x03, 0x19, 0x0d, 0x16, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x00, 0x03, 0x12, 0x03, 0x19, 0x19, 0x1a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.type.serde.rs");
 // @@protoc_insertion_point(module)

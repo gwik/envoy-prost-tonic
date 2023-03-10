@@ -1,16 +1,17 @@
 // @generated
-// [#protodoc-title: Dynamic forward proxy cluster configuration]
-
 /// Configuration for the dynamic forward proxy cluster. See the :ref:`architecture overview
 /// <arch_overview_http_dynamic_forward_proxy>` for more information.
 /// [#extension: envoy.clusters.dynamic_forward_proxy]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterConfig {
     /// The DNS cache configuration that the cluster will attach to. Note this configuration must
     /// match that of associated :ref:`dynamic forward proxy HTTP filter configuration
     /// <envoy_api_field_config.filter.http.dynamic_forward_proxy.v2alpha.FilterConfig.dns_cache_config>`.
-    #[prost(message, optional, tag="1")]
-    pub dns_cache_config: ::core::option::Option<super::super::super::common::dynamic_forward_proxy::v2alpha::DnsCacheConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub dns_cache_config: ::core::option::Option<
+        super::super::super::common::dynamic_forward_proxy::v2alpha::DnsCacheConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.cluster.dynamic_forward_proxy.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -112,4 +113,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x00, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x1c, 0x07, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.cluster.dynamic_forward_proxy.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

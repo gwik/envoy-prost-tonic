@@ -6,43 +6,51 @@
 /// are provided, the server will limit on *ALL* of them and return an OVER_LIMIT response if any
 /// of them are over limit. This enables more complex application level rate limiting scenarios
 /// if desired.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitRequest {
     /// All rate limit requests must specify a domain. This enables the configuration to be per
     /// application without fear of overlap. E.g., "envoy".
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub domain: ::prost::alloc::string::String,
     /// All rate limit requests must specify at least one RateLimitDescriptor. Each descriptor is
     /// processed by the service (see below). If any of the descriptors are over limit, the entire
     /// request is considered to be over limit.
-    #[prost(message, repeated, tag="2")]
-    pub descriptors: ::prost::alloc::vec::Vec<super::super::super::extensions::common::ratelimit::v3::RateLimitDescriptor>,
+    #[prost(message, repeated, tag = "2")]
+    pub descriptors: ::prost::alloc::vec::Vec<
+        super::super::super::extensions::common::ratelimit::v3::RateLimitDescriptor,
+    >,
     /// Rate limit requests can optionally specify the number of hits a request adds to the matched
     /// limit. If the value is not set in the message, a request increases the matched limit by 1.
-    #[prost(uint32, tag="3")]
+    #[prost(uint32, tag = "3")]
     pub hits_addend: u32,
 }
 /// A response from a ShouldRateLimit call.
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitResponse {
     /// The overall response code which takes into account all of the descriptors that were passed
     /// in the RateLimitRequest message.
-    #[prost(enumeration="rate_limit_response::Code", tag="1")]
+    #[prost(enumeration = "rate_limit_response::Code", tag = "1")]
     pub overall_code: i32,
     /// A list of DescriptorStatus messages which matches the length of the descriptor list passed
     /// in the RateLimitRequest. This can be used by the caller to determine which individual
     /// descriptors failed and/or what the currently configured limits are for all of them.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub statuses: ::prost::alloc::vec::Vec<rate_limit_response::DescriptorStatus>,
     /// A list of headers to add to the response
-    #[prost(message, repeated, tag="3")]
-    pub response_headers_to_add: ::prost::alloc::vec::Vec<super::super::super::config::core::v3::HeaderValue>,
+    #[prost(message, repeated, tag = "3")]
+    pub response_headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::config::core::v3::HeaderValue,
+    >,
     /// A list of headers to add to the request when forwarded
-    #[prost(message, repeated, tag="4")]
-    pub request_headers_to_add: ::prost::alloc::vec::Vec<super::super::super::config::core::v3::HeaderValue>,
+    #[prost(message, repeated, tag = "4")]
+    pub request_headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::config::core::v3::HeaderValue,
+    >,
     /// A response body to send to the downstream client when the response code is not OK.
-    #[prost(bytes="bytes", tag="5")]
+    #[prost(bytes = "bytes", tag = "5")]
     pub raw_body: ::prost::bytes::Bytes,
     /// Optional response metadata that will be emitted as dynamic metadata to be consumed by the next
     /// filter. This metadata lives in a namespace specified by the canonical name of extension filter
@@ -51,7 +59,7 @@ pub struct RateLimitResponse {
     /// - :ref:`envoy.filters.http.ratelimit <config_http_filters_ratelimit_dynamic_metadata>` for HTTP filter.
     /// - :ref:`envoy.filters.network.ratelimit <config_network_filters_ratelimit_dynamic_metadata>` for network filter.
     /// - :ref:`envoy.filters.thrift.rate_limit <config_thrift_filters_rate_limit_dynamic_metadata>` for Thrift filter.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub dynamic_metadata: ::core::option::Option<::pbjson_types::Struct>,
     /// Quota is available for a request if its entire descriptor set has cached quota available.
     /// This is a union of all descriptors in the descriptor set. Clients can use the quota for future matches if and only if the descriptor set matches what was sent in the request that originated this response.
@@ -64,29 +72,40 @@ pub struct RateLimitResponse {
     /// If there is not sufficient quota and the cached entry exists for a RLS descriptor set is out-of-quota but not expired,
     /// the request will be treated as OVER_LIMIT.
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub quota: ::core::option::Option<rate_limit_response::Quota>,
 }
 /// Nested message and enum types in `RateLimitResponse`.
 pub mod rate_limit_response {
     /// Defines an actual rate limit in terms of requests per unit of time and the unit itself.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RateLimit {
         /// A name or description of this limit.
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         pub name: ::prost::alloc::string::String,
         /// The number of requests per unit of time.
-        #[prost(uint32, tag="1")]
+        #[prost(uint32, tag = "1")]
         pub requests_per_unit: u32,
         /// The unit of time.
-        #[prost(enumeration="rate_limit::Unit", tag="2")]
+        #[prost(enumeration = "rate_limit::Unit", tag = "2")]
         pub unit: i32,
     }
     /// Nested message and enum types in `RateLimit`.
     pub mod rate_limit {
         /// Identifies the unit of of time for rate limit.
         /// [#comment: replace by envoy/type/v3/ratelimit_unit.proto in v4]
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum Unit {
             /// The time unit is not known.
@@ -120,6 +139,19 @@ pub mod rate_limit_response {
                     Unit::Year => "YEAR",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "UNKNOWN" => Some(Self::Unknown),
+                    "SECOND" => Some(Self::Second),
+                    "MINUTE" => Some(Self::Minute),
+                    "HOUR" => Some(Self::Hour),
+                    "DAY" => Some(Self::Day),
+                    "MONTH" => Some(Self::Month),
+                    "YEAR" => Some(Self::Year),
+                    _ => None,
+                }
+            }
         }
     }
     /// Cacheable quota for responses.
@@ -132,10 +164,11 @@ pub mod rate_limit_response {
     /// The implementation may choose to preemptively query the rate limit server for more quota on or
     /// before expiration or before the available quota runs out.
     /// \[#not-implemented-hide:\]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Quota {
         /// Number of matching requests granted in quota. Must be 1 or more.
-        #[prost(uint32, tag="1")]
+        #[prost(uint32, tag = "1")]
         pub requests: u32,
         /// The unique id that is associated with each Quota either at individual descriptor level or whole descriptor set level.
         ///
@@ -144,34 +177,36 @@ pub mod rate_limit_response {
         /// Thus, the client will use this id information (returned from RLS server) to correctly correlate the multiple descriptors/descriptor sets that have been granted with same quota (i.e., share the same quota among multiple descriptors or descriptor sets.)
         ///
         /// If id is empty, this id field will be ignored. If quota for the same id changes (e.g. due to configuration update), the old quota will be overridden by the new one. Shared quotas referenced by ID will still adhere to expiration after `valid_until`.
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         pub id: ::prost::alloc::string::String,
-        #[prost(oneof="quota::ExpirationSpecifier", tags="2")]
+        #[prost(oneof = "quota::ExpirationSpecifier", tags = "2")]
         pub expiration_specifier: ::core::option::Option<quota::ExpirationSpecifier>,
     }
     /// Nested message and enum types in `Quota`.
     pub mod quota {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum ExpirationSpecifier {
             /// Point in time at which the quota expires.
-            #[prost(message, tag="2")]
+            #[prost(message, tag = "2")]
             ValidUntil(::pbjson_types::Timestamp),
         }
     }
     /// [#next-free-field: 6]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DescriptorStatus {
         /// The response code for an individual descriptor.
-        #[prost(enumeration="Code", tag="1")]
+        #[prost(enumeration = "Code", tag = "1")]
         pub code: i32,
         /// The current limit as configured by the server. Useful for debugging, etc.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub current_limit: ::core::option::Option<RateLimit>,
         /// The limit remaining in the current time unit.
-        #[prost(uint32, tag="3")]
+        #[prost(uint32, tag = "3")]
         pub limit_remaining: u32,
         /// Duration until reset of the current limit window.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub duration_until_reset: ::core::option::Option<::pbjson_types::Duration>,
         /// Quota is available for a request if its descriptor set has cached quota available for all
         /// descriptors.
@@ -197,10 +232,20 @@ pub mod rate_limit_response {
         ///     the descriptors, then the request admission is determined by the
         ///     :ref:`overall_code <envoy_v3_api_field_service.ratelimit.v3.RateLimitResponse.overall_code>`.
         /// \[#not-implemented-hide:\]
-        #[prost(message, optional, tag="5")]
+        #[prost(message, optional, tag = "5")]
         pub quota: ::core::option::Option<Quota>,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         /// The response code is not known.
@@ -220,6 +265,15 @@ pub mod rate_limit_response {
                 Code::Unknown => "UNKNOWN",
                 Code::Ok => "OK",
                 Code::OverLimit => "OVER_LIMIT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "OK" => Some(Self::Ok),
+                "OVER_LIMIT" => Some(Self::OverLimit),
+                _ => None,
             }
         }
     }
@@ -1017,5 +1071,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0xde, 0x01, 0x08, 0x0d, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x06, 0x03, 0x12, 0x04, 0xde,
     0x01, 0x10, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.ratelimit.v3.serde.rs");
 include!("envoy.service.ratelimit.v3.tonic.rs");
 // @@protoc_insertion_point(module)

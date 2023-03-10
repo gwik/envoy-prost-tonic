@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Cookie based stateful session extension]
-
 /// This extension allows the session state to be tracked via cookies.
 ///
 /// This extension first encodes the address of the upstream host selected by the load balancer
@@ -23,11 +21,14 @@
 /// update the cookie (via the ``set-cookie`` response header).
 ///
 /// [#extension: envoy.http.stateful_session.cookie]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CookieBasedSessionState {
     /// The cookie configuration used to track session state.
-    #[prost(message, optional, tag="1")]
-    pub cookie: ::core::option::Option<super::super::super::super::super::r#type::http::v3::Cookie>,
+    #[prost(message, optional, tag = "1")]
+    pub cookie: ::core::option::Option<
+        super::super::super::super::super::r#type::http::v3::Cookie,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.http.stateful_session.cookie.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -166,4 +167,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x29, 0x22, 0x4d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.http.stateful_session.cookie.v3.serde.rs");
 // @@protoc_insertion_point(module)

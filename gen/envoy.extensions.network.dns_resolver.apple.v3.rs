@@ -1,8 +1,6 @@
 // @generated
-// [#protodoc-title: apple DNS resolver]
-// [#extension: envoy.network.dns_resolver.apple]
-
 /// Configuration for apple DNS resolver.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppleDnsResolverConfig {
     /// The resolver will avoid the system's heuristics to only return
@@ -12,7 +10,7 @@ pub struct AppleDnsResolverConfig {
     /// This should remain false in the vast majority of cases, but may be
     /// useful when performing custom filtering of addresses, such as with
     /// Happy Eyeballs.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub include_unroutable_families: bool,
 }
 /// Encoded file descriptor set for the `envoy.extensions.network.dns_resolver.apple.v3` package
@@ -95,4 +93,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x07, 0x22, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x18, 0x25, 0x26,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.network.dns_resolver.apple.v3.serde.rs");
 // @@protoc_insertion_point(module)

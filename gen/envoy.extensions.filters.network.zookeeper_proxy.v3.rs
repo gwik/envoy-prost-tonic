@@ -1,17 +1,14 @@
 // @generated
-// [#protodoc-title: ZooKeeper proxy]
-// ZooKeeper Proxy :ref:`configuration overview <config_network_filters_zookeeper_proxy>`.
-// [#extension: envoy.filters.network.zookeeper_proxy]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ZooKeeperProxy {
     /// The human readable prefix to use when emitting :ref:`statistics
     /// <config_network_filters_zookeeper_proxy_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// \[#not-implemented-hide:\] The optional path to use for writing ZooKeeper access logs.
     /// If the access log field is empty, access logs will not be written.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub access_log: ::prost::alloc::string::String,
     /// Messages — requests, responses and events — that are bigger than this value will
     /// be ignored. If it is not set, the default value is 1Mb.
@@ -21,7 +18,7 @@ pub struct ZooKeeperProxy {
     /// <https://zookeeper.apache.org/doc/r3.4.10/zookeeperAdmin.html#Unsafe+Options>
     ///
     /// if that is set. If it isn't, ZooKeeper's default is also 1Mb.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub max_packet_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.zookeeper_proxy.v3` package
@@ -152,4 +149,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x28, 0x31, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.zookeeper_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

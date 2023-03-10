@@ -1,56 +1,59 @@
 // @generated
-// [#protodoc-title: Kafka Mesh]
-// Kafka Mesh :ref:`configuration overview <config_network_filters_kafka_mesh>`.
-// [#extension: envoy.filters.network.kafka_mesh]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KafkaMesh {
     /// Envoy's host that's advertised to clients.
     /// Has the same meaning as corresponding Kafka broker properties.
     /// Usually equal to filter chain's listener config, but needs to be reachable by clients
     /// (so 0.0.0.0 will not work).
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub advertised_host: ::prost::alloc::string::String,
     /// Envoy's port that's advertised to clients.
-    #[prost(int32, tag="2")]
+    #[prost(int32, tag = "2")]
     pub advertised_port: i32,
     /// Upstream clusters this filter will connect to.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub upstream_clusters: ::prost::alloc::vec::Vec<KafkaClusterDefinition>,
     /// Rules that will decide which cluster gets which request.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub forwarding_rules: ::prost::alloc::vec::Vec<ForwardingRule>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KafkaClusterDefinition {
     /// Cluster name.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cluster_name: ::prost::alloc::string::String,
     /// Kafka cluster address.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub bootstrap_servers: ::prost::alloc::string::String,
     /// Default number of partitions present in this cluster.
     /// This is especially important for clients that do not specify partition in their payloads and depend on this value for hashing.
-    #[prost(int32, tag="3")]
+    #[prost(int32, tag = "3")]
     pub partition_count: i32,
     /// Custom configuration passed to Kafka producer.
-    #[prost(map="string, string", tag="4")]
-    pub producer_config: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "4")]
+    pub producer_config: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ForwardingRule {
     /// Cluster name.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub target_cluster: ::prost::alloc::string::String,
-    #[prost(oneof="forwarding_rule::Trigger", tags="2")]
+    #[prost(oneof = "forwarding_rule::Trigger", tags = "2")]
     pub trigger: ::core::option::Option<forwarding_rule::Trigger>,
 }
 /// Nested message and enum types in `ForwardingRule`.
 pub mod forwarding_rule {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Trigger {
         /// Intended place for future types of forwarding rules.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         TopicPrefix(::prost::alloc::string::String),
     }
 }
@@ -257,4 +260,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x17, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x02, 0x02, 0x01, 0x03, 0x12, 0x03, 0x3a, 0x1a, 0x1b, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.kafka_mesh.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,20 +1,21 @@
 // @generated
-// [#protodoc-title: Dynamic forward proxy cluster configuration]
-
 /// Configuration for the dynamic forward proxy cluster. See the :ref:`architecture overview
 /// <arch_overview_http_dynamic_forward_proxy>` for more information.
 /// [#extension: envoy.clusters.dynamic_forward_proxy]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterConfig {
     /// The DNS cache configuration that the cluster will attach to. Note this configuration must
     /// match that of associated :ref:`dynamic forward proxy HTTP filter configuration
     /// <envoy_v3_api_field_extensions.filters.http.dynamic_forward_proxy.v3.FilterConfig.dns_cache_config>`.
-    #[prost(message, optional, tag="1")]
-    pub dns_cache_config: ::core::option::Option<super::super::super::common::dynamic_forward_proxy::v3::DnsCacheConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub dns_cache_config: ::core::option::Option<
+        super::super::super::common::dynamic_forward_proxy::v3::DnsCacheConfig,
+    >,
     /// If true allow the cluster configuration to disable the auto_sni and auto_san_validation options
     /// in the :ref:`cluster's upstream_http_protocol_options
     /// <envoy_v3_api_field_config.cluster.v3.Cluster.upstream_http_protocol_options>`
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub allow_insecure_cluster_options: bool,
     /// If true allow HTTP/2 and HTTP/3 connections to be reused for requests to different
     /// origins than the connection was initially created for. This will only happen when the
@@ -34,7 +35,7 @@ pub struct ClusterConfig {
     ///    selected by Envoy. See the section `Connection Reuse in RFC 7540
     ///    <<https://datatracker.ietf.org/doc/html/rfc7540#section-9.1.1>`_>
     ///
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub allow_coalesced_connections: bool,
 }
 /// Encoded file descriptor set for the `envoy.extensions.clusters.dynamic_forward_proxy.v3` package
@@ -236,4 +237,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x12, 0x03, 0x36, 0x07, 0x22, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12,
     0x03, 0x36, 0x25, 0x26, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.clusters.dynamic_forward_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

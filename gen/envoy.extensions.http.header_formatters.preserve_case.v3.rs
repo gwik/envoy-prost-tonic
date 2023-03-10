@@ -1,24 +1,35 @@
 // @generated
-// [#protodoc-title: Preserve case header formatter]
-// [#extension: envoy.http.stateful_header_formatters.preserve_case]
-
 /// Configuration for the preserve case header formatter.
 /// See the :ref:`header casing <config_http_conn_man_header_casing>` configuration guide for more
 /// information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PreserveCaseFormatterConfig {
     /// Allows forwarding reason phrase text.
     /// This is off by default, and a standard reason phrase is used for a corresponding HTTP response code.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub forward_reason_phrase: bool,
     /// Type of formatter to use on headers which are added by Envoy (which are lower case by default).
     /// The default type is DEFAULT, use LowerCase on Envoy headers.
-    #[prost(enumeration="preserve_case_formatter_config::FormatterTypeOnEnvoyHeaders", tag="2")]
+    #[prost(
+        enumeration = "preserve_case_formatter_config::FormatterTypeOnEnvoyHeaders",
+        tag = "2"
+    )]
     pub formatter_type_on_envoy_headers: i32,
 }
 /// Nested message and enum types in `PreserveCaseFormatterConfig`.
 pub mod preserve_case_formatter_config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum FormatterTypeOnEnvoyHeaders {
         /// Use LowerCase on Envoy added headers.
@@ -37,6 +48,14 @@ pub mod preserve_case_formatter_config {
             match self {
                 FormatterTypeOnEnvoyHeaders::Default => "DEFAULT",
                 FormatterTypeOnEnvoyHeaders::ProperCase => "PROPER_CASE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT" => Some(Self::Default),
+                "PROPER_CASE" => Some(Self::ProperCase),
+                _ => None,
             }
         }
     }
@@ -173,4 +192,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x25, 0x06, 0x34, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08,
     0x10, 0x12, 0x03, 0x25, 0x07, 0x33, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.http.header_formatters.preserve_case.v3.serde.rs");
 // @@protoc_insertion_point(module)

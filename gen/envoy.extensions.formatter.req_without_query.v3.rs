@@ -1,23 +1,8 @@
 // @generated
-// [#protodoc-title: Formatter extension for printing request without query string]
-// [#extension: envoy.formatter.req_without_query]
-
-// ReqWithoutQuery formatter extension implements REQ_WITHOUT_QUERY command operator that
-// works the same way as :ref:`REQ <config_access_log_format_req>` except that it will
-// remove the query string. It is used to avoid logging any sensitive information into
-// the access log.
-// See :ref:`here <config_access_log>` for more information on access log configuration.
-
-// %REQ_WITHOUT_QUERY(X?Y):Z%
-//    An HTTP request header where X is the main HTTP header, Y is the alternative one, and Z is an
-//    optional parameter denoting string truncation up to Z characters long. The value is taken from
-//    the HTTP request header named X first and if it's not set, then request header Y is used. If
-//    none of the headers are present '-' symbol will be in the log.
-
 /// Configuration for the request without query formatter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReqWithoutQuery {
-}
+pub struct ReqWithoutQuery {}
 /// Encoded file descriptor set for the `envoy.extensions.formatter.req_without_query.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xe5, 0x0b, 0x0a, 0x47, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -116,4 +101,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x6f, 0x67, 0x2e, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x1c, 0x08, 0x17,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.formatter.req_without_query.v3.serde.rs");
 // @@protoc_insertion_point(module)

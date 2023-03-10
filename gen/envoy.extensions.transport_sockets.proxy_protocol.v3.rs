@@ -1,16 +1,18 @@
 // @generated
-// [#protodoc-title: Upstream Proxy Protocol]
-// [#extension: envoy.transport_sockets.upstream_proxy_protocol]
-
 /// Configuration for PROXY protocol socket
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProxyProtocolUpstreamTransport {
     /// The PROXY protocol settings
-    #[prost(message, optional, tag="1")]
-    pub config: ::core::option::Option<super::super::super::super::config::core::v3::ProxyProtocolConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub config: ::core::option::Option<
+        super::super::super::super::config::core::v3::ProxyProtocolConfig,
+    >,
     /// The underlying transport socket being wrapped.
-    #[prost(message, optional, tag="2")]
-    pub transport_socket: ::core::option::Option<super::super::super::super::config::core::v3::TransportSocket>,
+    #[prost(message, optional, tag = "2")]
+    pub transport_socket: ::core::option::Option<
+        super::super::super::super::config::core::v3::TransportSocket,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.proxy_protocol.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -95,4 +97,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x19, 0x36, 0x63, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x01, 0x08, 0xaf,
     0x08, 0x11, 0x12, 0x03, 0x19, 0x37, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.proxy_protocol.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Role Based Access Control (RBAC)]
-
 /// Role Based Access Control (RBAC) provides service-level and method-level access control for a
 /// service. RBAC policies are additive. The policies are examined in order. A request is allowed
 /// once a matching policy is found (suppose the `action` is ALLOW).
@@ -41,22 +39,33 @@
 ///        principals:
 ///          - any: true
 ///
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Rbac {
     /// The action to take if a policy matches. The request is allowed if and only if:
     ///
     ///    * `action` is "ALLOWED" and at least one policy matches
     ///    * `action` is "DENY" and none of the policies match
-    #[prost(enumeration="rbac::Action", tag="1")]
+    #[prost(enumeration = "rbac::Action", tag = "1")]
     pub action: i32,
     /// Maps from policy name to policy. A match occurs when at least one policy matches the request.
-    #[prost(map="string, message", tag="2")]
+    #[prost(map = "string, message", tag = "2")]
     pub policies: ::std::collections::HashMap<::prost::alloc::string::String, Policy>,
 }
 /// Nested message and enum types in `RBAC`.
 pub mod rbac {
     /// Should we do safe-list or block-list style access control?
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Action {
         /// The policies grant access to principals. The rest is denied. This is safe-list style
@@ -77,78 +86,92 @@ pub mod rbac {
                 Action::Deny => "DENY",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ALLOW" => Some(Self::Allow),
+                "DENY" => Some(Self::Deny),
+                _ => None,
+            }
+        }
     }
 }
 /// Policy specifies a role and the principals that are assigned/denied the role. A policy matches if
 /// and only if at least one of its permissions match the action taking place AND at least one of its
 /// principals match the downstream AND the condition is true if specified.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Policy {
     /// Required. The set of permissions that define a role. Each permission is matched with OR
     /// semantics. To match all actions for this policy, a single Permission with the `any` field set
     /// to true should be used.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub permissions: ::prost::alloc::vec::Vec<Permission>,
     /// Required. The set of principals that are assigned/denied the role based on “action”. Each
     /// principal is matched with OR semantics. To match all downstreams for this policy, a single
     /// Principal with the `any` field set to true should be used.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub principals: ::prost::alloc::vec::Vec<Principal>,
     /// An optional symbolic expression specifying an access control
     /// :ref:`condition <arch_overview_condition>`. The condition is combined
     /// with the permissions and the principals as a clause with AND semantics.
-    #[prost(message, optional, tag="3")]
-    pub condition: ::core::option::Option<super::super::super::super::google::api::expr::v1alpha1::Expr>,
+    #[prost(message, optional, tag = "3")]
+    pub condition: ::core::option::Option<
+        super::super::super::super::google::api::expr::v1alpha1::Expr,
+    >,
 }
 /// Permission defines an action (or actions) that a principal can take.
 /// [#next-free-field: 11]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Permission {
-    #[prost(oneof="permission::Rule", tags="1, 2, 3, 4, 10, 5, 6, 7, 8, 9")]
+    #[prost(oneof = "permission::Rule", tags = "1, 2, 3, 4, 10, 5, 6, 7, 8, 9")]
     pub rule: ::core::option::Option<permission::Rule>,
 }
 /// Nested message and enum types in `Permission`.
 pub mod permission {
     /// Used in the `and_rules` and `or_rules` fields in the `rule` oneof. Depending on the context,
     /// each are applied with the associated behavior.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Set {
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub rules: ::prost::alloc::vec::Vec<super::Permission>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Rule {
         /// A set of rules that all must match in order to define the action.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         AndRules(Set),
         /// A set of rules where at least one must match in order to define the action.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         OrRules(Set),
         /// When any is set, it matches any action.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         Any(bool),
         /// A header (or pseudo-header such as :path or :method) on the incoming HTTP request. Only
         /// available for HTTP request.
         /// Note: the pseudo-header :path includes the query and fragment string. Use the `url_path`
         /// field if you want to match the URL path without the query and fragment string.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         Header(super::super::super::super::api::v2::route::HeaderMatcher),
         /// A URL path on the incoming HTTP request. Only available for HTTP.
-        #[prost(message, tag="10")]
+        #[prost(message, tag = "10")]
         UrlPath(super::super::super::super::r#type::matcher::PathMatcher),
         /// A CIDR block that describes the destination IP.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         DestinationIp(super::super::super::super::api::v2::core::CidrRange),
         /// A port number that describes the destination port connecting to.
-        #[prost(uint32, tag="6")]
+        #[prost(uint32, tag = "6")]
         DestinationPort(u32),
         /// Metadata that describes additional information about the action.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         Metadata(super::super::super::super::r#type::matcher::MetadataMatcher),
         /// Negates matching the provided permission. For instance, if the value of `not_rule` would
         /// match, this permission would not match. Conversely, if the value of `not_rule` would not
         /// match, this permission would match.
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         NotRule(::prost::alloc::boxed::Box<super::Permission>),
         /// The request server from the client's connection request. This is
         /// typically TLS SNI.
@@ -169,82 +192,88 @@ pub mod permission {
         ///
         /// Please refer to :ref:`this FAQ entry <faq_how_to_setup_sni>` to learn to
         /// setup SNI.
-        #[prost(message, tag="9")]
+        #[prost(message, tag = "9")]
         RequestedServerName(super::super::super::super::r#type::matcher::StringMatcher),
     }
 }
 /// Principal defines an identity or a group of identities for a downstream subject.
 /// [#next-free-field: 12]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Principal {
-    #[prost(oneof="principal::Identifier", tags="1, 2, 3, 4, 5, 10, 11, 6, 9, 7, 8")]
+    #[prost(oneof = "principal::Identifier", tags = "1, 2, 3, 4, 5, 10, 11, 6, 9, 7, 8")]
     pub identifier: ::core::option::Option<principal::Identifier>,
 }
 /// Nested message and enum types in `Principal`.
 pub mod principal {
     /// Used in the `and_ids` and `or_ids` fields in the `identifier` oneof. Depending on the context,
     /// each are applied with the associated behavior.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Set {
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub ids: ::prost::alloc::vec::Vec<super::Principal>,
     }
     /// Authentication attributes for a downstream.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Authenticated {
         /// The name of the principal. If set, The URI SAN or DNS SAN in that order is used from the
         /// certificate, otherwise the subject field is used. If unset, it applies to any user that is
         /// authenticated.
-        #[prost(message, optional, tag="2")]
-        pub principal_name: ::core::option::Option<super::super::super::super::r#type::matcher::StringMatcher>,
+        #[prost(message, optional, tag = "2")]
+        pub principal_name: ::core::option::Option<
+            super::super::super::super::r#type::matcher::StringMatcher,
+        >,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Identifier {
         /// A set of identifiers that all must match in order to define the downstream.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         AndIds(Set),
         /// A set of identifiers at least one must match in order to define the downstream.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         OrIds(Set),
         /// When any is set, it matches any downstream.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         Any(bool),
         /// Authenticated attributes that identify the downstream.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         Authenticated(Authenticated),
         /// A CIDR block that describes the downstream IP.
         /// This address will honor proxy protocol, but will not honor XFF.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         SourceIp(super::super::super::super::api::v2::core::CidrRange),
         /// A CIDR block that describes the downstream remote/origin address.
         /// Note: This is always the physical peer even if the
         /// :ref:`remote_ip <envoy_api_field_config.rbac.v2.Principal.remote_ip>` is inferred
         /// from for example the x-forwarder-for header, proxy protocol, etc.
-        #[prost(message, tag="10")]
+        #[prost(message, tag = "10")]
         DirectRemoteIp(super::super::super::super::api::v2::core::CidrRange),
         /// A CIDR block that describes the downstream remote/origin address.
         /// Note: This may not be the physical peer and could be different from the
         /// :ref:`direct_remote_ip <envoy_api_field_config.rbac.v2.Principal.direct_remote_ip>`.
         /// E.g, if the remote ip is inferred from for example the x-forwarder-for header,
         /// proxy protocol, etc.
-        #[prost(message, tag="11")]
+        #[prost(message, tag = "11")]
         RemoteIp(super::super::super::super::api::v2::core::CidrRange),
         /// A header (or pseudo-header such as :path or :method) on the incoming HTTP request. Only
         /// available for HTTP request.
         /// Note: the pseudo-header :path includes the query and fragment string. Use the `url_path`
         /// field if you want to match the URL path without the query and fragment string.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         Header(super::super::super::super::api::v2::route::HeaderMatcher),
         /// A URL path on the incoming HTTP request. Only available for HTTP.
-        #[prost(message, tag="9")]
+        #[prost(message, tag = "9")]
         UrlPath(super::super::super::super::r#type::matcher::PathMatcher),
         /// Metadata that describes additional information about the principal.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         Metadata(super::super::super::super::r#type::matcher::MetadataMatcher),
         /// Negates matching the provided principal. For instance, if the value of `not_id` would match,
         /// this principal would not match. Conversely, if the value of `not_id` would not match, this
         /// principal would match.
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         NotId(::prost::alloc::boxed::Box<super::Principal>),
     }
 }
@@ -1027,4 +1056,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0xee, 0x01, 0x0e, 0x14, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x03, 0x02, 0x0a, 0x03, 0x12, 0x04,
     0xee, 0x01, 0x17, 0x18, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.rbac.v2.serde.rs");
 // @@protoc_insertion_point(module)

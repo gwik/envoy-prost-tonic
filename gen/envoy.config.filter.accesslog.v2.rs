@@ -1,6 +1,5 @@
 // @generated
-// [#protodoc-title: Common access log types]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessLog {
     /// The name of the access log implementation to instantiate. The name must
@@ -9,10 +8,10 @@ pub struct AccessLog {
     /// #. "envoy.access_loggers.file"
     /// #. "envoy.access_loggers.http_grpc"
     /// #. "envoy.access_loggers.tcp_grpc"
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter which is used to determine if the access log needs to be written.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub filter: ::core::option::Option<AccessLogFilter>,
     /// Custom configuration that depends on the access log being instantiated. Built-in
     /// configurations include:
@@ -23,7 +22,7 @@ pub struct AccessLog {
     ///     <envoy_api_msg_config.accesslog.v2.HttpGrpcAccessLogConfig>`
     /// #. "envoy.access_loggers.tcp_grpc": :ref:`TcpGrpcAccessLogConfig
     ///     <envoy_api_msg_config.accesslog.v2.TcpGrpcAccessLogConfig>`
-    #[prost(oneof="access_log::ConfigType", tags="3, 4")]
+    #[prost(oneof = "access_log::ConfigType", tags = "3, 4")]
     pub config_type: ::core::option::Option<access_log::ConfigType>,
 }
 /// Nested message and enum types in `AccessLog`.
@@ -37,72 +36,91 @@ pub mod access_log {
     ///     <envoy_api_msg_config.accesslog.v2.HttpGrpcAccessLogConfig>`
     /// #. "envoy.access_loggers.tcp_grpc": :ref:`TcpGrpcAccessLogConfig
     ///     <envoy_api_msg_config.accesslog.v2.TcpGrpcAccessLogConfig>`
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TypedConfig(::pbjson_types::Any),
     }
 }
 /// [#next-free-field: 12]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessLogFilter {
-    #[prost(oneof="access_log_filter::FilterSpecifier", tags="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11")]
+    #[prost(
+        oneof = "access_log_filter::FilterSpecifier",
+        tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11"
+    )]
     pub filter_specifier: ::core::option::Option<access_log_filter::FilterSpecifier>,
 }
 /// Nested message and enum types in `AccessLogFilter`.
 pub mod access_log_filter {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum FilterSpecifier {
         /// Status code filter.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         StatusCodeFilter(super::StatusCodeFilter),
         /// Duration filter.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         DurationFilter(super::DurationFilter),
         /// Not health check filter.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         NotHealthCheckFilter(super::NotHealthCheckFilter),
         /// Traceable filter.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TraceableFilter(super::TraceableFilter),
         /// Runtime filter.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         RuntimeFilter(super::RuntimeFilter),
         /// And filter.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         AndFilter(super::AndFilter),
         /// Or filter.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         OrFilter(super::OrFilter),
         /// Header filter.
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         HeaderFilter(super::HeaderFilter),
         /// Response flag filter.
-        #[prost(message, tag="9")]
+        #[prost(message, tag = "9")]
         ResponseFlagFilter(super::ResponseFlagFilter),
         /// gRPC status filter.
-        #[prost(message, tag="10")]
+        #[prost(message, tag = "10")]
         GrpcStatusFilter(super::GrpcStatusFilter),
         /// Extension filter.
-        #[prost(message, tag="11")]
+        #[prost(message, tag = "11")]
         ExtensionFilter(super::ExtensionFilter),
     }
 }
 /// Filter on an integer comparison.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComparisonFilter {
     /// Comparison operator.
-    #[prost(enumeration="comparison_filter::Op", tag="1")]
+    #[prost(enumeration = "comparison_filter::Op", tag = "1")]
     pub op: i32,
     /// Value to compare against.
-    #[prost(message, optional, tag="2")]
-    pub value: ::core::option::Option<super::super::super::super::api::v2::core::RuntimeUInt32>,
+    #[prost(message, optional, tag = "2")]
+    pub value: ::core::option::Option<
+        super::super::super::super::api::v2::core::RuntimeUInt32,
+    >,
 }
 /// Nested message and enum types in `ComparisonFilter`.
 pub mod comparison_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Op {
         /// =
@@ -124,42 +142,56 @@ pub mod comparison_filter {
                 Op::Le => "LE",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "EQ" => Some(Self::Eq),
+                "GE" => Some(Self::Ge),
+                "LE" => Some(Self::Le),
+                _ => None,
+            }
+        }
     }
 }
 /// Filters on HTTP response/status code.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatusCodeFilter {
     /// Comparison.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub comparison: ::core::option::Option<ComparisonFilter>,
 }
 /// Filters on total request duration in milliseconds.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DurationFilter {
     /// Comparison.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub comparison: ::core::option::Option<ComparisonFilter>,
 }
 /// Filters for requests that are not health check requests. A health check
 /// request is marked by the health check filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct NotHealthCheckFilter {
-}
+pub struct NotHealthCheckFilter {}
 /// Filters for requests that are traceable. See the tracing overview for more
 /// information on how a request becomes traceable.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TraceableFilter {
-}
+pub struct TraceableFilter {}
 /// Filters for random sampling of requests.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RuntimeFilter {
     /// Runtime key to get an optional overridden numerator for use in the *percent_sampled* field.
     /// If found in runtime, this value will replace the default numerator.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub runtime_key: ::prost::alloc::string::String,
     /// The default sampling percentage. If not specified, defaults to 0% with denominator of 100.
-    #[prost(message, optional, tag="2")]
-    pub percent_sampled: ::core::option::Option<super::super::super::super::r#type::FractionalPercent>,
+    #[prost(message, optional, tag = "2")]
+    pub percent_sampled: ::core::option::Option<
+        super::super::super::super::r#type::FractionalPercent,
+    >,
     /// By default, sampling pivots on the header
     /// :ref:`x-request-id<config_http_conn_man_headers_x-request-id>` being present. If
     /// :ref:`x-request-id<config_http_conn_man_headers_x-request-id>` is present, the filter will
@@ -172,59 +204,81 @@ pub struct RuntimeFilter {
     /// <envoy_api_msg_config.filter.accesslog.v2.OrFilter>` blocks that are easier to reason about
     /// from a probability perspective (i.e., setting to true will cause the filter to behave like
     /// an independent random variable when composed within logical operator filters).
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub use_independent_randomness: bool,
 }
 /// Performs a logical “and” operation on the result of each filter in filters.
 /// Filters are evaluated sequentially and if one of them returns false, the
 /// filter returns false immediately.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AndFilter {
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub filters: ::prost::alloc::vec::Vec<AccessLogFilter>,
 }
 /// Performs a logical “or” operation on the result of each individual filter.
 /// Filters are evaluated sequentially and if one of them returns true, the
 /// filter returns true immediately.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrFilter {
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub filters: ::prost::alloc::vec::Vec<AccessLogFilter>,
 }
 /// Filters requests based on the presence or value of a request header.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeaderFilter {
     /// Only requests with a header which matches the specified HeaderMatcher will pass the filter
     /// check.
-    #[prost(message, optional, tag="1")]
-    pub header: ::core::option::Option<super::super::super::super::api::v2::route::HeaderMatcher>,
+    #[prost(message, optional, tag = "1")]
+    pub header: ::core::option::Option<
+        super::super::super::super::api::v2::route::HeaderMatcher,
+    >,
 }
 /// Filters requests that received responses with an Envoy response flag set.
 /// A list of the response flags can be found
 /// in the access log formatter :ref:`documentation<config_access_log_format_response_flags>`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResponseFlagFilter {
     /// Only responses with the any of the flags listed in this field will be logged.
     /// This field is optional. If it is not specified, then any response flag will pass
     /// the filter check.
-    #[prost(string, repeated, tag="1")]
+    #[prost(string, repeated, tag = "1")]
     pub flags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Filters gRPC requests based on their response status. If a gRPC status is not provided, the
 /// filter will infer the status from the HTTP status code.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GrpcStatusFilter {
     /// Logs only responses that have any one of the gRPC statuses in this field.
-    #[prost(enumeration="grpc_status_filter::Status", repeated, packed="false", tag="1")]
+    #[prost(
+        enumeration = "grpc_status_filter::Status",
+        repeated,
+        packed = "false",
+        tag = "1"
+    )]
     pub statuses: ::prost::alloc::vec::Vec<i32>,
     /// If included and set to true, the filter will instead block all responses with a gRPC status or
     /// inferred gRPC status enumerated in statuses, and allow all other responses.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub exclude: bool,
 }
 /// Nested message and enum types in `GrpcStatusFilter`.
 pub mod grpc_status_filter {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Status {
         Ok = 0,
@@ -271,27 +325,52 @@ pub mod grpc_status_filter {
                 Status::Unauthenticated => "UNAUTHENTICATED",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "OK" => Some(Self::Ok),
+                "CANCELED" => Some(Self::Canceled),
+                "UNKNOWN" => Some(Self::Unknown),
+                "INVALID_ARGUMENT" => Some(Self::InvalidArgument),
+                "DEADLINE_EXCEEDED" => Some(Self::DeadlineExceeded),
+                "NOT_FOUND" => Some(Self::NotFound),
+                "ALREADY_EXISTS" => Some(Self::AlreadyExists),
+                "PERMISSION_DENIED" => Some(Self::PermissionDenied),
+                "RESOURCE_EXHAUSTED" => Some(Self::ResourceExhausted),
+                "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
+                "ABORTED" => Some(Self::Aborted),
+                "OUT_OF_RANGE" => Some(Self::OutOfRange),
+                "UNIMPLEMENTED" => Some(Self::Unimplemented),
+                "INTERNAL" => Some(Self::Internal),
+                "UNAVAILABLE" => Some(Self::Unavailable),
+                "DATA_LOSS" => Some(Self::DataLoss),
+                "UNAUTHENTICATED" => Some(Self::Unauthenticated),
+                _ => None,
+            }
+        }
     }
 }
 /// Extension filter is statically registered at runtime.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExtensionFilter {
     /// The name of the filter implementation to instantiate. The name must
     /// match a statically registered filter.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Custom configuration that depends on the filter being instantiated.
-    #[prost(oneof="extension_filter::ConfigType", tags="2, 3")]
+    #[prost(oneof = "extension_filter::ConfigType", tags = "2, 3")]
     pub config_type: ::core::option::Option<extension_filter::ConfigType>,
 }
 /// Nested message and enum types in `ExtensionFilter`.
 pub mod extension_filter {
     /// Custom configuration that depends on the filter being instantiated.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
@@ -1048,4 +1127,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x05, 0x04, 0x0d, 0x02, 0x02, 0x03, 0x12, 0x04, 0xfe, 0x01, 0x27, 0x28, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.accesslog.v2.serde.rs");
 // @@protoc_insertion_point(module)

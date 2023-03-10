@@ -1,15 +1,13 @@
 // @generated
-// [#protodoc-title: Minimum Clusters]
-// [#extension: envoy.config.validators.minimum_clusters_validator]
-
 /// Validates a CDS config, and ensures that the number of clusters is above the
 /// set threshold.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MinimumClustersValidator {
     /// The minimal clusters threshold. Any CDS config update leading to less than
     /// this number will be rejected.
     /// Default value is 0.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub min_clusters_num: u32,
 }
 /// Encoded file descriptor set for the `envoy.extensions.config.validators.minimum_clusters.v3` package
@@ -80,4 +78,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x09, 0x19, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x15, 0x1c, 0x1d,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.config.validators.minimum_clusters.v3.serde.rs");
 // @@protoc_insertion_point(module)

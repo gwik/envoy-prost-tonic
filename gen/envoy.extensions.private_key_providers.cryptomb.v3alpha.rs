@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: CryptoMb private key provider]
-// [#extension: envoy.tls.key_providers.cryptomb]
-
 /// A CryptoMbPrivateKeyMethodConfig message specifies how the CryptoMb private
 /// key provider is configured. The private key provider provides ``SIMD``
 /// processing for RSA sign and decrypt operations (ECDSA signing uses regular
@@ -9,12 +6,15 @@
 /// worker-thread specific queue, and processing the queue using ``ipp-crypto``
 /// library when the queue is full or when a timer expires.
 /// [#extension-category: envoy.tls.key_providers]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CryptoMbPrivateKeyMethodConfig {
     /// Private key to use in the private key provider. If set to inline_bytes or
     /// inline_string, the value needs to be the private key in PEM format.
-    #[prost(message, optional, tag="1")]
-    pub private_key: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub private_key: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// How long to wait until the per-thread processing queue should be
     /// processed. If the processing queue gets full (eight sign or decrypt
     /// requests are received) it is processed immediately. However, if the
@@ -22,7 +22,7 @@ pub struct CryptoMbPrivateKeyMethodConfig {
     /// already in the queue are processed, even if the queue is not full.
     /// In effect, this value controls the balance between latency and
     /// throughput. The duration needs to be set to a value greater than or equal to 1 millisecond.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub poll_delay: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.private_key_providers.cryptomb.v3alpha` package
@@ -173,4 +173,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x15, 0x12, 0x04, 0x28, 0x2b, 0x2b, 0x03, 0x62, 0x06,
     0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.private_key_providers.cryptomb.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

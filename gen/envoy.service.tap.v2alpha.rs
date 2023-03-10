@@ -1,18 +1,17 @@
 // @generated
-// [#protodoc-title: Common tap configuration]
-
 /// Tap configuration.
 ///
 /// [#comment:TODO(mattklein123): Rate limiting]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TapConfig {
     /// The match configuration. If the configuration matches the data source being tapped, a tap will
     /// occur, with the result written to the configured output.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub match_config: ::core::option::Option<MatchPredicate>,
     /// The tap output configuration. If a match configuration matches a data source being tapped,
     /// a tap will occur and the data will be written to the configured output.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub output_config: ::core::option::Option<OutputConfig>,
     /// \[#not-implemented-hide:\] Specify if Tap matching is enabled. The % of requests\connections for
     /// which the tap matching is enabled. When not enabled, the request\connection will not be
@@ -22,81 +21,90 @@ pub struct TapConfig {
     ///
     ///    This field defaults to 100/:ref:`HUNDRED
     ///    <envoy_api_enum_type.FractionalPercent.DenominatorType>`.
-    #[prost(message, optional, tag="3")]
-    pub tap_enabled: ::core::option::Option<super::super::super::api::v2::core::RuntimeFractionalPercent>,
+    #[prost(message, optional, tag = "3")]
+    pub tap_enabled: ::core::option::Option<
+        super::super::super::api::v2::core::RuntimeFractionalPercent,
+    >,
 }
 /// Tap match configuration. This is a recursive structure which allows complex nested match
 /// configurations to be built using various logical operators.
 /// [#next-free-field: 9]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MatchPredicate {
-    #[prost(oneof="match_predicate::Rule", tags="1, 2, 3, 4, 5, 6, 7, 8")]
+    #[prost(oneof = "match_predicate::Rule", tags = "1, 2, 3, 4, 5, 6, 7, 8")]
     pub rule: ::core::option::Option<match_predicate::Rule>,
 }
 /// Nested message and enum types in `MatchPredicate`.
 pub mod match_predicate {
     /// A set of match configurations used for logical operations.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MatchSet {
         /// The list of rules that make up the set.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub rules: ::prost::alloc::vec::Vec<super::MatchPredicate>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Rule {
         /// A set that describes a logical OR. If any member of the set matches, the match configuration
         /// matches.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         OrMatch(MatchSet),
         /// A set that describes a logical AND. If all members of the set match, the match configuration
         /// matches.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         AndMatch(MatchSet),
         /// A negation match. The match configuration will match if the negated match condition matches.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         NotMatch(::prost::alloc::boxed::Box<super::MatchPredicate>),
         /// The match configuration will always match.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         AnyMatch(bool),
         /// HTTP request headers match configuration.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         HttpRequestHeadersMatch(super::HttpHeadersMatch),
         /// HTTP request trailers match configuration.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         HttpRequestTrailersMatch(super::HttpHeadersMatch),
         /// HTTP response headers match configuration.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         HttpResponseHeadersMatch(super::HttpHeadersMatch),
         /// HTTP response trailers match configuration.
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         HttpResponseTrailersMatch(super::HttpHeadersMatch),
     }
 }
 /// HTTP headers match configuration.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpHeadersMatch {
     /// HTTP headers to match.
-    #[prost(message, repeated, tag="1")]
-    pub headers: ::prost::alloc::vec::Vec<super::super::super::api::v2::route::HeaderMatcher>,
+    #[prost(message, repeated, tag = "1")]
+    pub headers: ::prost::alloc::vec::Vec<
+        super::super::super::api::v2::route::HeaderMatcher,
+    >,
 }
 /// Tap output configuration.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
     /// Output sinks for tap data. Currently a single sink is allowed in the list. Once multiple
     /// sink types are supported this constraint will be relaxed.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub sinks: ::prost::alloc::vec::Vec<OutputSink>,
     /// For buffered tapping, the maximum amount of received body that will be buffered prior to
     /// truncation. If truncation occurs, the :ref:`truncated
     /// <envoy_api_field_data.tap.v2alpha.Body.truncated>` field will be set. If not specified, the
     /// default is 1KiB.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub max_buffered_rx_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// For buffered tapping, the maximum amount of transmitted body that will be buffered prior to
     /// truncation. If truncation occurs, the :ref:`truncated
     /// <envoy_api_field_data.tap.v2alpha.Body.truncated>` field will be set. If not specified, the
     /// default is 1KiB.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub max_buffered_tx_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Indicates whether taps produce a single buffered message per tap, or multiple streamed
     /// messages per tap in the emitted :ref:`TraceWrapper
@@ -104,16 +112,17 @@ pub struct OutputConfig {
     /// mean that no buffering takes place. Buffering may be required if data is processed before a
     /// match can be determined. See the HTTP tap filter :ref:`streaming
     /// <config_http_filters_tap_streaming>` documentation for more information.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub streaming: bool,
 }
 /// Tap output sink configuration.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputSink {
     /// Sink output format.
-    #[prost(enumeration="output_sink::Format", tag="1")]
+    #[prost(enumeration = "output_sink::Format", tag = "1")]
     pub format: i32,
-    #[prost(oneof="output_sink::OutputSinkType", tags="2, 3, 4")]
+    #[prost(oneof = "output_sink::OutputSinkType", tags = "2, 3, 4")]
     pub output_sink_type: ::core::option::Option<output_sink::OutputSinkType>,
 }
 /// Nested message and enum types in `OutputSink`.
@@ -122,7 +131,17 @@ pub mod output_sink {
     /// <envoy_api_msg_data.tap.v2alpha.TraceWrapper>` messages. This enumeration indicates
     /// how those messages are written. Note that not all sinks support all output formats. See
     /// individual sink documentation for more information.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Format {
         /// Each message will be written as JSON. Any :ref:`body <envoy_api_msg_data.tap.v2alpha.Body>`
@@ -167,7 +186,19 @@ pub mod output_sink {
                 Format::ProtoText => "PROTO_TEXT",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "JSON_BODY_AS_BYTES" => Some(Self::JsonBodyAsBytes),
+                "JSON_BODY_AS_STRING" => Some(Self::JsonBodyAsString),
+                "PROTO_BINARY" => Some(Self::ProtoBinary),
+                "PROTO_BINARY_LENGTH_DELIMITED" => Some(Self::ProtoBinaryLengthDelimited),
+                "PROTO_TEXT" => Some(Self::ProtoText),
+                _ => None,
+            }
+        }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum OutputSinkType {
         /// Tap output will be streamed out the :http:post:`/tap` admin endpoint.
@@ -178,74 +209,84 @@ pub mod output_sink {
         ///    configured from the :http:post:`/tap` admin endpoint. Thus, if an extension has
         ///    been configured to receive tap configuration from some other source (e.g., static
         ///    file, XDS, etc.) configuring the streaming admin output type will fail.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         StreamingAdmin(super::StreamingAdminSink),
         /// Tap output will be written to a file per tap sink.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         FilePerTap(super::FilePerTapSink),
         /// \[#not-implemented-hide:\]
         /// GrpcService to stream data to. The format argument must be PROTO_BINARY.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         StreamingGrpc(super::StreamingGrpcSink),
     }
 }
 /// Streaming admin sink configuration.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamingAdminSink {
-}
+pub struct StreamingAdminSink {}
 /// The file per tap sink outputs a discrete file for every tapped stream.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilePerTapSink {
     /// Path prefix. The output file will be of the form <path_prefix>_<id>.pb, where <id> is an
     /// identifier distinguishing the recorded trace for stream instances (the Envoy
     /// connection ID, HTTP stream ID, etc.).
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path_prefix: ::prost::alloc::string::String,
 }
 /// \[#not-implemented-hide:\] Streaming gRPC sink configuration sends the taps to an external gRPC
 /// server.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingGrpcSink {
     /// Opaque identifier, that will be sent back to the streaming grpc server.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub tap_id: ::prost::alloc::string::String,
     /// The gRPC server that hosts the Tap Sink Service.
-    #[prost(message, optional, tag="2")]
-    pub grpc_service: ::core::option::Option<super::super::super::api::v2::core::GrpcService>,
+    #[prost(message, optional, tag = "2")]
+    pub grpc_service: ::core::option::Option<
+        super::super::super::api::v2::core::GrpcService,
+    >,
 }
 /// \[#not-implemented-hide:\] Stream message for the Tap API. Envoy will open a stream to the server
 /// and stream taps without ever expecting a response.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamTapsRequest {
     /// Identifier data effectively is a structured metadata. As a performance optimization this will
     /// only be sent in the first message on the stream.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub identifier: ::core::option::Option<stream_taps_request::Identifier>,
     /// The trace id. this can be used to merge together a streaming trace. Note that the trace_id
     /// is not guaranteed to be spatially or temporally unique.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub trace_id: u64,
     /// The trace data.
-    #[prost(message, optional, tag="3")]
-    pub trace: ::core::option::Option<super::super::super::data::tap::v2alpha::TraceWrapper>,
+    #[prost(message, optional, tag = "3")]
+    pub trace: ::core::option::Option<
+        super::super::super::data::tap::v2alpha::TraceWrapper,
+    >,
 }
 /// Nested message and enum types in `StreamTapsRequest`.
 pub mod stream_taps_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Identifier {
         /// The node sending taps over the stream.
-        #[prost(message, optional, tag="1")]
-        pub node: ::core::option::Option<super::super::super::super::api::v2::core::Node>,
+        #[prost(message, optional, tag = "1")]
+        pub node: ::core::option::Option<
+            super::super::super::super::api::v2::core::Node,
+        >,
         /// The opaque identifier that was set in the :ref:`output config
         /// <envoy_api_field_service.tap.v2alpha.StreamingGrpcSink.tap_id>`.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub tap_id: ::prost::alloc::string::String,
     }
 }
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamTapsResponse {
-}
+pub struct StreamTapsResponse {}
 /// Encoded file descriptor set for the `envoy.service.tap.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf5, 0x56, 0x0a, 0x26, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -1103,5 +1144,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x65, 0x3a, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x01, 0x01, 0x12, 0x03, 0x35, 0x08, 0x1a,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.tap.v2alpha.serde.rs");
 include!("envoy.service.tap.v2alpha.tonic.rs");
 // @@protoc_insertion_point(module)

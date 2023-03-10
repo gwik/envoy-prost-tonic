@@ -1,24 +1,30 @@
 // @generated
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamMetricsResponse {
-}
+pub struct StreamMetricsResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamMetricsMessage {
     /// Identifier data effectively is a structured metadata. As a performance optimization this will
     /// only be sent in the first message on the stream.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub identifier: ::core::option::Option<stream_metrics_message::Identifier>,
     /// A list of metric entries
-    #[prost(message, repeated, tag="2")]
-    pub envoy_metrics: ::prost::alloc::vec::Vec<super::super::super::super::io::prometheus::client::MetricFamily>,
+    #[prost(message, repeated, tag = "2")]
+    pub envoy_metrics: ::prost::alloc::vec::Vec<
+        super::super::super::super::io::prometheus::client::MetricFamily,
+    >,
 }
 /// Nested message and enum types in `StreamMetricsMessage`.
 pub mod stream_metrics_message {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Identifier {
         /// The node sending metrics over the stream.
-        #[prost(message, optional, tag="1")]
-        pub node: ::core::option::Option<super::super::super::super::api::v2::core::Node>,
+        #[prost(message, optional, tag = "1")]
+        pub node: ::core::option::Option<
+            super::super::super::super::api::v2::core::Node,
+        >,
     }
 }
 /// Encoded file descriptor set for the `envoy.service.metrics.v2` package
@@ -146,5 +152,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x01, 0x02, 0x01, 0x03, 0x12, 0x03, 0x2a, 0x3d, 0x3e, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.metrics.v2.serde.rs");
 include!("envoy.service.metrics.v2.tonic.rs");
 // @@protoc_insertion_point(module)

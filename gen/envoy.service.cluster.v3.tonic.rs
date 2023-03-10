@@ -158,10 +158,10 @@ pub mod cluster_discovery_service_client {
 pub mod cluster_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ClusterDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ClusterDiscoveryServiceServer.
     #[async_trait]
     pub trait ClusterDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamClusters method.
+        /// Server streaming response type for the StreamClusters method.
         type StreamClustersStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,
@@ -176,7 +176,7 @@ pub mod cluster_discovery_service_server {
                 tonic::Streaming<super::super::super::discovery::v3::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamClustersStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaClusters method.
+        /// Server streaming response type for the DeltaClusters method.
         type DeltaClustersStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,

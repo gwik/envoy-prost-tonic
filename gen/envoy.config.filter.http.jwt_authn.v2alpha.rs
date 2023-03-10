@@ -1,8 +1,4 @@
 // @generated
-// [#protodoc-title: JWT Authentication]
-// JWT Authentication :ref:`configuration overview <config_http_filters_jwt_authn>`.
-// [#extension: envoy.filters.http.jwt_authn]
-
 /// Please see following for JWT authentication flow:
 ///
 /// * `JSON Web Token (JWT) <<https://tools.ietf.org/html/rfc7519>`_>
@@ -33,6 +29,7 @@
 ///          seconds: 300
 ///
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtProvider {
     /// Specify the `principal <<https://tools.ietf.org/html/rfc7519#section-4.1.1>`_> that issued
@@ -41,7 +38,7 @@ pub struct JwtProvider {
     /// Example: <https://securetoken.google.com>
     /// Example: 1234567-compute@developer.gserviceaccount.com
     ///
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub issuer: ::prost::alloc::string::String,
     /// The list of JWT `audiences <<https://tools.ietf.org/html/rfc7519#section-4.1.3>`_> are
     /// allowed to access. A JWT containing any of these audiences will be accepted. If not specified,
@@ -55,11 +52,11 @@ pub struct JwtProvider {
     ///      - bookstore_android.apps.googleusercontent.com
     ///      - bookstore_web.apps.googleusercontent.com
     ///
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub audiences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If false, the JWT is removed in the request after a success verification. If true, the JWT is
     /// not removed in the request. Default value is false.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub forward: bool,
     /// Two fields below define where to extract the JWT from an HTTP request.
     ///
@@ -86,7 +83,7 @@ pub struct JwtProvider {
     ///
     ///    ``x-goog-iap-jwt-assertion: <JWT>``.
     ///
-    #[prost(message, repeated, tag="6")]
+    #[prost(message, repeated, tag = "6")]
     pub from_headers: ::prost::alloc::vec::Vec<JwtHeader>,
     /// JWT is sent in a query parameter. `jwt_params` represents the query parameter names.
     ///
@@ -101,7 +98,7 @@ pub struct JwtProvider {
     ///
     ///     /path?jwt_token=<JWT>
     ///
-    #[prost(string, repeated, tag="7")]
+    #[prost(string, repeated, tag = "7")]
     pub from_params: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// This field specifies the header name to forward a successfully verified JWT payload to the
     /// backend. The forwarded data is::
@@ -109,7 +106,7 @@ pub struct JwtProvider {
     ///     base64url_encoded(jwt_payload_in_JSON)
     ///
     /// If it is not specified, the payload will not be forwarded.
-    #[prost(string, tag="8")]
+    #[prost(string, tag = "8")]
     pub forward_payload_header: ::prost::alloc::string::String,
     /// If non empty, successfully verified JWT payloads will be written to StreamInfo DynamicMetadata
     /// in the format as: *namespace* is the jwt_authn filter name as **envoy.filters.http.jwt_authn**
@@ -127,17 +124,18 @@ pub struct JwtProvider {
     ///        aud: <https://example.com>
     ///        exp: 1501281058
     ///
-    #[prost(string, tag="9")]
+    #[prost(string, tag = "9")]
     pub payload_in_metadata: ::prost::alloc::string::String,
     /// `JSON Web Key Set (JWKS) <<https://tools.ietf.org/html/rfc7517#appendix-A>`_> is needed to
     /// validate signature of a JWT. This field specifies where to fetch JWKS.
-    #[prost(oneof="jwt_provider::JwksSourceSpecifier", tags="3, 4")]
+    #[prost(oneof = "jwt_provider::JwksSourceSpecifier", tags = "3, 4")]
     pub jwks_source_specifier: ::core::option::Option<jwt_provider::JwksSourceSpecifier>,
 }
 /// Nested message and enum types in `JwtProvider`.
 pub mod jwt_provider {
     /// `JSON Web Key Set (JWKS) <<https://tools.ietf.org/html/rfc7517#appendix-A>`_> is needed to
     /// validate signature of a JWT. This field specifies where to fetch JWKS.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum JwksSourceSpecifier {
         /// JWKS can be fetched from remote server via HTTP/HTTPS. This field specifies the remote HTTP
@@ -154,7 +152,7 @@ pub mod jwt_provider {
         ///       cache_duration:
         ///         seconds: 300
         ///
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         RemoteJwks(super::RemoteJwks),
         /// JWKS is in local data source. It could be either in a local file or embedded in the
         /// inline_string.
@@ -173,11 +171,12 @@ pub mod jwt_provider {
         ///     local_jwks:
         ///       inline_string: ACADADADADA
         ///
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         LocalJwks(super::super::super::super::super::super::api::v2::core::DataSource),
     }
 }
 /// This message specifies how to fetch JWKS from remote and how to cache it.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoteJwks {
     /// The HTTP URI to fetch the JWKS. For example:
@@ -188,33 +187,37 @@ pub struct RemoteJwks {
     ///       uri: <https://www.googleapis.com/oauth2/v1/certs>
     ///       cluster: jwt.www.googleapis.com|443
     ///
-    #[prost(message, optional, tag="1")]
-    pub http_uri: ::core::option::Option<super::super::super::super::super::api::v2::core::HttpUri>,
+    #[prost(message, optional, tag = "1")]
+    pub http_uri: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::HttpUri,
+    >,
     /// Duration after which the cached JWKS should be expired. If not specified, default cache
     /// duration is 5 minutes.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub cache_duration: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// This message specifies a header location to extract JWT token.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtHeader {
     /// The HTTP header name.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The value prefix. The value format is "value_prefix<token>"
     /// For example, for "Authorization: Bearer <token>", value_prefix="Bearer " with a space at the
     /// end.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub value_prefix: ::prost::alloc::string::String,
 }
 /// Specify a required provider with audiences.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProviderWithAudiences {
     /// Specify a required provider name.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub provider_name: ::prost::alloc::string::String,
     /// This field overrides the one specified in the JwtProvider.
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub audiences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// This message specifies a Jwt requirement. An empty message means JWT verification is not
@@ -274,57 +277,61 @@ pub struct ProviderWithAudiences {
 ///     - provider_name: provider-B
 ///
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtRequirement {
-    #[prost(oneof="jwt_requirement::RequiresType", tags="1, 2, 3, 4, 5, 6")]
+    #[prost(oneof = "jwt_requirement::RequiresType", tags = "1, 2, 3, 4, 5, 6")]
     pub requires_type: ::core::option::Option<jwt_requirement::RequiresType>,
 }
 /// Nested message and enum types in `JwtRequirement`.
 pub mod jwt_requirement {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RequiresType {
         /// Specify a required provider name.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         ProviderName(::prost::alloc::string::String),
         /// Specify a required provider with audiences.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         ProviderAndAudiences(super::ProviderWithAudiences),
         /// Specify list of JwtRequirement. Their results are OR-ed.
         /// If any one of them passes, the result is passed.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         RequiresAny(super::JwtRequirementOrList),
         /// Specify list of JwtRequirement. Their results are AND-ed.
         /// All of them must pass, if one of them fails or missing, it fails.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         RequiresAll(super::JwtRequirementAndList),
         /// The requirement is always satisfied even if JWT is missing or the JWT
         /// verification fails. A typical usage is: this filter is used to only verify
         /// JWTs and pass the verified JWT payloads to another filter, the other filter
         /// will make decision. In this mode, all JWT tokens will be verified.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         AllowMissingOrFailed(::pbjson_types::Empty),
         /// The requirement is satisfied if JWT is missing, but failed if JWT is
         /// presented but invalid. Similar to allow_missing_or_failed, this is used
         /// to only verify JWTs and pass the verified payload to another filter. The
         /// different is this mode will reject requests with invalid tokens.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         AllowMissing(::pbjson_types::Empty),
     }
 }
 /// This message specifies a list of RequiredProvider.
 /// Their results are OR-ed; if any one of them passes, the result is passed
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtRequirementOrList {
     /// Specify a list of JwtRequirement.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub requirements: ::prost::alloc::vec::Vec<JwtRequirement>,
 }
 /// This message specifies a list of RequiredProvider.
 /// Their results are AND-ed; all of them must pass, if one of them fails or missing, it fails.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtRequirementAndList {
     /// Specify a list of JwtRequirement.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub requirements: ::prost::alloc::vec::Vec<JwtRequirement>,
 }
 /// This message specifies a Jwt requirement for a specific Route condition.
@@ -348,6 +355,7 @@ pub struct JwtRequirementAndList {
 ///
 /// In above example, all requests matched the path prefix require jwt authentication
 /// from "provider-A".
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequirementRule {
     /// The route matching parameter. Only when the match is satisfied, the "requires" field will
@@ -360,10 +368,12 @@ pub struct RequirementRule {
     ///     match:
     ///       prefix: /
     ///
-    #[prost(message, optional, tag="1")]
-    pub r#match: ::core::option::Option<super::super::super::super::super::api::v2::route::RouteMatch>,
+    #[prost(message, optional, tag = "1")]
+    pub r#match: ::core::option::Option<
+        super::super::super::super::super::api::v2::route::RouteMatch,
+    >,
     /// Specify a Jwt Requirement. Please detail comment in message JwtRequirement.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub requires: ::core::option::Option<JwtRequirement>,
 }
 /// This message specifies Jwt requirements based on stream_info.filterState.
@@ -383,15 +393,19 @@ pub struct RequirementRule {
 ///
 /// If a filter set "jwt_selector" with "issuer_1" to FilterState for a request,
 /// jwt_authn filter will use JwtRequirement{"provider_name": "issuer1"} to verify.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterStateRule {
     /// The filter state name to retrieve the `Router::StringAccessor` object.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A map of string keys to requirements. The string key is the string value
     /// in the FilterState with the name specified in the *name* field above.
-    #[prost(map="string, message", tag="3")]
-    pub requires: ::std::collections::HashMap<::prost::alloc::string::String, JwtRequirement>,
+    #[prost(map = "string, message", tag = "3")]
+    pub requires: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        JwtRequirement,
+    >,
 }
 /// This is the Envoy HTTP filter config for JWT authentication.
 ///
@@ -434,6 +448,7 @@ pub struct FilterStateRule {
 ///               - provider_name: provider1
 ///               - provider_name: provider2
 ///
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JwtAuthentication {
     /// Map of provider names to JwtProviders.
@@ -455,8 +470,11 @@ pub struct JwtAuthentication {
     ///         local_jwks:
     ///           inline_string: jwks_string
     ///
-    #[prost(map="string, message", tag="1")]
-    pub providers: ::std::collections::HashMap<::prost::alloc::string::String, JwtProvider>,
+    #[prost(map = "string, message", tag = "1")]
+    pub providers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        JwtProvider,
+    >,
     /// Specifies requirements based on the route matches. The first matched requirement will be
     /// applied. If there are overlapped match conditions, please put the most specific match first.
     ///
@@ -486,18 +504,18 @@ pub struct JwtAuthentication {
     ///              - provider_name: provider1
     ///              - provider_name: provider2
     ///
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub rules: ::prost::alloc::vec::Vec<RequirementRule>,
     /// This message specifies Jwt requirements based on stream_info.filterState.
     /// Other HTTP filters can use it to specify Jwt requirements dynamically.
     /// The *rules* field above is checked first, if it could not find any matches,
     /// check this one.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub filter_state_rules: ::core::option::Option<FilterStateRule>,
     /// When set to true, bypass the `CORS preflight request
     /// <<http://www.w3.org/TR/cors/#cross-origin-request-with-preflight>`_> regardless of JWT
     /// requirements specified in the rules.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub bypass_cors_preflight: bool,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.jwt_authn.v2alpha` package
@@ -1644,4 +1662,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x01, 0x12, 0x04, 0xf4, 0x03, 0x07, 0x1c, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x09, 0x02, 0x03,
     0x03, 0x12, 0x04, 0xf4, 0x03, 0x1f, 0x20, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.jwt_authn.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

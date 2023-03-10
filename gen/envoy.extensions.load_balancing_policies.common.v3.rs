@@ -1,59 +1,65 @@
 // @generated
-// [#protodoc-title: Common configuration for two or more load balancing policy extensions]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalityLbConfig {
-    #[prost(oneof="locality_lb_config::LocalityConfigSpecifier", tags="1, 2")]
-    pub locality_config_specifier: ::core::option::Option<locality_lb_config::LocalityConfigSpecifier>,
+    #[prost(oneof = "locality_lb_config::LocalityConfigSpecifier", tags = "1, 2")]
+    pub locality_config_specifier: ::core::option::Option<
+        locality_lb_config::LocalityConfigSpecifier,
+    >,
 }
 /// Nested message and enum types in `LocalityLbConfig`.
 pub mod locality_lb_config {
     /// Configuration for :ref:`zone aware routing
     /// <arch_overview_load_balancing_zone_aware_routing>`.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ZoneAwareLbConfig {
         /// Configures percentage of requests that will be considered for zone aware routing
         /// if zone aware routing is configured. If not specified, the default is 100%.
         /// * :ref:`runtime values <config_cluster_manager_cluster_runtime_zone_routing>`.
         /// * :ref:`Zone aware routing support <arch_overview_load_balancing_zone_aware_routing>`.
-        #[prost(message, optional, tag="1")]
-        pub routing_enabled: ::core::option::Option<super::super::super::super::super::r#type::v3::Percent>,
+        #[prost(message, optional, tag = "1")]
+        pub routing_enabled: ::core::option::Option<
+            super::super::super::super::super::r#type::v3::Percent,
+        >,
         /// Configures minimum upstream cluster size required for zone aware routing
         /// If upstream cluster size is less than specified, zone aware routing is not performed
         /// even if zone aware routing is configured. If not specified, the default is 6.
         /// * :ref:`runtime values <config_cluster_manager_cluster_runtime_zone_routing>`.
         /// * :ref:`Zone aware routing support <arch_overview_load_balancing_zone_aware_routing>`.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub min_cluster_size: ::core::option::Option<::pbjson_types::UInt64Value>,
         /// If set to true, Envoy will not consider any hosts when the cluster is in :ref:`panic
         /// mode<arch_overview_load_balancing_panic_threshold>`. Instead, the cluster will fail all
         /// requests as if all hosts are unhealthy. This can help avoid potentially overwhelming a
         /// failing service.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         pub fail_traffic_on_panic: bool,
     }
     /// Configuration for :ref:`locality weighted load balancing
     /// <arch_overview_load_balancing_locality_weighted_lb>`
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct LocalityWeightedLbConfig {
-    }
+    pub struct LocalityWeightedLbConfig {}
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum LocalityConfigSpecifier {
         /// Configuration for local zone aware load balancing.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         ZoneAwareLbConfig(ZoneAwareLbConfig),
         /// Enable locality weighted load balancing.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         LocalityWeightedLbConfig(LocalityWeightedLbConfig),
     }
 }
 /// Configuration for :ref:`slow start mode <arch_overview_load_balancing_slow_start>`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SlowStartConfig {
     /// Represents the size of slow start window.
     /// If set, the newly created host remains in slow start mode starting from its creation time
     /// for the duration of slow start window.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub slow_start_window: ::core::option::Option<::pbjson_types::Duration>,
     /// This parameter controls the speed of traffic increase over the slow start window. Defaults to 1.0,
     /// so that endpoint would get linearly increasing amount of traffic.
@@ -67,20 +73,25 @@ pub struct SlowStartConfig {
     ///
     /// As time progresses, more and more traffic would be sent to endpoint, which is in slow start window.
     /// Once host exits slow start, time_factor and aggression no longer affect its weight.
-    #[prost(message, optional, tag="2")]
-    pub aggression: ::core::option::Option<super::super::super::super::config::core::v3::RuntimeDouble>,
+    #[prost(message, optional, tag = "2")]
+    pub aggression: ::core::option::Option<
+        super::super::super::super::config::core::v3::RuntimeDouble,
+    >,
     /// Configures the minimum percentage of origin weight that avoids too small new weight,
     /// which may cause endpoints in slow start mode receive no traffic in slow start window.
     /// If not specified, the default is 10%.
-    #[prost(message, optional, tag="3")]
-    pub min_weight_percent: ::core::option::Option<super::super::super::super::r#type::v3::Percent>,
+    #[prost(message, optional, tag = "3")]
+    pub min_weight_percent: ::core::option::Option<
+        super::super::super::super::r#type::v3::Percent,
+    >,
 }
 /// Common Configuration for all consistent hashing load balancers (MaglevLb, RingHashLb, etc.)
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConsistentHashingLbConfig {
     /// If set to ``true``, the cluster will use hostname instead of the resolved
     /// address as the key to consistently hash to an upstream host. Only valid for StrictDNS clusters with hostnames which resolve to a single IP address.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub use_hostname_for_hashing: bool,
     /// Configures percentage of average cluster load to bound per upstream host. For example, with a value of 150
     /// no upstream host will get a load more than 1.5 times the average load of all the hosts in the cluster.
@@ -100,7 +111,7 @@ pub struct ConsistentHashingLbConfig {
     ///
     /// This is an O(N) algorithm, unlike other load balancers. Using a lower ``hash_balance_factor`` results in more hosts
     /// being probed, so use a higher value if you require better performance.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub hash_balance_factor: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.load_balancing_policies.common.v3` package
@@ -544,4 +555,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x01, 0x08, 0xaf, 0x08, 0x05, 0x12, 0x03, 0x70, 0x37, 0x5b, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.load_balancing_policies.common.v3.serde.rs");
 // @@protoc_insertion_point(module)

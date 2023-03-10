@@ -3,11 +3,12 @@
 /// Configuration for S2A transport socket. This allows Envoy clients to
 /// configure how to offload mTLS handshakes to the S2A service.
 /// <https://github.com/google/s2a-core#readme>
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct S2aConfiguration {
     /// The address of the S2A. This can be an IP address or a hostname,
     /// followed by a port number.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub s2a_address: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.s2a.v3` package
@@ -74,4 +75,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x14, 0x1a, 0x40, 0x62, 0x06,
     0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.s2a.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,15 +1,13 @@
 // @generated
-// [#protodoc-title: SafeCrossScheme internal redirect predicate]
-
 /// An internal redirect predicate that checks the scheme between the
 /// downstream url and the redirect target url and allows a) same scheme
 /// redirect and b) safe cross scheme redirect, which means if the downstream
 /// scheme is HTTPS, both HTTPS and HTTP redirect targets are allowed, but if the
 /// downstream scheme is HTTP, only HTTP redirect targets are allowed.
 /// [#extension: envoy.internal_redirect_predicates.safe_cross_scheme]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SafeCrossSchemeConfig {
-}
+pub struct SafeCrossSchemeConfig {}
 /// Encoded file descriptor set for the `envoy.extensions.internal_redirect.safe_cross_scheme.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xd7, 0x08, 0x0a, 0x56, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -83,4 +81,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x63, 0x61, 0x74, 0x65, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x14,
     0x08, 0x1d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.internal_redirect.safe_cross_scheme.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,15 +1,15 @@
 // @generated
-// [#protodoc-title: Random Load Balancing Policy]
-// [#extension: envoy.load_balancing_policies.random]
-
 /// This configuration allows the built-in Random LB policy to be configured via the LB policy
 /// extension point. See the :ref:`load balancing architecture overview
 /// <arch_overview_load_balancing_types>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Random {
     /// Configuration for local zone aware load balancing or locality weighted load balancing.
-    #[prost(message, optional, tag="1")]
-    pub locality_lb_config: ::core::option::Option<super::super::common::v3::LocalityLbConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub locality_lb_config: ::core::option::Option<
+        super::super::common::v3::LocalityLbConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.load_balancing_policies.random.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -90,4 +90,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x16, 0x32, 0x33, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.extensions.load_balancing_policies.random.v3.serde.rs");
 // @@protoc_insertion_point(module)

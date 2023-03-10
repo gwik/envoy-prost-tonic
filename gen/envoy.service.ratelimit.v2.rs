@@ -6,59 +6,78 @@
 /// are provided, the server will limit on *ALL* of them and return an OVER_LIMIT response if any
 /// of them are over limit. This enables more complex application level rate limiting scenarios
 /// if desired.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitRequest {
     /// All rate limit requests must specify a domain. This enables the configuration to be per
     /// application without fear of overlap. E.g., "envoy".
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub domain: ::prost::alloc::string::String,
     /// All rate limit requests must specify at least one RateLimitDescriptor. Each descriptor is
     /// processed by the service (see below). If any of the descriptors are over limit, the entire
     /// request is considered to be over limit.
-    #[prost(message, repeated, tag="2")]
-    pub descriptors: ::prost::alloc::vec::Vec<super::super::super::api::v2::ratelimit::RateLimitDescriptor>,
+    #[prost(message, repeated, tag = "2")]
+    pub descriptors: ::prost::alloc::vec::Vec<
+        super::super::super::api::v2::ratelimit::RateLimitDescriptor,
+    >,
     /// Rate limit requests can optionally specify the number of hits a request adds to the matched
     /// limit. If the value is not set in the message, a request increases the matched limit by 1.
-    #[prost(uint32, tag="3")]
+    #[prost(uint32, tag = "3")]
     pub hits_addend: u32,
 }
 /// A response from a ShouldRateLimit call.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitResponse {
     /// The overall response code which takes into account all of the descriptors that were passed
     /// in the RateLimitRequest message.
-    #[prost(enumeration="rate_limit_response::Code", tag="1")]
+    #[prost(enumeration = "rate_limit_response::Code", tag = "1")]
     pub overall_code: i32,
     /// A list of DescriptorStatus messages which matches the length of the descriptor list passed
     /// in the RateLimitRequest. This can be used by the caller to determine which individual
     /// descriptors failed and/or what the currently configured limits are for all of them.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub statuses: ::prost::alloc::vec::Vec<rate_limit_response::DescriptorStatus>,
     /// A list of headers to add to the response
-    #[prost(message, repeated, tag="3")]
-    pub headers: ::prost::alloc::vec::Vec<super::super::super::api::v2::core::HeaderValue>,
+    #[prost(message, repeated, tag = "3")]
+    pub headers: ::prost::alloc::vec::Vec<
+        super::super::super::api::v2::core::HeaderValue,
+    >,
     /// A list of headers to add to the request when forwarded
-    #[prost(message, repeated, tag="4")]
-    pub request_headers_to_add: ::prost::alloc::vec::Vec<super::super::super::api::v2::core::HeaderValue>,
+    #[prost(message, repeated, tag = "4")]
+    pub request_headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::api::v2::core::HeaderValue,
+    >,
 }
 /// Nested message and enum types in `RateLimitResponse`.
 pub mod rate_limit_response {
     /// Defines an actual rate limit in terms of requests per unit of time and the unit itself.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RateLimit {
         /// A name or description of this limit.
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         pub name: ::prost::alloc::string::String,
         /// The number of requests per unit of time.
-        #[prost(uint32, tag="1")]
+        #[prost(uint32, tag = "1")]
         pub requests_per_unit: u32,
         /// The unit of time.
-        #[prost(enumeration="rate_limit::Unit", tag="2")]
+        #[prost(enumeration = "rate_limit::Unit", tag = "2")]
         pub unit: i32,
     }
     /// Nested message and enum types in `RateLimit`.
     pub mod rate_limit {
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum Unit {
             /// The time unit is not known.
@@ -86,21 +105,43 @@ pub mod rate_limit_response {
                     Unit::Day => "DAY",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "UNKNOWN" => Some(Self::Unknown),
+                    "SECOND" => Some(Self::Second),
+                    "MINUTE" => Some(Self::Minute),
+                    "HOUR" => Some(Self::Hour),
+                    "DAY" => Some(Self::Day),
+                    _ => None,
+                }
+            }
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DescriptorStatus {
         /// The response code for an individual descriptor.
-        #[prost(enumeration="Code", tag="1")]
+        #[prost(enumeration = "Code", tag = "1")]
         pub code: i32,
         /// The current limit as configured by the server. Useful for debugging, etc.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub current_limit: ::core::option::Option<RateLimit>,
         /// The limit remaining in the current time unit.
-        #[prost(uint32, tag="3")]
+        #[prost(uint32, tag = "3")]
         pub limit_remaining: u32,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Code {
         /// The response code is not known.
@@ -120,6 +161,15 @@ pub mod rate_limit_response {
                 Code::Unknown => "UNKNOWN",
                 Code::Ok => "OK",
                 Code::OverLimit => "OVER_LIMIT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "OK" => Some(Self::Ok),
+                "OVER_LIMIT" => Some(Self::OverLimit),
+                _ => None,
             }
         }
     }
@@ -486,5 +536,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x39, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x03, 0x03, 0x12, 0x03, 0x71, 0x3c, 0x3d, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.ratelimit.v2.serde.rs");
 include!("envoy.service.ratelimit.v2.tonic.rs");
 // @@protoc_insertion_point(module)

@@ -1,10 +1,7 @@
 // @generated
-// [#protodoc-title: Router]
-// Dubbo router :ref:`configuration overview <config_dubbo_filters_router>`.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Router {
-}
+pub struct Router {}
 /// Encoded file descriptor set for the `envoy.config.filter.dubbo.router.v2alpha1` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xd4, 0x05, 0x0a, 0x36, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69,
@@ -54,4 +51,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x60, 0x2e, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x12, 0x08, 0x0e, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.dubbo.router.v2alpha1.serde.rs");
 // @@protoc_insertion_point(module)

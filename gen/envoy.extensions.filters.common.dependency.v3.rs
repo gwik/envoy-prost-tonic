@@ -1,19 +1,28 @@
 // @generated
-// [#protodoc-title: Filter dependency specification]
-
 /// Dependency specification and string identifier.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dependency {
     /// The kind of dependency.
-    #[prost(enumeration="dependency::DependencyType", tag="1")]
+    #[prost(enumeration = "dependency::DependencyType", tag = "1")]
     pub r#type: i32,
     /// The string identifier for the dependency.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Dependency`.
 pub mod dependency {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DependencyType {
         Header = 0,
@@ -32,23 +41,33 @@ pub mod dependency {
                 DependencyType::DynamicMetadata => "DYNAMIC_METADATA",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "HEADER" => Some(Self::Header),
+                "FILTER_STATE_KEY" => Some(Self::FilterStateKey),
+                "DYNAMIC_METADATA" => Some(Self::DynamicMetadata),
+                _ => None,
+            }
+        }
     }
 }
 /// Dependency specification for a filter. For a filter chain to be valid, any
 /// dependency that is required must be provided by an earlier filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterDependencies {
     /// A list of dependencies required on the decode path.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub decode_required: ::prost::alloc::vec::Vec<Dependency>,
     /// A list of dependencies provided on the encode path.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub decode_provided: ::prost::alloc::vec::Vec<Dependency>,
     /// A list of dependencies required on the decode path.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub encode_required: ::prost::alloc::vec::Vec<Dependency>,
     /// A list of dependencies provided on the encode path.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub encode_provided: ::prost::alloc::vec::Vec<Dependency>,
 }
 /// Matching requirements for a filter. For a match tree to be used with a filter, the match
@@ -57,17 +76,21 @@ pub struct FilterDependencies {
 /// This protobuf is provided by the filter implementation as a way to communicate the matching
 /// requirements to the filter factories, allowing for config rejection if the requirements are
 /// not satisfied.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MatchingRequirements {
-    #[prost(message, optional, tag="1")]
-    pub data_input_allow_list: ::core::option::Option<matching_requirements::DataInputAllowList>,
+    #[prost(message, optional, tag = "1")]
+    pub data_input_allow_list: ::core::option::Option<
+        matching_requirements::DataInputAllowList,
+    >,
 }
 /// Nested message and enum types in `MatchingRequirements`.
 pub mod matching_requirements {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DataInputAllowList {
         /// An explicit list of data inputs that are allowed to be used with this filter.
-        #[prost(string, repeated, tag="1")]
+        #[prost(string, repeated, tag = "1")]
         pub type_url: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
 }
@@ -272,4 +295,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x05, 0x04, 0x02, 0x02, 0x00, 0x03, 0x12, 0x03, 0x3a, 0x2d, 0x2e, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.common.dependency.v3.serde.rs");
 // @@protoc_insertion_point(module)

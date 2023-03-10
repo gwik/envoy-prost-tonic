@@ -1,13 +1,10 @@
 // @generated
-// [#protodoc-title: Rate limit]
-// Rate limit :ref:`configuration overview <config_http_filters_rate_limit>`.
-// [#extension: envoy.filters.http.ratelimit]
-
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimit {
     /// The rate limit domain to use when calling the rate limit service.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub domain: ::prost::alloc::string::String,
     /// Specifies the rate limit configurations to be applied with the same
     /// stage number. If not set, the default stage number is 0.
@@ -15,7 +12,7 @@ pub struct RateLimit {
     /// .. note::
     ///
     ///   The filter supports a range of 0 - 10 inclusively for stage numbers.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub stage: u32,
     /// The type of requests the filter should apply to. The supported
     /// types are *internal*, *external* or *both*. A request is considered internal if
@@ -23,28 +20,30 @@ pub struct RateLimit {
     /// :ref:`x-envoy-internal<config_http_conn_man_headers_x-envoy-internal>` is not set or false, a
     /// request is considered external. The filter defaults to *both*, and it will apply to all request
     /// types.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub request_type: ::prost::alloc::string::String,
     /// The timeout in milliseconds for the rate limit service RPC. If not
     /// set, this defaults to 20ms.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The filter's behaviour in case the rate limiting service does
     /// not respond back. When it is set to true, Envoy will not allow traffic in case of
     /// communication failure between rate limiting service and the proxy.
     /// Defaults to false.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub failure_mode_deny: bool,
     /// Specifies whether a `RESOURCE_EXHAUSTED` gRPC code must be returned instead
     /// of the default `UNAVAILABLE` gRPC code for a rate limited gRPC call. The
     /// HTTP code will be 200 for a gRPC response.
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub rate_limited_as_resource_exhausted: bool,
     /// Configuration for an external rate limit service provider. If not
     /// specified, any calls to the rate limit service will immediately return
     /// success.
-    #[prost(message, optional, tag="7")]
-    pub rate_limit_service: ::core::option::Option<super::super::super::super::ratelimit::v2::RateLimitServiceConfig>,
+    #[prost(message, optional, tag = "7")]
+    pub rate_limit_service: ::core::option::Option<
+        super::super::super::super::ratelimit::v2::RateLimitServiceConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.rate_limit.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -254,4 +253,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x06, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x41, 0x07, 0x32, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.rate_limit.v2.serde.rs");
 // @@protoc_insertion_point(module)

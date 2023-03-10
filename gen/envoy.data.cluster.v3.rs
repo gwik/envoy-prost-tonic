@@ -1,74 +1,75 @@
 // @generated
 /// [#next-free-field: 12]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutlierDetectionEvent {
     /// In case of eject represents type of ejection that took place.
-    #[prost(enumeration="OutlierEjectionType", tag="1")]
+    #[prost(enumeration = "OutlierEjectionType", tag = "1")]
     pub r#type: i32,
     /// Timestamp for event.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
     /// The time in seconds since the last action (either an ejection or unejection) took place.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub secs_since_last_action: ::core::option::Option<::pbjson_types::UInt64Value>,
     /// The :ref:`cluster <envoy_v3_api_msg_config.cluster.v3.Cluster>` that owns the ejected host.
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub cluster_name: ::prost::alloc::string::String,
     /// The URL of the ejected host. E.g., ``tcp://1.2.3.4:80``.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub upstream_url: ::prost::alloc::string::String,
     /// The action that took place.
-    #[prost(enumeration="Action", tag="6")]
+    #[prost(enumeration = "Action", tag = "6")]
     pub action: i32,
     /// If ``action`` is ``eject``, specifies the number of times the host has been ejected (local to
     /// that Envoy and gets reset if the host gets removed from the upstream cluster for any reason and
     /// then re-added).
-    #[prost(uint32, tag="7")]
+    #[prost(uint32, tag = "7")]
     pub num_ejections: u32,
     /// If ``action`` is ``eject``, specifies if the ejection was enforced. ``true`` means the host was
     /// ejected. ``false`` means the event was logged but the host was not actually ejected.
-    #[prost(bool, tag="8")]
+    #[prost(bool, tag = "8")]
     pub enforced: bool,
-    #[prost(oneof="outlier_detection_event::Event", tags="9, 10, 11")]
+    #[prost(oneof = "outlier_detection_event::Event", tags = "9, 10, 11")]
     pub event: ::core::option::Option<outlier_detection_event::Event>,
 }
 /// Nested message and enum types in `OutlierDetectionEvent`.
 pub mod outlier_detection_event {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Event {
-        #[prost(message, tag="9")]
+        #[prost(message, tag = "9")]
         EjectSuccessRateEvent(super::OutlierEjectSuccessRate),
-        #[prost(message, tag="10")]
+        #[prost(message, tag = "10")]
         EjectConsecutiveEvent(super::OutlierEjectConsecutive),
-        #[prost(message, tag="11")]
+        #[prost(message, tag = "11")]
         EjectFailurePercentageEvent(super::OutlierEjectFailurePercentage),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutlierEjectSuccessRate {
     /// Host’s success rate at the time of the ejection event on a 0-100 range.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub host_success_rate: u32,
     /// Average success rate of the hosts in the cluster at the time of the ejection event on a 0-100
     /// range.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub cluster_average_success_rate: u32,
     /// Success rate ejection threshold at the time of the ejection event.
-    #[prost(uint32, tag="3")]
+    #[prost(uint32, tag = "3")]
     pub cluster_success_rate_ejection_threshold: u32,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OutlierEjectConsecutive {
-}
+pub struct OutlierEjectConsecutive {}
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutlierEjectFailurePercentage {
     /// Host's success rate at the time of the ejection event on a 0-100 range.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub host_success_rate: u32,
 }
-// [#protodoc-title: Outlier detection logging events]
-// :ref:`Outlier detection logging <arch_overview_outlier_detection_logging>`.
-
 /// Type of ejection that took place
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -119,12 +120,33 @@ impl OutlierEjectionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             OutlierEjectionType::Consecutive5xx => "CONSECUTIVE_5XX",
-            OutlierEjectionType::ConsecutiveGatewayFailure => "CONSECUTIVE_GATEWAY_FAILURE",
+            OutlierEjectionType::ConsecutiveGatewayFailure => {
+                "CONSECUTIVE_GATEWAY_FAILURE"
+            }
             OutlierEjectionType::SuccessRate => "SUCCESS_RATE",
-            OutlierEjectionType::ConsecutiveLocalOriginFailure => "CONSECUTIVE_LOCAL_ORIGIN_FAILURE",
+            OutlierEjectionType::ConsecutiveLocalOriginFailure => {
+                "CONSECUTIVE_LOCAL_ORIGIN_FAILURE"
+            }
             OutlierEjectionType::SuccessRateLocalOrigin => "SUCCESS_RATE_LOCAL_ORIGIN",
             OutlierEjectionType::FailurePercentage => "FAILURE_PERCENTAGE",
-            OutlierEjectionType::FailurePercentageLocalOrigin => "FAILURE_PERCENTAGE_LOCAL_ORIGIN",
+            OutlierEjectionType::FailurePercentageLocalOrigin => {
+                "FAILURE_PERCENTAGE_LOCAL_ORIGIN"
+            }
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "CONSECUTIVE_5XX" => Some(Self::Consecutive5xx),
+            "CONSECUTIVE_GATEWAY_FAILURE" => Some(Self::ConsecutiveGatewayFailure),
+            "SUCCESS_RATE" => Some(Self::SuccessRate),
+            "CONSECUTIVE_LOCAL_ORIGIN_FAILURE" => {
+                Some(Self::ConsecutiveLocalOriginFailure)
+            }
+            "SUCCESS_RATE_LOCAL_ORIGIN" => Some(Self::SuccessRateLocalOrigin),
+            "FAILURE_PERCENTAGE" => Some(Self::FailurePercentage),
+            "FAILURE_PERCENTAGE_LOCAL_ORIGIN" => Some(Self::FailurePercentageLocalOrigin),
+            _ => None,
         }
     }
 }
@@ -146,6 +168,14 @@ impl Action {
         match self {
             Action::Eject => "EJECT",
             Action::Uneject => "UNEJECT",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EJECT" => Some(Self::Eject),
+            "UNEJECT" => Some(Self::Uneject),
+            _ => None,
         }
     }
 }
@@ -635,4 +665,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x1f, 0x45, 0x0a, 0x10, 0x0a, 0x08, 0x04, 0x03, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x05, 0x12,
     0x04, 0x90, 0x01, 0x20, 0x44, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.data.cluster.v3.serde.rs");
 // @@protoc_insertion_point(module)

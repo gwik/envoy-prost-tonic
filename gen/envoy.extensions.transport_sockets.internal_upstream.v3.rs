@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Internal Upstream]
-// [#extension: envoy.transport_sockets.internal_upstream]
-
 /// Configuration for the internal upstream address. An internal address defines
 /// a loopback user space socket residing in the same proxy instance. This
 /// extension allows passing additional structured state across the user space
@@ -10,6 +7,7 @@
 /// connections. All filter state objects that are shared with the upstream
 /// connection are also shared with the downstream internal connection using
 /// this transport socket.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InternalUpstreamTransport {
     /// Specifies the metadata namespaces and values to insert into the downstream
@@ -17,24 +15,31 @@ pub struct InternalUpstreamTransport {
     /// host. If the destination name is repeated across two metadata source
     /// locations, and both locations contain the metadata with the given name,
     /// then the latter in the list overrides the former.
-    #[prost(message, repeated, tag="1")]
-    pub passthrough_metadata: ::prost::alloc::vec::Vec<internal_upstream_transport::MetadataValueSource>,
+    #[prost(message, repeated, tag = "1")]
+    pub passthrough_metadata: ::prost::alloc::vec::Vec<
+        internal_upstream_transport::MetadataValueSource,
+    >,
     /// The underlying transport socket being wrapped.
-    #[prost(message, optional, tag="3")]
-    pub transport_socket: ::core::option::Option<super::super::super::super::config::core::v3::TransportSocket>,
+    #[prost(message, optional, tag = "3")]
+    pub transport_socket: ::core::option::Option<
+        super::super::super::super::config::core::v3::TransportSocket,
+    >,
 }
 /// Nested message and enum types in `InternalUpstreamTransport`.
 pub mod internal_upstream_transport {
     /// Describes the location of the imported metadata value.
     /// If the metadata with the given name is not present at the source location,
     /// then no metadata is passed through for this particular instance.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MetadataValueSource {
         /// Specifies what kind of metadata.
-        #[prost(message, optional, tag="1")]
-        pub kind: ::core::option::Option<super::super::super::super::super::r#type::metadata::v3::MetadataKind>,
+        #[prost(message, optional, tag = "1")]
+        pub kind: ::core::option::Option<
+            super::super::super::super::super::r#type::metadata::v3::MetadataKind,
+        >,
         /// Name is the filter namespace used in the dynamic metadata.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub name: ::prost::alloc::string::String,
     }
 }
@@ -219,4 +224,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x2f, 0x37, 0x62, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.internal_upstream.v3.serde.rs");
 // @@protoc_insertion_point(module)

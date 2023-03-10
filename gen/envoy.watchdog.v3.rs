@@ -1,17 +1,16 @@
 // @generated
-// [#protodoc-title: Watchdog Action that kills a stuck thread to kill the process.]
-
 /// A GuardDogAction that will terminate the process by killing the
 /// stuck thread. This would allow easier access to the call stack of the stuck
 /// thread since we would run signal handlers on that thread. By default
 /// this will be registered to run as the last watchdog action on KILL and
 /// MULTIKILL events if those are enabled.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AbortActionConfig {
     /// How long to wait for the thread to respond to the thread kill function
     /// before killing the process from this action. This is a blocking action.
     /// By default this is 5 seconds.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub wait_duration: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.watchdog.v3` package
@@ -91,4 +90,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x00, 0x01, 0x12, 0x03, 0x19, 0x1b, 0x28, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x00, 0x03, 0x12, 0x03, 0x19, 0x2b, 0x2c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.watchdog.v3.serde.rs");
 // @@protoc_insertion_point(module)

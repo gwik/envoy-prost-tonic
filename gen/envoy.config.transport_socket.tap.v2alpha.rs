@@ -1,17 +1,19 @@
 // @generated
-// [#protodoc-title: Tap]
-// [#extension: envoy.transport_sockets.tap]
-
 /// Configuration for tap transport socket. This wraps another transport socket, providing the
 /// ability to interpose and record in plain text any traffic that is surfaced to Envoy.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tap {
     /// Common configuration for the tap transport socket.
-    #[prost(message, optional, tag="1")]
-    pub common_config: ::core::option::Option<super::super::super::common::tap::v2alpha::CommonExtensionConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub common_config: ::core::option::Option<
+        super::super::super::common::tap::v2alpha::CommonExtensionConfig,
+    >,
     /// The underlying transport socket being wrapped.
-    #[prost(message, optional, tag="2")]
-    pub transport_socket: ::core::option::Option<super::super::super::super::api::v2::core::TransportSocket>,
+    #[prost(message, optional, tag = "2")]
+    pub transport_socket: ::core::option::Option<
+        super::super::super::super::api::v2::core::TransportSocket,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.transport_socket.tap.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -109,4 +111,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x33, 0x60, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03,
     0x1f, 0x34, 0x5f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.transport_socket.tap.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

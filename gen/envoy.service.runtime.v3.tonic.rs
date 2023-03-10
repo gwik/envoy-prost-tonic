@@ -156,10 +156,10 @@ pub mod runtime_discovery_service_client {
 pub mod runtime_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with RuntimeDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with RuntimeDiscoveryServiceServer.
     #[async_trait]
     pub trait RuntimeDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamRuntime method.
+        /// Server streaming response type for the StreamRuntime method.
         type StreamRuntimeStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DiscoveryResponse,
@@ -174,7 +174,7 @@ pub mod runtime_discovery_service_server {
                 tonic::Streaming<super::super::super::discovery::v3::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamRuntimeStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaRuntime method.
+        /// Server streaming response type for the DeltaRuntime method.
         type DeltaRuntimeStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::discovery::v3::DeltaDiscoveryResponse,

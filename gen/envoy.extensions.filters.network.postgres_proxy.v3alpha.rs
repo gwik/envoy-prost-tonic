@@ -1,19 +1,15 @@
 // @generated
-// [#protodoc-title: Postgres proxy]
-// Postgres Proxy :ref:`configuration overview
-// <config_network_filters_postgres_proxy>`.
-// [#extension: envoy.filters.network.postgres_proxy]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PostgresProxy {
     /// The human readable prefix to use when emitting :ref:`statistics
     /// <config_network_filters_postgres_proxy_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// Controls whether SQL statements received in Frontend Query messages
     /// are parsed. Parsing is required to produce Postgres proxy filter
     /// metadata. Defaults to true.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub enable_sql_parsing: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Controls whether to terminate SSL session initiated by a client.
     /// If the value is false, the Postgres proxy filter will not try to
@@ -24,7 +20,7 @@ pub struct PostgresProxy {
     /// If the filter does not manage to terminate the SSL session, it will close the connection from the client.
     /// Refer to official documentation for details
     /// `SSL Session Encryption Message Flow <<https://www.postgresql.org/docs/current/protocol-flow.html#id-1.10.5.7.11>`_.>
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub terminate_ssl: bool,
     /// Controls whether to establish upstream SSL connection to the server.
     /// Envoy will try to establish upstream SSL connection to the server only when
@@ -32,13 +28,23 @@ pub struct PostgresProxy {
     /// a client established a clear-text connection to Envoy or when a client established
     /// SSL connection to Envoy and Postgres filter is configured to terminate SSL.
     /// Defaults to SSL_DISABLE.
-    #[prost(enumeration="postgres_proxy::SslMode", tag="4")]
+    #[prost(enumeration = "postgres_proxy::SslMode", tag = "4")]
     pub upstream_ssl: i32,
 }
 /// Nested message and enum types in `PostgresProxy`.
 pub mod postgres_proxy {
     /// Upstream SSL operational modes.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SslMode {
         /// Do not encrypt upstream connection to the server.
@@ -56,6 +62,14 @@ pub mod postgres_proxy {
             match self {
                 SslMode::Disable => "DISABLE",
                 SslMode::Require => "REQUIRE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DISABLE" => Some(Self::Disable),
+                "REQUIRE" => Some(Self::Require),
+                _ => None,
             }
         }
     }
@@ -264,4 +278,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x3a, 0x19, 0x1a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.filters.network.postgres_proxy.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

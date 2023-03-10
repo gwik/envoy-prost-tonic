@@ -1,17 +1,14 @@
 // @generated
-// [#protodoc-title: Bandwidth limit]
-// Bandwidth limit :ref:`configuration overview <config_http_filters_bandwidth_limit>`.
-// [#extension: envoy.filters.http.bandwidth_limit]
-
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BandwidthLimit {
     /// The human readable prefix to use when emitting stats.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The enable mode for the bandwidth limit filter.
     /// Default is Disabled.
-    #[prost(enumeration="bandwidth_limit::EnableMode", tag="2")]
+    #[prost(enumeration = "bandwidth_limit::EnableMode", tag = "2")]
     pub enable_mode: i32,
     /// The limit supplied in KiB/s.
     ///
@@ -23,16 +20,18 @@ pub struct BandwidthLimit {
     /// .. note::
     ///    When using per route configuration, the limit becomes unique to that route.
     ///
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub limit_kbps: ::core::option::Option<::pbjson_types::UInt64Value>,
     /// Optional Fill interval in milliseconds for the token refills. Defaults to 50ms.
     /// It must be at least 20ms to avoid too aggressive refills.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub fill_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// Runtime flag that controls whether the filter is enabled or not. If not specified, defaults
     /// to enabled.
-    #[prost(message, optional, tag="5")]
-    pub runtime_enabled: ::core::option::Option<super::super::super::super::super::config::core::v3::RuntimeFeatureFlag>,
+    #[prost(message, optional, tag = "5")]
+    pub runtime_enabled: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::RuntimeFeatureFlag,
+    >,
     /// Enable response trailers.
     ///
     /// .. note::
@@ -45,17 +44,27 @@ pub struct BandwidthLimit {
     ///    If :ref:`enable_mode <envoy_v3_api_field_extensions.filters.http.bandwidth_limit.v3.BandwidthLimit.enable_mode>` is ``DISABLED`` or ``REQUEST``, the trailers will not be set.
     ///    If both the request and response delay time is 0, the trailers will not be set.
     ///
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub enable_response_trailers: bool,
     /// Optional The prefix for the response trailers.
-    #[prost(string, tag="7")]
+    #[prost(string, tag = "7")]
     pub response_trailer_prefix: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `BandwidthLimit`.
 pub mod bandwidth_limit {
     /// Defines the mode for the bandwidth limit filter.
     /// Values represent bitmask.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum EnableMode {
         /// Filter is disabled.
@@ -78,6 +87,16 @@ pub mod bandwidth_limit {
                 EnableMode::Request => "REQUEST",
                 EnableMode::Response => "RESPONSE",
                 EnableMode::RequestAndResponse => "REQUEST_AND_RESPONSE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DISABLED" => Some(Self::Disabled),
+                "REQUEST" => Some(Self::Request),
+                "RESPONSE" => Some(Self::Response),
+                "REQUEST_AND_RESPONSE" => Some(Self::RequestAndResponse),
+                _ => None,
             }
         }
     }
@@ -356,4 +375,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x08, 0x04, 0x00, 0x02, 0x06, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x56, 0x07, 0x53, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.bandwidth_limit.v3.serde.rs");
 // @@protoc_insertion_point(module)

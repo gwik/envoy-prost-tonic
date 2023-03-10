@@ -1,20 +1,19 @@
 // @generated
-// [#protodoc-title: Key/value file-based store storage plugin]
-
 /// [#extension: envoy.key_value.file_based]
 /// This is configuration to flush a key value store out to disk.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileBasedKeyValueStoreConfig {
     /// The filename to read the keys and values from, and write the keys and
     /// values to.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub filename: ::prost::alloc::string::String,
     /// The interval at which the key value store should be flushed to the file.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub flush_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// The maximum number of entries to cache, or 0 to allow for unlimited entries.
     /// Defaults to 1000 if not present.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub max_entries: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.key_value.file_based.v3` package
@@ -117,4 +116,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x22, 0x2c, 0x2d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.key_value.file_based.v3.serde.rs");
 // @@protoc_insertion_point(module)

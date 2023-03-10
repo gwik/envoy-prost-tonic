@@ -1,8 +1,7 @@
 // @generated
-// [#protodoc-title: API listener]
-
 /// Describes a type of API listener, which is used in non-proxy clients. The type of API
 /// exposed to the non-proxy application depends on the type of API listener.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApiListener {
     /// The type in this field determines the type of API listener. At present, the following
@@ -14,35 +13,34 @@ pub struct ApiListener {
     /// it would have caused circular dependencies for go protos: lds.proto depends on this file,
     /// and http_connection_manager.proto depends on rds.proto, which is in the same directory as
     /// lds.proto, so lds.proto cannot depend on this file.]
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub api_listener: ::core::option::Option<::pbjson_types::Any>,
 }
-// [#protodoc-title: Listener components]
-// Listener :ref:`configuration overview <config_listeners>`
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
     /// The name of the filter configuration.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(oneof="filter::ConfigType", tags="4, 5")]
+    #[prost(oneof = "filter::ConfigType", tags = "4, 5")]
     pub config_type: ::core::option::Option<filter::ConfigType>,
 }
 /// Nested message and enum types in `Filter`.
 pub mod filter {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
         /// Filter specific configuration which depends on the filter being
         /// instantiated. See the supported filters for further documentation.
         /// [#extension-category: envoy.filters.network]
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TypedConfig(::pbjson_types::Any),
         /// Configuration source specifier for an extension configuration discovery
         /// service. In case of a failure and without the default configuration, the
         /// listener closes the connections.
         /// \[#not-implemented-hide:\]
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         ConfigDiscovery(super::super::super::core::v3::ExtensionConfigSource),
     }
 }
@@ -90,42 +88,47 @@ pub mod filter {
 ///
 /// [#comment:TODO(PiotrSikora): Add support for configurable precedence of the rules]
 /// [#next-free-field: 14]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterChainMatch {
     /// Optional destination port to consider when use_original_dst is set on the
     /// listener in determining a filter chain match.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub destination_port: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// If non-empty, an IP address and prefix length to match addresses when the
     /// listener is bound to 0.0.0.0/:: or when use_original_dst is specified.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub prefix_ranges: ::prost::alloc::vec::Vec<super::super::core::v3::CidrRange>,
     /// If non-empty, an IP address and suffix length to match addresses when the
     /// listener is bound to 0.0.0.0/:: or when use_original_dst is specified.
     /// \[#not-implemented-hide:\]
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub address_suffix: ::prost::alloc::string::String,
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub suffix_len: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The criteria is satisfied if the directly connected source IP address of the downstream
     /// connection is contained in at least one of the specified subnets. If the parameter is not
     /// specified or the list is empty, the directly connected source IP address is ignored.
-    #[prost(message, repeated, tag="13")]
-    pub direct_source_prefix_ranges: ::prost::alloc::vec::Vec<super::super::core::v3::CidrRange>,
+    #[prost(message, repeated, tag = "13")]
+    pub direct_source_prefix_ranges: ::prost::alloc::vec::Vec<
+        super::super::core::v3::CidrRange,
+    >,
     /// Specifies the connection source IP match type. Can be any, local or external network.
-    #[prost(enumeration="filter_chain_match::ConnectionSourceType", tag="12")]
+    #[prost(enumeration = "filter_chain_match::ConnectionSourceType", tag = "12")]
     pub source_type: i32,
     /// The criteria is satisfied if the source IP address of the downstream
     /// connection is contained in at least one of the specified subnets. If the
     /// parameter is not specified or the list is empty, the source IP address is
     /// ignored.
-    #[prost(message, repeated, tag="6")]
-    pub source_prefix_ranges: ::prost::alloc::vec::Vec<super::super::core::v3::CidrRange>,
+    #[prost(message, repeated, tag = "6")]
+    pub source_prefix_ranges: ::prost::alloc::vec::Vec<
+        super::super::core::v3::CidrRange,
+    >,
     /// The criteria is satisfied if the source port of the downstream connection
     /// is contained in at least one of the specified ports. If the parameter is
     /// not specified, the source port is ignored.
-    #[prost(uint32, repeated, packed="false", tag="7")]
+    #[prost(uint32, repeated, packed = "false", tag = "7")]
     pub source_ports: ::prost::alloc::vec::Vec<u32>,
     /// If non-empty, a list of server names (e.g. SNI for TLS protocol) to consider when determining
     /// a filter chain match. Those values will be compared against the server names of a new
@@ -141,7 +144,7 @@ pub struct FilterChainMatch {
     ///
     ///    See the :ref:`FAQ entry <faq_how_to_setup_sni>` on how to configure SNI for more
     ///    information.
-    #[prost(string, repeated, tag="11")]
+    #[prost(string, repeated, tag = "11")]
     pub server_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If non-empty, a transport protocol to consider when determining a filter chain match.
     /// This value will be compared against the transport protocol of a new connection, when
@@ -152,7 +155,7 @@ pub struct FilterChainMatch {
     /// * ``raw_buffer`` - default, used when no transport protocol is detected,
     /// * ``tls`` - set by :ref:`envoy.filters.listener.tls_inspector <config_listener_filters_tls_inspector>`
     ///    when TLS protocol is detected.
-    #[prost(string, tag="9")]
+    #[prost(string, tag = "9")]
     pub transport_protocol: ::prost::alloc::string::String,
     /// If non-empty, a list of application protocols (e.g. ALPN for TLS protocol) to consider when
     /// determining a filter chain match. Those values will be compared against the application
@@ -173,12 +176,22 @@ pub struct FilterChainMatch {
     ///    However, the use of ALPN is pretty much limited to the HTTP/2 traffic on the Internet,
     ///    and matching on values other than ``h2`` is going to lead to a lot of false negatives,
     ///    unless all connecting clients are known to use ALPN.
-    #[prost(string, repeated, tag="10")]
+    #[prost(string, repeated, tag = "10")]
     pub application_protocols: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `FilterChainMatch`.
 pub mod filter_chain_match {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConnectionSourceType {
         /// Any connection source matches.
@@ -200,15 +213,25 @@ pub mod filter_chain_match {
                 ConnectionSourceType::External => "EXTERNAL",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ANY" => Some(Self::Any),
+                "SAME_IP_OR_LOOPBACK" => Some(Self::SameIpOrLoopback),
+                "EXTERNAL" => Some(Self::External),
+                _ => None,
+            }
+        }
     }
 }
 /// A filter chain wraps a set of match criteria, an option TLS context, a set of filters, and
 /// various other parameters.
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterChain {
     /// The criteria to use when matching a connection to this filter chain.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub filter_chain_match: ::core::option::Option<FilterChainMatch>,
     /// A list of individual network filters that make up the filter chain for
     /// connections established with the listener. Order matters as the filters are
@@ -220,7 +243,7 @@ pub struct FilterChain {
     /// to TCP, the onData() method will never be called. Therefore, network filters
     /// for QUIC listeners should only expect to do work at the start of a new connection
     /// (i.e. in onNewConnection()). HCM must be the last (or only) filter in the chain.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub filters: ::prost::alloc::vec::Vec<Filter>,
     /// Whether the listener should expect a PROXY protocol V1 header on new
     /// connections. If this option is enabled, the listener will assume that that
@@ -233,10 +256,10 @@ pub struct FilterChain {
     /// :ref:`PROXY protocol listener filter <config_listener_filters_proxy_protocol>`
     /// explicitly instead.
     #[deprecated]
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub use_proxy_proto: ::core::option::Option<::pbjson_types::BoolValue>,
     /// \[#not-implemented-hide:\] filter chain metadata.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub metadata: ::core::option::Option<super::super::core::v3::Metadata>,
     /// Optional custom transport socket implementation to use for downstream connections.
     /// To setup TLS, set a transport socket with name ``envoy.transport_sockets.tls`` and
@@ -244,24 +267,30 @@ pub struct FilterChain {
     /// If no transport socket configuration is specified, new connections
     /// will be set up with plaintext.
     /// [#extension-category: envoy.transport_sockets.downstream]
-    #[prost(message, optional, tag="6")]
-    pub transport_socket: ::core::option::Option<super::super::core::v3::TransportSocket>,
+    #[prost(message, optional, tag = "6")]
+    pub transport_socket: ::core::option::Option<
+        super::super::core::v3::TransportSocket,
+    >,
     /// If present and nonzero, the amount of time to allow incoming connections to complete any
     /// transport socket negotiations. If this expires before the transport reports connection
     /// establishment, the connection is summarily closed.
-    #[prost(message, optional, tag="9")]
-    pub transport_socket_connect_timeout: ::core::option::Option<::pbjson_types::Duration>,
+    #[prost(message, optional, tag = "9")]
+    pub transport_socket_connect_timeout: ::core::option::Option<
+        ::pbjson_types::Duration,
+    >,
     /// The unique name (or empty) by which this filter chain is known.
     /// Note: :ref:`filter_chain_matcher
     /// <envoy_v3_api_field_config.listener.v3.Listener.filter_chain_matcher>`
     /// requires that filter chains are uniquely named within a listener.
-    #[prost(string, tag="7")]
+    #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
     /// \[#not-implemented-hide:\] The configuration to specify whether the filter chain will be built on-demand.
     /// If this field is not empty, the filter chain will be built on-demand.
     /// Otherwise, the filter chain will be built normally and block listener warming.
-    #[prost(message, optional, tag="8")]
-    pub on_demand_configuration: ::core::option::Option<filter_chain::OnDemandConfiguration>,
+    #[prost(message, optional, tag = "8")]
+    pub on_demand_configuration: ::core::option::Option<
+        filter_chain::OnDemandConfiguration,
+    >,
 }
 /// Nested message and enum types in `FilterChain`.
 pub mod filter_chain {
@@ -270,6 +299,7 @@ pub mod filter_chain {
     /// On-demand filter chains help speedup the warming up of listeners since the building and initialization of
     /// an on-demand filter chain will be postponed to the arrival of new connection requests that require this filter chain.
     /// Filter chains that are not often used can be set as on-demand.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct OnDemandConfiguration {
         /// The timeout to wait for filter chain placeholders to complete rebuilding.
@@ -278,7 +308,7 @@ pub mod filter_chain {
         /// Rebuilding will wait until dependencies are ready, have failed, or this timeout is reached.
         /// Upon failure or timeout, all connections related to this filter chain will be closed.
         /// Rebuilding will start again on the next new connection.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub rebuild_timeout: ::core::option::Option<::pbjson_types::Duration>,
     }
 }
@@ -309,94 +339,103 @@ pub mod filter_chain {
 ///           end: 15001
 ///
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenerFilterChainMatchPredicate {
-    #[prost(oneof="listener_filter_chain_match_predicate::Rule", tags="1, 2, 3, 4, 5")]
+    #[prost(
+        oneof = "listener_filter_chain_match_predicate::Rule",
+        tags = "1, 2, 3, 4, 5"
+    )]
     pub rule: ::core::option::Option<listener_filter_chain_match_predicate::Rule>,
 }
 /// Nested message and enum types in `ListenerFilterChainMatchPredicate`.
 pub mod listener_filter_chain_match_predicate {
     /// A set of match configurations used for logical operations.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MatchSet {
         /// The list of rules that make up the set.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub rules: ::prost::alloc::vec::Vec<super::ListenerFilterChainMatchPredicate>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Rule {
         /// A set that describes a logical OR. If any member of the set matches, the match configuration
         /// matches.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         OrMatch(MatchSet),
         /// A set that describes a logical AND. If all members of the set match, the match configuration
         /// matches.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         AndMatch(MatchSet),
         /// A negation match. The match configuration will match if the negated match condition matches.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         NotMatch(::prost::alloc::boxed::Box<super::ListenerFilterChainMatchPredicate>),
         /// The match configuration will always match.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         AnyMatch(bool),
         /// Match destination port. Particularly, the match evaluation must use the recovered local port if
         /// the owning listener filter is after :ref:`an original_dst listener filter <config_listener_filters_original_dst>`.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         DestinationPortRange(super::super::super::super::r#type::v3::Int32Range),
     }
 }
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenerFilter {
     /// The name of the filter configuration.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional match predicate used to disable the filter. The filter is enabled when this field is empty.
     /// See :ref:`ListenerFilterChainMatchPredicate <envoy_v3_api_msg_config.listener.v3.ListenerFilterChainMatchPredicate>`
     /// for further examples.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub filter_disabled: ::core::option::Option<ListenerFilterChainMatchPredicate>,
-    #[prost(oneof="listener_filter::ConfigType", tags="3, 5")]
+    #[prost(oneof = "listener_filter::ConfigType", tags = "3, 5")]
     pub config_type: ::core::option::Option<listener_filter::ConfigType>,
 }
 /// Nested message and enum types in `ListenerFilter`.
 pub mod listener_filter {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
         /// Filter specific configuration which depends on the filter being
         /// instantiated. See the supported filters for further documentation.
         /// [#extension-category: envoy.filters.listener,envoy.filters.udp_listener]
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
         /// Configuration source specifier for an extension configuration discovery
         /// service. In case of a failure and without the default configuration, the
         /// listener closes the connections.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         ConfigDiscovery(super::super::super::core::v3::ExtensionConfigSource),
     }
 }
-// [#protodoc-title: QUIC listener config]
-
 /// Configuration specific to the UDP QUIC listener.
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuicProtocolOptions {
-    #[prost(message, optional, tag="1")]
-    pub quic_protocol_options: ::core::option::Option<super::super::core::v3::QuicProtocolOptions>,
+    #[prost(message, optional, tag = "1")]
+    pub quic_protocol_options: ::core::option::Option<
+        super::super::core::v3::QuicProtocolOptions,
+    >,
     /// Maximum number of milliseconds that connection will be alive when there is
     /// no network activity.
     ///
     /// If it is less than 1ms, Envoy will use 1ms. 300000ms if not specified.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Connection timeout in milliseconds before the crypto handshake is finished.
     ///
     /// If it is less than 5000ms, Envoy will use 5000ms. 20000ms if not specified.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub crypto_handshake_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Runtime flag that controls whether the listener is enabled or not. If not specified, defaults
     /// to enabled.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub enabled: ::core::option::Option<super::super::core::v3::RuntimeFeatureFlag>,
     /// A multiplier to number of connections which is used to determine how many packets to read per
     /// event loop. A reasonable number should allow the listener to process enough payload but not
@@ -405,45 +444,55 @@ pub struct QuicProtocolOptions {
     /// packets to read in each read event will be 32 * N.
     /// The actual number of packets to read in total by the UDP listener is also
     /// bound by 6000, regardless of this field or how many connections there are.
-    #[prost(message, optional, tag="5")]
-    pub packets_to_read_to_connection_count_ratio: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "5")]
+    pub packets_to_read_to_connection_count_ratio: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// Configure which implementation of ``quic::QuicCryptoClientStreamBase`` to be used for this listener.
     /// If not specified the :ref:`QUICHE default one configured by <envoy_v3_api_msg_extensions.quic.crypto_stream.v3.CryptoServerStreamConfig>` will be used.
     /// [#extension-category: envoy.quic.server.crypto_stream]
-    #[prost(message, optional, tag="6")]
-    pub crypto_stream_config: ::core::option::Option<super::super::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "6")]
+    pub crypto_stream_config: ::core::option::Option<
+        super::super::core::v3::TypedExtensionConfig,
+    >,
     /// Configure which implementation of ``quic::ProofSource`` to be used for this listener.
     /// If not specified the :ref:`default one configured by <envoy_v3_api_msg_extensions.quic.proof_source.v3.ProofSourceConfig>` will be used.
     /// [#extension-category: envoy.quic.proof_source]
-    #[prost(message, optional, tag="7")]
-    pub proof_source_config: ::core::option::Option<super::super::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "7")]
+    pub proof_source_config: ::core::option::Option<
+        super::super::core::v3::TypedExtensionConfig,
+    >,
     /// Config which implementation of ``quic::ConnectionIdGeneratorInterface`` to be used for this listener.
     /// If not specified the :ref:`default one configured by <envoy_v3_api_msg_extensions.quic.connection_id_generator.v3.DeterministicConnectionIdGeneratorConfig>` will be used.
     /// [#extension-category: envoy.quic.connection_id_generator]
-    #[prost(message, optional, tag="8")]
-    pub connection_id_generator_config: ::core::option::Option<super::super::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "8")]
+    pub connection_id_generator_config: ::core::option::Option<
+        super::super::core::v3::TypedExtensionConfig,
+    >,
     /// Configure the server's preferred address to advertise so that client can migrate to it. See :ref:`example <envoy_v3_api_msg_extensions.quic.server_preferred_address.v3.FixedServerPreferredAddressConfig>` which configures a pair of v4 and v6 preferred addresses.
     /// The current QUICHE implementation will advertise only one of the preferred IPv4 and IPv6 addresses based on the address family the client initially connects with, and only if the client is also QUICHE-based.
     /// If not specified, Envoy will not advertise any server's preferred address.
     /// [#extension-category: envoy.quic.server_preferred_address]
-    #[prost(message, optional, tag="9")]
-    pub server_preferred_address_config: ::core::option::Option<super::super::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "9")]
+    pub server_preferred_address_config: ::core::option::Option<
+        super::super::core::v3::TypedExtensionConfig,
+    >,
 }
-// [#protodoc-title: UDP listener config]
-// Listener :ref:`configuration overview <config_listeners>`
-
 /// [#next-free-field: 9]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UdpListenerConfig {
     /// UDP socket configuration for the listener. The default for
     /// :ref:`prefer_gro <envoy_v3_api_field_config.core.v3.UdpSocketConfig.prefer_gro>` is false for
     /// listener sockets. If receiving a large amount of datagrams from a small number of sources, it
     /// may be worthwhile to enable this option after performance testing.
-    #[prost(message, optional, tag="5")]
-    pub downstream_socket_config: ::core::option::Option<super::super::core::v3::UdpSocketConfig>,
+    #[prost(message, optional, tag = "5")]
+    pub downstream_socket_config: ::core::option::Option<
+        super::super::core::v3::UdpSocketConfig,
+    >,
     /// Configuration for QUIC protocol. If empty, QUIC will not be enabled on this listener. Set
     /// to the default object to enable QUIC without modifying any additional options.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub quic_options: ::core::option::Option<QuicProtocolOptions>,
     /// Configuration for the UDP packet writer. If empty, HTTP/3 will use GSO if available
     /// (:ref:`UdpDefaultWriterFactory <envoy_v3_api_msg_extensions.udp_packet_writer.v3.UdpGsoBatchWriterFactory>`)
@@ -451,19 +500,19 @@ pub struct UdpListenerConfig {
     /// (:ref:`UdpDefaultWriterFactory <envoy_v3_api_msg_extensions.udp_packet_writer.v3.UdpDefaultWriterFactory>`)
     /// and raw UDP will use kernel sendmsg.
     /// [#extension-category: envoy.udp_packet_writer]
-    #[prost(message, optional, tag="8")]
-    pub udp_packet_packet_writer_config: ::core::option::Option<super::super::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "8")]
+    pub udp_packet_packet_writer_config: ::core::option::Option<
+        super::super::core::v3::TypedExtensionConfig,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActiveRawUdpListenerConfig {
-}
-// [#protodoc-title: Listener configuration]
-// Listener :ref:`configuration overview <config_listeners>`
-
+pub struct ActiveRawUdpListenerConfig {}
 /// The additional address the listener is listening on.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdditionalAddress {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub address: ::core::option::Option<super::super::core::v3::Address>,
     /// Additional socket options that may not be present in Envoy source code or
     /// precompiled binaries. If specified, this will override the
@@ -472,39 +521,45 @@ pub struct AdditionalAddress {
     /// :ref:`socket_options <envoy_v3_api_field_config.core.v3.SocketOptionsOverride.socket_options>`
     /// or an empty list of :ref:`socket_options <envoy_v3_api_field_config.core.v3.SocketOptionsOverride.socket_options>`,
     /// it means no socket option will apply.
-    #[prost(message, optional, tag="2")]
-    pub socket_options: ::core::option::Option<super::super::core::v3::SocketOptionsOverride>,
+    #[prost(message, optional, tag = "2")]
+    pub socket_options: ::core::option::Option<
+        super::super::core::v3::SocketOptionsOverride,
+    >,
 }
 /// Listener list collections. Entries are ``Listener`` resources or references.
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenerCollection {
-    #[prost(message, repeated, tag="1")]
-    pub entries: ::prost::alloc::vec::Vec<super::super::super::super::xds::core::v3::CollectionEntry>,
+    #[prost(message, repeated, tag = "1")]
+    pub entries: ::prost::alloc::vec::Vec<
+        super::super::super::super::xds::core::v3::CollectionEntry,
+    >,
 }
 /// [#next-free-field: 34]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Listener {
     /// The unique name by which this listener is known. If no name is provided,
     /// Envoy will allocate an internal UUID for the listener. If the listener is to be dynamically
     /// updated or removed via :ref:`LDS <config_listeners_lds>` a unique name must be provided.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The address that the listener should listen on. In general, the address must be unique, though
     /// that is governed by the bind rules of the OS. E.g., multiple listeners can listen on port 0 on
     /// Linux as the actual port will be allocated by the OS.
     /// Required unless ``api_listener`` or ``listener_specifier`` is populated.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub address: ::core::option::Option<super::super::core::v3::Address>,
     /// The additional addresses the listener should listen on. The addresses must be unique across all
     /// listeners. Multiple addresses with port 0 can be supplied. When using multiple addresses in a single listener,
     /// all addresses use the same protocol, and multiple internal addresses are not supported.
-    #[prost(message, repeated, tag="33")]
+    #[prost(message, repeated, tag = "33")]
     pub additional_addresses: ::prost::alloc::vec::Vec<AdditionalAddress>,
     /// Optional prefix to use on listener stats. If empty, the stats will be rooted at
     /// ``listener.<address as string>.``. If non-empty, stats will be rooted at
     /// ``listener.<stat_prefix>.``.
-    #[prost(string, tag="28")]
+    #[prost(string, tag = "28")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// A list of filter chains to consider for this listener. The
     /// :ref:`FilterChain <envoy_v3_api_msg_config.listener.v3.FilterChain>` with the most specific
@@ -513,7 +568,7 @@ pub struct Listener {
     ///
     /// Example using SNI for filter chain selection can be found in the
     /// :ref:`FAQ entry <faq_how_to_setup_sni>`.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub filter_chains: ::prost::alloc::vec::Vec<FilterChain>,
     /// :ref:`Matcher API <arch_overview_matching_listener>` resolving the filter chain name from the
     /// network properties. This matcher is used as a replacement for the filter chain match condition
@@ -531,32 +586,36 @@ pub struct Listener {
     ///   connections bound to the filter chain are not drained. If, however, the
     ///   filter chain is removed or structurally modified, then the drain for its
     ///   connections is initiated.
-    #[prost(message, optional, tag="32")]
-    pub filter_chain_matcher: ::core::option::Option<super::super::super::super::xds::r#type::matcher::v3::Matcher>,
+    #[prost(message, optional, tag = "32")]
+    pub filter_chain_matcher: ::core::option::Option<
+        super::super::super::super::xds::r#type::matcher::v3::Matcher,
+    >,
     /// If a connection is redirected using ``iptables``, the port on which the proxy
     /// receives it might be different from the original destination address. When this flag is set to
     /// true, the listener hands off redirected connections to the listener associated with the
     /// original destination address. If there is no listener associated with the original destination
     /// address, the connection is handled by the listener that receives it. Defaults to false.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub use_original_dst: ::core::option::Option<::pbjson_types::BoolValue>,
     /// The default filter chain if none of the filter chain matches. If no default filter chain is supplied,
     /// the connection will be closed. The filter chain match is ignored in this field.
-    #[prost(message, optional, tag="25")]
+    #[prost(message, optional, tag = "25")]
     pub default_filter_chain: ::core::option::Option<FilterChain>,
     /// Soft limit on size of the listener’s new connection read and write buffers.
     /// If unspecified, an implementation defined default is applied (1MiB).
-    #[prost(message, optional, tag="5")]
-    pub per_connection_buffer_limit_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "5")]
+    pub per_connection_buffer_limit_bytes: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// Listener metadata.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub metadata: ::core::option::Option<super::super::core::v3::Metadata>,
     /// \[#not-implemented-hide:\]
     #[deprecated]
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub deprecated_v1: ::core::option::Option<listener::DeprecatedV1>,
     /// The type of draining to perform at a listener-wide level.
-    #[prost(enumeration="listener::DrainType", tag="8")]
+    #[prost(enumeration = "listener::DrainType", tag = "8")]
     pub drain_type: i32,
     /// Listener filters have the opportunity to manipulate and augment the connection metadata that
     /// is used in connection filter chain matching, for example. These filters are run before any in
@@ -566,13 +625,13 @@ pub struct Listener {
     /// UDP Listener filters can be specified when the protocol in the listener socket address in
     /// :ref:`protocol <envoy_v3_api_field_config.core.v3.SocketAddress.protocol>` is :ref:`UDP
     /// <envoy_v3_api_enum_value_config.core.v3.SocketAddress.Protocol.UDP>`.
-    #[prost(message, repeated, tag="9")]
+    #[prost(message, repeated, tag = "9")]
     pub listener_filters: ::prost::alloc::vec::Vec<ListenerFilter>,
     /// The timeout to wait for all listener filters to complete operation. If the timeout is reached,
     /// the accepted socket is closed without a connection being created unless
     /// ``continue_on_listener_filters_timeout`` is set to true. Specify 0 to disable the
     /// timeout. If not specified, a default timeout of 15s is used.
-    #[prost(message, optional, tag="15")]
+    #[prost(message, optional, tag = "15")]
     pub listener_filters_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Whether a connection should be created when listener filters timeout. Default is false.
     ///
@@ -581,7 +640,7 @@ pub struct Listener {
     ///    Some listener filters, such as :ref:`Proxy Protocol filter
     ///    <config_listener_filters_proxy_protocol>`, should not be used with this option. It will cause
     ///    unexpected behavior when a connection is created.
-    #[prost(bool, tag="17")]
+    #[prost(bool, tag = "17")]
     pub continue_on_listener_filters_timeout: bool,
     /// Whether the listener should be set as a transparent socket.
     /// When this flag is set to true, connections can be redirected to the listener using an
@@ -597,7 +656,7 @@ pub struct Listener {
     /// Setting this flag requires Envoy to run with the ``CAP_NET_ADMIN`` capability.
     /// When this flag is not set (default), the socket is not modified, i.e. the transparent option
     /// is neither set nor reset.
-    #[prost(message, optional, tag="10")]
+    #[prost(message, optional, tag = "10")]
     pub transparent: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Whether the listener should set the ``IP_FREEBIND`` socket option. When this
     /// flag is set to true, listeners can be bound to an IP address that is not
@@ -605,14 +664,14 @@ pub struct Listener {
     /// option ``IP_FREEBIND`` is disabled on the socket. When this flag is not set
     /// (default), the socket is not modified, i.e. the option is neither enabled
     /// nor disabled.
-    #[prost(message, optional, tag="11")]
+    #[prost(message, optional, tag = "11")]
     pub freebind: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Additional socket options that may not be present in Envoy source code or
     /// precompiled binaries. The socket options can be updated for a listener when
     /// :ref:`enable_reuse_port <envoy_v3_api_field_config.listener.v3.Listener.enable_reuse_port>`
     /// is `true`. Otherwise, if socket options change during a listener update the update will be rejected
     /// to make it clear that the options were not updated.
-    #[prost(message, repeated, tag="13")]
+    #[prost(message, repeated, tag = "13")]
     pub socket_options: ::prost::alloc::vec::Vec<super::super::core::v3::SocketOption>,
     /// Whether the listener should accept TCP Fast Open (TFO) connections.
     /// When this flag is set to a value greater than 0, the option TCP_FASTOPEN is enabled on
@@ -628,18 +687,18 @@ pub struct Listener {
     ///
     /// On macOS, only values of 0, 1, and unset are valid; other values may result in an error.
     /// To set the queue length on macOS, set the net.inet.tcp.fastopen_backlog kernel parameter.
-    #[prost(message, optional, tag="12")]
+    #[prost(message, optional, tag = "12")]
     pub tcp_fast_open_queue_length: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Specifies the intended direction of the traffic relative to the local Envoy.
     /// This property is required on Windows for listeners using the original destination filter,
     /// see :ref:`Original Destination <config_listener_filters_original_dst>`.
-    #[prost(enumeration="super::super::core::v3::TrafficDirection", tag="16")]
+    #[prost(enumeration = "super::super::core::v3::TrafficDirection", tag = "16")]
     pub traffic_direction: i32,
     /// If the protocol in the listener socket address in :ref:`protocol
     /// <envoy_v3_api_field_config.core.v3.SocketAddress.protocol>` is :ref:`UDP
     /// <envoy_v3_api_enum_value_config.core.v3.SocketAddress.Protocol.UDP>`, this field specifies UDP
     /// listener specific configuration.
-    #[prost(message, optional, tag="18")]
+    #[prost(message, optional, tag = "18")]
     pub udp_listener_config: ::core::option::Option<UdpListenerConfig>,
     /// Used to represent an API listener, which is used in non-proxy clients. The type of API
     /// exposed to the non-proxy application depends on the type of API listener.
@@ -657,7 +716,7 @@ pub struct Listener {
     /// and the top-level Listener should essentially be a oneof that selects between the
     /// socket listener and the various types of API listener. That way, a given Listener message
     /// can structurally only contain the fields of the relevant type.]
-    #[prost(message, optional, tag="19")]
+    #[prost(message, optional, tag = "19")]
     pub api_listener: ::core::option::Option<ApiListener>,
     /// The listener's connection balancer configuration, currently only applicable to TCP listeners.
     /// If no configuration is specified, Envoy will not attempt to balance active connections between
@@ -668,11 +727,13 @@ pub struct Listener {
     /// and :ref:`bind_to_port <envoy_v3_api_field_config.listener.v3.Listener.bind_to_port>` to false in Y1 and Y2,
     /// it is recommended to disable the balance config in listener X to avoid the cost of balancing, and
     /// enable the balance config in Y1 and Y2 to balance the connections among the workers.
-    #[prost(message, optional, tag="20")]
-    pub connection_balance_config: ::core::option::Option<listener::ConnectionBalanceConfig>,
+    #[prost(message, optional, tag = "20")]
+    pub connection_balance_config: ::core::option::Option<
+        listener::ConnectionBalanceConfig,
+    >,
     /// Deprecated. Use ``enable_reuse_port`` instead.
     #[deprecated]
-    #[prost(bool, tag="21")]
+    #[prost(bool, tag = "21")]
     pub reuse_port: bool,
     /// When this flag is set to true, listeners set the ``SO_REUSEPORT`` socket option and
     /// create one socket for each worker thread. This makes inbound connections
@@ -696,37 +757,38 @@ pub struct Listener {
     ///    a single worker will currently receive packets.
     /// * On Windows, reuse_port for TCP has undefined behavior. It is force disabled and the user
     ///    is warned similar to macOS. It is left enabled for UDP with undefined behavior currently.
-    #[prost(message, optional, tag="29")]
+    #[prost(message, optional, tag = "29")]
     pub enable_reuse_port: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Configuration for :ref:`access logs <arch_overview_access_logs>`
     /// emitted by this listener.
-    #[prost(message, repeated, tag="22")]
+    #[prost(message, repeated, tag = "22")]
     pub access_log: ::prost::alloc::vec::Vec<super::super::accesslog::v3::AccessLog>,
     /// The maximum length a tcp listener's pending connections queue can grow to. If no value is
     /// provided net.core.somaxconn will be used on Linux and 128 otherwise.
-    #[prost(message, optional, tag="24")]
+    #[prost(message, optional, tag = "24")]
     pub tcp_backlog_size: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Whether the listener should bind to the port. A listener that doesn't
     /// bind can only receive connections redirected from other listeners that set
     /// :ref:`use_original_dst <envoy_v3_api_field_config.listener.v3.Listener.use_original_dst>`
     /// to true. Default is true.
-    #[prost(message, optional, tag="26")]
+    #[prost(message, optional, tag = "26")]
     pub bind_to_port: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Enable MPTCP (multi-path TCP) on this listener. Clients will be allowed to establish
     /// MPTCP connections. Non-MPTCP clients will fall back to regular TCP.
-    #[prost(bool, tag="30")]
+    #[prost(bool, tag = "30")]
     pub enable_mptcp: bool,
     /// Whether the listener should limit connections based upon the value of
     /// :ref:`global_downstream_max_connections <config_overload_manager_limiting_connections>`.
-    #[prost(bool, tag="31")]
+    #[prost(bool, tag = "31")]
     pub ignore_global_conn_limit: bool,
     /// The exclusive listener type and the corresponding config.
-    #[prost(oneof="listener::ListenerSpecifier", tags="27")]
+    #[prost(oneof = "listener::ListenerSpecifier", tags = "27")]
     pub listener_specifier: ::core::option::Option<listener::ListenerSpecifier>,
 }
 /// Nested message and enum types in `Listener`.
 pub mod listener {
     /// \[#not-implemented-hide:\]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DeprecatedV1 {
         /// Whether the listener should bind to the port. A listener that doesn't
@@ -735,13 +797,14 @@ pub mod listener {
         ///
         /// This is deprecated. Use :ref:`Listener.bind_to_port
         /// <envoy_v3_api_field_config.listener.v3.Listener.bind_to_port>`
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub bind_to_port: ::core::option::Option<::pbjson_types::BoolValue>,
     }
     /// Configuration for listener connection balancing.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ConnectionBalanceConfig {
-        #[prost(oneof="connection_balance_config::BalanceType", tags="1, 2")]
+        #[prost(oneof = "connection_balance_config::BalanceType", tags = "1, 2")]
         pub balance_type: ::core::option::Option<connection_balance_config::BalanceType>,
     }
     /// Nested message and enum types in `ConnectionBalanceConfig`.
@@ -752,26 +815,37 @@ pub mod listener {
         /// making the counts incorrect, but this should be rectified on the next accept. This balancer
         /// sacrifices accept throughput for accuracy and should be used when there are a small number of
         /// connections that rarely cycle (e.g., service mesh gRPC egress).
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ExactBalance {
-        }
+        pub struct ExactBalance {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum BalanceType {
             /// If specified, the listener will use the exact connection balancer.
-            #[prost(message, tag="1")]
+            #[prost(message, tag = "1")]
             ExactBalance(ExactBalance),
             /// The listener will use the connection balancer according to ``type_url``. If ``type_url`` is invalid,
             /// Envoy will not attempt to balance active connections between worker threads.
             /// [#extension-category: envoy.network.connection_balance]
-            #[prost(message, tag="2")]
+            #[prost(message, tag = "2")]
             ExtendBalance(super::super::super::super::core::v3::TypedExtensionConfig),
         }
     }
     /// Configuration for envoy internal listener. All the future internal listener features should be added here.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InternalListenerConfig {
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    pub struct InternalListenerConfig {}
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DrainType {
         /// Drain in response to calling /healthcheck/fail admin endpoint (along with the health check
@@ -793,8 +867,17 @@ pub mod listener {
                 DrainType::ModifyOnly => "MODIFY_ONLY",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT" => Some(Self::Default),
+                "MODIFY_ONLY" => Some(Self::ModifyOnly),
+                _ => None,
+            }
+        }
     }
     /// The exclusive listener type and the corresponding config.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ListenerSpecifier {
         /// Used to represent an internal listener which does not listen on OSI L4 address but can be used by the
@@ -811,28 +894,28 @@ pub mod listener {
         /// * :ref:`tcp_backlog_size <envoy_v3_api_field_config.listener.v3.Listener.tcp_backlog_size>`
         /// * :ref:`freebind <envoy_v3_api_field_config.listener.v3.Listener.freebind>`
         /// * :ref:`transparent <envoy_v3_api_field_config.listener.v3.Listener.transparent>`
-        #[prost(message, tag="27")]
+        #[prost(message, tag = "27")]
         InternalListener(InternalListenerConfig),
     }
 }
 /// A placeholder proto so that users can explicitly configure the standard
 /// Listener Manager via the bootstrap's :ref:`listener_manager <envoy_v3_api_field_config.bootstrap.v3.Bootstrap.listener_manager>`.
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListenerManager {
-}
+pub struct ListenerManager {}
 /// A placeholder proto so that users can explicitly configure the standard
 /// Validation Listener Manager via the bootstrap's :ref:`listener_manager <envoy_v3_api_field_config.bootstrap.v3.Bootstrap.listener_manager>`.
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ValidationListenerManager {
-}
+pub struct ValidationListenerManager {}
 /// A placeholder proto so that users can explicitly configure the API
 /// Listener Manager via the bootstrap's :ref:`listener_manager <envoy_v3_api_field_config.bootstrap.v3.Bootstrap.listener_manager>`.
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ApiListenerManager {
-}
+pub struct ApiListenerManager {}
 /// Encoded file descriptor set for the `envoy.config.listener.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xe8, 0x0c, 0x0a, 0x2b, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69,
@@ -4118,4 +4201,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x64, 0x2d, 0x68, 0x69, 0x64, 0x65, 0x3a, 0x5d, 0x0a, 0x0a, 0x0b, 0x0a, 0x03, 0x04, 0x05, 0x01,
     0x12, 0x04, 0x86, 0x03, 0x08, 0x1a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.listener.v3.serde.rs");
 // @@protoc_insertion_point(module)

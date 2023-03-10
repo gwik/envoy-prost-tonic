@@ -1,9 +1,8 @@
 // @generated
-// [#protodoc-title: Dynamic forward proxy common configuration]
-
 /// Configuration for the dynamic forward proxy DNS cache. See the :ref:`architecture overview
 /// <arch_overview_http_dynamic_forward_proxy>` for more information.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DnsCacheConfig {
     /// The name of the cache. Multiple named caches allow independent dynamic forward proxy
@@ -11,7 +10,7 @@ pub struct DnsCacheConfig {
     /// configurations with the same name *must* otherwise have the same settings when referenced
     /// from different configuration components. Configuration will fail to load if this is not
     /// the case.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The DNS lookup family to use during resolution.
     ///
@@ -21,7 +20,10 @@ pub struct DnsCacheConfig {
     /// likely build a "happy eyeballs" connection pool which would race the primary / fall back
     /// address and return the one that wins. This same method could potentially also be used for
     /// QUIC to TCP fall back.]
-    #[prost(enumeration="super::super::super::super::api::v2::cluster_::DnsLookupFamily", tag="2")]
+    #[prost(
+        enumeration = "super::super::super::super::api::v2::cluster_::DnsLookupFamily",
+        tag = "2"
+    )]
     pub dns_lookup_family: i32,
     /// The DNS refresh rate for currently cached DNS hosts. If not specified defaults to 60s.
     ///
@@ -33,7 +35,7 @@ pub struct DnsCacheConfig {
     /// .. note:
     ///
     /// The refresh rate is rounded to the closest millisecond, and must be at least 1ms.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub dns_refresh_rate: ::core::option::Option<::pbjson_types::Duration>,
     /// The TTL for hosts that are unused. Hosts that have not been used in the configured time
     /// interval will be purged. If not specified defaults to 5m.
@@ -47,7 +49,7 @@ pub struct DnsCacheConfig {
     ///   .. note:
     ///
     ///    The TTL has no relation to DNS TTL and is only used to control Envoy's resource usage.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub host_ttl: ::core::option::Option<::pbjson_types::Duration>,
     /// The maximum number of hosts that the cache will hold. If not specified defaults to 1024.
     ///
@@ -56,13 +58,14 @@ pub struct DnsCacheConfig {
     ///    The implementation is approximate and enforced independently on each worker thread, thus
     ///    it is possible for the maximum hosts in the cache to go slightly above the configured
     ///    value depending on timing. This is similar to how other circuit breakers work.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub max_hosts: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// If the DNS failure refresh rate is specified,
     /// this is used as the cache's DNS refresh rate when DNS requests are failing. If this setting is
     /// not specified, the failure refresh rate defaults to the dns_refresh_rate.
-    #[prost(message, optional, tag="6")]
-    pub dns_failure_refresh_rate: ::core::option::Option<super::super::super::super::api::v2::cluster_::RefreshRate>,
+    #[prost(message, optional, tag = "6")]
+    pub dns_failure_refresh_rate:
+        ::core::option::Option<super::super::super::super::api::v2::cluster_::RefreshRate>,
 }
 /// Encoded file descriptor set for the `envoy.config.common.dynamic_forward_proxy.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -335,4 +338,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x05, 0x01, 0x12, 0x03, 0x54, 0x1d, 0x35, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00,
     0x02, 0x05, 0x03, 0x12, 0x03, 0x54, 0x38, 0x39, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.common.dynamic_forward_proxy.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

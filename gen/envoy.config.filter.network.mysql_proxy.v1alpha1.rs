@@ -1,17 +1,14 @@
 // @generated
-// [#protodoc-title: MySQL proxy]
-// MySQL Proxy :ref:`configuration overview <config_network_filters_mysql_proxy>`.
-// [#extension: envoy.filters.network.mysql_proxy]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MySqlProxy {
     /// The human readable prefix to use when emitting :ref:`statistics
     /// <config_network_filters_mysql_proxy_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// \[#not-implemented-hide:\] The optional path to use for writing MySQL access logs.
     /// If the access log field is empty, access logs will not be written.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub access_log: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.network.mysql_proxy.v1alpha1` package
@@ -101,4 +98,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x12, 0x03, 0x1b, 0x09, 0x13, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x01, 0x03, 0x12,
     0x03, 0x1b, 0x16, 0x17, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.mysql_proxy.v1alpha1.serde.rs");
 // @@protoc_insertion_point(module)

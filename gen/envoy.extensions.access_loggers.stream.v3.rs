@@ -1,40 +1,46 @@
 // @generated
-// [#protodoc-title: Standard Streams Access loggers]
-
 /// Custom configuration for an :ref:`AccessLog <envoy_v3_api_msg_config.accesslog.v3.AccessLog>`
 /// that writes log entries directly to the operating system's standard output.
 /// [#extension: envoy.access_loggers.stdout]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StdoutAccessLog {
-    #[prost(oneof="stdout_access_log::AccessLogFormat", tags="1")]
+    #[prost(oneof = "stdout_access_log::AccessLogFormat", tags = "1")]
     pub access_log_format: ::core::option::Option<stdout_access_log::AccessLogFormat>,
 }
 /// Nested message and enum types in `StdoutAccessLog`.
 pub mod stdout_access_log {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AccessLogFormat {
         /// Configuration to form access log data and format.
         /// If not specified, use :ref:`default format <config_access_log_default_format>`.
-        #[prost(message, tag="1")]
-        LogFormat(super::super::super::super::super::config::core::v3::SubstitutionFormatString),
+        #[prost(message, tag = "1")]
+        LogFormat(
+            super::super::super::super::super::config::core::v3::SubstitutionFormatString,
+        ),
     }
 }
 /// Custom configuration for an :ref:`AccessLog <envoy_v3_api_msg_config.accesslog.v3.AccessLog>`
 /// that writes log entries directly to the operating system's standard error.
 /// [#extension: envoy.access_loggers.stderr]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StderrAccessLog {
-    #[prost(oneof="stderr_access_log::AccessLogFormat", tags="1")]
+    #[prost(oneof = "stderr_access_log::AccessLogFormat", tags = "1")]
     pub access_log_format: ::core::option::Option<stderr_access_log::AccessLogFormat>,
 }
 /// Nested message and enum types in `StderrAccessLog`.
 pub mod stderr_access_log {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AccessLogFormat {
         /// Configuration to form access log data and format.
         /// If not specified, use :ref:`default format <config_access_log_default_format>`.
-        #[prost(message, tag="1")]
-        LogFormat(super::super::super::super::super::config::core::v3::SubstitutionFormatString),
+        #[prost(message, tag = "1")]
+        LogFormat(
+            super::super::super::super::super::config::core::v3::SubstitutionFormatString,
+        ),
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.access_loggers.stream.v3` package
@@ -158,4 +164,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x25, 0x09, 0x34, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.access_loggers.stream.v3.serde.rs");
 // @@protoc_insertion_point(module)

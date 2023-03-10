@@ -1,14 +1,15 @@
 // @generated
-// [#protodoc-title: Rate limit service]
-
 /// Rate limit :ref:`configuration overview <config_rate_limit_service>`.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitServiceConfig {
     /// Specifies the gRPC service that hosts the rate limit service. The client
     /// will connect to this cluster when it needs to make rate limit service
     /// requests.
-    #[prost(message, optional, tag="2")]
-    pub grpc_service: ::core::option::Option<super::super::super::api::v2::core::GrpcService>,
+    #[prost(message, optional, tag = "2")]
+    pub grpc_service: ::core::option::Option<
+        super::super::super::api::v2::core::GrpcService,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.ratelimit.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -81,4 +82,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x18, 0x2c, 0x57, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.ratelimit.v2.serde.rs");
 // @@protoc_insertion_point(module)

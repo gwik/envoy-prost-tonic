@@ -2,9 +2,9 @@
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue
 /// with importing services: <https://github.com/google/protobuf/issues/4221> and
 /// protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EcdsDummy {
-}
+pub struct EcdsDummy {}
 /// Encoded file descriptor set for the `envoy.service.extension.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xe9, 0x18, 0x0a, 0x31, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -207,5 +207,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x65, 0x20, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12,
     0x03, 0x3c, 0x08, 0x11, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.extension.v3.serde.rs");
 include!("envoy.service.extension.v3.tonic.rs");
 // @@protoc_insertion_point(module)

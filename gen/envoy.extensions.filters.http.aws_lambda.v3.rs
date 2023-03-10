@@ -1,26 +1,33 @@
 // @generated
-// [#protodoc-title: AWS Lambda]
-// AWS Lambda :ref:`configuration overview <config_http_filters_aws_lambda>`.
-// [#extension: envoy.filters.http.aws_lambda]
-
 /// AWS Lambda filter config
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Config {
     /// The ARN of the AWS Lambda to invoke when the filter is engaged
     /// Must be in the following format:
     /// arn:<partition>:lambda:<region>:<account-number>:function:<function-name>
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub arn: ::prost::alloc::string::String,
     /// Whether to transform the request (headers and body) to a JSON payload or pass it as is.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub payload_passthrough: bool,
     /// Determines the way to invoke the Lambda function.
-    #[prost(enumeration="config::InvocationMode", tag="3")]
+    #[prost(enumeration = "config::InvocationMode", tag = "3")]
     pub invocation_mode: i32,
 }
 /// Nested message and enum types in `Config`.
 pub mod config {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum InvocationMode {
         /// This is the more common mode of invocation, in which Lambda responds after it has completed the function. In
@@ -42,13 +49,22 @@ pub mod config {
                 InvocationMode::Asynchronous => "ASYNCHRONOUS",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SYNCHRONOUS" => Some(Self::Synchronous),
+                "ASYNCHRONOUS" => Some(Self::Asynchronous),
+                _ => None,
+            }
+        }
     }
 }
 /// Per-route configuration for AWS Lambda. This can be useful when invoking a different Lambda function or a different
 /// version of the same Lambda depending on the route.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PerRouteConfig {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub invoke_config: ::core::option::Option<Config>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.aws_lambda.v3` package
@@ -226,4 +242,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x01, 0x02, 0x00, 0x03, 0x12, 0x03, 0x34, 0x19, 0x1a, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.aws_lambda.v3.serde.rs");
 // @@protoc_insertion_point(module)

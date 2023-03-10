@@ -1,31 +1,25 @@
 // @generated
-// [#protodoc-title: Header-To-Metadata Filter]
-//
-// The configuration for transforming headers into metadata. This is useful
-// for matching load balancer subsets, logging, etc.
-//
-// Header to Metadata :ref:`configuration overview <config_http_filters_header_to_metadata>`.
-// [#extension: envoy.filters.http.header_to_metadata]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Config {
     /// The list of rules to apply to requests.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub request_rules: ::prost::alloc::vec::Vec<config::Rule>,
     /// The list of rules to apply to responses.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub response_rules: ::prost::alloc::vec::Vec<config::Rule>,
 }
 /// Nested message and enum types in `Config`.
 pub mod config {
     /// [#next-free-field: 6]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct KeyValuePair {
         /// The namespace — if this is empty, the filter's namespace will be used.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub metadata_namespace: ::prost::alloc::string::String,
         /// The key to use within the namespace.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub key: ::prost::alloc::string::String,
         /// The value to pair with the given key.
         ///
@@ -34,41 +28,52 @@ pub mod config {
         ///
         /// When used for a `on_header_missing` case, a non-empty value must be provided
         /// otherwise no metadata is added.
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         pub value: ::prost::alloc::string::String,
         /// The value's type — defaults to string.
-        #[prost(enumeration="ValueType", tag="4")]
+        #[prost(enumeration = "ValueType", tag = "4")]
         pub r#type: i32,
         /// How is the value encoded, default is NONE (not encoded).
         /// The value will be decoded accordingly before storing to metadata.
-        #[prost(enumeration="ValueEncode", tag="5")]
+        #[prost(enumeration = "ValueEncode", tag = "5")]
         pub encode: i32,
     }
     /// A Rule defines what metadata to apply when a header is present or missing.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Rule {
         /// The header that triggers this rule — required.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub header: ::prost::alloc::string::String,
         /// If the header is present, apply this metadata KeyValuePair.
         ///
         /// If the value in the KeyValuePair is non-empty, it'll be used instead
         /// of the header value.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub on_header_present: ::core::option::Option<KeyValuePair>,
         /// If the header is not present, apply this metadata KeyValuePair.
         ///
         /// The value in the KeyValuePair must be set, since it'll be used in lieu
         /// of the missing header value.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub on_header_missing: ::core::option::Option<KeyValuePair>,
         /// Whether or not to remove the header after a rule is applied.
         ///
         /// This prevents headers from leaking.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         pub remove: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueType {
         String = 0,
@@ -89,9 +94,28 @@ pub mod config {
                 ValueType::ProtobufValue => "PROTOBUF_VALUE",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STRING" => Some(Self::String),
+                "NUMBER" => Some(Self::Number),
+                "PROTOBUF_VALUE" => Some(Self::ProtobufValue),
+                _ => None,
+            }
+        }
     }
     /// ValueEncode defines the encoding algorithm.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ValueEncode {
         /// The value is not encoded.
@@ -110,6 +134,14 @@ pub mod config {
             match self {
                 ValueEncode::None => "NONE",
                 ValueEncode::Base64 => "BASE64",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "NONE" => Some(Self::None),
+                "BASE64" => Some(Self::Base64),
+                _ => None,
             }
         }
     }
@@ -413,4 +445,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x01, 0x01, 0x12, 0x03, 0x63, 0x10, 0x1e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x01,
     0x03, 0x12, 0x03, 0x63, 0x21, 0x22, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.header_to_metadata.v2.serde.rs");
 // @@protoc_insertion_point(module)

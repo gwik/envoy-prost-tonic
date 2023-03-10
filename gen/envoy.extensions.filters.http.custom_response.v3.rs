@@ -1,12 +1,8 @@
 // @generated
-// [#protodoc-title: Custom Response Filter]
-// [#extension: envoy.filters.http.custom_response]
-
-// The Custom Response Filter allows for replacing upstream responses.
-
 /// The filter configuration is a collection of custom response
 /// policies in a matcher tree. The configuration can be defined at the filter,
 /// virtual host or route level. The most specific configuration will apply.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomResponse {
     /// Matcher to match against the original response to select a
@@ -89,8 +85,10 @@ pub struct CustomResponse {
     /// Refer to :ref:`Unified Matcher API <envoy_v3_api_msg_.xds.type.matcher.v3.Matcher>`
     /// documentation for more information on the matcher trees.
     /// [#extension-category: envoy.http.custom_response]
-    #[prost(message, optional, tag="1")]
-    pub custom_response_matcher: ::core::option::Option<super::super::super::super::super::super::xds::r#type::matcher::v3::Matcher>,
+    #[prost(message, optional, tag = "1")]
+    pub custom_response_matcher: ::core::option::Option<
+        super::super::super::super::super::super::xds::r#type::matcher::v3::Matcher,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.custom_response.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -359,4 +357,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x00, 0x01, 0x12, 0x03, 0x69, 0x1e, 0x35, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00,
     0x02, 0x00, 0x03, 0x12, 0x03, 0x69, 0x38, 0x39, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.custom_response.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,23 +1,19 @@
 // @generated
-// [#protodoc-title: `QAT` private key provider]
-// [#extension: envoy.tls.key_providers.qat]
-
-// This message specifies how the private key provider is configured.
-// The private key provider provides RSA sign and decrypt operation
-// hardware acceleration.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QatPrivateKeyMethodConfig {
     /// Private key to use in the private key provider. If set to inline_bytes or
     /// inline_string, the value needs to be the private key in PEM format.
-    #[prost(message, optional, tag="1")]
-    pub private_key: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub private_key: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// How long to wait before polling the hardware accelerator after a
     /// request has been submitted there. Having a small value leads to
     /// quicker answers from the hardware but causes more polling loop
     /// spins, leading to potentially larger CPU usage. The duration needs
     /// to be set to a value greater than or equal to 1 millisecond.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub poll_delay: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.private_key_providers.qat.v3alpha` package
@@ -134,4 +130,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x2a, 0x26, 0x04, 0x0a, 0x10, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x15, 0x12,
     0x04, 0x23, 0x2b, 0x26, 0x03, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.private_key_providers.qat.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

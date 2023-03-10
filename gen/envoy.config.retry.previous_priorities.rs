@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Previous priorities retry selector]
-
 /// A retry host selector that attempts to spread retries between priorities, even if certain
 /// priorities would not normally be attempted due to higher priorities being available.
 ///
@@ -26,6 +24,7 @@
 /// Using this PriorityFilter requires rebuilding the priority load, which runs in O(# of
 /// priorities), which might incur significant overhead for clusters with many priorities.
 /// [#extension: envoy.retry_priorities.previous_priorities]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PreviousPrioritiesConfig {
     /// How often the priority load should be updated based on previously attempted priorities. Useful
@@ -39,7 +38,7 @@ pub struct PreviousPrioritiesConfig {
     /// attempts.
     ///
     /// Must be greater than 0.
-    #[prost(int32, tag="1")]
+    #[prost(int32, tag = "1")]
     pub update_frequency: i32,
 }
 /// Encoded file descriptor set for the `envoy.config.retry.previous_priorities` package
@@ -245,4 +244,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x37, 0x1d, 0x3f, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x03, 0x12,
     0x03, 0x37, 0x1e, 0x3e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.retry.previous_priorities.serde.rs");
 // @@protoc_insertion_point(module)

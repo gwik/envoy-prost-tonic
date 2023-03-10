@@ -172,7 +172,7 @@ pub mod tra_service_client {
 pub mod tra_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with TraServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with TraServiceServer.
     #[async_trait]
     pub trait TraService: Send + Sync + 'static {
         async fn create(
@@ -191,7 +191,7 @@ pub mod tra_service_server {
             &self,
             request: tonic::Request<super::TraServiceRequest>,
         ) -> Result<tonic::Response<super::TraServiceResponse>, tonic::Status>;
-        ///Server streaming response type for the Subscribe method.
+        /// Server streaming response type for the Subscribe method.
         type SubscribeStream: futures_core::Stream<
                 Item = Result<super::TraServiceResponse, tonic::Status>,
             >

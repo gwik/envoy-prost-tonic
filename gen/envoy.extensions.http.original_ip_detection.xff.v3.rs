@@ -1,10 +1,9 @@
 // @generated
-// [#protodoc-title: XFF original IP detection extension]
-
 /// This extension allows for the original downstream remote IP to be detected
 /// by reading the :ref:`config_http_conn_man_headers_x-forwarded-for` header.
 ///
 /// [#extension: envoy.http.original_ip_detection.xff]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct XffConfig {
     /// The number of additional ingress proxy hops from the right side of the
@@ -12,7 +11,7 @@ pub struct XffConfig {
     /// determining the origin client's IP address. The default is zero if this option
     /// is not specified. See the documentation for
     /// :ref:`config_http_conn_man_headers_x-forwarded-for` for more information.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub xff_num_trusted_hops: u32,
 }
 /// Encoded file descriptor set for the `envoy.extensions.http.original_ip_detection.xff.v3` package
@@ -97,4 +96,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x09, 0x1d, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x18, 0x20, 0x21,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.http.original_ip_detection.xff.v3.serde.rs");
 // @@protoc_insertion_point(module)

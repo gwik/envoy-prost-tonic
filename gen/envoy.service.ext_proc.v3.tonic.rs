@@ -96,10 +96,10 @@ pub mod external_processor_client {
 pub mod external_processor_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ExternalProcessorServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ExternalProcessorServer.
     #[async_trait]
     pub trait ExternalProcessor: Send + Sync + 'static {
-        ///Server streaming response type for the Process method.
+        /// Server streaming response type for the Process method.
         type ProcessStream: futures_core::Stream<
                 Item = Result<super::ProcessingResponse, tonic::Status>,
             >

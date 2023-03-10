@@ -1,13 +1,10 @@
 // @generated
-// [#protodoc-title: Local rate limit]
-// Local rate limit :ref:`configuration overview <config_network_filters_local_rate_limit>`.
-// [#extension: envoy.filters.network.local_ratelimit]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalRateLimit {
     /// The prefix to use when emitting :ref:`statistics
     /// <config_network_filters_local_rate_limit_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The token bucket configuration to use for rate limiting connections that are processed by the
     /// filter's filter chain. Each incoming connection processed by the filter consumes a single
@@ -22,17 +19,21 @@ pub struct LocalRateLimit {
     ///    In the current implementation the token bucket's :ref:`fill_interval
     ///    <envoy_v3_api_field_type.v3.TokenBucket.fill_interval>` must be >= 50ms to avoid too aggressive
     ///    refills.
-    #[prost(message, optional, tag="2")]
-    pub token_bucket: ::core::option::Option<super::super::super::super::super::r#type::v3::TokenBucket>,
+    #[prost(message, optional, tag = "2")]
+    pub token_bucket: ::core::option::Option<
+        super::super::super::super::super::r#type::v3::TokenBucket,
+    >,
     /// Runtime flag that controls whether the filter is enabled or not. If not specified, defaults
     /// to enabled.
-    #[prost(message, optional, tag="3")]
-    pub runtime_enabled: ::core::option::Option<super::super::super::super::super::config::core::v3::RuntimeFeatureFlag>,
+    #[prost(message, optional, tag = "3")]
+    pub runtime_enabled: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::RuntimeFeatureFlag,
+    >,
     /// Specifies that the token bucket used for rate limiting should be shared with other local_rate_limit filters
     /// with a matching :ref:`token_bucket <envoy_v3_api_field_extensions.filters.network.local_ratelimit.v3.LocalRateLimit.token_bucket>`
     /// and ``share_key`` configuration. All fields of ``token_bucket`` must match exactly for the token bucket to be shared. If this
     /// field is empty, this filter will not share a token bucket with any other filter.
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub share_key: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.local_ratelimit.v3` package
@@ -226,4 +227,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x34, 0x09, 0x12, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x34,
     0x15, 0x16, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.local_ratelimit.v3.serde.rs");
 // @@protoc_insertion_point(module)

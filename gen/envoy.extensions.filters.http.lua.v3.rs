@@ -1,8 +1,5 @@
 // @generated
-// [#protodoc-title: Lua]
-// Lua :ref:`configuration overview <config_http_filters_lua>`.
-// [#extension: envoy.filters.http.lua]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Lua {
     /// The Lua code that Envoy will execute. This can be a very small script that
@@ -16,7 +13,7 @@ pub struct Lua {
     /// or :ref:`default_source_code <envoy_v3_api_field_extensions.filters.http.lua.v3.Lua.default_source_code>`
     /// can be set for the Lua filter.
     #[deprecated]
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub inline_code: ::prost::alloc::string::String,
     /// Map of named Lua source codes that can be referenced in :ref:`LuaPerRoute
     /// <envoy_v3_api_msg_extensions.filters.http.lua.v3.LuaPerRoute>`. The Lua source codes can be
@@ -35,12 +32,17 @@ pub struct Lua {
     ///      world.lua:
     ///        filename: /etc/lua/world.lua
     ///
-    #[prost(map="string, message", tag="2")]
-    pub source_codes: ::std::collections::HashMap<::prost::alloc::string::String, super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(map = "string, message", tag = "2")]
+    pub source_codes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// The default Lua code that Envoy will execute. If no per route config is provided
     /// for the request, this Lua code will be applied.
-    #[prost(message, optional, tag="3")]
-    pub default_source_code: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "3")]
+    pub default_source_code: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Optional additional prefix to use when emitting statistics. By default
     /// metrics are emitted in *.lua.* namespace. If multiple lua filters are
     /// configured in a filter chain, the stats from each filter instance can
@@ -59,29 +61,33 @@ pub struct Lua {
     ///          "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
     ///          stat_prefix: bar_script # This emits lua.bar_script.errors etc.
     ///
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub stat_prefix: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LuaPerRoute {
-    #[prost(oneof="lua_per_route::Override", tags="1, 2, 3")]
+    #[prost(oneof = "lua_per_route::Override", tags = "1, 2, 3")]
     pub r#override: ::core::option::Option<lua_per_route::Override>,
 }
 /// Nested message and enum types in `LuaPerRoute`.
 pub mod lua_per_route {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Override {
         /// Disable the Lua filter for this particular vhost or route. If disabled is specified in
         /// multiple per-filter-configs, the most specific one will be used.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         Disabled(bool),
         /// A name of a Lua source code stored in
         /// :ref:`Lua.source_codes <envoy_v3_api_field_extensions.filters.http.lua.v3.Lua.source_codes>`.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Name(::prost::alloc::string::String),
         /// A configured per-route Lua source code that can be served by RDS or provided inline.
-        #[prost(message, tag="3")]
-        SourceCode(super::super::super::super::super::super::config::core::v3::DataSource),
+        #[prost(message, tag = "3")]
+        SourceCode(
+            super::super::super::super::super::super::config::core::v3::DataSource,
+        ),
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.lua.v3` package
@@ -364,4 +370,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x01, 0x02, 0x02, 0x03, 0x12, 0x03, 0x5f, 0x2c, 0x2d, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.lua.v3.serde.rs");
 // @@protoc_insertion_point(module)

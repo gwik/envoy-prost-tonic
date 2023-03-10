@@ -1,32 +1,31 @@
 // @generated
-// [#protodoc-title: Router]
-// Router :ref:`configuration overview <config_http_filters_router>`.
-// [#extension: envoy.filters.http.router]
-
 /// [#next-free-field: 9]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Router {
     /// Whether the router generates dynamic cluster statistics. Defaults to
     /// true. Can be disabled in high performance scenarios.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub dynamic_stats: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Whether to start a child span for egress routed calls. This can be
     /// useful in scenarios where other filters (auth, ratelimit, etc.) make
     /// outbound calls and have child spans rooted at the same ingress
     /// parent. Defaults to false.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub start_child_span: bool,
     /// Configuration for HTTP upstream logs emitted by the router. Upstream logs
     /// are configured in the same way as access logs, but each log entry represents
     /// an upstream request. Presuming retries are configured, multiple upstream
     /// requests may be made for each downstream (inbound) request.
-    #[prost(message, repeated, tag="3")]
-    pub upstream_log: ::prost::alloc::vec::Vec<super::super::super::super::super::config::accesslog::v3::AccessLog>,
+    #[prost(message, repeated, tag = "3")]
+    pub upstream_log: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::accesslog::v3::AccessLog,
+    >,
     /// Do not add any additional ``x-envoy-`` headers to requests or responses. This
     /// only affects the :ref:`router filter generated x-envoy- headers
     /// <config_http_filters_router_headers_set>`, other Envoy filters and the HTTP
     /// connection manager may continue to set ``x-envoy-`` headers.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub suppress_envoy_headers: bool,
     /// Specifies a list of HTTP headers to strictly validate. Envoy will reject a
     /// request and respond with HTTP status 400 if the request contains an invalid
@@ -44,12 +43,12 @@ pub struct Router {
     /// * :ref:`config_http_filters_router_x-envoy-max-retries`
     /// * :ref:`config_http_filters_router_x-envoy-upstream-rq-timeout-ms`
     /// * :ref:`config_http_filters_router_x-envoy-upstream-rq-per-try-timeout-ms`
-    #[prost(string, repeated, tag="5")]
+    #[prost(string, repeated, tag = "5")]
     pub strict_check_headers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If not set, ingress Envoy will ignore
     /// :ref:`config_http_filters_router_x-envoy-expected-rq-timeout-ms` header, populated by egress
     /// Envoy, when deriving timeout for upstream cluster.
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub respect_expected_rq_timeout: bool,
     /// If set, Envoy will avoid incrementing HTTP failure code stats
     /// on gRPC requests. This includes the individual status code value
@@ -59,7 +58,7 @@ pub struct Router {
     /// as not all failed gRPC requests charge HTTP status code metrics. See
     /// :ref:`gRPC stats filter<config_http_filters_grpc_stats>` documentation
     /// for more details.
-    #[prost(bool, tag="7")]
+    #[prost(bool, tag = "7")]
     pub suppress_grpc_request_failure_code_stats: bool,
     /// .. note::
     ///    Upstream HTTP filters are currently in alpha.
@@ -75,8 +74,10 @@ pub struct Router {
     /// upstream filters will not trigger retries, and local errors sent by
     /// upstream filters will count as a final response if hedging is configured.
     /// [#extension-category: envoy.filters.http.upstream]
-    #[prost(message, repeated, tag="8")]
-    pub upstream_http_filters: ::prost::alloc::vec::Vec<super::super::super::network::http_connection_manager::v3::HttpFilter>,
+    #[prost(message, repeated, tag = "8")]
+    pub upstream_http_filters: ::prost::alloc::vec::Vec<
+        super::super::super::network::http_connection_manager::v3::HttpFilter,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.router.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -407,4 +408,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x07, 0x01, 0x12, 0x03, 0x6b, 0x39, 0x4e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x07, 0x03, 0x12, 0x03, 0x6b, 0x51, 0x52, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.router.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,33 +1,40 @@
 // @generated
-// [#protodoc-title: Generic Proxy Route Action Configuration]
-
 /// Configuration for the route match action.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteAction {
     /// Route metadata.
-    #[prost(message, optional, tag="3")]
-    pub metadata: ::core::option::Option<super::super::super::super::super::super::config::core::v3::Metadata>,
+    #[prost(message, optional, tag = "3")]
+    pub metadata: ::core::option::Option<
+        super::super::super::super::super::super::config::core::v3::Metadata,
+    >,
     /// Route level config for L7 generic filters. The key should be the related :ref:`extension name
     /// <envoy_v3_api_field_config.core.v3.TypedExtensionConfig.name>` in the :ref:`generic filters
     /// <envoy_v3_api_field_extensions.filters.network.generic_proxy.v3.GenericProxy.filters>`.
-    #[prost(map="string, message", tag="4")]
-    pub per_filter_config: ::std::collections::HashMap<::prost::alloc::string::String, ::pbjson_types::Any>,
-    #[prost(oneof="route_action::ClusterSpecifier", tags="1, 2")]
+    #[prost(map = "string, message", tag = "4")]
+    pub per_filter_config: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::pbjson_types::Any,
+    >,
+    #[prost(oneof = "route_action::ClusterSpecifier", tags = "1, 2")]
     pub cluster_specifier: ::core::option::Option<route_action::ClusterSpecifier>,
 }
 /// Nested message and enum types in `RouteAction`.
 pub mod route_action {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ClusterSpecifier {
         /// Indicates the upstream cluster to which the request should be routed.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Cluster(::prost::alloc::string::String),
         /// \[#not-implemented-hide:\]
         /// Multiple upstream clusters can be specified for a given route. The request is routed to one
         /// of the upstream clusters based on weights assigned to each cluster.
         /// Currently ClusterWeight only supports the name and weight fields.
-        #[prost(message, tag="2")]
-        WeightedClusters(super::super::super::super::super::super::super::config::route::v3::WeightedCluster),
+        #[prost(message, tag = "2")]
+        WeightedClusters(
+            super::super::super::super::super::super::super::config::route::v3::WeightedCluster,
+        ),
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.generic_proxy.action.v3` package
@@ -175,4 +182,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x03, 0x01, 0x12, 0x03, 0x2c, 0x23, 0x34, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00,
     0x02, 0x03, 0x03, 0x12, 0x03, 0x2c, 0x37, 0x38, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.generic_proxy.action.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,11 +1,7 @@
 // @generated
-// [#protodoc-title: Echo]
-// Echo :ref:`configuration overview <config_network_filters_echo>`.
-// [#extension: envoy.filters.network.echo]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Echo {
-}
+pub struct Echo {}
 /// Encoded file descriptor set for the `envoy.config.filter.network.echo.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xcf, 0x05, 0x0a, 0x2e, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69,
@@ -55,4 +51,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x12, 0x08, 0x0c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.echo.v2.serde.rs");
 // @@protoc_insertion_point(module)

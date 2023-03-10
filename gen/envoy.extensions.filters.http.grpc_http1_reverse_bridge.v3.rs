@@ -1,15 +1,11 @@
 // @generated
-// [#protodoc-title: gRPC HTTP/1.1 Reverse Bridge]
-// gRPC HTTP/1.1 Reverse Bridge :ref:`configuration overview
-// <config_http_filters_grpc_http1_reverse_bridge>`.
-// [#extension: envoy.filters.http.grpc_http1_reverse_bridge]
-
 /// gRPC reverse bridge filter configuration
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterConfig {
     /// The content-type to pass to the upstream when the gRPC bridge filter is applied.
     /// The filter will also validate that the upstream responds with the same content type.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub content_type: ::prost::alloc::string::String,
     /// If true, Envoy will assume that the upstream doesn't understand gRPC frames and
     /// strip the gRPC frame from the request, and add it back in to the response. This will
@@ -19,7 +15,7 @@ pub struct FilterConfig {
     /// <envoy_v3_api_field_extensions.filters.http.grpc_http1_reverse_bridge.v3.FilterConfig.response_size_header>`
     /// is set, in which case Envoy will use the value of an upstream header to calculate the content
     /// length.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub withhold_grpc_frames: bool,
     /// When :ref:`withhold_grpc_frames
     /// <envoy_v3_api_field_extensions.filters.http.grpc_http1_reverse_bridge.v3.FilterConfig.withhold_grpc_frames>`
@@ -32,15 +28,16 @@ pub struct FilterConfig {
     ///
     /// Envoy will treat the upstream response as an error if this option is specified and the header
     /// is missing or if the value does not match the actual response body size.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub response_size_header: ::prost::alloc::string::String,
 }
 /// gRPC reverse bridge filter configuration per virtualhost/route/weighted-cluster level.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterConfigPerRoute {
     /// If true, disables gRPC reverse bridge filter for this particular vhost or route.
     /// If disabled is specified in multiple per-filter-configs, the most specific one will be used.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub disabled: bool,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.grpc_http1_reverse_bridge.v3` package
@@ -270,4 +267,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x02, 0x00, 0x01, 0x12, 0x03, 0x3c, 0x07, 0x0f, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02,
     0x00, 0x03, 0x12, 0x03, 0x3c, 0x12, 0x13, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.grpc_http1_reverse_bridge.v3.serde.rs");
 // @@protoc_insertion_point(module)

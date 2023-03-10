@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Endpoint configuration]
-// Endpoint discovery :ref:`architecture overview <arch_overview_service_discovery_types_eds>`
-
 /// Each route from RDS will map to a single cluster or traffic split across
 /// clusters using weights expressed in the RDS WeightedCluster.
 ///
@@ -12,29 +9,34 @@
 /// load_balancing_weight of its locality. First, a locality will be selected,
 /// then an endpoint within that locality will be chose based on its weight.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterLoadAssignment {
     /// Name of the cluster. This will be the :ref:`service_name
     /// <envoy_api_field_Cluster.EdsClusterConfig.service_name>` value if specified
     /// in the cluster :ref:`EdsClusterConfig
     /// <envoy_api_msg_Cluster.EdsClusterConfig>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cluster_name: ::prost::alloc::string::String,
     /// List of endpoints to load balance to.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub endpoints: ::prost::alloc::vec::Vec<endpoint::LocalityLbEndpoints>,
     /// Map of named endpoints that can be referenced in LocalityLbEndpoints.
     /// \[#not-implemented-hide:\]
-    #[prost(map="string, message", tag="5")]
-    pub named_endpoints: ::std::collections::HashMap<::prost::alloc::string::String, endpoint::Endpoint>,
+    #[prost(map = "string, message", tag = "5")]
+    pub named_endpoints: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        endpoint::Endpoint,
+    >,
     /// Load balancing policy settings.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub policy: ::core::option::Option<cluster_load_assignment::Policy>,
 }
 /// Nested message and enum types in `ClusterLoadAssignment`.
 pub mod cluster_load_assignment {
     /// Load balancing policy settings.
     /// [#next-free-field: 6]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Policy {
         /// Action to trim the overall incoming traffic to protect the upstream
@@ -57,7 +59,7 @@ pub mod cluster_load_assignment {
         ///     "lb"_drop = 20%  // 50% of the remaining 'actual' load, which is 40%.
         ///     actual_outgoing_load = 20% // remaining after applying all categories.
         /// \[#not-implemented-hide:\]
-        #[prost(message, repeated, tag="2")]
+        #[prost(message, repeated, tag = "2")]
         pub drop_overloads: ::prost::alloc::vec::Vec<policy::DropOverload>,
         /// Priority levels and localities are considered overprovisioned with this
         /// factor (in percentage). This means that we don't consider a priority
@@ -73,13 +75,13 @@ pub mod cluster_load_assignment {
         ///
         /// Read more at :ref:`priority levels <arch_overview_load_balancing_priority_levels>` and
         /// :ref:`localities <arch_overview_load_balancing_locality_weighted_lb>`.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub overprovisioning_factor: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// The max time until which the endpoints from this assignment can be used.
         /// If no new assignments are received before this time expires the endpoints
         /// are considered stale and should be marked unhealthy.
         /// Defaults to 0 which means endpoints never go stale.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub endpoint_stale_after: ::core::option::Option<::pbjson_types::Duration>,
         /// The flag to disable overprovisioning. If it is set to true,
         /// :ref:`overprovisioning factor
@@ -90,27 +92,29 @@ pub mod cluster_load_assignment {
         /// <arch_overview_load_balancing_overprovisioning_factor>` suggests.
         /// \[#not-implemented-hide:\]
         #[deprecated]
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag = "5")]
         pub disable_overprovisioning: bool,
     }
     /// Nested message and enum types in `Policy`.
     pub mod policy {
         /// \[#not-implemented-hide:\]
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct DropOverload {
             /// Identifier for the policy specifying the drop.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             pub category: ::prost::alloc::string::String,
             /// Percentage of traffic that should be dropped for the category.
-            #[prost(message, optional, tag="2")]
-            pub drop_percentage: ::core::option::Option<super::super::super::super::r#type::FractionalPercent>,
+            #[prost(message, optional, tag = "2")]
+            pub drop_percentage: ::core::option::Option<
+                super::super::super::super::r#type::FractionalPercent,
+            >,
         }
     }
 }
-// [#protodoc-title: Cluster configuration]
-
 /// Configuration for a single upstream cluster.
 /// [#next-free-field: 48]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Cluster {
     /// Configuration to use different transport sockets for different endpoints.
@@ -158,34 +162,36 @@ pub struct Cluster {
     /// *transport_socket_match* set, and still send plain text traffic to the same cluster.
     ///
     /// [#comment:TODO(incfly): add a detailed architecture doc on intended usage.]
-    #[prost(message, repeated, tag="43")]
+    #[prost(message, repeated, tag = "43")]
     pub transport_socket_matches: ::prost::alloc::vec::Vec<cluster_::TransportSocketMatch>,
     /// Supplies the name of the cluster which must be unique across all clusters.
     /// The cluster name is used when emitting
     /// :ref:`statistics <config_cluster_manager_cluster_stats>` if :ref:`alt_stat_name
     /// <envoy_api_field_Cluster.alt_stat_name>` is not provided.
     /// Any ``:`` in the cluster name will be converted to ``_`` when emitting statistics.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// An optional alternative to the cluster name to be used while emitting stats.
     /// Any ``:`` in the name will be converted to ``_`` when emitting statistics. This should not be
     /// confused with :ref:`Router Filter Header
     /// <config_http_filters_router_x-envoy-upstream-alt-stat-name>`.
-    #[prost(string, tag="28")]
+    #[prost(string, tag = "28")]
     pub alt_stat_name: ::prost::alloc::string::String,
     /// Configuration to use for EDS updates for the Cluster.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub eds_cluster_config: ::core::option::Option<cluster_::EdsClusterConfig>,
     /// The timeout for new network connections to hosts in the cluster.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub connect_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Soft limit on size of the cluster’s connections read and write buffers. If
     /// unspecified, an implementation defined default is applied (1MiB).
-    #[prost(message, optional, tag="5")]
-    pub per_connection_buffer_limit_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "5")]
+    pub per_connection_buffer_limit_bytes: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The :ref:`load balancer type <arch_overview_load_balancing_types>` to use
     /// when picking a host in the cluster.
-    #[prost(enumeration="cluster_::LbPolicy", tag="6")]
+    #[prost(enumeration = "cluster_::LbPolicy", tag = "6")]
     pub lb_policy: i32,
     /// If the service discovery type is
     /// :ref:`STATIC<envoy_api_enum_value_Cluster.DiscoveryType.STATIC>`,
@@ -199,7 +205,7 @@ pub struct Cluster {
     ///    :ref:`load_assignment<envoy_api_field_Cluster.load_assignment>` field instead.
     ///
     #[deprecated]
-    #[prost(message, repeated, tag="7")]
+    #[prost(message, repeated, tag = "7")]
     pub hosts: ::prost::alloc::vec::Vec<core::Address>,
     /// Setting this is required for specifying members of
     /// :ref:`STATIC<envoy_api_enum_value_Cluster.DiscoveryType.STATIC>`,
@@ -212,22 +218,22 @@ pub struct Cluster {
     ///    Setting this allows non-EDS cluster types to contain embedded EDS equivalent
     ///    :ref:`endpoint assignments<envoy_api_msg_ClusterLoadAssignment>`.
     ///
-    #[prost(message, optional, tag="33")]
+    #[prost(message, optional, tag = "33")]
     pub load_assignment: ::core::option::Option<ClusterLoadAssignment>,
     /// Optional :ref:`active health checking <arch_overview_health_checking>`
     /// configuration for the cluster. If no
     /// configuration is specified no health checking will be done and all cluster
     /// members will be considered healthy at all times.
-    #[prost(message, repeated, tag="8")]
+    #[prost(message, repeated, tag = "8")]
     pub health_checks: ::prost::alloc::vec::Vec<core::HealthCheck>,
     /// Optional maximum requests for a single upstream connection. This parameter
     /// is respected by both the HTTP/1.1 and HTTP/2 connection pool
     /// implementations. If not specified, there is no limit. Setting this
     /// parameter to 1 will effectively disable keep alive.
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub max_requests_per_connection: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Optional :ref:`circuit breaking <arch_overview_circuit_break>` for the cluster.
-    #[prost(message, optional, tag="10")]
+    #[prost(message, optional, tag = "10")]
     pub circuit_breakers: ::core::option::Option<cluster::CircuitBreakers>,
     /// The TLS configuration for connections to the upstream cluster.
     ///
@@ -236,18 +242,20 @@ pub struct Cluster {
     ///    **This field is deprecated**. Use `transport_socket` with name `tls` instead. If both are
     ///    set, `transport_socket` takes priority.
     #[deprecated]
-    #[prost(message, optional, tag="11")]
+    #[prost(message, optional, tag = "11")]
     pub tls_context: ::core::option::Option<auth::UpstreamTlsContext>,
     /// HTTP protocol options that are applied only to upstream HTTP connections.
     /// These options apply to all HTTP versions.
-    #[prost(message, optional, tag="46")]
-    pub upstream_http_protocol_options: ::core::option::Option<core::UpstreamHttpProtocolOptions>,
+    #[prost(message, optional, tag = "46")]
+    pub upstream_http_protocol_options: ::core::option::Option<
+        core::UpstreamHttpProtocolOptions,
+    >,
     /// Additional options when handling HTTP requests upstream. These options will be applicable to
     /// both HTTP1 and HTTP2 requests.
-    #[prost(message, optional, tag="29")]
+    #[prost(message, optional, tag = "29")]
     pub common_http_protocol_options: ::core::option::Option<core::HttpProtocolOptions>,
     /// Additional options when handling HTTP1 requests.
-    #[prost(message, optional, tag="13")]
+    #[prost(message, optional, tag = "13")]
     pub http_protocol_options: ::core::option::Option<core::Http1ProtocolOptions>,
     /// Even if default HTTP2 protocol options are desired, this field must be
     /// set so that Envoy will assume that the upstream supports HTTP/2 when
@@ -255,20 +263,26 @@ pub struct Cluster {
     /// supports prior knowledge for upstream connections. Even if TLS is used
     /// with ALPN, `http2_protocol_options` must be specified. As an aside this allows HTTP/2
     /// connections to happen over plain text.
-    #[prost(message, optional, tag="14")]
+    #[prost(message, optional, tag = "14")]
     pub http2_protocol_options: ::core::option::Option<core::Http2ProtocolOptions>,
     /// The extension_protocol_options field is used to provide extension-specific protocol options
     /// for upstream connections. The key should match the extension filter name, such as
     /// "envoy.filters.network.thrift_proxy". See the extension's documentation for details on
     /// specific options.
-    #[prost(map="string, message", tag="35")]
-    pub extension_protocol_options: ::std::collections::HashMap<::prost::alloc::string::String, ::pbjson_types::Struct>,
+    #[prost(map = "string, message", tag = "35")]
+    pub extension_protocol_options: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::pbjson_types::Struct,
+    >,
     /// The extension_protocol_options field is used to provide extension-specific protocol options
     /// for upstream connections. The key should match the extension filter name, such as
     /// "envoy.filters.network.thrift_proxy". See the extension's documentation for details on
     /// specific options.
-    #[prost(map="string, message", tag="36")]
-    pub typed_extension_protocol_options: ::std::collections::HashMap<::prost::alloc::string::String, ::pbjson_types::Any>,
+    #[prost(map = "string, message", tag = "36")]
+    pub typed_extension_protocol_options: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::pbjson_types::Any,
+    >,
     /// If the DNS refresh rate is specified and the cluster type is either
     /// :ref:`STRICT_DNS<envoy_api_enum_value_Cluster.DiscoveryType.STRICT_DNS>`,
     /// or :ref:`LOGICAL_DNS<envoy_api_enum_value_Cluster.DiscoveryType.LOGICAL_DNS>`,
@@ -278,7 +292,7 @@ pub struct Cluster {
     /// :ref:`STRICT_DNS<envoy_api_enum_value_Cluster.DiscoveryType.STRICT_DNS>`
     /// and :ref:`LOGICAL_DNS<envoy_api_enum_value_Cluster.DiscoveryType.LOGICAL_DNS>`
     /// this setting is ignored.
-    #[prost(message, optional, tag="16")]
+    #[prost(message, optional, tag = "16")]
     pub dns_refresh_rate: ::core::option::Option<::pbjson_types::Duration>,
     /// If the DNS failure refresh rate is specified and the cluster type is either
     /// :ref:`STRICT_DNS<envoy_api_enum_value_Cluster.DiscoveryType.STRICT_DNS>`,
@@ -288,17 +302,17 @@ pub struct Cluster {
     /// other than :ref:`STRICT_DNS<envoy_api_enum_value_Cluster.DiscoveryType.STRICT_DNS>` and
     /// :ref:`LOGICAL_DNS<envoy_api_enum_value_Cluster.DiscoveryType.LOGICAL_DNS>` this setting is
     /// ignored.
-    #[prost(message, optional, tag="44")]
+    #[prost(message, optional, tag = "44")]
     pub dns_failure_refresh_rate: ::core::option::Option<cluster_::RefreshRate>,
     /// Optional configuration for setting cluster's DNS refresh rate. If the value is set to true,
     /// cluster's DNS refresh rate will be set to resource record's TTL which comes from DNS
     /// resolution.
-    #[prost(bool, tag="39")]
+    #[prost(bool, tag = "39")]
     pub respect_dns_ttl: bool,
     /// The DNS IP address resolution policy. If this setting is not specified, the
     /// value defaults to
     /// :ref:`AUTO<envoy_api_enum_value_Cluster.DnsLookupFamily.AUTO>`.
-    #[prost(enumeration="cluster_::DnsLookupFamily", tag="17")]
+    #[prost(enumeration = "cluster_::DnsLookupFamily", tag = "17")]
     pub dns_lookup_family: i32,
     /// If DNS resolvers are specified and the cluster type is either
     /// :ref:`STRICT_DNS<envoy_api_enum_value_Cluster.DiscoveryType.STRICT_DNS>`,
@@ -313,19 +327,19 @@ pub struct Cluster {
     /// Setting this value causes failure if the
     /// ``envoy.restart_features.use_apple_api_for_dns_lookups`` runtime value is true during
     /// server startup. Apple's API only allows overriding DNS resolvers via system settings.
-    #[prost(message, repeated, tag="18")]
+    #[prost(message, repeated, tag = "18")]
     pub dns_resolvers: ::prost::alloc::vec::Vec<core::Address>,
     /// [#next-major-version: Reconcile DNS options in a single message.]
     /// Always use TCP queries instead of UDP queries for DNS lookups.
     /// Setting this value causes failure if the
     /// ``envoy.restart_features.use_apple_api_for_dns_lookups`` runtime value is true during
     /// server startup. Apple' API only uses UDP for DNS resolution.
-    #[prost(bool, tag="45")]
+    #[prost(bool, tag = "45")]
     pub use_tcp_for_dns_lookups: bool,
     /// If specified, outlier detection will be enabled for this upstream cluster.
     /// Each of the configuration values can be overridden via
     /// :ref:`runtime values <config_cluster_manager_cluster_runtime_outlier_detection>`.
-    #[prost(message, optional, tag="19")]
+    #[prost(message, optional, tag = "19")]
     pub outlier_detection: ::core::option::Option<cluster::OutlierDetection>,
     /// The interval for removing stale hosts from a cluster type
     /// :ref:`ORIGINAL_DST<envoy_api_enum_value_Cluster.DiscoveryType.ORIGINAL_DST>`.
@@ -340,38 +354,38 @@ pub struct Cluster {
     /// value defaults to 5000ms. For cluster types other than
     /// :ref:`ORIGINAL_DST<envoy_api_enum_value_Cluster.DiscoveryType.ORIGINAL_DST>`
     /// this setting is ignored.
-    #[prost(message, optional, tag="20")]
+    #[prost(message, optional, tag = "20")]
     pub cleanup_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// Optional configuration used to bind newly established upstream connections.
     /// This overrides any bind_config specified in the bootstrap proto.
     /// If the address and port are empty, no bind will be performed.
-    #[prost(message, optional, tag="21")]
+    #[prost(message, optional, tag = "21")]
     pub upstream_bind_config: ::core::option::Option<core::BindConfig>,
     /// Configuration for load balancing subsetting.
-    #[prost(message, optional, tag="22")]
+    #[prost(message, optional, tag = "22")]
     pub lb_subset_config: ::core::option::Option<cluster_::LbSubsetConfig>,
     /// Common configuration for all load balancer implementations.
-    #[prost(message, optional, tag="27")]
+    #[prost(message, optional, tag = "27")]
     pub common_lb_config: ::core::option::Option<cluster_::CommonLbConfig>,
     /// Optional custom transport socket implementation to use for upstream connections.
     /// To setup TLS, set a transport socket with name `tls` and
     /// :ref:`UpstreamTlsContexts <envoy_api_msg_auth.UpstreamTlsContext>` in the `typed_config`.
     /// If no transport socket configuration is specified, new connections
     /// will be set up with plaintext.
-    #[prost(message, optional, tag="24")]
+    #[prost(message, optional, tag = "24")]
     pub transport_socket: ::core::option::Option<core::TransportSocket>,
     /// The Metadata field can be used to provide additional information about the
     /// cluster. It can be used for stats, logging, and varying filter behavior.
     /// Fields should use reverse DNS notation to denote which entity within Envoy
     /// will need the information. For instance, if the metadata is intended for
     /// the Router filter, the filter name should be specified as *envoy.filters.http.router*.
-    #[prost(message, optional, tag="25")]
+    #[prost(message, optional, tag = "25")]
     pub metadata: ::core::option::Option<core::Metadata>,
     /// Determines how Envoy selects the protocol used to speak to upstream hosts.
-    #[prost(enumeration="cluster_::ClusterProtocolSelection", tag="26")]
+    #[prost(enumeration = "cluster_::ClusterProtocolSelection", tag = "26")]
     pub protocol_selection: i32,
     /// Optional options for upstream connections.
-    #[prost(message, optional, tag="30")]
+    #[prost(message, optional, tag = "30")]
     pub upstream_connection_options: ::core::option::Option<UpstreamConnectionOptions>,
     /// If an upstream host becomes unhealthy (as determined by the configured health checks
     /// or outlier detection), immediately close all connections to the failed host.
@@ -386,22 +400,22 @@ pub struct Cluster {
     ///    the unhealthy status is detected. If there are a large number of connections open
     ///    to an upstream host that becomes unhealthy, Envoy may spend a substantial amount of
     ///    time exclusively closing these connections, and not processing any other traffic.
-    #[prost(bool, tag="31")]
+    #[prost(bool, tag = "31")]
     pub close_connections_on_host_health_failure: bool,
     /// If set to true, Envoy will ignore the health value of a host when processing its removal
     /// from service discovery. This means that if active health checking is used, Envoy will *not*
     /// wait for the endpoint to go unhealthy before removing it.
-    #[prost(bool, tag="32")]
+    #[prost(bool, tag = "32")]
     pub drain_connections_on_host_removal: bool,
     /// An (optional) network filter chain, listed in the order the filters should be applied.
     /// The chain will be applied to all outgoing connections that Envoy makes to the upstream
     /// servers of this cluster.
-    #[prost(message, repeated, tag="40")]
+    #[prost(message, repeated, tag = "40")]
     pub filters: ::prost::alloc::vec::Vec<cluster::Filter>,
     /// \[#not-implemented-hide:\] New mechanism for LB policy configuration. Used only if the
     /// :ref:`lb_policy<envoy_api_field_Cluster.lb_policy>` field has the value
     /// :ref:`LOAD_BALANCING_POLICY_CONFIG<envoy_api_enum_value_Cluster.LbPolicy.LOAD_BALANCING_POLICY_CONFIG>`.
-    #[prost(message, optional, tag="41")]
+    #[prost(message, optional, tag = "41")]
     pub load_balancing_policy: ::core::option::Option<LoadBalancingPolicy>,
     /// \[#not-implemented-hide:\]
     /// If present, tells the client where to send load reports via LRS. If not present, the
@@ -417,16 +431,16 @@ pub struct Cluster {
     /// [#next-major-version: In the v3 API, we should consider restructuring this somehow,
     /// maybe by allowing LRS to go on the ADS stream, or maybe by moving some of the negotiation
     /// from the LRS stream here.]
-    #[prost(message, optional, tag="42")]
+    #[prost(message, optional, tag = "42")]
     pub lrs_server: ::core::option::Option<core::ConfigSource>,
     /// If track_timeout_budgets is true, the :ref:`timeout budget histograms
     /// <config_cluster_manager_cluster_stats_timeout_budgets>` will be published for each
     /// request. These show what percentage of a request's per try and global timeout was used. A value
     /// of 0 would indicate that none of the timeout was used or that the timeout was infinite. A value
     /// of 100 would indicate that the request took the entirety of the timeout given to it.
-    #[prost(bool, tag="47")]
+    #[prost(bool, tag = "47")]
     pub track_timeout_budgets: bool,
-    #[prost(oneof="cluster_::ClusterDiscoveryType", tags="2, 38")]
+    #[prost(oneof = "cluster_::ClusterDiscoveryType", tags = "2, 38")]
     pub cluster_discovery_type: ::core::option::Option<cluster_::ClusterDiscoveryType>,
     /// Optional configuration for the load balancing algorithm selected by
     /// LbPolicy. Currently only
@@ -435,61 +449,65 @@ pub struct Cluster {
     /// has additional configuration options.
     /// Specifying ring_hash_lb_config or least_request_lb_config without setting the corresponding
     /// LbPolicy will generate an error at runtime.
-    #[prost(oneof="cluster_::LbConfig", tags="23, 34, 37")]
+    #[prost(oneof = "cluster_::LbConfig", tags = "23, 34, 37")]
     pub lb_config: ::core::option::Option<cluster_::LbConfig>,
 }
 /// Nested message and enum types in `Cluster`.
 pub mod cluster_ {
     /// TransportSocketMatch specifies what transport socket config will be used
     /// when the match conditions are satisfied.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TransportSocketMatch {
         /// The name of the match, used in stats generation.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Optional endpoint metadata match criteria.
         /// The connection to the endpoint with metadata matching what is set in this field
         /// will use the transport socket configuration specified here.
         /// The endpoint's metadata entry in *envoy.transport_socket_match* is used to match
         /// against the values specified in this field.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub r#match: ::core::option::Option<::pbjson_types::Struct>,
         /// The configuration of the transport socket.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub transport_socket: ::core::option::Option<super::core::TransportSocket>,
     }
     /// Extended cluster type.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CustomClusterType {
         /// The type of the cluster to instantiate. The name must match a supported cluster type.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Cluster specific configuration which depends on the cluster being instantiated.
         /// See the supported cluster for further documentation.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub typed_config: ::core::option::Option<::pbjson_types::Any>,
     }
     /// Only valid when discovery type is EDS.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct EdsClusterConfig {
         /// Configuration for the source of EDS updates for this Cluster.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub eds_config: ::core::option::Option<super::core::ConfigSource>,
         /// Optional alternative to cluster name to present to EDS. This does not
         /// have the same restrictions as cluster name, i.e. it may be arbitrary
         /// length.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub service_name: ::prost::alloc::string::String,
     }
     /// Optionally divide the endpoints in this cluster into subsets defined by
     /// endpoint metadata and selected by route and weighted cluster metadata.
     /// [#next-free-field: 8]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct LbSubsetConfig {
         /// The behavior used when no endpoint subset matches the selected route's
         /// metadata. The value defaults to
         /// :ref:`NO_FALLBACK<envoy_api_enum_value_Cluster.LbSubsetConfig.LbSubsetFallbackPolicy.NO_FALLBACK>`.
-        #[prost(enumeration="lb_subset_config::LbSubsetFallbackPolicy", tag="1")]
+        #[prost(enumeration = "lb_subset_config::LbSubsetFallbackPolicy", tag = "1")]
         pub fallback_policy: i32,
         /// Specifies the default subset of endpoints used during fallback if
         /// fallback_policy is
@@ -499,7 +517,7 @@ pub mod cluster_ {
         /// namespace. It is valid for no hosts to match, in which case the behavior
         /// is the same as a fallback_policy of
         /// :ref:`NO_FALLBACK<envoy_api_enum_value_Cluster.LbSubsetConfig.LbSubsetFallbackPolicy.NO_FALLBACK>`.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub default_subset: ::core::option::Option<::pbjson_types::Struct>,
         /// For each entry, LbEndpoint.Metadata's
         /// *envoy.lb* namespace is traversed and a subset is created for each unique
@@ -515,8 +533,10 @@ pub mod cluster_ {
         /// A subset is matched when the metadata from the selected route and
         /// weighted cluster contains the same keys and values as the subset's
         /// metadata. The same host may appear in multiple subsets.
-        #[prost(message, repeated, tag="3")]
-        pub subset_selectors: ::prost::alloc::vec::Vec<lb_subset_config::LbSubsetSelector>,
+        #[prost(message, repeated, tag = "3")]
+        pub subset_selectors: ::prost::alloc::vec::Vec<
+            lb_subset_config::LbSubsetSelector,
+        >,
         /// If true, routing to subsets will take into account the localities and locality weights of the
         /// endpoints when making the routing decision.
         ///
@@ -527,13 +547,13 @@ pub mod cluster_ {
         /// which have 100 hosts each without subsetting. If the subset LB results in X having only 1
         /// host selected but Y having 100, then a lot more load is being dumped on the single host in X
         /// than originally anticipated in the load balancing assignment delivered via EDS.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         pub locality_weight_aware: bool,
         /// When used with locality_weight_aware, scales the weight of each locality by the ratio
         /// of hosts in the subset vs hosts in the original subset. This aims to even out the load
         /// going to an individual locality if said locality is disproportionately affected by the
         /// subset predicate.
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag = "5")]
         pub scale_locality_weight: bool,
         /// If true, when a fallback policy is configured and its corresponding subset fails to find
         /// a host this will cause any host to be selected instead.
@@ -541,25 +561,29 @@ pub mod cluster_ {
         /// This is useful when using the default subset as the fallback policy, given the default
         /// subset might become empty. With this option enabled, if that happens the LB will attempt
         /// to select a host from the entire cluster.
-        #[prost(bool, tag="6")]
+        #[prost(bool, tag = "6")]
         pub panic_mode_any: bool,
         /// If true, metadata specified for a metadata key will be matched against the corresponding
         /// endpoint metadata if the endpoint metadata matches the value exactly OR it is a list value
         /// and any of the elements in the list matches the criteria.
-        #[prost(bool, tag="7")]
+        #[prost(bool, tag = "7")]
         pub list_as_any: bool,
     }
     /// Nested message and enum types in `LbSubsetConfig`.
     pub mod lb_subset_config {
         /// Specifications for subsets.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct LbSubsetSelector {
             /// List of keys to match with the weighted cluster metadata.
-            #[prost(string, repeated, tag="1")]
+            #[prost(string, repeated, tag = "1")]
             pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
             /// The behavior used when no endpoint subset matches the selected route's
             /// metadata.
-            #[prost(enumeration="lb_subset_selector::LbSubsetSelectorFallbackPolicy", tag="2")]
+            #[prost(
+                enumeration = "lb_subset_selector::LbSubsetSelectorFallbackPolicy",
+                tag = "2"
+            )]
             pub fallback_policy: i32,
             /// Subset of
             /// :ref:`keys<envoy_api_field_Cluster.LbSubsetConfig.LbSubsetSelector.keys>` used by
@@ -570,13 +594,25 @@ pub mod cluster_ {
             /// Only values also present in
             /// :ref:`keys<envoy_api_field_Cluster.LbSubsetConfig.LbSubsetSelector.keys>` are allowed, but
             /// `fallback_keys_subset` cannot be equal to `keys`.
-            #[prost(string, repeated, tag="3")]
-            pub fallback_keys_subset: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+            #[prost(string, repeated, tag = "3")]
+            pub fallback_keys_subset: ::prost::alloc::vec::Vec<
+                ::prost::alloc::string::String,
+            >,
         }
         /// Nested message and enum types in `LbSubsetSelector`.
         pub mod lb_subset_selector {
             /// Allows to override top level fallback policy per selector.
-            #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+            #[derive(
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
+            )]
             #[repr(i32)]
             pub enum LbSubsetSelectorFallbackPolicy {
                 /// If NOT_DEFINED top level config fallback policy is used instead.
@@ -610,6 +646,17 @@ pub mod cluster_ {
                         LbSubsetSelectorFallbackPolicy::KeysSubset => "KEYS_SUBSET",
                     }
                 }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "NOT_DEFINED" => Some(Self::NotDefined),
+                        "NO_FALLBACK" => Some(Self::NoFallback),
+                        "ANY_ENDPOINT" => Some(Self::AnyEndpoint),
+                        "DEFAULT_SUBSET" => Some(Self::DefaultSubset),
+                        "KEYS_SUBSET" => Some(Self::KeysSubset),
+                        _ => None,
+                    }
+                }
             }
         }
         /// If NO_FALLBACK is selected, a result
@@ -617,7 +664,17 @@ pub mod cluster_ {
         /// any cluster endpoint may be returned (subject to policy, health checks,
         /// etc). If DEFAULT_SUBSET is selected, load balancing is performed over the
         /// endpoints matching the values from the default_subset field.
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum LbSubsetFallbackPolicy {
             NoFallback = 0,
@@ -636,40 +693,61 @@ pub mod cluster_ {
                     LbSubsetFallbackPolicy::DefaultSubset => "DEFAULT_SUBSET",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "NO_FALLBACK" => Some(Self::NoFallback),
+                    "ANY_ENDPOINT" => Some(Self::AnyEndpoint),
+                    "DEFAULT_SUBSET" => Some(Self::DefaultSubset),
+                    _ => None,
+                }
+            }
         }
     }
     /// Specific configuration for the LeastRequest load balancing policy.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct LeastRequestLbConfig {
         /// The number of random healthy hosts from which the host with the fewest active requests will
         /// be chosen. Defaults to 2 so that we perform two-choice selection if the field is not set.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub choice_count: ::core::option::Option<::pbjson_types::UInt32Value>,
     }
     /// Specific configuration for the :ref:`RingHash<arch_overview_load_balancing_types_ring_hash>`
     /// load balancing policy.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RingHashLbConfig {
         /// Minimum hash ring size. The larger the ring is (that is, the more hashes there are for each
         /// provided host) the better the request distribution will reflect the desired weights. Defaults
         /// to 1024 entries, and limited to 8M entries. See also
         /// :ref:`maximum_ring_size<envoy_api_field_Cluster.RingHashLbConfig.maximum_ring_size>`.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub minimum_ring_size: ::core::option::Option<::pbjson_types::UInt64Value>,
         /// The hash function used to hash hosts onto the ketama ring. The value defaults to
         /// :ref:`XX_HASH<envoy_api_enum_value_Cluster.RingHashLbConfig.HashFunction.XX_HASH>`.
-        #[prost(enumeration="ring_hash_lb_config::HashFunction", tag="3")]
+        #[prost(enumeration = "ring_hash_lb_config::HashFunction", tag = "3")]
         pub hash_function: i32,
         /// Maximum hash ring size. Defaults to 8M entries, and limited to 8M entries, but can be lowered
         /// to further constrain resource use. See also
         /// :ref:`minimum_ring_size<envoy_api_field_Cluster.RingHashLbConfig.minimum_ring_size>`.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub maximum_ring_size: ::core::option::Option<::pbjson_types::UInt64Value>,
     }
     /// Nested message and enum types in `RingHashLbConfig`.
     pub mod ring_hash_lb_config {
         /// The hash function used to hash hosts onto the ketama ring.
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum HashFunction {
             /// Use `xxHash <<https://github.com/Cyan4973/xxHash>`_,> this is the default hash function.
@@ -690,11 +768,20 @@ pub mod cluster_ {
                     HashFunction::MurmurHash2 => "MURMUR_HASH_2",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "XX_HASH" => Some(Self::XxHash),
+                    "MURMUR_HASH_2" => Some(Self::MurmurHash2),
+                    _ => None,
+                }
+            }
         }
     }
     /// Specific configuration for the
     /// :ref:`Original Destination <arch_overview_load_balancing_types_original_destination>`
     /// load balancing policy.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct OriginalDstLbConfig {
         /// When true, :ref:`x-envoy-original-dst-host
@@ -710,11 +797,12 @@ pub mod cluster_ {
         /// .. note::
         ///
         ///    If the header appears multiple times only the first value is used.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         pub use_http_header: bool,
     }
     /// Common configuration for all load balancer implementations.
     /// [#next-free-field: 8]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CommonLbConfig {
         /// Configures the :ref:`healthy panic threshold <arch_overview_load_balancing_panic_threshold>`.
@@ -723,8 +811,10 @@ pub mod cluster_ {
         ///
         /// .. note::
         ///    The specified percent will be truncated to the nearest 1%.
-        #[prost(message, optional, tag="1")]
-        pub healthy_panic_threshold: ::core::option::Option<super::super::super::r#type::Percent>,
+        #[prost(message, optional, tag = "1")]
+        pub healthy_panic_threshold: ::core::option::Option<
+            super::super::super::r#type::Percent,
+        >,
         /// If set, all health check/weight/metadata updates that happen within this duration will be
         /// merged and delivered in one shot when the duration expires. The start of the duration is when
         /// the first update happens. This is useful for big clusters, with potentially noisy deploys
@@ -739,7 +829,7 @@ pub mod cluster_ {
         /// Note: merging does not apply to cluster membership changes (e.g.: adds/removes); this is
         /// because merging those updates isn't currently safe. See
         /// <https://github.com/envoyproxy/envoy/pull/3941.>
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub update_merge_window: ::core::option::Option<::pbjson_types::Duration>,
         /// If set to true, Envoy will not consider new hosts when computing load balancing weights until
         /// they have been health checked for the first time. This will have no effect unless
@@ -760,82 +850,102 @@ pub mod cluster_ {
         ///
         /// If panic mode is triggered, new hosts are still eligible for traffic; they simply do not
         /// contribute to the calculation when deciding whether panic mode is enabled or not.
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag = "5")]
         pub ignore_new_hosts_until_first_hc: bool,
         /// If set to `true`, the cluster manager will drain all existing
         /// connections to upstream hosts whenever hosts are added or removed from the cluster.
-        #[prost(bool, tag="6")]
+        #[prost(bool, tag = "6")]
         pub close_connections_on_host_set_change: bool,
         /// Common Configuration for all consistent hashing load balancers (MaglevLb, RingHashLb, etc.)
-        #[prost(message, optional, tag="7")]
-        pub consistent_hashing_lb_config: ::core::option::Option<common_lb_config::ConsistentHashingLbConfig>,
-        #[prost(oneof="common_lb_config::LocalityConfigSpecifier", tags="2, 3")]
-        pub locality_config_specifier: ::core::option::Option<common_lb_config::LocalityConfigSpecifier>,
+        #[prost(message, optional, tag = "7")]
+        pub consistent_hashing_lb_config: ::core::option::Option<
+            common_lb_config::ConsistentHashingLbConfig,
+        >,
+        #[prost(oneof = "common_lb_config::LocalityConfigSpecifier", tags = "2, 3")]
+        pub locality_config_specifier: ::core::option::Option<
+            common_lb_config::LocalityConfigSpecifier,
+        >,
     }
     /// Nested message and enum types in `CommonLbConfig`.
     pub mod common_lb_config {
         /// Configuration for :ref:`zone aware routing
         /// <arch_overview_load_balancing_zone_aware_routing>`.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct ZoneAwareLbConfig {
             /// Configures percentage of requests that will be considered for zone aware routing
             /// if zone aware routing is configured. If not specified, the default is 100%.
             /// * :ref:`runtime values <config_cluster_manager_cluster_runtime_zone_routing>`.
             /// * :ref:`Zone aware routing support <arch_overview_load_balancing_zone_aware_routing>`.
-            #[prost(message, optional, tag="1")]
-            pub routing_enabled: ::core::option::Option<super::super::super::super::r#type::Percent>,
+            #[prost(message, optional, tag = "1")]
+            pub routing_enabled: ::core::option::Option<
+                super::super::super::super::r#type::Percent,
+            >,
             /// Configures minimum upstream cluster size required for zone aware routing
             /// If upstream cluster size is less than specified, zone aware routing is not performed
             /// even if zone aware routing is configured. If not specified, the default is 6.
             /// * :ref:`runtime values <config_cluster_manager_cluster_runtime_zone_routing>`.
             /// * :ref:`Zone aware routing support <arch_overview_load_balancing_zone_aware_routing>`.
-            #[prost(message, optional, tag="2")]
+            #[prost(message, optional, tag = "2")]
             pub min_cluster_size: ::core::option::Option<::pbjson_types::UInt64Value>,
             /// If set to true, Envoy will not consider any hosts when the cluster is in :ref:`panic
             /// mode<arch_overview_load_balancing_panic_threshold>`. Instead, the cluster will fail all
             /// requests as if all hosts are unhealthy. This can help avoid potentially overwhelming a
             /// failing service.
-            #[prost(bool, tag="3")]
+            #[prost(bool, tag = "3")]
             pub fail_traffic_on_panic: bool,
         }
         /// Configuration for :ref:`locality weighted load balancing
         /// <arch_overview_load_balancing_locality_weighted_lb>`
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct LocalityWeightedLbConfig {
-        }
+        pub struct LocalityWeightedLbConfig {}
         /// Common Configuration for all consistent hashing load balancers (MaglevLb, RingHashLb, etc.)
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct ConsistentHashingLbConfig {
             /// If set to `true`, the cluster will use hostname instead of the resolved
             /// address as the key to consistently hash to an upstream host. Only valid for StrictDNS clusters with hostnames which resolve to a single IP address.
-            #[prost(bool, tag="1")]
+            #[prost(bool, tag = "1")]
             pub use_hostname_for_hashing: bool,
         }
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum LocalityConfigSpecifier {
-            #[prost(message, tag="2")]
+            #[prost(message, tag = "2")]
             ZoneAwareLbConfig(ZoneAwareLbConfig),
-            #[prost(message, tag="3")]
+            #[prost(message, tag = "3")]
             LocalityWeightedLbConfig(LocalityWeightedLbConfig),
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RefreshRate {
         /// Specifies the base interval between refreshes. This parameter is required and must be greater
         /// than zero and less than
         /// :ref:`max_interval <envoy_api_field_Cluster.RefreshRate.max_interval>`.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub base_interval: ::core::option::Option<::pbjson_types::Duration>,
         /// Specifies the maximum interval between refreshes. This parameter is optional, but must be
         /// greater than or equal to the
         /// :ref:`base_interval <envoy_api_field_Cluster.RefreshRate.base_interval>`  if set. The default
         /// is 10 times the :ref:`base_interval <envoy_api_field_Cluster.RefreshRate.base_interval>`.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub max_interval: ::core::option::Option<::pbjson_types::Duration>,
     }
     /// Refer to :ref:`service discovery type <arch_overview_service_discovery_types>`
     /// for an explanation on each type.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DiscoveryType {
         /// Refer to the :ref:`static discovery type<arch_overview_service_discovery_types_static>`
@@ -871,10 +981,31 @@ pub mod cluster_ {
                 DiscoveryType::OriginalDst => "ORIGINAL_DST",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATIC" => Some(Self::Static),
+                "STRICT_DNS" => Some(Self::StrictDns),
+                "LOGICAL_DNS" => Some(Self::LogicalDns),
+                "EDS" => Some(Self::Eds),
+                "ORIGINAL_DST" => Some(Self::OriginalDst),
+                _ => None,
+            }
+        }
     }
     /// Refer to :ref:`load balancer type <arch_overview_load_balancing_types>` architecture
     /// overview section for information on each type.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum LbPolicy {
         /// Refer to the :ref:`round robin load balancing
@@ -933,6 +1064,20 @@ pub mod cluster_ {
                 LbPolicy::LoadBalancingPolicyConfig => "LOAD_BALANCING_POLICY_CONFIG",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ROUND_ROBIN" => Some(Self::RoundRobin),
+                "LEAST_REQUEST" => Some(Self::LeastRequest),
+                "RING_HASH" => Some(Self::RingHash),
+                "RANDOM" => Some(Self::Random),
+                "ORIGINAL_DST_LB" => Some(Self::OriginalDstLb),
+                "MAGLEV" => Some(Self::Maglev),
+                "CLUSTER_PROVIDED" => Some(Self::ClusterProvided),
+                "LOAD_BALANCING_POLICY_CONFIG" => Some(Self::LoadBalancingPolicyConfig),
+                _ => None,
+            }
+        }
     }
     /// When V4_ONLY is selected, the DNS resolver will only perform a lookup for
     /// addresses in the IPv4 family. If V6_ONLY is selected, the DNS resolver will
@@ -944,7 +1089,17 @@ pub mod cluster_ {
     /// :ref:`LOGICAL_DNS<envoy_api_enum_value_Cluster.DiscoveryType.LOGICAL_DNS>`,
     /// this setting is
     /// ignored.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DnsLookupFamily {
         Auto = 0,
@@ -963,8 +1118,27 @@ pub mod cluster_ {
                 DnsLookupFamily::V6Only => "V6_ONLY",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "AUTO" => Some(Self::Auto),
+                "V4_ONLY" => Some(Self::V4Only),
+                "V6_ONLY" => Some(Self::V6Only),
+                _ => None,
+            }
+        }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ClusterProtocolSelection {
         /// Cluster can only operate on one of the possible upstream protocols (HTTP1.1, HTTP2).
@@ -981,19 +1155,32 @@ pub mod cluster_ {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                ClusterProtocolSelection::UseConfiguredProtocol => "USE_CONFIGURED_PROTOCOL",
-                ClusterProtocolSelection::UseDownstreamProtocol => "USE_DOWNSTREAM_PROTOCOL",
+                ClusterProtocolSelection::UseConfiguredProtocol => {
+                    "USE_CONFIGURED_PROTOCOL"
+                }
+                ClusterProtocolSelection::UseDownstreamProtocol => {
+                    "USE_DOWNSTREAM_PROTOCOL"
+                }
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "USE_CONFIGURED_PROTOCOL" => Some(Self::UseConfiguredProtocol),
+                "USE_DOWNSTREAM_PROTOCOL" => Some(Self::UseDownstreamProtocol),
+                _ => None,
             }
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ClusterDiscoveryType {
         /// The :ref:`service discovery type <arch_overview_service_discovery_types>`
         /// to use for resolving the cluster.
-        #[prost(enumeration="DiscoveryType", tag="2")]
+        #[prost(enumeration = "DiscoveryType", tag = "2")]
         Type(i32),
         /// The custom cluster type.
-        #[prost(message, tag="38")]
+        #[prost(message, tag = "38")]
         ClusterType(CustomClusterType),
     }
     /// Optional configuration for the load balancing algorithm selected by
@@ -1003,16 +1190,17 @@ pub mod cluster_ {
     /// has additional configuration options.
     /// Specifying ring_hash_lb_config or least_request_lb_config without setting the corresponding
     /// LbPolicy will generate an error at runtime.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum LbConfig {
         /// Optional configuration for the Ring Hash load balancing policy.
-        #[prost(message, tag="23")]
+        #[prost(message, tag = "23")]
         RingHashLbConfig(RingHashLbConfig),
         /// Optional configuration for the Original Destination load balancing policy.
-        #[prost(message, tag="34")]
+        #[prost(message, tag = "34")]
         OriginalDstLbConfig(OriginalDstLbConfig),
         /// Optional configuration for the LeastRequest load balancing policy.
-        #[prost(message, tag="37")]
+        #[prost(message, tag = "37")]
         LeastRequestLbConfig(LeastRequestLbConfig),
     }
 }
@@ -1035,59 +1223,61 @@ pub mod cluster_ {
 ///
 /// To facilitate this, the config message for the top-level LB policy may include a field of
 /// type LoadBalancingPolicy that specifies the child policy.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoadBalancingPolicy {
     /// Each client will iterate over the list in order and stop at the first policy that it
     /// supports. This provides a mechanism for starting to use new LB policies that are not yet
     /// supported by all clients.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub policies: ::prost::alloc::vec::Vec<load_balancing_policy::Policy>,
 }
 /// Nested message and enum types in `LoadBalancingPolicy`.
 pub mod load_balancing_policy {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Policy {
         /// Required. The name of the LB policy.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Optional config for the LB policy.
         /// No more than one of these two fields may be populated.
         #[deprecated]
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub config: ::core::option::Option<::pbjson_types::Struct>,
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub typed_config: ::core::option::Option<::pbjson_types::Any>,
     }
 }
 /// An extensible structure containing the address Envoy should bind to when
 /// establishing upstream connections.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpstreamBindConfig {
     /// The address Envoy should bind to when establishing upstream connections.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub source_address: ::core::option::Option<core::Address>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpstreamConnectionOptions {
     /// If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub tcp_keepalive: ::core::option::Option<core::TcpKeepalive>,
 }
-// [#protodoc-title: Listener configuration]
-// Listener :ref:`configuration overview <config_listeners>`
-
 /// [#next-free-field: 23]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Listener {
     /// The unique name by which this listener is known. If no name is provided,
     /// Envoy will allocate an internal UUID for the listener. If the listener is to be dynamically
     /// updated or removed via :ref:`LDS <config_listeners_lds>` a unique name must be provided.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The address that the listener should listen on. In general, the address must be unique, though
     /// that is governed by the bind rules of the OS. E.g., multiple listeners can listen on port 0 on
     /// Linux as the actual port will be allocated by the OS.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub address: ::core::option::Option<core::Address>,
     /// A list of filter chains to consider for this listener. The
     /// :ref:`FilterChain <envoy_api_msg_listener.FilterChain>` with the most specific
@@ -1096,7 +1286,7 @@ pub struct Listener {
     ///
     /// Example using SNI for filter chain selection can be found in the
     /// :ref:`FAQ entry <faq_how_to_setup_sni>`.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub filter_chains: ::prost::alloc::vec::Vec<listener::FilterChain>,
     /// If a connection is redirected using *iptables*, the port on which the proxy
     /// receives it might be different from the original destination address. When this flag is set to
@@ -1114,20 +1304,22 @@ pub struct Listener {
     ///    will be removed, as filter chain matching can be used to select a filter chain based on the
     ///    restored destination address.
     #[deprecated]
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub use_original_dst: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Soft limit on size of the listener’s new connection read and write buffers.
     /// If unspecified, an implementation defined default is applied (1MiB).
-    #[prost(message, optional, tag="5")]
-    pub per_connection_buffer_limit_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "5")]
+    pub per_connection_buffer_limit_bytes: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// Listener metadata.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub metadata: ::core::option::Option<core::Metadata>,
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub deprecated_v1: ::core::option::Option<listener_::DeprecatedV1>,
     /// The type of draining to perform at a listener-wide level.
-    #[prost(enumeration="listener_::DrainType", tag="8")]
+    #[prost(enumeration = "listener_::DrainType", tag = "8")]
     pub drain_type: i32,
     /// Listener filters have the opportunity to manipulate and augment the connection metadata that
     /// is used in connection filter chain matching, for example. These filters are run before any in
@@ -1138,13 +1330,13 @@ pub struct Listener {
     /// :ref:`protocol <envoy_api_field_core.SocketAddress.protocol>` is :ref:`UDP
     /// <envoy_api_enum_value_core.SocketAddress.Protocol.UDP>`.
     /// UDP listeners currently support a single filter.
-    #[prost(message, repeated, tag="9")]
+    #[prost(message, repeated, tag = "9")]
     pub listener_filters: ::prost::alloc::vec::Vec<listener::ListenerFilter>,
     /// The timeout to wait for all listener filters to complete operation. If the timeout is reached,
     /// the accepted socket is closed without a connection being created unless
     /// `continue_on_listener_filters_timeout` is set to true. Specify 0 to disable the
     /// timeout. If not specified, a default timeout of 15s is used.
-    #[prost(message, optional, tag="15")]
+    #[prost(message, optional, tag = "15")]
     pub listener_filters_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Whether a connection should be created when listener filters timeout. Default is false.
     ///
@@ -1153,7 +1345,7 @@ pub struct Listener {
     ///    Some listener filters, such as :ref:`Proxy Protocol filter
     ///    <config_listener_filters_proxy_protocol>`, should not be used with this option. It will cause
     ///    unexpected behavior when a connection is created.
-    #[prost(bool, tag="17")]
+    #[prost(bool, tag = "17")]
     pub continue_on_listener_filters_timeout: bool,
     /// Whether the listener should be set as a transparent socket.
     /// When this flag is set to true, connections can be redirected to the listener using an
@@ -1169,7 +1361,7 @@ pub struct Listener {
     /// Setting this flag requires Envoy to run with the *CAP_NET_ADMIN* capability.
     /// When this flag is not set (default), the socket is not modified, i.e. the transparent option
     /// is neither set nor reset.
-    #[prost(message, optional, tag="10")]
+    #[prost(message, optional, tag = "10")]
     pub transparent: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Whether the listener should set the *IP_FREEBIND* socket option. When this
     /// flag is set to true, listeners can be bound to an IP address that is not
@@ -1177,11 +1369,11 @@ pub struct Listener {
     /// option *IP_FREEBIND* is disabled on the socket. When this flag is not set
     /// (default), the socket is not modified, i.e. the option is neither enabled
     /// nor disabled.
-    #[prost(message, optional, tag="11")]
+    #[prost(message, optional, tag = "11")]
     pub freebind: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Additional socket options that may not be present in Envoy source code or
     /// precompiled binaries.
-    #[prost(message, repeated, tag="13")]
+    #[prost(message, repeated, tag = "13")]
     pub socket_options: ::prost::alloc::vec::Vec<core::SocketOption>,
     /// Whether the listener should accept TCP Fast Open (TFO) connections.
     /// When this flag is set to a value greater than 0, the option TCP_FASTOPEN is enabled on
@@ -1197,12 +1389,12 @@ pub struct Listener {
     ///
     /// On macOS, only values of 0, 1, and unset are valid; other values may result in an error.
     /// To set the queue length on macOS, set the net.inet.tcp.fastopen_backlog kernel parameter.
-    #[prost(message, optional, tag="12")]
+    #[prost(message, optional, tag = "12")]
     pub tcp_fast_open_queue_length: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Specifies the intended direction of the traffic relative to the local Envoy.
     /// This property is required on Windows for listeners using the original destination filter,
     /// see :ref:`Original Destination <config_listener_filters_original_dst>`.
-    #[prost(enumeration="core::TrafficDirection", tag="16")]
+    #[prost(enumeration = "core::TrafficDirection", tag = "16")]
     pub traffic_direction: i32,
     /// If the protocol in the listener socket address in :ref:`protocol
     /// <envoy_api_field_core.SocketAddress.protocol>` is :ref:`UDP
@@ -1210,7 +1402,7 @@ pub struct Listener {
     /// listener to create, i.e. :ref:`udp_listener_name
     /// <envoy_api_field_listener.UdpListenerConfig.udp_listener_name>` = "raw_udp_listener" for
     /// creating a packet-oriented UDP listener. If not present, treat it as "raw_udp_listener".
-    #[prost(message, optional, tag="18")]
+    #[prost(message, optional, tag = "18")]
     pub udp_listener_config: ::core::option::Option<listener::UdpListenerConfig>,
     /// Used to represent an API listener, which is used in non-proxy clients. The type of API
     /// exposed to the non-proxy application depends on the type of API listener.
@@ -1228,12 +1420,14 @@ pub struct Listener {
     /// and the top-level Listener should essentially be a oneof that selects between the
     /// socket listener and the various types of API listener. That way, a given Listener message
     /// can structurally only contain the fields of the relevant type.]
-    #[prost(message, optional, tag="19")]
-    pub api_listener: ::core::option::Option<super::super::config::listener::v2::ApiListener>,
+    #[prost(message, optional, tag = "19")]
+    pub api_listener: ::core::option::Option<
+        super::super::config::listener::v2::ApiListener,
+    >,
     /// The listener's connection balancer configuration, currently only applicable to TCP listeners.
     /// If no configuration is specified, Envoy will not attempt to balance active connections between
     /// worker threads.
-    #[prost(message, optional, tag="20")]
+    #[prost(message, optional, tag = "20")]
     pub connection_balance_config: ::core::option::Option<listener_::ConnectionBalanceConfig>,
     /// When this flag is set to true, listeners set the *SO_REUSEPORT* socket option and
     /// create one socket for each worker thread. This makes inbound connections
@@ -1245,16 +1439,19 @@ pub struct Listener {
     /// <<https://github.com/torvalds/linux/commit/c617f398edd4db2b8567a28e89>`_>).
     /// This issue was fixed by `tcp: Avoid TCP syncookie rejected by SO_REUSEPORT socket
     /// <<https://github.com/torvalds/linux/commit/40a1227ea845a37ab197dd1caffb60b047fa36b1>`_.>
-    #[prost(bool, tag="21")]
+    #[prost(bool, tag = "21")]
     pub reuse_port: bool,
     /// Configuration for :ref:`access logs <arch_overview_access_logs>`
     /// emitted by this listener.
-    #[prost(message, repeated, tag="22")]
-    pub access_log: ::prost::alloc::vec::Vec<super::super::config::filter::accesslog::v2::AccessLog>,
+    #[prost(message, repeated, tag = "22")]
+    pub access_log: ::prost::alloc::vec::Vec<
+        super::super::config::filter::accesslog::v2::AccessLog,
+    >,
 }
 /// Nested message and enum types in `Listener`.
 pub mod listener_ {
     /// \[#not-implemented-hide:\]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DeprecatedV1 {
         /// Whether the listener should bind to the port. A listener that doesn't
@@ -1267,13 +1464,14 @@ pub mod listener_ {
         /// specified in the FilterChainMatch destination_port field.
         ///
         /// [#comment:TODO(PiotrSikora): Remove this once verified that we no longer need it.]
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub bind_to_port: ::core::option::Option<::pbjson_types::BoolValue>,
     }
     /// Configuration for listener connection balancing.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ConnectionBalanceConfig {
-        #[prost(oneof="connection_balance_config::BalanceType", tags="1")]
+        #[prost(oneof = "connection_balance_config::BalanceType", tags = "1")]
         pub balance_type: ::core::option::Option<connection_balance_config::BalanceType>,
     }
     /// Nested message and enum types in `ConnectionBalanceConfig`.
@@ -1284,17 +1482,28 @@ pub mod listener_ {
         /// making the counts incorrect, but this should be rectified on the next accept. This balancer
         /// sacrifices accept throughput for accuracy and should be used when there are a small number of
         /// connections that rarely cycle (e.g., service mesh gRPC egress).
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ExactBalance {
-        }
+        pub struct ExactBalance {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum BalanceType {
             /// If specified, the listener will use the exact connection balancer.
-            #[prost(message, tag="1")]
+            #[prost(message, tag = "1")]
             ExactBalance(ExactBalance),
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum DrainType {
         /// Drain in response to calling /healthcheck/fail admin endpoint (along with the health check
@@ -1316,13 +1525,20 @@ pub mod listener_ {
                 DrainType::ModifyOnly => "MODIFY_ONLY",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT" => Some(Self::Default),
+                "MODIFY_ONLY" => Some(Self::ModifyOnly),
+                _ => None,
+            }
+        }
     }
 }
-// [#protodoc-title: Common discovery API components]
-
 /// A DiscoveryRequest requests a set of versioned resources of the same type for
 /// a given Envoy node on some API.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryRequest {
     /// The version_info provided in the request messages will be the version_info
@@ -1332,10 +1548,10 @@ pub struct DiscoveryRequest {
     /// configuration. ACK/NACK takes place by returning the new API config version
     /// as applied or the previous API config version respectively. Each type_url
     /// (see below) has an independent version associated with it.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub version_info: ::prost::alloc::string::String,
     /// The node making the request.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub node: ::core::option::Option<core::Node>,
     /// List of resources to subscribe to, e.g. list of cluster names or a route
     /// configuration name. If this is empty, all resources for the API are
@@ -1343,36 +1559,37 @@ pub struct DiscoveryRequest {
     /// resources for the Envoy instance to be returned. The LDS and CDS responses
     /// will then imply a number of resources that need to be fetched via EDS/RDS,
     /// which will be explicitly enumerated in resource_names.
-    #[prost(string, repeated, tag="3")]
+    #[prost(string, repeated, tag = "3")]
     pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Type of the resource that is being requested, e.g.
     /// "type.googleapis.com/envoy.api.v2.ClusterLoadAssignment". This is implicit
     /// in requests made via singleton xDS APIs such as CDS, LDS, etc. but is
     /// required for ADS.
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub type_url: ::prost::alloc::string::String,
     /// nonce corresponding to DiscoveryResponse being ACK/NACKed. See above
     /// discussion on version_info and the DiscoveryResponse nonce comment. This
     /// may be empty only if 1) this is a non-persistent-stream xDS such as HTTP,
     /// or 2) the client has not yet accepted an update in this xDS stream (unlike
     /// delta, where it is populated only for new explicit ACKs).
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub response_nonce: ::prost::alloc::string::String,
     /// This is populated when the previous :ref:`DiscoveryResponse <envoy_api_msg_DiscoveryResponse>`
     /// failed to update configuration. The *message* field in *error_details* provides the Envoy
     /// internal exception related to the failure. It is only intended for consumption during manual
     /// debugging, the string provided is not guaranteed to be stable across Envoy versions.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub error_detail: ::core::option::Option<super::super::super::google::rpc::Status>,
 }
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryResponse {
     /// The version of the response data.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub version_info: ::prost::alloc::string::String,
     /// The response resources. These resources are typed and depend on the API being called.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub resources: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
     /// \[#not-implemented-hide:\]
     /// Canary is used to support two Envoy command line flags:
@@ -1388,11 +1605,11 @@ pub struct DiscoveryResponse {
     ///    clean slate.
     /// * --dry-run-canary. When set, a canary response will never be applied, only
     ///    validated via a dry run.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub canary: bool,
     /// Type URL for resources. Identifies the xDS API when muxing over ADS.
     /// Must be consistent with the type_url in the 'resources' repeated Any (if non-empty).
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub type_url: ::prost::alloc::string::String,
     /// For gRPC based subscriptions, the nonce provides a way to explicitly ack a
     /// specific DiscoveryResponse in a following DiscoveryRequest. Additional
@@ -1402,11 +1619,11 @@ pub struct DiscoveryResponse {
     /// to ignore any further DiscoveryRequests for the previous version until a
     /// DiscoveryRequest bearing the nonce. The nonce is optional and is not
     /// required for non-stream based xDS implementations.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub nonce: ::prost::alloc::string::String,
     /// \[#not-implemented-hide:\]
     /// The control plane instance that sent the response.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub control_plane: ::core::option::Option<core::ControlPlane>,
 }
 /// DeltaDiscoveryRequest and DeltaDiscoveryResponse are used in a new gRPC
@@ -1442,14 +1659,15 @@ pub struct DiscoveryResponse {
 /// gRPC stream actually entails a message for each type_url, each with its own
 /// initial_resource_versions.
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeltaDiscoveryRequest {
     /// The node making the request.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub node: ::core::option::Option<core::Node>,
     /// Type of the resource that is being requested, e.g.
     /// "type.googleapis.com/envoy.api.v2.ClusterLoadAssignment".
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub type_url: ::prost::alloc::string::String,
     /// DeltaDiscoveryRequests allow the client to add or remove individual
     /// resources to the set of tracked resources in the context of a stream.
@@ -1472,11 +1690,15 @@ pub struct DeltaDiscoveryRequest {
     /// and initial_resource_versions.
     ///
     /// A list of Resource names to add to the list of tracked resources.
-    #[prost(string, repeated, tag="3")]
-    pub resource_names_subscribe: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub resource_names_subscribe: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// A list of Resource names to remove from the list of tracked resources.
-    #[prost(string, repeated, tag="4")]
-    pub resource_names_unsubscribe: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub resource_names_unsubscribe: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// Informs the server of the versions of the resources the xDS client knows of, to enable the
     /// client to continue the same logical xDS session even in the face of gRPC stream reconnection.
     /// It will not be populated: \[1\] in the very first stream of a session, since the client will
@@ -1485,91 +1707,91 @@ pub struct DeltaDiscoveryRequest {
     /// (In ADS, the first message *of each type_url* of a reconnected stream populates this map.)
     /// The map's keys are names of xDS resources known to the xDS client.
     /// The map's values are opaque resource versions.
-    #[prost(map="string, string", tag="5")]
-    pub initial_resource_versions: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "5")]
+    pub initial_resource_versions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
     /// When the DeltaDiscoveryRequest is a ACK or NACK message in response
     /// to a previous DeltaDiscoveryResponse, the response_nonce must be the
     /// nonce in the DeltaDiscoveryResponse.
     /// Otherwise (unlike in DiscoveryRequest) response_nonce must be omitted.
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub response_nonce: ::prost::alloc::string::String,
     /// This is populated when the previous :ref:`DiscoveryResponse <envoy_api_msg_DiscoveryResponse>`
     /// failed to update configuration. The *message* field in *error_details*
     /// provides the Envoy internal exception related to the failure.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub error_detail: ::core::option::Option<super::super::super::google::rpc::Status>,
 }
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeltaDiscoveryResponse {
     /// The version of the response data (used for debugging).
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub system_version_info: ::prost::alloc::string::String,
     /// The response resources. These are typed resources, whose types must match
     /// the type_url field.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub resources: ::prost::alloc::vec::Vec<Resource>,
-    // field id 3 IS available!
-
     /// Type URL for resources. Identifies the xDS API when muxing over ADS.
     /// Must be consistent with the type_url in the Any within 'resources' if 'resources' is non-empty.
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub type_url: ::prost::alloc::string::String,
     /// Resources names of resources that have be deleted and to be removed from the xDS Client.
     /// Removed resources for missing resources can be ignored.
-    #[prost(string, repeated, tag="6")]
+    #[prost(string, repeated, tag = "6")]
     pub removed_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The nonce provides a way for DeltaDiscoveryRequests to uniquely
     /// reference a DeltaDiscoveryResponse when (N)ACKing. The nonce is required.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub nonce: ::prost::alloc::string::String,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Resource {
     /// The resource's name, to distinguish it from others of the same type of resource.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
     /// The aliases are a list of other names that this resource can go by.
-    #[prost(string, repeated, tag="4")]
+    #[prost(string, repeated, tag = "4")]
     pub aliases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// The resource level version. It allows xDS to track the state of individual
     /// resources.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub version: ::prost::alloc::string::String,
     /// The resource being tracked.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub resource: ::core::option::Option<::pbjson_types::Any>,
 }
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CdsDummy {
-}
+pub struct CdsDummy {}
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EdsDummy {
-}
+pub struct EdsDummy {}
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LdsDummy {
-}
-// [#protodoc-title: HTTP route configuration]
-// * Routing :ref:`architecture overview <arch_overview_http_routing>`
-// * HTTP :ref:`router filter <config_http_filters_router>`
-
+pub struct LdsDummy {}
 /// [#next-free-field: 11]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteConfiguration {
     /// The name of the route configuration. For example, it might match
     /// :ref:`route_config_name
     /// <envoy_api_field_config.filter.network.http_connection_manager.v2.Rds.route_config_name>` in
     /// :ref:`envoy_api_msg_config.filter.network.http_connection_manager.v2.Rds`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// An array of virtual hosts that make up the route table.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub virtual_hosts: ::prost::alloc::vec::Vec<route::VirtualHost>,
     /// An array of virtual hosts will be dynamically loaded via the VHDS API.
     /// Both *virtual_hosts* and *vhds* fields will be used when present. *virtual_hosts* can be used
@@ -1577,13 +1799,13 @@ pub struct RouteConfiguration {
     /// on-demand discovery of virtual hosts. The contents of these two fields will be merged to
     /// generate a routing table for a given RouteConfiguration, with *vhds* derived configuration
     /// taking precedence.
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub vhds: ::core::option::Option<Vhds>,
     /// Optionally specifies a list of HTTP headers that the connection manager
     /// will consider to be internal only. If they are found on external requests they will be cleaned
     /// prior to filter invocation. See :ref:`config_http_conn_man_headers_x-envoy-internal` for more
     /// information.
-    #[prost(string, repeated, tag="3")]
+    #[prost(string, repeated, tag = "3")]
     pub internal_only_headers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Specifies a list of HTTP headers that should be added to each response that
     /// the connection manager encodes. Headers specified at this level are applied
@@ -1591,24 +1813,28 @@ pub struct RouteConfiguration {
     /// :ref:`envoy_api_msg_route.RouteAction`. For more information, including details on
     /// header value syntax, see the documentation on :ref:`custom request headers
     /// <config_http_conn_man_headers_custom_request_headers>`.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub response_headers_to_add: ::prost::alloc::vec::Vec<core::HeaderValueOption>,
     /// Specifies a list of HTTP headers that should be removed from each response
     /// that the connection manager encodes.
-    #[prost(string, repeated, tag="5")]
-    pub response_headers_to_remove: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub response_headers_to_remove: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// Specifies a list of HTTP headers that should be added to each request
     /// routed by the HTTP connection manager. Headers specified at this level are
     /// applied after headers from any enclosed :ref:`envoy_api_msg_route.VirtualHost` or
     /// :ref:`envoy_api_msg_route.RouteAction`. For more information, including details on
     /// header value syntax, see the documentation on :ref:`custom request headers
     /// <config_http_conn_man_headers_custom_request_headers>`.
-    #[prost(message, repeated, tag="6")]
+    #[prost(message, repeated, tag = "6")]
     pub request_headers_to_add: ::prost::alloc::vec::Vec<core::HeaderValueOption>,
     /// Specifies a list of HTTP headers that should be removed from each request
     /// routed by the HTTP connection manager.
-    #[prost(string, repeated, tag="8")]
-    pub request_headers_to_remove: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "8")]
+    pub request_headers_to_remove: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// By default, headers that should be added/removed are evaluated from most to least specific:
     ///
     /// * route level
@@ -1619,7 +1845,7 @@ pub struct RouteConfiguration {
     /// by setting this option to true. Defaults to false.
     ///
     /// [#next-major-version: In the v3 API, this will default to true.]
-    #[prost(bool, tag="10")]
+    #[prost(bool, tag = "10")]
     pub most_specific_header_mutations_wins: bool,
     /// An optional boolean that specifies whether the clusters that the route
     /// table refers to will be validated by the cluster manager. If set to true
@@ -1634,23 +1860,21 @@ pub struct RouteConfiguration {
     /// <envoy_api_field_config.filter.network.http_connection_manager.v2.HttpConnectionManager.rds>`
     /// option. Users may wish to override the default behavior in certain cases (for example when
     /// using CDS with a static route table).
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub validate_clusters: ::core::option::Option<::pbjson_types::BoolValue>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Vhds {
     /// Configuration source specifier for VHDS.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub config_source: ::core::option::Option<core::ConfigSource>,
 }
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RdsDummy {
-}
-// [#protodoc-title: HTTP scoped routing configuration]
-// * Routing :ref:`architecture overview <arch_overview_http_routing>`
-
+pub struct RdsDummy {}
 /// Specifies a routing scope, which associates a
 /// :ref:`Key<envoy_api_msg_ScopedRouteConfiguration.Key>` to a
 /// :ref:`envoy_api_msg_RouteConfiguration` (identified by its resource name).
@@ -1710,18 +1934,19 @@ pub struct RdsDummy {
 /// would result in the routing table defined by the `route-config1`
 /// RouteConfiguration being assigned to the HTTP request/stream.
 ///
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScopedRouteConfiguration {
     /// The name assigned to the routing scope.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The resource name to use for a :ref:`envoy_api_msg_DiscoveryRequest` to an
     /// RDS server to fetch the :ref:`envoy_api_msg_RouteConfiguration` associated
     /// with this scope.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub route_configuration_name: ::prost::alloc::string::String,
     /// The key to match against.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub key: ::core::option::Option<scoped_route_configuration::Key>,
 }
 /// Nested message and enum types in `ScopedRouteConfiguration`.
@@ -1731,27 +1956,30 @@ pub mod scoped_route_configuration {
     /// specified in the HttpConnectionManager. The matching is done per HTTP
     /// request and is dependent on the order of the fragments contained in the
     /// Key.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Key {
         /// The ordered set of fragments to match against. The order must match the
         /// fragments in the corresponding
         /// :ref:`scope_key_builder<envoy_api_field_config.filter.network.http_connection_manager.v2.ScopedRoutes.scope_key_builder>`.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub fragments: ::prost::alloc::vec::Vec<key::Fragment>,
     }
     /// Nested message and enum types in `Key`.
     pub mod key {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Fragment {
-            #[prost(oneof="fragment::Type", tags="1")]
+            #[prost(oneof = "fragment::Type", tags = "1")]
             pub r#type: ::core::option::Option<fragment::Type>,
         }
         /// Nested message and enum types in `Fragment`.
         pub mod fragment {
+            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Oneof)]
             pub enum Type {
                 /// A string to match against.
-                #[prost(string, tag="1")]
+                #[prost(string, tag = "1")]
                 StringKey(::prost::alloc::string::String),
             }
         }
@@ -1759,9 +1987,9 @@ pub mod scoped_route_configuration {
 }
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SrdsDummy {
-}
+pub struct SrdsDummy {}
 /// Encoded file descriptor set for the `envoy.api.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xca, 0x2f, 0x0a, 0x1b, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76,
@@ -8332,5 +8560,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x74, 0x68, 0x65, 0x20, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00,
     0x01, 0x12, 0x03, 0x30, 0x08, 0x11, 0x50, 0x05, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.api.v2.serde.rs");
 include!("envoy.api.v2.tonic.rs");
 // @@protoc_insertion_point(module)

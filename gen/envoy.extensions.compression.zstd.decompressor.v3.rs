@@ -1,7 +1,5 @@
 // @generated
-// [#protodoc-title: Zstd Decompressor]
-// [#extension: envoy.compression.zstd.decompressor]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Zstd {
     /// Dictionaries for decompression. Zstd offers dictionary compression, which greatly improves
@@ -11,10 +9,12 @@ pub struct Zstd {
     /// source content.
     /// Please refer to `zstd manual <<https://github.com/facebook/zstd/blob/dev/programs/zstd.1.md#dictionary-builder>`_>
     /// to train specific dictionaries for decompression.
-    #[prost(message, repeated, tag="1")]
-    pub dictionaries: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, repeated, tag = "1")]
+    pub dictionaries: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Value for decompressor's next output buffer. If not set, defaults to 4096.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub chunk_size: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.compression.zstd.decompressor.v3` package
@@ -127,4 +127,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x08, 0xaf, 0x08, 0x05, 0x12, 0x03, 0x1f, 0x2e, 0x5e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.extensions.compression.zstd.decompressor.v3.serde.rs");
 // @@protoc_insertion_point(module)

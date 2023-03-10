@@ -6,21 +6,22 @@
 ///
 /// You can find out more about this error model and how to work with it in the
 /// [API Design Guide](<https://cloud.google.com/apis/design/errors>).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Status {
     /// The status code, which should be an enum value of
     /// \[google.rpc.Code][google.rpc.Code\].
-    #[prost(int32, tag="1")]
+    #[prost(int32, tag = "1")]
     pub code: i32,
     /// A developer-facing error message, which should be in English. Any
     /// user-facing error message should be localized and sent in the
     /// \[google.rpc.Status.details][google.rpc.Status.details\] field, or localized
     /// by the client.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub message: ::prost::alloc::string::String,
     /// A list of messages that carry the error details.  There is a common set of
     /// message types for APIs to use.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub details: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
 }
 /// Encoded file descriptor set for the `google.rpc` package
@@ -156,4 +157,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x01, 0x12, 0x03, 0x2f, 0x1f, 0x26, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03,
     0x12, 0x03, 0x2f, 0x29, 0x2a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("google.rpc.serde.rs");
 // @@protoc_insertion_point(module)

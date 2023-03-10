@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Header mutation rules]
-
 /// The HeaderMutationRules structure specifies what headers may be
 /// manipulated by a processing filter. This set of rules makes it
 /// possible to control which modifications a filter may make.
@@ -27,66 +25,73 @@
 /// rejected. In the ext_proc filter, that counter is named
 /// ``rejected_header_mutations``.
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeaderMutationRules {
     /// By default, certain headers that could affect processing of subsequent
     /// filters or request routing cannot be modified. These headers are
     /// ``host``, ``:authority``, ``:scheme``, and ``:method``. Setting this parameter
     /// to true allows these headers to be modified as well.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub allow_all_routing: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If true, allow modification of envoy internal headers. By default, these
     /// start with ``x-envoy`` but this may be overridden in the ``Bootstrap``
     /// configuration using the
     /// :ref:`header_prefix <envoy_v3_api_field_config.bootstrap.v3.Bootstrap.header_prefix>`
     /// field. Default is false.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub allow_envoy: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If true, prevent modification of any system header, defined as a header
     /// that starts with a ``:`` character, regardless of any other settings.
     /// A processing server may still override the ``:status`` of an HTTP response
     /// using an ``ImmediateResponse`` message. Default is false.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub disallow_system: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If true, prevent modifications of all header values, regardless of any
     /// other settings. A processing server may still override the ``:status``
     /// of an HTTP response using an ``ImmediateResponse`` message. Default is false.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub disallow_all: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If set, specifically allow any header that matches this regular
     /// expression. This overrides all other settings except for
     /// ``disallow_expression``.
-    #[prost(message, optional, tag="5")]
-    pub allow_expression: ::core::option::Option<super::super::super::super::r#type::matcher::v3::RegexMatcher>,
+    #[prost(message, optional, tag = "5")]
+    pub allow_expression: ::core::option::Option<
+        super::super::super::super::r#type::matcher::v3::RegexMatcher,
+    >,
     /// If set, specifically disallow any header that matches this regular
     /// expression regardless of any other settings.
-    #[prost(message, optional, tag="6")]
-    pub disallow_expression: ::core::option::Option<super::super::super::super::r#type::matcher::v3::RegexMatcher>,
+    #[prost(message, optional, tag = "6")]
+    pub disallow_expression: ::core::option::Option<
+        super::super::super::super::r#type::matcher::v3::RegexMatcher,
+    >,
     /// If true, and if the rules in this list cause a header mutation to be
     /// disallowed, then the filter using this configuration will terminate the
     /// request with a 500 error. In addition, regardless of the setting of this
     /// parameter, any attempt to set, add, or modify a disallowed header will
     /// cause the ``rejected_header_mutations`` counter to be incremented.
     /// Default is false.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub disallow_is_error: ::core::option::Option<::pbjson_types::BoolValue>,
 }
 /// The HeaderMutation structure specifies an action that may be taken on HTTP
 /// headers.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeaderMutation {
-    #[prost(oneof="header_mutation::Action", tags="1, 2")]
+    #[prost(oneof = "header_mutation::Action", tags = "1, 2")]
     pub action: ::core::option::Option<header_mutation::Action>,
 }
 /// Nested message and enum types in `HeaderMutation`.
 pub mod header_mutation {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Action {
         /// Remove the specified header if it exists.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Remove(::prost::alloc::string::String),
         /// Append new header by the specified HeaderValueOption.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Append(super::super::super::super::core::v3::HeaderValueOption),
     }
 }
@@ -402,4 +407,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x64, 0x1e, 0x24, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x01, 0x03, 0x12, 0x03, 0x64, 0x27,
     0x28, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.common.mutation_rules.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,12 +1,11 @@
 // @generated
-// [#protodoc-title: HTTP Cache Filter]
-
 /// [#extension: envoy.filters.http.cache]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CacheConfig {
     /// Config specific to the cache storage implementation.
     /// [#extension-category: envoy.http.cache]
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub typed_config: ::core::option::Option<::pbjson_types::Any>,
     /// List of matching rules that defines allowed ``Vary`` headers.
     ///
@@ -20,46 +19,53 @@ pub struct CacheConfig {
     ///
     /// During lookup, ``allowed_vary_headers`` controls what request headers will be
     /// sent to the cache storage implementation.
-    #[prost(message, repeated, tag="2")]
-    pub allowed_vary_headers: ::prost::alloc::vec::Vec<super::super::super::super::super::r#type::matcher::v3::StringMatcher>,
+    #[prost(message, repeated, tag = "2")]
+    pub allowed_vary_headers: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::r#type::matcher::v3::StringMatcher,
+    >,
     /// \[#not-implemented-hide:\]
     /// <TODO(toddmgreer) implement key customization>
     ///
     /// Modifies cache key creation by restricting which parts of the URL are included.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub key_creator_params: ::core::option::Option<cache_config::KeyCreatorParams>,
     /// \[#not-implemented-hide:\]
     /// <TODO(toddmgreer) implement size limit>
     ///
     /// Max body size the cache filter will insert into a cache. 0 means unlimited (though the cache
     /// storage implementation may have its own limit beyond which it will reject insertions).
-    #[prost(uint32, tag="4")]
+    #[prost(uint32, tag = "4")]
     pub max_body_bytes: u32,
 }
 /// Nested message and enum types in `CacheConfig`.
 pub mod cache_config {
     /// \[#not-implemented-hide:\]
     /// Modifies cache key creation by restricting which parts of the URL are included.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct KeyCreatorParams {
         /// If true, exclude the URL scheme from the cache key. Set to true if your origins always
         /// produce the same response for http and https requests.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         pub exclude_scheme: bool,
         /// If true, exclude the host from the cache key. Set to true if your origins' responses don't
         /// ever depend on host.
-        #[prost(bool, tag="2")]
+        #[prost(bool, tag = "2")]
         pub exclude_host: bool,
         /// If ``query_parameters_included`` is nonempty, only query parameters matched
         /// by one or more of its matchers are included in the cache key. Any other
         /// query params will not affect cache lookup.
-        #[prost(message, repeated, tag="3")]
-        pub query_parameters_included: ::prost::alloc::vec::Vec<super::super::super::super::super::super::config::route::v3::QueryParameterMatcher>,
+        #[prost(message, repeated, tag = "3")]
+        pub query_parameters_included: ::prost::alloc::vec::Vec<
+            super::super::super::super::super::super::config::route::v3::QueryParameterMatcher,
+        >,
         /// If ``query_parameters_excluded`` is nonempty, query parameters matched by one
         /// or more of its matchers are excluded from the cache key (even if also
         /// matched by ``query_parameters_included``), and will not affect cache lookup.
-        #[prost(message, repeated, tag="4")]
-        pub query_parameters_excluded: ::prost::alloc::vec::Vec<super::super::super::super::super::super::config::route::v3::QueryParameterMatcher>,
+        #[prost(message, repeated, tag = "4")]
+        pub query_parameters_excluded: ::prost::alloc::vec::Vec<
+            super::super::super::super::super::super::config::route::v3::QueryParameterMatcher,
+        >,
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.cache.v3` package
@@ -322,4 +328,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x09, 0x17, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x50, 0x1a, 0x1b,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.cache.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,9 +1,6 @@
 // @generated
-// [#protodoc-title: gRPC-JSON transcoder]
-// gRPC-JSON transcoder :ref:`configuration overview <config_http_filters_grpc_json_transcoder>`.
-// [#extension: envoy.filters.http.grpc_json_transcoder]
-
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GrpcJsonTranscoder {
     /// A list of strings that
@@ -11,17 +8,17 @@ pub struct GrpcJsonTranscoder {
     /// the transcoder will translate. If the service name doesn't exist in ``proto_descriptor``,
     /// Envoy will fail at startup. The ``proto_descriptor`` may contain more services than
     /// the service names specified here, but they won't be translated.
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Control options for response JSON. These options are passed directly to
     /// `JsonPrintOptions <<https://developers.google.com/protocol-buffers/docs/reference/cpp/>
     /// google.protobuf.util.json_util#JsonPrintOptions>`_.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub print_options: ::core::option::Option<grpc_json_transcoder::PrintOptions>,
     /// Whether to keep the incoming request route after the outgoing headers have been transformed to
     /// the match the upstream gRPC service. Note: This means that routes for gRPC services that are
     /// not transcoded cannot be used in combination with *match_incoming_request_route*.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub match_incoming_request_route: bool,
     /// A list of query parameters to be ignored for transcoding method mapping.
     /// By default, the transcoder filter will not transcode a request if there are any
@@ -48,8 +45,10 @@ pub struct GrpcJsonTranscoder {
     /// The request ``/shelves/100?foo=bar`` will not be mapped to ``GetShelf``` because variable
     /// binding for ``foo`` is not defined. Adding ``foo`` to ``ignored_query_parameters`` will allow
     /// the same request to be mapped to ``GetShelf``.
-    #[prost(string, repeated, tag="6")]
-    pub ignored_query_parameters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "6")]
+    pub ignored_query_parameters: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// Whether to route methods without the ``google.api.http`` option.
     ///
     /// Example :
@@ -70,13 +69,13 @@ pub struct GrpcJsonTranscoder {
     ///
     /// The client could ``post`` a json body ``{"shelf": 1234}`` with the path of
     /// ``/bookstore.Bookstore/GetShelfRequest`` to call ``GetShelfRequest``.
-    #[prost(bool, tag="7")]
+    #[prost(bool, tag = "7")]
     pub auto_mapping: bool,
     /// Whether to ignore query parameters that cannot be mapped to a corresponding
     /// protobuf field. Use this if you cannot control the query parameters and do
     /// not know them beforehand. Otherwise use ``ignored_query_parameters``.
     /// Defaults to false.
-    #[prost(bool, tag="8")]
+    #[prost(bool, tag = "8")]
     pub ignore_unknown_query_parameters: bool,
     /// Whether to convert gRPC status headers to JSON.
     /// When trailer indicates a gRPC error and there was no HTTP body, take ``google.rpc.Status``
@@ -106,47 +105,49 @@ pub struct GrpcJsonTranscoder {
     /// In order to transcode the message, the ``google.rpc.RequestInfo`` type from
     /// the ``google/rpc/error_details.proto`` should be included in the configured
     /// :ref:`proto descriptor set <config_grpc_json_generate_proto_descriptor_set>`.
-    #[prost(bool, tag="9")]
+    #[prost(bool, tag = "9")]
     pub convert_grpc_status: bool,
-    #[prost(oneof="grpc_json_transcoder::DescriptorSet", tags="1, 4")]
+    #[prost(oneof = "grpc_json_transcoder::DescriptorSet", tags = "1, 4")]
     pub descriptor_set: ::core::option::Option<grpc_json_transcoder::DescriptorSet>,
 }
 /// Nested message and enum types in `GrpcJsonTranscoder`.
 pub mod grpc_json_transcoder {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PrintOptions {
         /// Whether to add spaces, line breaks and indentation to make the JSON
         /// output easy to read. Defaults to false.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         pub add_whitespace: bool,
         /// Whether to always print primitive fields. By default primitive
         /// fields with default values will be omitted in JSON output. For
         /// example, an int32 field set to 0 will be omitted. Setting this flag to
         /// true will override the default behavior and print primitive fields
         /// regardless of their values. Defaults to false.
-        #[prost(bool, tag="2")]
+        #[prost(bool, tag = "2")]
         pub always_print_primitive_fields: bool,
         /// Whether to always print enums as ints. By default they are rendered
         /// as strings. Defaults to false.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         pub always_print_enums_as_ints: bool,
         /// Whether to preserve proto field names. By default protobuf will
         /// generate JSON field names using the ``json_name`` option, or lower camel case,
         /// in that order. Setting this flag will preserve the original field names. Defaults to false.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         pub preserve_proto_field_names: bool,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum DescriptorSet {
         /// Supplies the filename of
         /// :ref:`the proto descriptor set <config_grpc_json_generate_proto_descriptor_set>` for the gRPC
         /// services.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         ProtoDescriptor(::prost::alloc::string::String),
         /// Supplies the binary content of
         /// :ref:`the proto descriptor set <config_grpc_json_generate_proto_descriptor_set>` for the gRPC
         /// services.
-        #[prost(bytes, tag="4")]
+        #[prost(bytes, tag = "4")]
         ProtoDescriptorBin(::prost::bytes::Bytes),
     }
 }
@@ -598,4 +599,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x08, 0x03, 0x12, 0x04, 0x9e, 0x01, 0x1d, 0x1e, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.transcoder.v2.serde.rs");
 // @@protoc_insertion_point(module)

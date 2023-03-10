@@ -1,83 +1,95 @@
 // @generated
-// [#protodoc-title: Certificates]
-
 /// Proto representation of certificate details. Admin endpoint uses this wrapper for `/certs` to
 /// display certificate information. See :ref:`/certs <operations_admin_interface_certs>` for more
 /// information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Certificates {
     /// List of certificates known to an Envoy.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub certificates: ::prost::alloc::vec::Vec<Certificate>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Certificate {
     /// Details of CA certificate.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub ca_cert: ::prost::alloc::vec::Vec<CertificateDetails>,
     /// Details of Certificate Chain
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub cert_chain: ::prost::alloc::vec::Vec<CertificateDetails>,
 }
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateDetails {
     /// Path of the certificate.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
     /// Certificate Serial Number.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub serial_number: ::prost::alloc::string::String,
     /// List of Subject Alternate names.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub subject_alt_names: ::prost::alloc::vec::Vec<SubjectAlternateName>,
     /// Minimum of days until expiration of certificate and it's chain.
-    #[prost(uint64, tag="4")]
+    #[prost(uint64, tag = "4")]
     pub days_until_expiration: u64,
     /// Indicates the time from which the certificate is valid.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub valid_from: ::core::option::Option<::pbjson_types::Timestamp>,
     /// Indicates the time at which the certificate expires.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub expiration_time: ::core::option::Option<::pbjson_types::Timestamp>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubjectAlternateName {
     /// Subject Alternate Name.
-    #[prost(oneof="subject_alternate_name::Name", tags="1, 2, 3")]
+    #[prost(oneof = "subject_alternate_name::Name", tags = "1, 2, 3")]
     pub name: ::core::option::Option<subject_alternate_name::Name>,
 }
 /// Nested message and enum types in `SubjectAlternateName`.
 pub mod subject_alternate_name {
     /// Subject Alternate Name.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Name {
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         Dns(::prost::alloc::string::String),
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Uri(::prost::alloc::string::String),
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         IpAddress(::prost::alloc::string::String),
     }
 }
-// [#protodoc-title: Metrics]
-
 /// Proto representation of an Envoy Counter or Gauge value.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SimpleMetric {
     /// Type of the metric represented.
-    #[prost(enumeration="simple_metric::Type", tag="1")]
+    #[prost(enumeration = "simple_metric::Type", tag = "1")]
     pub r#type: i32,
     /// Current metric value.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub value: u64,
     /// Name of the metric.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SimpleMetric`.
 pub mod simple_metric {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Type {
         Counter = 0,
@@ -94,27 +106,35 @@ pub mod simple_metric {
                 Type::Gauge => "GAUGE",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "COUNTER" => Some(Self::Counter),
+                "GAUGE" => Some(Self::Gauge),
+                _ => None,
+            }
+        }
     }
 }
-// [#protodoc-title: Clusters]
-
 /// Admin endpoint uses this wrapper for `/clusters` to display cluster status information.
 /// See :ref:`/clusters <operations_admin_interface_clusters>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Clusters {
     /// Mapping from cluster name to each cluster's status.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub cluster_statuses: ::prost::alloc::vec::Vec<ClusterStatus>,
 }
 /// Details an individual cluster's current status.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterStatus {
     /// Name of the cluster.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Denotes whether this cluster was added via API or configured statically.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub added_via_api: bool,
     /// The success rate threshold used in the last interval.
     /// If
@@ -133,10 +153,12 @@ pub struct ClusterStatus {
     /// 2. The threshold is computed to be < 0 because a negative value implies that there was no
     ///     threshold for that interval.
     /// 3. Outlier detection is not enabled for this cluster.
-    #[prost(message, optional, tag="3")]
-    pub success_rate_ejection_threshold: ::core::option::Option<super::super::r#type::Percent>,
+    #[prost(message, optional, tag = "3")]
+    pub success_rate_ejection_threshold: ::core::option::Option<
+        super::super::r#type::Percent,
+    >,
     /// Mapping from host address to the host's current status.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub host_statuses: ::prost::alloc::vec::Vec<HostStatus>,
     /// The success rate threshold used in the last interval when only locally originated failures were
     /// taken into account and externally originated errors were treated as success.
@@ -153,21 +175,24 @@ pub struct ClusterStatus {
     /// 2. The threshold is computed to be < 0 because a negative value implies that there was no
     ///     threshold for that interval.
     /// 3. Outlier detection is not enabled for this cluster.
-    #[prost(message, optional, tag="5")]
-    pub local_origin_success_rate_ejection_threshold: ::core::option::Option<super::super::r#type::Percent>,
+    #[prost(message, optional, tag = "5")]
+    pub local_origin_success_rate_ejection_threshold: ::core::option::Option<
+        super::super::r#type::Percent,
+    >,
 }
 /// Current state of a particular host.
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HostStatus {
     /// Address of this host.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub address: ::core::option::Option<super::super::api::v2::core::Address>,
     /// List of stats specific to this host.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub stats: ::prost::alloc::vec::Vec<SimpleMetric>,
     /// The host's current health status.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub health_status: ::core::option::Option<HostHealthStatus>,
     /// Request success rate for this host over the last calculated interval.
     /// If
@@ -182,16 +207,16 @@ pub struct HostStatus {
     /// Note: the message will not be present if host did not have enough request volume to calculate
     /// success rate or the cluster did not have enough hosts to run through success rate outlier
     /// ejection.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub success_rate: ::core::option::Option<super::super::r#type::Percent>,
     /// The host's weight. If not configured, the value defaults to 1.
-    #[prost(uint32, tag="5")]
+    #[prost(uint32, tag = "5")]
     pub weight: u32,
     /// The hostname of the host, if applicable.
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub hostname: ::prost::alloc::string::String,
     /// The host's priority. If not configured, the value defaults to 0 (highest priority).
-    #[prost(uint32, tag="7")]
+    #[prost(uint32, tag = "7")]
     pub priority: u32,
     /// Request success rate for this host over the last calculated
     /// interval when only locally originated errors are taken into account and externally originated
@@ -205,42 +230,42 @@ pub struct HostStatus {
     /// Note: the message will not be present if host did not have enough request volume to calculate
     /// success rate or the cluster did not have enough hosts to run through success rate outlier
     /// ejection.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub local_origin_success_rate: ::core::option::Option<super::super::r#type::Percent>,
     /// locality of the host.
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub locality: ::core::option::Option<super::super::api::v2::core::Locality>,
 }
 /// Health status for a host.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HostHealthStatus {
     /// The host is currently failing active health checks.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub failed_active_health_check: bool,
     /// The host is currently considered an outlier and has been ejected.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub failed_outlier_check: bool,
     /// The host is currently being marked as degraded through active health checking.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub failed_active_degraded_check: bool,
     /// The host has been removed from service discovery, but is being stabilized due to active
     /// health checking.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub pending_dynamic_removal: bool,
     /// The host has not yet been health checked.
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub pending_active_hc: bool,
     /// Health status as reported by EDS. Note: only HEALTHY and UNHEALTHY are currently supported
     /// here.
     /// [#comment:TODO(mrice32): pipe through remaining EDS health status possibilities.]
-    #[prost(enumeration="super::super::api::v2::core::HealthStatus", tag="3")]
+    #[prost(enumeration = "super::super::api::v2::core::HealthStatus", tag = "3")]
     pub eds_health_status: i32,
 }
-// [#protodoc-title: ConfigDump]
-
 /// The :ref:`/config_dump <operations_admin_interface_config_dump>` admin endpoint uses this wrapper
 /// message to maintain and serve arbitrary configuration information from any component in Envoy.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigDump {
     /// This list is serialized and dumped in its entirety at the
@@ -259,155 +284,174 @@ pub struct ConfigDump {
     /// :ref:`/config_dump?mask={} <operations_admin_interface_config_dump_by_mask>`,
     /// or :ref:`/config_dump?resource={},mask={}
     /// <operations_admin_interface_config_dump_by_resource_and_mask>` for more information.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub configs: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFailureState {
     /// What the component configuration would have been if the update had succeeded.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub failed_configuration: ::core::option::Option<::pbjson_types::Any>,
     /// Time of the latest failed update attempt.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub last_update_attempt: ::core::option::Option<::pbjson_types::Timestamp>,
     /// Details about the last failed update attempt.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub details: ::prost::alloc::string::String,
 }
 /// This message describes the bootstrap configuration that Envoy was started with. This includes
 /// any CLI overrides that were merged. Bootstrap configuration information can be used to recreate
 /// the static portions of an Envoy configuration by reusing the output as the bootstrap
 /// configuration for another Envoy.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BootstrapConfigDump {
-    #[prost(message, optional, tag="1")]
-    pub bootstrap: ::core::option::Option<super::super::config::bootstrap::v2::Bootstrap>,
+    #[prost(message, optional, tag = "1")]
+    pub bootstrap: ::core::option::Option<
+        super::super::config::bootstrap::v2::Bootstrap,
+    >,
     /// The timestamp when the BootstrapConfig was last updated.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// Envoy's listener manager fills this message with all currently known listeners. Listener
 /// configuration information can be used to recreate an Envoy configuration by populating all
 /// listeners as static listeners or by returning them in a LDS response.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenersConfigDump {
     /// This is the :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` in the
     /// last processed LDS discovery response. If there are only static bootstrap listeners, this field
     /// will be "".
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub version_info: ::prost::alloc::string::String,
     /// The statically loaded listener configs.
-    #[prost(message, repeated, tag="2")]
-    pub static_listeners: ::prost::alloc::vec::Vec<listeners_config_dump::StaticListener>,
+    #[prost(message, repeated, tag = "2")]
+    pub static_listeners: ::prost::alloc::vec::Vec<
+        listeners_config_dump::StaticListener,
+    >,
     /// State for any warming, active, or draining listeners.
-    #[prost(message, repeated, tag="3")]
-    pub dynamic_listeners: ::prost::alloc::vec::Vec<listeners_config_dump::DynamicListener>,
+    #[prost(message, repeated, tag = "3")]
+    pub dynamic_listeners: ::prost::alloc::vec::Vec<
+        listeners_config_dump::DynamicListener,
+    >,
 }
 /// Nested message and enum types in `ListenersConfigDump`.
 pub mod listeners_config_dump {
     /// Describes a statically loaded listener.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct StaticListener {
         /// The listener config.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub listener: ::core::option::Option<::pbjson_types::Any>,
         /// The timestamp when the Listener was last successfully updated.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicListenerState {
         /// This is the per-resource version information. This version is currently taken from the
         /// :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` field at the time
         /// that the listener was loaded. In the future, discrete per-listener versions may be supported
         /// by the API.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub version_info: ::prost::alloc::string::String,
         /// The listener config.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub listener: ::core::option::Option<::pbjson_types::Any>,
         /// The timestamp when the Listener was last successfully updated.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
     /// Describes a dynamically loaded listener via the LDS API.
     /// [#next-free-field: 6]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicListener {
         /// The name or unique id of this listener, pulled from the DynamicListenerState config.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// The listener state for any active listener by this name.
         /// These are listeners that are available to service data plane traffic.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub active_state: ::core::option::Option<DynamicListenerState>,
         /// The listener state for any warming listener by this name.
         /// These are listeners that are currently undergoing warming in preparation to service data
         /// plane traffic. Note that if attempting to recreate an Envoy configuration from a
         /// configuration dump, the warming listeners should generally be discarded.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub warming_state: ::core::option::Option<DynamicListenerState>,
         /// The listener state for any draining listener by this name.
         /// These are listeners that are currently undergoing draining in preparation to stop servicing
         /// data plane traffic. Note that if attempting to recreate an Envoy configuration from a
         /// configuration dump, the draining listeners should generally be discarded.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub draining_state: ::core::option::Option<DynamicListenerState>,
         /// Set if the last update failed, cleared after the next successful update.
-        #[prost(message, optional, tag="5")]
+        #[prost(message, optional, tag = "5")]
         pub error_state: ::core::option::Option<super::UpdateFailureState>,
     }
 }
 /// Envoy's cluster manager fills this message with all currently known clusters. Cluster
 /// configuration information can be used to recreate an Envoy configuration by populating all
 /// clusters as static clusters or by returning them in a CDS response.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClustersConfigDump {
     /// This is the :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` in the
     /// last processed CDS discovery response. If there are only static bootstrap clusters, this field
     /// will be "".
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub version_info: ::prost::alloc::string::String,
     /// The statically loaded cluster configs.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub static_clusters: ::prost::alloc::vec::Vec<clusters_config_dump::StaticCluster>,
     /// The dynamically loaded active clusters. These are clusters that are available to service
     /// data plane traffic.
-    #[prost(message, repeated, tag="3")]
-    pub dynamic_active_clusters: ::prost::alloc::vec::Vec<clusters_config_dump::DynamicCluster>,
+    #[prost(message, repeated, tag = "3")]
+    pub dynamic_active_clusters: ::prost::alloc::vec::Vec<
+        clusters_config_dump::DynamicCluster,
+    >,
     /// The dynamically loaded warming clusters. These are clusters that are currently undergoing
     /// warming in preparation to service data plane traffic. Note that if attempting to recreate an
     /// Envoy configuration from a configuration dump, the warming clusters should generally be
     /// discarded.
-    #[prost(message, repeated, tag="4")]
-    pub dynamic_warming_clusters: ::prost::alloc::vec::Vec<clusters_config_dump::DynamicCluster>,
+    #[prost(message, repeated, tag = "4")]
+    pub dynamic_warming_clusters: ::prost::alloc::vec::Vec<
+        clusters_config_dump::DynamicCluster,
+    >,
 }
 /// Nested message and enum types in `ClustersConfigDump`.
 pub mod clusters_config_dump {
     /// Describes a statically loaded cluster.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct StaticCluster {
         /// The cluster config.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub cluster: ::core::option::Option<::pbjson_types::Any>,
         /// The timestamp when the Cluster was last updated.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
     /// Describes a dynamically loaded cluster via the CDS API.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicCluster {
         /// This is the per-resource version information. This version is currently taken from the
         /// :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` field at the time
         /// that the cluster was loaded. In the future, discrete per-cluster versions may be supported by
         /// the API.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub version_info: ::prost::alloc::string::String,
         /// The cluster config.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub cluster: ::core::option::Option<::pbjson_types::Any>,
         /// The timestamp when the Cluster was last updated.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
 }
@@ -416,38 +460,45 @@ pub mod clusters_config_dump {
 /// or defined inline while configuring listeners are separated from those configured dynamically via RDS.
 /// Route configuration information can be used to recreate an Envoy configuration by populating all routes
 /// as static routes or by returning them in RDS responses.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RoutesConfigDump {
     /// The statically loaded route configs.
-    #[prost(message, repeated, tag="2")]
-    pub static_route_configs: ::prost::alloc::vec::Vec<routes_config_dump::StaticRouteConfig>,
+    #[prost(message, repeated, tag = "2")]
+    pub static_route_configs: ::prost::alloc::vec::Vec<
+        routes_config_dump::StaticRouteConfig,
+    >,
     /// The dynamically loaded route configs.
-    #[prost(message, repeated, tag="3")]
-    pub dynamic_route_configs: ::prost::alloc::vec::Vec<routes_config_dump::DynamicRouteConfig>,
+    #[prost(message, repeated, tag = "3")]
+    pub dynamic_route_configs: ::prost::alloc::vec::Vec<
+        routes_config_dump::DynamicRouteConfig,
+    >,
 }
 /// Nested message and enum types in `RoutesConfigDump`.
 pub mod routes_config_dump {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct StaticRouteConfig {
         /// The route config.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub route_config: ::core::option::Option<::pbjson_types::Any>,
         /// The timestamp when the Route was last updated.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicRouteConfig {
         /// This is the per-resource version information. This version is currently taken from the
         /// :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` field at the time that
         /// the route configuration was loaded.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub version_info: ::prost::alloc::string::String,
         /// The route config.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub route_config: ::core::option::Option<::pbjson_types::Any>,
         /// The timestamp when the Route was last updated.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
 }
@@ -455,156 +506,167 @@ pub mod routes_config_dump {
 /// configuration scopes (defined via ScopedRouteConfigurationsSet protos). This message lists both
 /// the scopes defined inline with the higher order object (i.e., the HttpConnectionManager) and the
 /// dynamically obtained scopes via the SRDS API.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScopedRoutesConfigDump {
     /// The statically loaded scoped route configs.
-    #[prost(message, repeated, tag="1")]
-    pub inline_scoped_route_configs: ::prost::alloc::vec::Vec<scoped_routes_config_dump::InlineScopedRouteConfigs>,
+    #[prost(message, repeated, tag = "1")]
+    pub inline_scoped_route_configs: ::prost::alloc::vec::Vec<
+        scoped_routes_config_dump::InlineScopedRouteConfigs,
+    >,
     /// The dynamically loaded scoped route configs.
-    #[prost(message, repeated, tag="2")]
-    pub dynamic_scoped_route_configs: ::prost::alloc::vec::Vec<scoped_routes_config_dump::DynamicScopedRouteConfigs>,
+    #[prost(message, repeated, tag = "2")]
+    pub dynamic_scoped_route_configs: ::prost::alloc::vec::Vec<
+        scoped_routes_config_dump::DynamicScopedRouteConfigs,
+    >,
 }
 /// Nested message and enum types in `ScopedRoutesConfigDump`.
 pub mod scoped_routes_config_dump {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct InlineScopedRouteConfigs {
         /// The name assigned to the scoped route configurations.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// The scoped route configurations.
-        #[prost(message, repeated, tag="2")]
+        #[prost(message, repeated, tag = "2")]
         pub scoped_route_configs: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
         /// The timestamp when the scoped route config set was last updated.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicScopedRouteConfigs {
         /// The name assigned to the scoped route configurations.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// This is the per-resource version information. This version is currently taken from the
         /// :ref:`version_info <envoy_api_field_DiscoveryResponse.version_info>` field at the time that
         /// the scoped routes configuration was loaded.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub version_info: ::prost::alloc::string::String,
         /// The scoped route configurations.
-        #[prost(message, repeated, tag="3")]
+        #[prost(message, repeated, tag = "3")]
         pub scoped_route_configs: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
         /// The timestamp when the scoped route config set was last updated.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
     }
 }
 /// Envoys SDS implementation fills this message with all secrets fetched dynamically via SDS.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretsConfigDump {
     /// The statically loaded secrets.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub static_secrets: ::prost::alloc::vec::Vec<secrets_config_dump::StaticSecret>,
     /// The dynamically loaded active secrets. These are secrets that are available to service
     /// clusters or listeners.
-    #[prost(message, repeated, tag="2")]
-    pub dynamic_active_secrets: ::prost::alloc::vec::Vec<secrets_config_dump::DynamicSecret>,
+    #[prost(message, repeated, tag = "2")]
+    pub dynamic_active_secrets: ::prost::alloc::vec::Vec<
+        secrets_config_dump::DynamicSecret,
+    >,
     /// The dynamically loaded warming secrets. These are secrets that are currently undergoing
     /// warming in preparation to service clusters or listeners.
-    #[prost(message, repeated, tag="3")]
-    pub dynamic_warming_secrets: ::prost::alloc::vec::Vec<secrets_config_dump::DynamicSecret>,
+    #[prost(message, repeated, tag = "3")]
+    pub dynamic_warming_secrets: ::prost::alloc::vec::Vec<
+        secrets_config_dump::DynamicSecret,
+    >,
 }
 /// Nested message and enum types in `SecretsConfigDump`.
 pub mod secrets_config_dump {
     /// DynamicSecret contains secret information fetched via SDS.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DynamicSecret {
         /// The name assigned to the secret.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// This is the per-resource version information.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub version_info: ::prost::alloc::string::String,
         /// The timestamp when the secret was last updated.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
         /// The actual secret information.
         /// Security sensitive information is redacted (replaced with "\[redacted\]") for
         /// private keys and passwords in TLS certificates.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub secret: ::core::option::Option<::pbjson_types::Any>,
     }
     /// StaticSecret specifies statically loaded secret in bootstrap.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct StaticSecret {
         /// The name assigned to the secret.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// The timestamp when the secret was last updated.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub last_updated: ::core::option::Option<::pbjson_types::Timestamp>,
         /// The actual secret information.
         /// Security sensitive information is redacted (replaced with "\[redacted\]") for
         /// private keys and passwords in TLS certificates.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub secret: ::core::option::Option<::pbjson_types::Any>,
     }
 }
-// [#protodoc-title: Listeners]
-
 /// Admin endpoint uses this wrapper for `/listeners` to display listener status information.
 /// See :ref:`/listeners <operations_admin_interface_listeners>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Listeners {
     /// List of listener statuses.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub listener_statuses: ::prost::alloc::vec::Vec<ListenerStatus>,
 }
 /// Details an individual listener's current status.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenerStatus {
     /// Name of the listener
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The actual local address that the listener is listening on. If a listener was configured
     /// to listen on port 0, then this address has the port that was allocated by the OS.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub local_address: ::core::option::Option<super::super::api::v2::core::Address>,
 }
-// [#protodoc-title: Memory]
-
 /// Proto representation of the internal memory consumption of an Envoy instance. These represent
 /// values extracted from an internal TCMalloc instance. For more information, see the section of the
 /// docs entitled ["Generic Tcmalloc Status"](<https://gperftools.github.io/gperftools/tcmalloc.html>).
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Memory {
     /// The number of bytes allocated by the heap for Envoy. This is an alias for
     /// `generic.current_allocated_bytes`.
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub allocated: u64,
     /// The number of bytes reserved by the heap but not necessarily allocated. This is an alias for
     /// `generic.heap_size`.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub heap_size: u64,
     /// The number of bytes in free, unmapped pages in the page heap. These bytes always count towards
     /// virtual memory usage, and depending on the OS, typically do not count towards physical memory
     /// usage. This is an alias for `tcmalloc.pageheap_unmapped_bytes`.
-    #[prost(uint64, tag="3")]
+    #[prost(uint64, tag = "3")]
     pub pageheap_unmapped: u64,
     /// The number of bytes in free, mapped pages in the page heap. These bytes always count towards
     /// virtual memory usage, and unless the underlying memory is swapped out by the OS, they also
     /// count towards physical memory usage. This is an alias for `tcmalloc.pageheap_free_bytes`.
-    #[prost(uint64, tag="4")]
+    #[prost(uint64, tag = "4")]
     pub pageheap_free: u64,
     /// The amount of memory used by the TCMalloc thread caches (for small objects). This is an alias
     /// for `tcmalloc.current_total_thread_cache_bytes`.
-    #[prost(uint64, tag="5")]
+    #[prost(uint64, tag = "5")]
     pub total_thread_cache: u64,
     /// The number of bytes of the physical memory usage by the allocator. This is an alias for
     /// `generic.total_physical_bytes`.
-    #[prost(uint64, tag="6")]
+    #[prost(uint64, tag = "6")]
     pub total_physical_bytes: u64,
 }
-// [#protodoc-title: MutexStats]
-
 /// Proto representation of the statistics collected upon absl::Mutex contention, if Envoy is run
 /// under :option:`--enable-mutex-tracing`. For more information, see the `absl::Mutex`
 /// \[docs\](<https://abseil.io/about/design/mutex#extra-features>).
@@ -612,47 +674,57 @@ pub struct Memory {
 /// *NB*: The wait cycles below are measured by `absl::base_internal::CycleClock`, and may not
 /// correspond to core clock frequency. For more information, see the `CycleClock`
 /// \[docs\](<https://github.com/abseil/abseil-cpp/blob/master/absl/base/internal/cycleclock.h>).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MutexStats {
     /// The number of individual mutex contentions which have occurred since startup.
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub num_contentions: u64,
     /// The length of the current contention wait cycle.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub current_wait_cycles: u64,
     /// The lifetime total of all contention wait cycles.
-    #[prost(uint64, tag="3")]
+    #[prost(uint64, tag = "3")]
     pub lifetime_wait_cycles: u64,
 }
-// [#protodoc-title: Server State]
-
 /// Proto representation of the value returned by /server_info, containing
 /// server version/server status information.
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServerInfo {
     /// Server version.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub version: ::prost::alloc::string::String,
     /// State of the server.
-    #[prost(enumeration="server_info::State", tag="2")]
+    #[prost(enumeration = "server_info::State", tag = "2")]
     pub state: i32,
     /// Uptime since current epoch was started.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub uptime_current_epoch: ::core::option::Option<::pbjson_types::Duration>,
     /// Uptime since the start of the first epoch.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub uptime_all_epochs: ::core::option::Option<::pbjson_types::Duration>,
     /// Hot restart version.
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub hot_restart_version: ::prost::alloc::string::String,
     /// Command line options the server is currently running with.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub command_line_options: ::core::option::Option<CommandLineOptions>,
 }
 /// Nested message and enum types in `ServerInfo`.
 pub mod server_info {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         /// Server is live and serving traffic.
@@ -677,97 +749,118 @@ pub mod server_info {
                 State::Initializing => "INITIALIZING",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LIVE" => Some(Self::Live),
+                "DRAINING" => Some(Self::Draining),
+                "PRE_INITIALIZING" => Some(Self::PreInitializing),
+                "INITIALIZING" => Some(Self::Initializing),
+                _ => None,
+            }
+        }
     }
 }
 /// [#next-free-field: 29]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandLineOptions {
     /// See :option:`--base-id` for details.
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub base_id: u64,
     /// See :option:`--concurrency` for details.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub concurrency: u32,
     /// See :option:`--config-path` for details.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub config_path: ::prost::alloc::string::String,
     /// See :option:`--config-yaml` for details.
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub config_yaml: ::prost::alloc::string::String,
     /// See :option:`--allow-unknown-static-fields` for details.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub allow_unknown_static_fields: bool,
     /// See :option:`--reject-unknown-dynamic-fields` for details.
-    #[prost(bool, tag="26")]
+    #[prost(bool, tag = "26")]
     pub reject_unknown_dynamic_fields: bool,
     /// See :option:`--admin-address-path` for details.
-    #[prost(string, tag="6")]
+    #[prost(string, tag = "6")]
     pub admin_address_path: ::prost::alloc::string::String,
     /// See :option:`--local-address-ip-version` for details.
-    #[prost(enumeration="command_line_options::IpVersion", tag="7")]
+    #[prost(enumeration = "command_line_options::IpVersion", tag = "7")]
     pub local_address_ip_version: i32,
     /// See :option:`--log-level` for details.
-    #[prost(string, tag="8")]
+    #[prost(string, tag = "8")]
     pub log_level: ::prost::alloc::string::String,
     /// See :option:`--component-log-level` for details.
-    #[prost(string, tag="9")]
+    #[prost(string, tag = "9")]
     pub component_log_level: ::prost::alloc::string::String,
     /// See :option:`--log-format` for details.
-    #[prost(string, tag="10")]
+    #[prost(string, tag = "10")]
     pub log_format: ::prost::alloc::string::String,
     /// See :option:`--log-format-escaped` for details.
-    #[prost(bool, tag="27")]
+    #[prost(bool, tag = "27")]
     pub log_format_escaped: bool,
     /// See :option:`--log-path` for details.
-    #[prost(string, tag="11")]
+    #[prost(string, tag = "11")]
     pub log_path: ::prost::alloc::string::String,
     /// See :option:`--service-cluster` for details.
-    #[prost(string, tag="13")]
+    #[prost(string, tag = "13")]
     pub service_cluster: ::prost::alloc::string::String,
     /// See :option:`--service-node` for details.
-    #[prost(string, tag="14")]
+    #[prost(string, tag = "14")]
     pub service_node: ::prost::alloc::string::String,
     /// See :option:`--service-zone` for details.
-    #[prost(string, tag="15")]
+    #[prost(string, tag = "15")]
     pub service_zone: ::prost::alloc::string::String,
     /// See :option:`--file-flush-interval-msec` for details.
-    #[prost(message, optional, tag="16")]
+    #[prost(message, optional, tag = "16")]
     pub file_flush_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// See :option:`--drain-time-s` for details.
-    #[prost(message, optional, tag="17")]
+    #[prost(message, optional, tag = "17")]
     pub drain_time: ::core::option::Option<::pbjson_types::Duration>,
     /// See :option:`--parent-shutdown-time-s` for details.
-    #[prost(message, optional, tag="18")]
+    #[prost(message, optional, tag = "18")]
     pub parent_shutdown_time: ::core::option::Option<::pbjson_types::Duration>,
     /// See :option:`--mode` for details.
-    #[prost(enumeration="command_line_options::Mode", tag="19")]
+    #[prost(enumeration = "command_line_options::Mode", tag = "19")]
     pub mode: i32,
     /// max_stats and max_obj_name_len are now unused and have no effect.
     #[deprecated]
-    #[prost(uint64, tag="20")]
+    #[prost(uint64, tag = "20")]
     pub max_stats: u64,
     #[deprecated]
-    #[prost(uint64, tag="21")]
+    #[prost(uint64, tag = "21")]
     pub max_obj_name_len: u64,
     /// See :option:`--disable-hot-restart` for details.
-    #[prost(bool, tag="22")]
+    #[prost(bool, tag = "22")]
     pub disable_hot_restart: bool,
     /// See :option:`--enable-mutex-tracing` for details.
-    #[prost(bool, tag="23")]
+    #[prost(bool, tag = "23")]
     pub enable_mutex_tracing: bool,
     /// See :option:`--restart-epoch` for details.
-    #[prost(uint32, tag="24")]
+    #[prost(uint32, tag = "24")]
     pub restart_epoch: u32,
     /// See :option:`--cpuset-threads` for details.
-    #[prost(bool, tag="25")]
+    #[prost(bool, tag = "25")]
     pub cpuset_threads: bool,
     /// See :option:`--disable-extensions` for details.
-    #[prost(string, repeated, tag="28")]
+    #[prost(string, repeated, tag = "28")]
     pub disabled_extensions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `CommandLineOptions`.
 pub mod command_line_options {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum IpVersion {
         V4 = 0,
@@ -784,8 +877,26 @@ pub mod command_line_options {
                 IpVersion::V6 => "v6",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "v4" => Some(Self::V4),
+                "v6" => Some(Self::V6),
+                _ => None,
+            }
+        }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Mode {
         /// Validate configs and then serve traffic normally.
@@ -807,20 +918,30 @@ pub mod command_line_options {
                 Mode::InitOnly => "InitOnly",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "Serve" => Some(Self::Serve),
+                "Validate" => Some(Self::Validate),
+                "InitOnly" => Some(Self::InitOnly),
+                _ => None,
+            }
+        }
     }
 }
-// [#protodoc-title: Tap]
-
 /// The /tap admin request body that is used to configure an active tap session.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TapRequest {
     /// The opaque configuration ID used to match the configuration to a loaded extension.
     /// A tap extension configures a similar opaque ID that is used to match.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub config_id: ::prost::alloc::string::String,
     /// The tap configuration to load.
-    #[prost(message, optional, tag="2")]
-    pub tap_config: ::core::option::Option<super::super::service::tap::v2alpha::TapConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub tap_config: ::core::option::Option<
+        super::super::service::tap::v2alpha::TapConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.admin.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -3446,4 +3567,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x18, 0x2f, 0x5c, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08,
     0x11, 0x12, 0x03, 0x18, 0x30, 0x5b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.admin.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

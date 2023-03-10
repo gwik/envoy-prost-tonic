@@ -1,32 +1,33 @@
 // @generated
-// [#protodoc-title: Stateful session filter]
-// Stateful session :ref:`configuration overview <config_http_filters_stateful_session>`.
-// [#extension: envoy.filters.http.stateful_session]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatefulSession {
     /// Specific implementation of session state. This session state will be used to store and
     /// get address of the upstream host to which the session is assigned.
     ///
     /// [#extension-category: envoy.http.stateful_session]
-    #[prost(message, optional, tag="1")]
-    pub session_state: ::core::option::Option<super::super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub session_state: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatefulSessionPerRoute {
-    #[prost(oneof="stateful_session_per_route::Override", tags="1, 2")]
+    #[prost(oneof = "stateful_session_per_route::Override", tags = "1, 2")]
     pub r#override: ::core::option::Option<stateful_session_per_route::Override>,
 }
 /// Nested message and enum types in `StatefulSessionPerRoute`.
 pub mod stateful_session_per_route {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Override {
         /// Disable the stateful session filter for this particular vhost or route. If disabled is
         /// specified in multiple per-filter-configs, the most specific one will be used.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         Disabled(bool),
         /// Per-route stateful session configuration that can be served by RDS or static route table.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         StatefulSession(super::StatefulSession),
     }
 }
@@ -151,4 +152,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x01, 0x03, 0x12, 0x03, 0x24, 0x27, 0x28, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.stateful_session.v3.serde.rs");
 // @@protoc_insertion_point(module)

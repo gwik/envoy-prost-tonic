@@ -1,12 +1,10 @@
 // @generated
-// [#protodoc-title: Generic Connection Pool]
-
 /// A connection pool which forwards downstream HTTP as TCP or HTTP to upstream,
 /// based on CONNECT configuration.
 /// [#extension: envoy.upstreams.http.generic]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenericConnectionPoolProto {
-}
+pub struct GenericConnectionPoolProto {}
 /// Encoded file descriptor set for the `envoy.extensions.upstreams.http.generic.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x81, 0x06, 0x0a, 0x48, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -59,4 +57,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x11, 0x08, 0x22, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.upstreams.http.generic.v3.serde.rs");
 // @@protoc_insertion_point(module)

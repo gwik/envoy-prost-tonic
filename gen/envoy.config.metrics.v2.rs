@@ -1,8 +1,6 @@
 // @generated
-// [#protodoc-title: Stats]
-// Statistics :ref:`architecture overview <arch_overview_statistics>`.
-
 /// Configuration for pluggable stats sinks.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatsSink {
     /// The name of the stats sink to instantiate. The name must match a supported
@@ -14,33 +12,35 @@ pub struct StatsSink {
     /// * :ref:`envoy.stat_sinks.hystrix <envoy_api_msg_config.metrics.v2.HystrixSink>`
     ///
     /// Sinks optionally support tagged/multiple dimensional metrics.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Stats sink specific configuration which depends on the sink being instantiated. See
     /// :ref:`StatsdSink <envoy_api_msg_config.metrics.v2.StatsdSink>` for an example.
-    #[prost(oneof="stats_sink::ConfigType", tags="2, 3")]
+    #[prost(oneof = "stats_sink::ConfigType", tags = "2, 3")]
     pub config_type: ::core::option::Option<stats_sink::ConfigType>,
 }
 /// Nested message and enum types in `StatsSink`.
 pub mod stats_sink {
     /// Stats sink specific configuration which depends on the sink being instantiated. See
     /// :ref:`StatsdSink <envoy_api_msg_config.metrics.v2.StatsdSink>` for an example.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
 /// Statistics configuration such as tagging.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatsConfig {
     /// Each stat name is iteratively processed through these tag specifiers.
     /// When a tag is matched, the first capture group is removed from the name so
     /// later :ref:`TagSpecifiers <envoy_api_msg_config.metrics.v2.TagSpecifier>` cannot match that
     /// same portion of the match.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub stats_tags: ::prost::alloc::vec::Vec<TagSpecifier>,
     /// Use all default tag regexes specified in Envoy. These can be combined with
     /// custom tags specified in :ref:`stats_tags
@@ -56,7 +56,7 @@ pub struct StatsConfig {
     /// default tags in Envoy.
     ///
     /// If not provided, the value is assumed to be true.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub use_all_default_tags: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Inclusion/exclusion matcher for stat name creation. If not provided, all stats are instantiated
     /// as normal. Preventing the instantiation of certain families of stats can improve memory
@@ -66,7 +66,7 @@ pub struct StatsConfig {
     ///    Excluding stats may affect Envoy's behavior in undocumented ways. See
     ///    `issue #8771 <<https://github.com/envoyproxy/envoy/issues/8771>`_> for more information.
     ///    If any unexpected behavior changes are observed, please open a new issue immediately.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub stats_matcher: ::core::option::Option<StatsMatcher>,
 }
 /// Configuration for disabling stat instantiation.
@@ -138,26 +138,28 @@ pub struct StatsConfig {
 ///      }
 ///    }
 ///
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatsMatcher {
-    #[prost(oneof="stats_matcher::StatsMatcher", tags="1, 2, 3")]
+    #[prost(oneof = "stats_matcher::StatsMatcher", tags = "1, 2, 3")]
     pub stats_matcher: ::core::option::Option<stats_matcher::StatsMatcher>,
 }
 /// Nested message and enum types in `StatsMatcher`.
 pub mod stats_matcher {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum StatsMatcher {
         /// If `reject_all` is true, then all stats are disabled. If `reject_all` is false, then all
         /// stats are enabled.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         RejectAll(bool),
         /// Exclusive match. All stats are enabled except for those matching one of the supplied
         /// StringMatcher protos.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         ExclusionList(super::super::super::super::r#type::matcher::ListStringMatcher),
         /// Inclusive match. No stats are enabled except for those matching one of the supplied
         /// StringMatcher protos.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         InclusionList(super::super::super::super::r#type::matcher::ListStringMatcher),
     }
 }
@@ -165,6 +167,7 @@ pub mod stats_matcher {
 /// or a regex providing the value via capture groups. The specified tag will be
 /// unconditionally set if a fixed value, otherwise it will only be set if one
 /// or more capture groups in the regex match.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagSpecifier {
     /// Attaches an identifier to the tag values to identify the tag being in the
@@ -179,13 +182,14 @@ pub struct TagSpecifier {
     /// .. note::
     ///
     ///    It is invalid to specify the same tag name twice in a config.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub tag_name: ::prost::alloc::string::String,
-    #[prost(oneof="tag_specifier::TagValue", tags="2, 3")]
+    #[prost(oneof = "tag_specifier::TagValue", tags = "2, 3")]
     pub tag_value: ::core::option::Option<tag_specifier::TagValue>,
 }
 /// Nested message and enum types in `TagSpecifier`.
 pub mod tag_specifier {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum TagValue {
         /// Designates a tag to strip from the tag extracted name and provide as a named
@@ -242,16 +246,17 @@ pub mod tag_specifier {
         /// ``http.user_agent.downstream_cx_total`` as the tag extracted name. The tag
         /// ``envoy.http_conn_manager_prefix`` will be added with the tag value
         /// ``connection_manager_1``.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Regex(::prost::alloc::string::String),
         /// Specifies a fixed tag value for the ``tag_name``.
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         FixedValue(::prost::alloc::string::String),
     }
 }
 /// Stats configuration proto schema for built-in *envoy.stat_sinks.statsd* sink. This sink does not support
 /// tagged metrics.
 /// [#extension: envoy.stat_sinks.statsd]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatsdSink {
     /// Optional custom prefix for StatsdSink. If
@@ -280,24 +285,25 @@ pub struct StatsdSink {
     ///
     ///    envoy.test_counter:1|c
     ///    envoy.test_timer:5|ms
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub prefix: ::prost::alloc::string::String,
-    #[prost(oneof="statsd_sink::StatsdSpecifier", tags="1, 2")]
+    #[prost(oneof = "statsd_sink::StatsdSpecifier", tags = "1, 2")]
     pub statsd_specifier: ::core::option::Option<statsd_sink::StatsdSpecifier>,
 }
 /// Nested message and enum types in `StatsdSink`.
 pub mod statsd_sink {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum StatsdSpecifier {
         /// The UDP address of a running `statsd <<https://github.com/etsy/statsd>`_>
         /// compliant listener. If specified, statistics will be flushed to this
         /// address.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         Address(super::super::super::super::api::v2::core::Address),
         /// The name of a cluster that is running a TCP `statsd
         /// <<https://github.com/etsy/statsd>`_> compliant listener. If specified,
         /// Envoy will connect to this cluster to flush statistics.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         TcpClusterName(::prost::alloc::string::String),
     }
 }
@@ -306,22 +312,26 @@ pub mod statsd_sink {
 /// compatible tags. Tags are configurable via :ref:`StatsConfig
 /// <envoy_api_msg_config.metrics.v2.StatsConfig>`.
 /// [#extension: envoy.stat_sinks.dog_statsd]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DogStatsdSink {
     /// Optional custom metric name prefix. See :ref:`StatsdSink's prefix field
     /// <envoy_api_field_config.metrics.v2.StatsdSink.prefix>` for more details.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub prefix: ::prost::alloc::string::String,
-    #[prost(oneof="dog_statsd_sink::DogStatsdSpecifier", tags="1")]
-    pub dog_statsd_specifier: ::core::option::Option<dog_statsd_sink::DogStatsdSpecifier>,
+    #[prost(oneof = "dog_statsd_sink::DogStatsdSpecifier", tags = "1")]
+    pub dog_statsd_specifier: ::core::option::Option<
+        dog_statsd_sink::DogStatsdSpecifier,
+    >,
 }
 /// Nested message and enum types in `DogStatsdSink`.
 pub mod dog_statsd_sink {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum DogStatsdSpecifier {
         /// The UDP address of a running DogStatsD compliant listener. If specified,
         /// statistics will be flushed to this address.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         Address(super::super::super::super::api::v2::core::Address),
     }
 }
@@ -335,6 +345,7 @@ pub mod dog_statsd_sink {
 ///
 /// Streaming is started through an admin endpoint :http:get:`/hystrix_event_stream`.
 /// [#extension: envoy.stat_sinks.hystrix]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HystrixSink {
     /// The number of buckets the rolling statistical window is divided into.
@@ -348,20 +359,21 @@ pub struct HystrixSink {
     ///
     /// More detailed explanation can be found in `Hystrix wiki
     /// <<https://github.com/Netflix/Hystrix/wiki/Metrics-and-Monitoring#hystrixrollingnumber>`_.>
-    #[prost(int64, tag="1")]
+    #[prost(int64, tag = "1")]
     pub num_buckets: i64,
 }
-// [#protodoc-title: Metrics service]
-
 /// Metrics Service is configured as a built-in *envoy.stat_sinks.metrics_service* :ref:`StatsSink
 /// <envoy_api_msg_config.metrics.v2.StatsSink>`. This opaque configuration will be used to create
 /// Metrics Service.
 /// [#extension: envoy.stat_sinks.metrics_service]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetricsServiceConfig {
     /// The upstream gRPC cluster that hosts the metrics service.
-    #[prost(message, optional, tag="1")]
-    pub grpc_service: ::core::option::Option<super::super::super::api::v2::core::GrpcService>,
+    #[prost(message, optional, tag = "1")]
+    pub grpc_service: ::core::option::Option<
+        super::super::super::api::v2::core::GrpcService,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.metrics.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -1279,4 +1291,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x2b, 0x58, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03,
     0x17, 0x2c, 0x57, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.metrics.v2.serde.rs");
 // @@protoc_insertion_point(module)

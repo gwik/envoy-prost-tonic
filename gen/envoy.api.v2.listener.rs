@@ -1,27 +1,26 @@
 // @generated
-// [#protodoc-title: Listener components]
-// Listener :ref:`configuration overview <config_listeners>`
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
     /// The name of the filter to instantiate. The name must match a
     /// :ref:`supported filter <config_network_filters>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter specific configuration which depends on the filter being
     /// instantiated. See the supported filters for further documentation.
-    #[prost(oneof="filter::ConfigType", tags="2, 4")]
+    #[prost(oneof = "filter::ConfigType", tags = "2, 4")]
     pub config_type: ::core::option::Option<filter::ConfigType>,
 }
 /// Nested message and enum types in `Filter`.
 pub mod filter {
     /// Filter specific configuration which depends on the filter being
     /// instantiated. See the supported filters for further documentation.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TypedConfig(::pbjson_types::Any),
     }
 }
@@ -54,37 +53,38 @@ pub mod filter {
 ///
 /// [#comment:TODO(PiotrSikora): Add support for configurable precedence of the rules]
 /// [#next-free-field: 13]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterChainMatch {
     /// Optional destination port to consider when use_original_dst is set on the
     /// listener in determining a filter chain match.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub destination_port: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// If non-empty, an IP address and prefix length to match addresses when the
     /// listener is bound to 0.0.0.0/:: or when use_original_dst is specified.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub prefix_ranges: ::prost::alloc::vec::Vec<super::core::CidrRange>,
     /// If non-empty, an IP address and suffix length to match addresses when the
     /// listener is bound to 0.0.0.0/:: or when use_original_dst is specified.
     /// \[#not-implemented-hide:\]
-    #[prost(string, tag="4")]
+    #[prost(string, tag = "4")]
     pub address_suffix: ::prost::alloc::string::String,
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub suffix_len: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Specifies the connection source IP match type. Can be any, local or external network.
-    #[prost(enumeration="filter_chain_match::ConnectionSourceType", tag="12")]
+    #[prost(enumeration = "filter_chain_match::ConnectionSourceType", tag = "12")]
     pub source_type: i32,
     /// The criteria is satisfied if the source IP address of the downstream
     /// connection is contained in at least one of the specified subnets. If the
     /// parameter is not specified or the list is empty, the source IP address is
     /// ignored.
-    #[prost(message, repeated, tag="6")]
+    #[prost(message, repeated, tag = "6")]
     pub source_prefix_ranges: ::prost::alloc::vec::Vec<super::core::CidrRange>,
     /// The criteria is satisfied if the source port of the downstream connection
     /// is contained in at least one of the specified ports. If the parameter is
     /// not specified, the source port is ignored.
-    #[prost(uint32, repeated, packed="false", tag="7")]
+    #[prost(uint32, repeated, packed = "false", tag = "7")]
     pub source_ports: ::prost::alloc::vec::Vec<u32>,
     /// If non-empty, a list of server names (e.g. SNI for TLS protocol) to consider when determining
     /// a filter chain match. Those values will be compared against the server names of a new
@@ -99,7 +99,7 @@ pub struct FilterChainMatch {
     ///
     ///    See the :ref:`FAQ entry <faq_how_to_setup_sni>` on how to configure SNI for more
     ///    information.
-    #[prost(string, repeated, tag="11")]
+    #[prost(string, repeated, tag = "11")]
     pub server_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If non-empty, a transport protocol to consider when determining a filter chain match.
     /// This value will be compared against the transport protocol of a new connection, when
@@ -110,7 +110,7 @@ pub struct FilterChainMatch {
     /// * ``raw_buffer`` - default, used when no transport protocol is detected,
     /// * ``tls`` - set by :ref:`envoy.filters.listener.tls_inspector <config_listener_filters_tls_inspector>`
     ///    when TLS protocol is detected.
-    #[prost(string, tag="9")]
+    #[prost(string, tag = "9")]
     pub transport_protocol: ::prost::alloc::string::String,
     /// If non-empty, a list of application protocols (e.g. ALPN for TLS protocol) to consider when
     /// determining a filter chain match. Those values will be compared against the application
@@ -131,12 +131,22 @@ pub struct FilterChainMatch {
     ///    However, the use of ALPN is pretty much limited to the HTTP/2 traffic on the Internet,
     ///    and matching on values other than ``h2`` is going to lead to a lot of false negatives,
     ///    unless all connecting clients are known to use ALPN.
-    #[prost(string, repeated, tag="10")]
+    #[prost(string, repeated, tag = "10")]
     pub application_protocols: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `FilterChainMatch`.
 pub mod filter_chain_match {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ConnectionSourceType {
         /// Any connection source matches.
@@ -158,15 +168,25 @@ pub mod filter_chain_match {
                 ConnectionSourceType::External => "EXTERNAL",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ANY" => Some(Self::Any),
+                "LOCAL" => Some(Self::Local),
+                "EXTERNAL" => Some(Self::External),
+                _ => None,
+            }
+        }
     }
 }
 /// A filter chain wraps a set of match criteria, an option TLS context, a set of filters, and
 /// various other parameters.
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterChain {
     /// The criteria to use when matching a connection to this filter chain.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub filter_chain_match: ::core::option::Option<FilterChainMatch>,
     /// The TLS context for this filter chain.
     ///
@@ -175,13 +195,13 @@ pub struct FilterChain {
     ///    **This field is deprecated**. Use `transport_socket` with name `tls` instead. If both are
     ///    set, `transport_socket` takes priority.
     #[deprecated]
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub tls_context: ::core::option::Option<super::auth::DownstreamTlsContext>,
     /// A list of individual network filters that make up the filter chain for
     /// connections established with the listener. Order matters as the filters are
     /// processed sequentially as connection events happen. Note: If the filter
     /// list is empty, the connection will close by default.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub filters: ::prost::alloc::vec::Vec<Filter>,
     /// Whether the listener should expect a PROXY protocol V1 header on new
     /// connections. If this option is enabled, the listener will assume that that
@@ -189,22 +209,22 @@ pub struct FilterChain {
     /// load balancers including the AWS ELB support this option. If the option is
     /// absent or set to false, Envoy will use the physical peer address of the
     /// connection as the remote address.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub use_proxy_proto: ::core::option::Option<::pbjson_types::BoolValue>,
     /// \[#not-implemented-hide:\] filter chain metadata.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub metadata: ::core::option::Option<super::core::Metadata>,
     /// Optional custom transport socket implementation to use for downstream connections.
     /// To setup TLS, set a transport socket with name `tls` and
     /// :ref:`DownstreamTlsContext <envoy_api_msg_auth.DownstreamTlsContext>` in the `typed_config`.
     /// If no transport socket configuration is specified, new connections
     /// will be set up with plaintext.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub transport_socket: ::core::option::Option<super::core::TransportSocket>,
     /// \[#not-implemented-hide:\] The unique name (or empty) by which this filter chain is known. If no
     /// name is provided, Envoy will allocate an internal UUID for the filter chain. If the filter
     /// chain is to be dynamically updated or removed via FCDS a unique name must be provided.
-    #[prost(string, tag="7")]
+    #[prost(string, tag = "7")]
     pub name: ::prost::alloc::string::String,
 }
 /// Listener filter chain match configuration. This is a recursive structure which allows complex
@@ -234,117 +254,123 @@ pub struct FilterChain {
 ///           end: 15001
 ///
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenerFilterChainMatchPredicate {
-    #[prost(oneof="listener_filter_chain_match_predicate::Rule", tags="1, 2, 3, 4, 5")]
+    #[prost(
+        oneof = "listener_filter_chain_match_predicate::Rule",
+        tags = "1, 2, 3, 4, 5"
+    )]
     pub rule: ::core::option::Option<listener_filter_chain_match_predicate::Rule>,
 }
 /// Nested message and enum types in `ListenerFilterChainMatchPredicate`.
 pub mod listener_filter_chain_match_predicate {
     /// A set of match configurations used for logical operations.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct MatchSet {
         /// The list of rules that make up the set.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub rules: ::prost::alloc::vec::Vec<super::ListenerFilterChainMatchPredicate>,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Rule {
         /// A set that describes a logical OR. If any member of the set matches, the match configuration
         /// matches.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         OrMatch(MatchSet),
         /// A set that describes a logical AND. If all members of the set match, the match configuration
         /// matches.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         AndMatch(MatchSet),
         /// A negation match. The match configuration will match if the negated match condition matches.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         NotMatch(::prost::alloc::boxed::Box<super::ListenerFilterChainMatchPredicate>),
         /// The match configuration will always match.
-        #[prost(bool, tag="4")]
+        #[prost(bool, tag = "4")]
         AnyMatch(bool),
         /// Match destination port. Particularly, the match evaluation must use the recovered local port if
         /// the owning listener filter is after :ref:`an original_dst listener filter <config_listener_filters_original_dst>`.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         DestinationPortRange(super::super::super::super::r#type::Int32Range),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListenerFilter {
     /// The name of the filter to instantiate. The name must match a
     /// :ref:`supported filter <config_listener_filters>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional match predicate used to disable the filter. The filter is enabled when this field is empty.
     /// See :ref:`ListenerFilterChainMatchPredicate <envoy_api_msg_listener.ListenerFilterChainMatchPredicate>`
     /// for further examples.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub filter_disabled: ::core::option::Option<ListenerFilterChainMatchPredicate>,
     /// Filter specific configuration which depends on the filter being instantiated.
     /// See the supported filters for further documentation.
-    #[prost(oneof="listener_filter::ConfigType", tags="2, 3")]
+    #[prost(oneof = "listener_filter::ConfigType", tags = "2, 3")]
     pub config_type: ::core::option::Option<listener_filter::ConfigType>,
 }
 /// Nested message and enum types in `ListenerFilter`.
 pub mod listener_filter {
     /// Filter specific configuration which depends on the filter being instantiated.
     /// See the supported filters for further documentation.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
-// [#protodoc-title: UDP Listener Config]
-// Listener :ref:`configuration overview <config_listeners>`
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UdpListenerConfig {
     /// Used to look up UDP listener factory, matches "raw_udp_listener" or
     /// "quic_listener" to create a specific udp listener.
     /// If not specified, treat as "raw_udp_listener".
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub udp_listener_name: ::prost::alloc::string::String,
     /// Used to create a specific listener factory. To some factory, e.g.
     /// "raw_udp_listener", config is not needed.
-    #[prost(oneof="udp_listener_config::ConfigType", tags="2, 3")]
+    #[prost(oneof = "udp_listener_config::ConfigType", tags = "2, 3")]
     pub config_type: ::core::option::Option<udp_listener_config::ConfigType>,
 }
 /// Nested message and enum types in `UdpListenerConfig`.
 pub mod udp_listener_config {
     /// Used to create a specific listener factory. To some factory, e.g.
     /// "raw_udp_listener", config is not needed.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActiveRawUdpListenerConfig {
-}
-// [#protodoc-title: QUIC listener Config]
-
+pub struct ActiveRawUdpListenerConfig {}
 /// Configuration specific to the QUIC protocol.
 /// Next id: 4
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuicProtocolOptions {
     /// Maximum number of streams that the client can negotiate per connection. 100
     /// if not specified.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub max_concurrent_streams: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Maximum number of milliseconds that connection will be alive when there is
     /// no network activity. 300000ms if not specified.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Connection timeout in milliseconds before the crypto handshake is finished.
     /// 20000ms if not specified.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub crypto_handshake_timeout: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.api.v2.listener` package
@@ -1464,4 +1490,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x22, 0x36, 0x37, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.api.v2.listener.serde.rs");
 // @@protoc_insertion_point(module)

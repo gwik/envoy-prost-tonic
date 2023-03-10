@@ -1,11 +1,8 @@
 // @generated
-// [#protodoc-title: QUIC connection ID generator config]
-// [#extension: envoy.quic.deterministic_connection_id_generator]
-
 /// Configuration for a connection ID generator implementation which issues predictable CIDs with stable first 4 bytes.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DeterministicConnectionIdGeneratorConfig {
-}
+pub struct DeterministicConnectionIdGeneratorConfig {}
 /// Encoded file descriptor set for the `envoy.extensions.quic.connection_id_generator.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xfa, 0x06, 0x0a, 0x62, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -65,4 +62,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x6e, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01,
     0x12, 0x03, 0x10, 0x08, 0x30, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.quic.connection_id_generator.v3.serde.rs");
 // @@protoc_insertion_point(module)

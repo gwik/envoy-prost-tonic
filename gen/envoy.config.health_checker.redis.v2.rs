@@ -1,15 +1,12 @@
 // @generated
-// [#protodoc-title: Redis]
-// Redis health checker :ref:`configuration overview <config_health_checkers_redis>`.
-// [#extension: envoy.health_checkers.redis]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Redis {
     /// If set, optionally perform ``EXISTS <key>`` instead of ``PING``. A return value
     /// from Redis of 0 (does not exist) is considered a passing healthcheck. A return value other
     /// than 0 is considered a failure. This allows the user to mark a Redis instance for maintenance
     /// by setting the specified key to any value and waiting for traffic to drain.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub key: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.config.health_checker.redis.v2` package
@@ -81,4 +78,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x00, 0x01, 0x12, 0x03, 0x15, 0x09, 0x0c, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x00, 0x03, 0x12, 0x03, 0x15, 0x0f, 0x10, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.health_checker.redis.v2.serde.rs");
 // @@protoc_insertion_point(module)

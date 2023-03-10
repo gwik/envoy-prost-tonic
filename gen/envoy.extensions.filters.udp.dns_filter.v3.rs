@@ -1,22 +1,19 @@
 // @generated
-// [#protodoc-title: DNS Filter]
-// DNS Filter :ref:`configuration overview <config_udp_listener_filters_dns_filter>`.
-// [#extension: envoy.filters.udp.dns_filter]
-
 /// Configuration for the DNS filter.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DnsFilterConfig {
     /// The stat prefix used when emitting DNS filter statistics
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// Server context configuration contains the data that the filter uses to respond
     /// to DNS requests.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub server_config: ::core::option::Option<dns_filter_config::ServerContextConfig>,
     /// Client context configuration controls Envoy's behavior when it must use external
     /// resolvers to answer a query. This object is optional and if omitted instructs
     /// the filter to resolve queries from the data in the server_config
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub client_config: ::core::option::Option<dns_filter_config::ClientContextConfig>,
 }
 /// Nested message and enum types in `DnsFilterConfig`.
@@ -24,23 +21,29 @@ pub mod dns_filter_config {
     /// This message contains the configuration for the DNS Filter operating
     /// in a server context. This message will contain the virtual hosts and
     /// associated addresses with which Envoy will respond to queries
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ServerContextConfig {
-        #[prost(oneof="server_context_config::ConfigSource", tags="1, 2")]
+        #[prost(oneof = "server_context_config::ConfigSource", tags = "1, 2")]
         pub config_source: ::core::option::Option<server_context_config::ConfigSource>,
     }
     /// Nested message and enum types in `ServerContextConfig`.
     pub mod server_context_config {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum ConfigSource {
             /// Load the configuration specified from the control plane
-            #[prost(message, tag="1")]
-            InlineDnsTable(super::super::super::super::super::super::super::data::dns::v3::DnsTable),
+            #[prost(message, tag = "1")]
+            InlineDnsTable(
+                super::super::super::super::super::super::super::data::dns::v3::DnsTable,
+            ),
             /// Seed the filter configuration from an external path. This source
             /// is a yaml formatted file that contains the DnsTable driving Envoy's
             /// responses to DNS queries
-            #[prost(message, tag="2")]
-            ExternalDnsTable(super::super::super::super::super::super::super::config::core::v3::DataSource),
+            #[prost(message, tag = "2")]
+            ExternalDnsTable(
+                super::super::super::super::super::super::super::config::core::v3::DataSource,
+            ),
         }
     }
     /// This message contains the configuration for the DNS Filter operating
@@ -49,13 +52,14 @@ pub mod dns_filter_config {
     /// resolvers
     ///
     /// [#next-free-field: 6]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ClientContextConfig {
         /// Sets the maximum time we will wait for the upstream query to complete
         /// We allow 5s for the upstream resolution to complete, so the minimum
         /// value here is 1. Note that the total latency for a failed query is the
         /// number of retries multiplied by the resolver_timeout.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub resolver_timeout: ::core::option::Option<::pbjson_types::Duration>,
         /// This field was used for `dns_resolution_config` in Envoy 1.19.0 and
         /// 1.19.1.
@@ -67,14 +71,18 @@ pub mod dns_filter_config {
         ///
         /// \[#not-implemented-hide:\]
         #[deprecated]
-        #[prost(message, repeated, tag="2")]
-        pub upstream_resolvers: ::prost::alloc::vec::Vec<super::super::super::super::super::super::config::core::v3::Address>,
+        #[prost(message, repeated, tag = "2")]
+        pub upstream_resolvers: ::prost::alloc::vec::Vec<
+            super::super::super::super::super::super::config::core::v3::Address,
+        >,
         /// DNS resolution configuration which includes the underlying dns resolver addresses and options.
         /// This field is deprecated in favor of
         /// :ref:`typed_dns_resolver_config <envoy_v3_api_field_extensions.filters.udp.dns_filter.v3.DnsFilterConfig.ClientContextConfig.typed_dns_resolver_config>`.
         #[deprecated]
-        #[prost(message, optional, tag="5")]
-        pub dns_resolution_config: ::core::option::Option<super::super::super::super::super::super::config::core::v3::DnsResolutionConfig>,
+        #[prost(message, optional, tag = "5")]
+        pub dns_resolution_config: ::core::option::Option<
+            super::super::super::super::super::super::config::core::v3::DnsResolutionConfig,
+        >,
         /// DNS resolver type configuration extension. This extension can be used to configure c-ares, apple,
         /// or any other DNS resolver types and the related parameters.
         /// For example, an object of
@@ -86,12 +94,14 @@ pub mod dns_filter_config {
         /// when ``typed_dns_resolver_config`` is in place, Envoy will use it and ignore ``dns_resolution_config``.
         /// When ``typed_dns_resolver_config`` is missing, the default behavior is in place.
         /// [#extension-category: envoy.network.dns_resolver]
-        #[prost(message, optional, tag="4")]
-        pub typed_dns_resolver_config: ::core::option::Option<super::super::super::super::super::super::config::core::v3::TypedExtensionConfig>,
+        #[prost(message, optional, tag = "4")]
+        pub typed_dns_resolver_config: ::core::option::Option<
+            super::super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+        >,
         /// Controls how many outstanding external lookup contexts the filter tracks.
         /// The context structure allows the filter to respond to every query even if the external
         /// resolution times out or is otherwise unsuccessful
-        #[prost(uint64, tag="3")]
+        #[prost(uint64, tag = "3")]
         pub max_pending_lookups: u64,
     }
 }
@@ -481,4 +491,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x02, 0x01, 0x12, 0x03, 0x69, 0x16, 0x23, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02,
     0x03, 0x12, 0x03, 0x69, 0x26, 0x27, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.udp.dns_filter.v3.serde.rs");
 // @@protoc_insertion_point(module)

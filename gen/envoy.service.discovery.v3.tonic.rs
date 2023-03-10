@@ -125,10 +125,10 @@ pub mod aggregated_discovery_service_client {
 pub mod aggregated_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with AggregatedDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with AggregatedDiscoveryServiceServer.
     #[async_trait]
     pub trait AggregatedDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamAggregatedResources method.
+        /// Server streaming response type for the StreamAggregatedResources method.
         type StreamAggregatedResourcesStream: futures_core::Stream<
                 Item = Result<super::DiscoveryResponse, tonic::Status>,
             >
@@ -143,7 +143,7 @@ pub mod aggregated_discovery_service_server {
             tonic::Response<Self::StreamAggregatedResourcesStream>,
             tonic::Status,
         >;
-        ///Server streaming response type for the DeltaAggregatedResources method.
+        /// Server streaming response type for the DeltaAggregatedResources method.
         type DeltaAggregatedResourcesStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >

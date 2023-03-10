@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Client-Side Weighted Round Robin Load Balancing Policy]
-// \[#not-implemented-hide:\]
-
 /// Configuration for the client_side_weighted_round_robin LB policy.
 ///
 /// This policy differs from the built-in ROUND_ROBIN policy in terms of
@@ -15,16 +12,17 @@
 /// See the :ref:`load balancing architecture overview<arch_overview_load_balancing_types>` for more information.
 ///
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClientSideWeightedRoundRobin {
     /// Whether to enable out-of-band utilization reporting collection from
     /// the endpoints. By default, per-request utilization reporting is used.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub enable_oob_load_report: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Load reporting interval to request from the server. Note that the
     /// server may not provide reports as frequently as the client requests.
     /// Used only when enable_oob_load_report is true. Default is 10 seconds.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub oob_reporting_period: ::core::option::Option<::pbjson_types::Duration>,
     /// A given endpoint must report load metrics continuously for at least
     /// this long before the endpoint weight will be used. This avoids
@@ -32,17 +30,17 @@ pub struct ClientSideWeightedRoundRobin {
     /// both immediately after we establish a connection to an endpoint and
     /// after weight_expiration_period has caused us to stop using the most
     /// recent load metrics. Default is 10 seconds.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub blackout_period: ::core::option::Option<::pbjson_types::Duration>,
     /// If a given endpoint has not reported load metrics in this long,
     /// then we stop using the reported weight. This ensures that we do
     /// not continue to use very stale weights. Once we stop using a stale
     /// value, if we later start seeing fresh reports again, the
     /// blackout_period applies. Defaults to 3 minutes.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub weight_expiration_period: ::core::option::Option<::pbjson_types::Duration>,
     /// How often endpoint weights are recalculated. Default is 1 second.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub weight_update_period: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.load_balancing_policies.client_side_weighted_round_robin.v3` package
@@ -259,4 +257,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x04, 0x01, 0x12, 0x03, 0x39, 0x1b, 0x2f, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x04,
     0x03, 0x12, 0x03, 0x39, 0x32, 0x33, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.load_balancing_policies.client_side_weighted_round_robin.v3.serde.rs");
 // @@protoc_insertion_point(module)

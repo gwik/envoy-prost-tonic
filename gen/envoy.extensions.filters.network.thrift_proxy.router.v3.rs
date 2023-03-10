@@ -1,13 +1,12 @@
 // @generated
-// [#protodoc-title: Router]
-// Thrift router :ref:`configuration overview <config_thrift_filters_router>`.
-// [#extension: envoy.filters.thrift.router]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Router {
     /// Close downstream connection in case of routing or upstream connection problem. Default: true
-    #[prost(message, optional, tag="1")]
-    pub close_downstream_on_upstream_error: ::core::option::Option<::pbjson_types::BoolValue>,
+    #[prost(message, optional, tag = "1")]
+    pub close_downstream_on_upstream_error: ::core::option::Option<
+        ::pbjson_types::BoolValue,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.thrift_proxy.router.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -84,4 +83,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03, 0x18, 0x41, 0x42, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.thrift_proxy.router.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,12 +1,9 @@
 // @generated
-// [#protodoc-title: TLS Inspector Filter]
-// Allows detecting whether the transport appears to be TLS or plaintext.
-// [#extension: envoy.filters.listener.tls_inspector]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsInspector {
     /// Populate ``JA3`` fingerprint hash using data from the TLS Client Hello packet. Default is false.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub enable_ja3_fingerprinting: ::core::option::Option<::pbjson_types::BoolValue>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.listener.tls_inspector.v3` package
@@ -85,4 +82,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x01, 0x12, 0x03, 0x18, 0x1c, 0x35, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12,
     0x03, 0x18, 0x38, 0x39, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.listener.tls_inspector.v3.serde.rs");
 // @@protoc_insertion_point(module)

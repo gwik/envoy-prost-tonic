@@ -1,6 +1,5 @@
 // @generated
-// [#protodoc-title: Common TLS configuration]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsParameters {
     /// Minimum TLS protocol version. By default, it's ``TLSv1_2`` for both clients and servers.
@@ -11,11 +10,11 @@ pub struct TlsParameters {
     /// .. attention::
     ///
     ///    Using TLS protocol versions below TLSv1_2 has serious security considerations and risks.
-    #[prost(enumeration="tls_parameters::TlsProtocol", tag="1")]
+    #[prost(enumeration = "tls_parameters::TlsProtocol", tag = "1")]
     pub tls_minimum_protocol_version: i32,
     /// Maximum TLS protocol version. By default, it's ``TLSv1_2`` for clients and ``TLSv1_3`` for
     /// servers.
-    #[prost(enumeration="tls_parameters::TlsProtocol", tag="2")]
+    #[prost(enumeration = "tls_parameters::TlsProtocol", tag = "2")]
     pub tls_maximum_protocol_version: i32,
     /// If specified, the TLS listener will only support the specified `cipher list
     /// <<https://commondatastorage.googleapis.com/chromium-boringssl-docs/ssl.h.html#Cipher-suite-configuration>`_>
@@ -61,7 +60,7 @@ pub struct TlsParameters {
     ///    ECDHE-RSA-AES128-GCM-SHA256
     ///    ECDHE-ECDSA-AES256-GCM-SHA384
     ///    ECDHE-RSA-AES256-GCM-SHA384
-    #[prost(string, repeated, tag="3")]
+    #[prost(string, repeated, tag = "3")]
     pub cipher_suites: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If specified, the TLS connection will only support the specified ECDH
     /// curves. If not specified, the default curves will be used.
@@ -78,12 +77,22 @@ pub struct TlsParameters {
     /// .. code-block:: none
     ///
     ///    P-256
-    #[prost(string, repeated, tag="4")]
+    #[prost(string, repeated, tag = "4")]
     pub ecdh_curves: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `TlsParameters`.
 pub mod tls_parameters {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TlsProtocol {
         /// Envoy will choose the optimal TLS version.
@@ -111,31 +120,45 @@ pub mod tls_parameters {
                 TlsProtocol::TlSv13 => "TLSv1_3",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "TLS_AUTO" => Some(Self::TlsAuto),
+                "TLSv1_0" => Some(Self::TlSv10),
+                "TLSv1_1" => Some(Self::TlSv11),
+                "TLSv1_2" => Some(Self::TlSv12),
+                "TLSv1_3" => Some(Self::TlSv13),
+                _ => None,
+            }
+        }
     }
 }
 /// BoringSSL private key method configuration. The private key methods are used for external
 /// (potentially asynchronous) signing and decryption operations. Some use cases for private key
 /// methods would be TPM support and TLS acceleration.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivateKeyProvider {
     /// Private key method provider name. The name must match a
     /// supported private key method provider type.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub provider_name: ::prost::alloc::string::String,
     /// Private key method provider specific configuration.
-    #[prost(oneof="private_key_provider::ConfigType", tags="3")]
+    #[prost(oneof = "private_key_provider::ConfigType", tags = "3")]
     pub config_type: ::core::option::Option<private_key_provider::ConfigType>,
 }
 /// Nested message and enum types in `PrivateKeyProvider`.
 pub mod private_key_provider {
     /// Private key method provider specific configuration.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
 /// [#next-free-field: 9]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsCertificate {
     /// The TLS certificate chain.
@@ -144,15 +167,19 @@ pub struct TlsCertificate {
     /// parent directory for any file moves to support rotation. This currently
     /// only applies to dynamic secrets, when the ``TlsCertificate`` is delivered via
     /// SDS.
-    #[prost(message, optional, tag="1")]
-    pub certificate_chain: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub certificate_chain: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// The TLS private key.
     ///
     /// If ``private_key`` is a filesystem path, a watch will be added to the parent
     /// directory for any file moves to support rotation. This currently only
     /// applies to dynamic secrets, when the ``TlsCertificate`` is delivered via SDS.
-    #[prost(message, optional, tag="2")]
-    pub private_key: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "2")]
+    pub private_key: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// ``Pkcs12`` data containing TLS certificate, chain, and private key.
     ///
     /// If ``pkcs12`` is a filesystem path, the file will be read, but no watch will
@@ -166,8 +193,10 @@ pub struct TlsCertificate {
     /// fields will result in an error. Use :ref:`password
     /// <envoy_v3_api_field_extensions.transport_sockets.tls.v3.TlsCertificate.password>`
     /// to specify the password to unprotect the ``PKCS12`` data, if necessary.
-    #[prost(message, optional, tag="8")]
-    pub pkcs12: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "8")]
+    pub pkcs12: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// If specified, updates of file-based ``certificate_chain`` and ``private_key``
     /// sources will be triggered by this watch. The certificate/key pair will be
     /// read together and validated for atomic read consistency (i.e. no
@@ -178,8 +207,10 @@ pub struct TlsCertificate {
     /// specified. This only applies when a ``TlsCertificate`` is delivered by SDS
     /// with references to filesystem paths. See the :ref:`SDS key rotation
     /// <sds_key_rotation>` documentation for further details.
-    #[prost(message, optional, tag="7")]
-    pub watched_directory: ::core::option::Option<super::super::super::super::config::core::v3::WatchedDirectory>,
+    #[prost(message, optional, tag = "7")]
+    pub watched_directory: ::core::option::Option<
+        super::super::super::super::config::core::v3::WatchedDirectory,
+    >,
     /// BoringSSL private key method provider. This is an alternative to :ref:`private_key
     /// <envoy_v3_api_field_extensions.transport_sockets.tls.v3.TlsCertificate.private_key>` field. This can't be
     /// marked as ``oneof`` due to API compatibility reasons. Setting both :ref:`private_key
@@ -187,21 +218,28 @@ pub struct TlsCertificate {
     /// :ref:`private_key_provider
     /// <envoy_v3_api_field_extensions.transport_sockets.tls.v3.TlsCertificate.private_key_provider>` fields will result in an
     /// error.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub private_key_provider: ::core::option::Option<PrivateKeyProvider>,
     /// The password to decrypt the TLS private key. If this field is not set, it is assumed that the
     /// TLS private key is not password encrypted.
-    #[prost(message, optional, tag="3")]
-    pub password: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "3")]
+    pub password: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// The OCSP response to be stapled with this certificate during the handshake.
     /// The response must be DER-encoded and may only be  provided via ``filename`` or
     /// ``inline_bytes``. The response may pertain to only one certificate.
-    #[prost(message, optional, tag="4")]
-    pub ocsp_staple: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "4")]
+    pub ocsp_staple: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// \[#not-implemented-hide:\]
-    #[prost(message, repeated, tag="5")]
-    pub signed_certificate_timestamp: ::prost::alloc::vec::Vec<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, repeated, tag = "5")]
+    pub signed_certificate_timestamp: ::prost::alloc::vec::Vec<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsSessionTicketKeys {
     /// Keys for encrypting and decrypting TLS session tickets. The
@@ -227,14 +265,17 @@ pub struct TlsSessionTicketKeys {
     ///    * Keep the session ticket keys at least as secure as your TLS certificate private keys
     ///    * Rotate session ticket keys at least daily, and preferably hourly
     ///    * Always generate keys using a cryptographically-secure random data source
-    #[prost(message, repeated, tag="1")]
-    pub keys: ::prost::alloc::vec::Vec<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
 }
 /// Indicates a certificate to be obtained from a named CertificateProvider plugin instance.
 /// The plugin instances are defined in the client's bootstrap file.
 /// The plugin allows certificates to be fetched/refreshed over the network asynchronously with
 /// respect to the TLS handshake.
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateProviderPluginInstance {
     /// Provider instance name. If not present, defaults to "default".
@@ -242,30 +283,43 @@ pub struct CertificateProviderPluginInstance {
     /// Instance names should generally be defined not in terms of the underlying provider
     /// implementation (e.g., "file_watcher") but rather in terms of the function of the
     /// certificates (e.g., "foo_deployment_identity").
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub instance_name: ::prost::alloc::string::String,
     /// Opaque name used to specify certificate instances or types. For example, "ROOTCA" to specify
     /// a root-certificate (validation context) or "example.com" to specify a certificate for a
     /// particular domain. Not all provider instances will actually use this field, so the value
     /// defaults to the empty string.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub certificate_name: ::prost::alloc::string::String,
 }
 /// Matcher for subject alternative names, to match both type and value of the SAN.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubjectAltNameMatcher {
     /// Specification of type of SAN. Note that the default enum value is an invalid choice.
-    #[prost(enumeration="subject_alt_name_matcher::SanType", tag="1")]
+    #[prost(enumeration = "subject_alt_name_matcher::SanType", tag = "1")]
     pub san_type: i32,
     /// Matcher for SAN value.
-    #[prost(message, optional, tag="2")]
-    pub matcher: ::core::option::Option<super::super::super::super::r#type::matcher::v3::StringMatcher>,
+    #[prost(message, optional, tag = "2")]
+    pub matcher: ::core::option::Option<
+        super::super::super::super::r#type::matcher::v3::StringMatcher,
+    >,
 }
 /// Nested message and enum types in `SubjectAltNameMatcher`.
 pub mod subject_alt_name_matcher {
     /// Indicates the choice of GeneralName as defined in section 4.2.1.5 of RFC 5280 to match
     /// against.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum SanType {
         Unspecified = 0,
@@ -288,9 +342,21 @@ pub mod subject_alt_name_matcher {
                 SanType::IpAddress => "IP_ADDRESS",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SAN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "EMAIL" => Some(Self::Email),
+                "DNS" => Some(Self::Dns),
+                "URI" => Some(Self::Uri),
+                "IP_ADDRESS" => Some(Self::IpAddress),
+                _ => None,
+            }
+        }
     }
 }
 /// [#next-free-field: 17]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateValidationContext {
     /// TLS certificate data containing certificate authority certificates to use in verifying
@@ -332,14 +398,18 @@ pub struct CertificateValidationContext {
     ///
     /// [#next-major-version: This field and watched_directory below should ideally be moved into a
     /// separate sub-message, since there's no point in specifying the latter field without this one.]
-    #[prost(message, optional, tag="1")]
-    pub trusted_ca: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub trusted_ca: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Certificate provider instance for fetching TLS certificates.
     ///
     /// Only one of ``trusted_ca`` and ``ca_certificate_provider_instance`` may be specified.
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="13")]
-    pub ca_certificate_provider_instance: ::core::option::Option<CertificateProviderPluginInstance>,
+    #[prost(message, optional, tag = "13")]
+    pub ca_certificate_provider_instance: ::core::option::Option<
+        CertificateProviderPluginInstance,
+    >,
     /// If specified, updates of a file-based ``trusted_ca`` source will be triggered
     /// by this watch. This allows explicit control over the path watched, by
     /// default the parent directory of the filesystem path in ``trusted_ca`` is
@@ -347,8 +417,10 @@ pub struct CertificateValidationContext {
     /// ``CertificateValidationContext`` is delivered by SDS with references to
     /// filesystem paths. See the :ref:`SDS key rotation <sds_key_rotation>`
     /// documentation for further details.
-    #[prost(message, optional, tag="11")]
-    pub watched_directory: ::core::option::Option<super::super::super::super::config::core::v3::WatchedDirectory>,
+    #[prost(message, optional, tag = "11")]
+    pub watched_directory: ::core::option::Option<
+        super::super::super::super::config::core::v3::WatchedDirectory,
+    >,
     /// An optional list of base64-encoded SHA-256 hashes. If specified, Envoy will verify that the
     /// SHA-256 of the DER-encoded Subject Public Key Information (SPKI) of the presented certificate
     /// matches one of the specified values.
@@ -379,8 +451,10 @@ pub struct CertificateValidationContext {
     ///    <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.verify_certificate_hash>`,
     ///    because SPKI is tied to a private key, so it doesn't change when the certificate
     ///    is renewed using the same private key.
-    #[prost(string, repeated, tag="3")]
-    pub verify_certificate_spki: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub verify_certificate_spki: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// An optional list of hex-encoded SHA-256 hashes. If specified, Envoy will verify that
     /// the SHA-256 of the DER-encoded presented certificate matches one of the specified values.
     ///
@@ -407,8 +481,10 @@ pub struct CertificateValidationContext {
     /// :ref:`verify_certificate_spki
     /// <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.verify_certificate_spki>` are specified,
     /// a hash matching value from either of the lists will result in the certificate being accepted.
-    #[prost(string, repeated, tag="2")]
-    pub verify_certificate_hash: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "2")]
+    pub verify_certificate_hash: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// An optional list of Subject Alternative name matchers. If specified, Envoy will verify that the
     /// Subject Alternative Name of the presented certificate matches one of the specified matchers.
     /// The matching uses "any" semantics, that is to say, the SAN is verified if at least one matcher is
@@ -431,7 +507,7 @@ pub struct CertificateValidationContext {
     ///    Subject Alternative Names are easily spoofable and verifying only them is insecure,
     ///    therefore this option must be used together with :ref:`trusted_ca
     ///    <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.trusted_ca>`.
-    #[prost(message, repeated, tag="15")]
+    #[prost(message, repeated, tag = "15")]
     pub match_typed_subject_alt_names: ::prost::alloc::vec::Vec<SubjectAltNameMatcher>,
     /// This field is deprecated in favor of
     /// :ref:`match_typed_subject_alt_names
@@ -440,11 +516,15 @@ pub struct CertificateValidationContext {
     /// <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.match_typed_subject_alt_names>`
     /// are specified, the former (deprecated field) is ignored.
     #[deprecated]
-    #[prost(message, repeated, tag="9")]
-    pub match_subject_alt_names: ::prost::alloc::vec::Vec<super::super::super::super::r#type::matcher::v3::StringMatcher>,
+    #[prost(message, repeated, tag = "9")]
+    pub match_subject_alt_names: ::prost::alloc::vec::Vec<
+        super::super::super::super::r#type::matcher::v3::StringMatcher,
+    >,
     /// \[#not-implemented-hide:\] Must present signed certificate time-stamp.
-    #[prost(message, optional, tag="6")]
-    pub require_signed_certificate_timestamp: ::core::option::Option<::pbjson_types::BoolValue>,
+    #[prost(message, optional, tag = "6")]
+    pub require_signed_certificate_timestamp: ::core::option::Option<
+        ::pbjson_types::BoolValue,
+    >,
     /// An optional `certificate revocation list
     /// <<https://en.wikipedia.org/wiki/Certificate_revocation_list>`_>
     /// (in PEM format). If specified, Envoy will verify that the presented peer
@@ -456,24 +536,31 @@ pub struct CertificateValidationContext {
     /// from that chain. This default behavior can be altered by setting
     /// :ref:`only_verify_leaf_cert_crl <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.only_verify_leaf_cert_crl>` to
     /// true.
-    #[prost(message, optional, tag="7")]
-    pub crl: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "7")]
+    pub crl: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
     /// If specified, Envoy will not reject expired certificates.
-    #[prost(bool, tag="8")]
+    #[prost(bool, tag = "8")]
     pub allow_expired_certificate: bool,
     /// Certificate trust chain verification mode.
-    #[prost(enumeration="certificate_validation_context::TrustChainVerification", tag="10")]
+    #[prost(
+        enumeration = "certificate_validation_context::TrustChainVerification",
+        tag = "10"
+    )]
     pub trust_chain_verification: i32,
     /// The configuration of an extension specific certificate validator.
     /// If specified, all validation is done by the specified validator,
     /// and the behavior of all other validation settings is defined by the specified validator (and may be entirely ignored, unused, and unvalidated).
     /// Refer to the documentation for the specified validator. If you do not want a custom validation algorithm, do not set this field.
     /// [#extension-category: envoy.tls.cert_validator]
-    #[prost(message, optional, tag="12")]
-    pub custom_validator_config: ::core::option::Option<super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "12")]
+    pub custom_validator_config: ::core::option::Option<
+        super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
     /// If this option is set to true, only the certificate at the end of the
     /// certificate chain will be subject to validation by :ref:`CRL <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.crl>`.
-    #[prost(bool, tag="14")]
+    #[prost(bool, tag = "14")]
     pub only_verify_leaf_cert_crl: bool,
     /// Defines maximum depth of a certificate chain accepted in verification, the default limit is 100, though this can be system-dependent.
     /// This number does not include the leaf, so a depth of 1 allows the leaf and one CA certificate. If a trusted issuer appears in the chain,
@@ -483,13 +570,23 @@ pub struct CertificateValidationContext {
     /// Neither the end-entity nor the trust-anchor certificates count against depth.
     /// See `OpenSSL SSL set_verify_depth <<https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_verify_depth.html>`_.>
     /// Trusted issues are specified by setting :ref:`trusted_ca <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.trusted_ca>`
-    #[prost(message, optional, tag="16")]
+    #[prost(message, optional, tag = "16")]
     pub max_verify_depth: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// Nested message and enum types in `CertificateValidationContext`.
 pub mod certificate_validation_context {
     /// Peer certificate verification mode.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum TrustChainVerification {
         /// Perform default certificate verification (e.g., against CA / verification lists)
@@ -510,53 +607,64 @@ pub mod certificate_validation_context {
                 TrustChainVerification::AcceptUntrusted => "ACCEPT_UNTRUSTED",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "VERIFY_TRUST_CHAIN" => Some(Self::VerifyTrustChain),
+                "ACCEPT_UNTRUSTED" => Some(Self::AcceptUntrusted),
+                _ => None,
+            }
+        }
     }
 }
-// [#protodoc-title: Secrets configuration]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenericSecret {
     /// Secret of generic type and is available to filters.
-    #[prost(message, optional, tag="1")]
-    pub secret: ::core::option::Option<super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub secret: ::core::option::Option<
+        super::super::super::super::config::core::v3::DataSource,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SdsSecretConfig {
     /// Name by which the secret can be uniquely referred to. When both name and config are specified,
     /// then secret can be fetched and/or reloaded via SDS. When only name is specified, then secret
     /// will be loaded from static resources.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="2")]
-    pub sds_config: ::core::option::Option<super::super::super::super::config::core::v3::ConfigSource>,
+    #[prost(message, optional, tag = "2")]
+    pub sds_config: ::core::option::Option<
+        super::super::super::super::config::core::v3::ConfigSource,
+    >,
 }
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Secret {
     /// Name (FQDN, UUID, SPKI, SHA256, etc.) by which the secret can be uniquely referred to.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(oneof="secret::Type", tags="2, 3, 4, 5")]
+    #[prost(oneof = "secret::Type", tags = "2, 3, 4, 5")]
     pub r#type: ::core::option::Option<secret::Type>,
 }
 /// Nested message and enum types in `Secret`.
 pub mod secret {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Type {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         TlsCertificate(super::TlsCertificate),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         SessionTicketKeys(super::TlsSessionTicketKeys),
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         ValidationContext(super::CertificateValidationContext),
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         GenericSecret(super::GenericSecret),
     }
 }
-// [#protodoc-title: TLS transport socket]
-// [#extension: envoy.transport_sockets.tls]
-// The TLS contexts below provide the transport socket configuration for upstream/downstream TLS.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpstreamTlsContext {
     /// Common TLS context settings.
@@ -566,60 +674,75 @@ pub struct UpstreamTlsContext {
     ///    Server certificate verification is not enabled by default. Configure
     ///    :ref:`trusted_ca<envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.trusted_ca>` to enable
     ///    verification.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub common_tls_context: ::core::option::Option<CommonTlsContext>,
     /// SNI string to use when creating TLS backend connections.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub sni: ::prost::alloc::string::String,
     /// If true, server-initiated TLS renegotiation will be allowed.
     ///
     /// .. attention::
     ///
     ///    TLS renegotiation is considered insecure and shouldn't be used unless absolutely necessary.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub allow_renegotiation: bool,
     /// Maximum number of session keys (Pre-Shared Keys for TLSv1.3+, Session IDs and Session Tickets
     /// for TLSv1.2 and older) to store for the purpose of session resumption.
     ///
     /// Defaults to 1, setting this to 0 disables session resumption.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub max_session_keys: ::core::option::Option<::pbjson_types::UInt32Value>,
 }
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DownstreamTlsContext {
     /// Common TLS context settings.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub common_tls_context: ::core::option::Option<CommonTlsContext>,
     /// If specified, Envoy will reject connections without a valid client
     /// certificate.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub require_client_certificate: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If specified, Envoy will reject connections without a valid and matching SNI.
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub require_sni: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If specified, ``session_timeout`` will change the maximum lifetime (in seconds) of the TLS session.
     /// Currently this value is used as a hint for the `TLS session ticket lifetime (for TLSv1.2) <<https://tools.ietf.org/html/rfc5077#section-5.6>`_.>
     /// Only seconds can be specified (fractional seconds are ignored).
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub session_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Config for whether to use certificates if they do not have
     /// an accompanying OCSP response or if the response expires at runtime.
     /// Defaults to LENIENT_STAPLING
-    #[prost(enumeration="downstream_tls_context::OcspStaplePolicy", tag="8")]
+    #[prost(enumeration = "downstream_tls_context::OcspStaplePolicy", tag = "8")]
     pub ocsp_staple_policy: i32,
     /// Multiple certificates are allowed in Downstream transport socket to serve different SNI.
     /// If the client provides SNI but no such cert matched, it will decide to full scan certificates or not based on this config.
     /// Defaults to false. See more details in :ref:`Multiple TLS certificates <arch_overview_ssl_cert_select>`.
-    #[prost(message, optional, tag="9")]
-    pub full_scan_certs_on_sni_mismatch: ::core::option::Option<::pbjson_types::BoolValue>,
-    #[prost(oneof="downstream_tls_context::SessionTicketKeysType", tags="4, 5, 7")]
-    pub session_ticket_keys_type: ::core::option::Option<downstream_tls_context::SessionTicketKeysType>,
+    #[prost(message, optional, tag = "9")]
+    pub full_scan_certs_on_sni_mismatch: ::core::option::Option<
+        ::pbjson_types::BoolValue,
+    >,
+    #[prost(oneof = "downstream_tls_context::SessionTicketKeysType", tags = "4, 5, 7")]
+    pub session_ticket_keys_type: ::core::option::Option<
+        downstream_tls_context::SessionTicketKeysType,
+    >,
 }
 /// Nested message and enum types in `DownstreamTlsContext`.
 pub mod downstream_tls_context {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum OcspStaplePolicy {
         /// OCSP responses are optional. If an OCSP response is absent
@@ -652,14 +775,24 @@ pub mod downstream_tls_context {
                 OcspStaplePolicy::MustStaple => "MUST_STAPLE",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "LENIENT_STAPLING" => Some(Self::LenientStapling),
+                "STRICT_STAPLING" => Some(Self::StrictStapling),
+                "MUST_STAPLE" => Some(Self::MustStaple),
+                _ => None,
+            }
+        }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum SessionTicketKeysType {
         /// TLS session ticket key settings.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         SessionTicketKeys(super::TlsSessionTicketKeys),
         /// Config for fetching TLS session ticket keys via SDS API.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         SessionTicketKeysSdsSecretConfig(super::SdsSecretConfig),
         /// Config for controlling stateless TLS session resumption: setting this to true will cause the TLS
         /// server to not issue TLS session tickets for the purposes of stateless TLS session resumption.
@@ -669,32 +802,38 @@ pub mod downstream_tls_context {
         /// If this config is set to false and no keys are explicitly configured, the TLS server will issue
         /// TLS session tickets and encrypt/decrypt them using an internally-generated and managed key, with the
         /// implication that sessions cannot be resumed across hot restarts or on different hosts.
-        #[prost(bool, tag="7")]
+        #[prost(bool, tag = "7")]
         DisableStatelessSessionResumption(bool),
     }
 }
 /// TLS key log configuration.
 /// The key log file format is "format used by NSS for its SSLKEYLOGFILE debugging output" (text taken from openssl man page)
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsKeyLog {
     /// The path to save the TLS key log.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
     /// The local IP address that will be used to filter the connection which should save the TLS key log
     /// If it is not set, any local IP address  will be matched.
-    #[prost(message, repeated, tag="2")]
-    pub local_address_range: ::prost::alloc::vec::Vec<super::super::super::super::config::core::v3::CidrRange>,
+    #[prost(message, repeated, tag = "2")]
+    pub local_address_range: ::prost::alloc::vec::Vec<
+        super::super::super::super::config::core::v3::CidrRange,
+    >,
     /// The remote IP address that will be used to filter the connection which should save the TLS key log
     /// If it is not set, any remote IP address will be matched.
-    #[prost(message, repeated, tag="3")]
-    pub remote_address_range: ::prost::alloc::vec::Vec<super::super::super::super::config::core::v3::CidrRange>,
+    #[prost(message, repeated, tag = "3")]
+    pub remote_address_range: ::prost::alloc::vec::Vec<
+        super::super::super::super::config::core::v3::CidrRange,
+    >,
 }
 /// TLS context shared by both client and server TLS contexts.
 /// [#next-free-field: 16]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonTlsContext {
     /// TLS protocol versions, cipher suites etc.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub tls_params: ::core::option::Option<TlsParameters>,
     /// Only a single TLS certificate is supported in client contexts. In server contexts,
     /// :ref:`Multiple TLS certificates <arch_overview_ssl_cert_select>` can be associated with the
@@ -705,7 +844,7 @@ pub struct CommonTlsContext {
     /// [#next-major-version: These mutually exclusive fields should ideally be in a oneof, but it's
     /// not legal to put a repeated field in a oneof. In the next major version, we should rework
     /// this to avoid this problem.]
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub tls_certificates: ::prost::alloc::vec::Vec<TlsCertificate>,
     /// Configs for fetching TLS certificates via SDS API. Note SDS API allows certificates to be
     /// fetched/refreshed over the network asynchronously with respect to the TLS handshake.
@@ -718,25 +857,31 @@ pub struct CommonTlsContext {
     /// [#next-major-version: These mutually exclusive fields should ideally be in a oneof, but it's
     /// not legal to put a repeated field in a oneof. In the next major version, we should rework
     /// this to avoid this problem.]
-    #[prost(message, repeated, tag="6")]
+    #[prost(message, repeated, tag = "6")]
     pub tls_certificate_sds_secret_configs: ::prost::alloc::vec::Vec<SdsSecretConfig>,
     /// Certificate provider instance for fetching TLS certs.
     ///
     /// Only one of ``tls_certificates``, ``tls_certificate_sds_secret_configs``,
     /// and ``tls_certificate_provider_instance`` may be used.
     /// \[#not-implemented-hide:\]
-    #[prost(message, optional, tag="14")]
-    pub tls_certificate_provider_instance: ::core::option::Option<CertificateProviderPluginInstance>,
+    #[prost(message, optional, tag = "14")]
+    pub tls_certificate_provider_instance: ::core::option::Option<
+        CertificateProviderPluginInstance,
+    >,
     /// Certificate provider for fetching TLS certificates.
     /// \[#not-implemented-hide:\]
     #[deprecated]
-    #[prost(message, optional, tag="9")]
-    pub tls_certificate_certificate_provider: ::core::option::Option<common_tls_context::CertificateProvider>,
+    #[prost(message, optional, tag = "9")]
+    pub tls_certificate_certificate_provider: ::core::option::Option<
+        common_tls_context::CertificateProvider,
+    >,
     /// Certificate provider instance for fetching TLS certificates.
     /// \[#not-implemented-hide:\]
     #[deprecated]
-    #[prost(message, optional, tag="11")]
-    pub tls_certificate_certificate_provider_instance: ::core::option::Option<common_tls_context::CertificateProviderInstance>,
+    #[prost(message, optional, tag = "11")]
+    pub tls_certificate_certificate_provider_instance: ::core::option::Option<
+        common_tls_context::CertificateProviderInstance,
+    >,
     /// Supplies the list of ALPN protocols that the listener should expose. In
     /// practice this is likely to be set to one of two values (see the
     /// :ref:`codec_type
@@ -747,17 +892,24 @@ pub struct CommonTlsContext {
     /// * "http/1.1" If the listener is only going to support HTTP/1.1.
     ///
     /// There is no default for this parameter. If empty, Envoy will not expose ALPN.
-    #[prost(string, repeated, tag="4")]
+    #[prost(string, repeated, tag = "4")]
     pub alpn_protocols: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Custom TLS handshaker. If empty, defaults to native TLS handshaking
     /// behavior.
-    #[prost(message, optional, tag="13")]
-    pub custom_handshaker: ::core::option::Option<super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "13")]
+    pub custom_handshaker: ::core::option::Option<
+        super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
     /// TLS key log configuration
-    #[prost(message, optional, tag="15")]
+    #[prost(message, optional, tag = "15")]
     pub key_log: ::core::option::Option<TlsKeyLog>,
-    #[prost(oneof="common_tls_context::ValidationContextType", tags="3, 7, 8, 10, 12")]
-    pub validation_context_type: ::core::option::Option<common_tls_context::ValidationContextType>,
+    #[prost(
+        oneof = "common_tls_context::ValidationContextType",
+        tags = "3, 7, 8, 10, 12"
+    )]
+    pub validation_context_type: ::core::option::Option<
+        common_tls_context::ValidationContextType,
+    >,
 }
 /// Nested message and enum types in `CommonTlsContext`.
 pub mod common_tls_context {
@@ -769,11 +921,12 @@ pub mod common_tls_context {
     /// CertificateProviderPluginInstance message.
     ///
     /// \[#not-implemented-hide:\]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CertificateProvider {
         /// opaque name used to specify certificate instances or types. For example, "ROOTCA" to specify
         /// a root-certificate (validation context) or "TLS" to specify a new tls-certificate.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Provider specific config.
         /// Note: an implementation is expected to dedup multiple instances of the same config
@@ -781,7 +934,7 @@ pub mod common_tls_context {
         /// example, among multiple clusters or between the tls_certificate and validation_context
         /// certificate providers of a cluster.
         /// This config could be supplied inline or (in future) a named xDS resource.
-        #[prost(oneof="certificate_provider::Config", tags="2")]
+        #[prost(oneof = "certificate_provider::Config", tags = "2")]
         pub config: ::core::option::Option<certificate_provider::Config>,
     }
     /// Nested message and enum types in `CertificateProvider`.
@@ -792,10 +945,13 @@ pub mod common_tls_context {
         /// example, among multiple clusters or between the tls_certificate and validation_context
         /// certificate providers of a cluster.
         /// This config could be supplied inline or (in future) a named xDS resource.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum Config {
-            #[prost(message, tag="2")]
-            TypedConfig(super::super::super::super::super::super::config::core::v3::TypedExtensionConfig),
+            #[prost(message, tag = "2")]
+            TypedConfig(
+                super::super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+            ),
         }
     }
     /// Similar to CertificateProvider above, but allows the provider instances to be configured on
@@ -805,6 +961,7 @@ pub mod common_tls_context {
     /// and now lives in common.proto.
     ///
     /// \[#not-implemented-hide:\]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CertificateProviderInstance {
         /// Provider instance name. This name must be defined in the client's configuration (e.g., a
@@ -815,45 +972,55 @@ pub mod common_tls_context {
         /// Instance names should generally be defined not in terms of the underlying provider
         /// implementation (e.g., "file_watcher") but rather in terms of the function of the
         /// certificates (e.g., "foo_deployment_identity").
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub instance_name: ::prost::alloc::string::String,
         /// Opaque name used to specify certificate instances or types. For example, "ROOTCA" to specify
         /// a root-certificate (validation context) or "example.com" to specify a certificate for a
         /// particular domain. Not all provider instances will actually use this field, so the value
         /// defaults to the empty string.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub certificate_name: ::prost::alloc::string::String,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct CombinedCertificateValidationContext {
         /// How to validate peer certificates.
-        #[prost(message, optional, tag="1")]
-        pub default_validation_context: ::core::option::Option<super::CertificateValidationContext>,
+        #[prost(message, optional, tag = "1")]
+        pub default_validation_context: ::core::option::Option<
+            super::CertificateValidationContext,
+        >,
         /// Config for fetching validation context via SDS API. Note SDS API allows certificates to be
         /// fetched/refreshed over the network asynchronously with respect to the TLS handshake.
-        #[prost(message, optional, tag="2")]
-        pub validation_context_sds_secret_config: ::core::option::Option<super::SdsSecretConfig>,
+        #[prost(message, optional, tag = "2")]
+        pub validation_context_sds_secret_config: ::core::option::Option<
+            super::SdsSecretConfig,
+        >,
         /// Certificate provider for fetching CA certs. This will populate the
         /// ``default_validation_context.trusted_ca`` field.
         /// \[#not-implemented-hide:\]
         #[deprecated]
-        #[prost(message, optional, tag="3")]
-        pub validation_context_certificate_provider: ::core::option::Option<CertificateProvider>,
+        #[prost(message, optional, tag = "3")]
+        pub validation_context_certificate_provider: ::core::option::Option<
+            CertificateProvider,
+        >,
         /// Certificate provider instance for fetching CA certs. This will populate the
         /// ``default_validation_context.trusted_ca`` field.
         /// \[#not-implemented-hide:\]
         #[deprecated]
-        #[prost(message, optional, tag="4")]
-        pub validation_context_certificate_provider_instance: ::core::option::Option<CertificateProviderInstance>,
+        #[prost(message, optional, tag = "4")]
+        pub validation_context_certificate_provider_instance: ::core::option::Option<
+            CertificateProviderInstance,
+        >,
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ValidationContextType {
         /// How to validate peer certificates.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         ValidationContext(super::CertificateValidationContext),
         /// Config for fetching validation context via SDS API. Note SDS API allows certificates to be
         /// fetched/refreshed over the network asynchronously with respect to the TLS handshake.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         ValidationContextSdsSecretConfig(super::SdsSecretConfig),
         /// Combined certificate validation context holds a default CertificateValidationContext
         /// and SDS config. When SDS server returns dynamic CertificateValidationContext, both dynamic
@@ -862,21 +1029,18 @@ pub mod common_tls_context {
         /// CertificateValidationContext overwrites singular fields in default
         /// CertificateValidationContext, and concatenates repeated fields to default
         /// CertificateValidationContext, and logical OR is applied to boolean fields.
-        #[prost(message, tag="8")]
+        #[prost(message, tag = "8")]
         CombinedValidationContext(CombinedCertificateValidationContext),
         /// Certificate provider for fetching validation context.
         /// \[#not-implemented-hide:\]
-        #[prost(message, tag="10")]
+        #[prost(message, tag = "10")]
         ValidationContextCertificateProvider(CertificateProvider),
         /// Certificate provider instance for fetching validation context.
         /// \[#not-implemented-hide:\]
-        #[prost(message, tag="12")]
+        #[prost(message, tag = "12")]
         ValidationContextCertificateProviderInstance(CertificateProviderInstance),
     }
 }
-// [#protodoc-title: SPIFFE Certificate Validator]
-// [#extension: envoy.tls.cert_validator.spiffe]
-
 /// Configuration specific to the `SPIFFE <<https://github.com/spiffe/spiffe>`_> certificate validator.
 ///
 /// Example:
@@ -906,23 +1070,29 @@ pub mod common_tls_context {
 /// - :ref:`allow_expired_certificate <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.allow_expired_certificate>` to allow expired certificates.
 /// - :ref:`match_typed_subject_alt_names <envoy_v3_api_field_extensions.transport_sockets.tls.v3.CertificateValidationContext.match_typed_subject_alt_names>` to match **URI** SAN of certificates. Unlike the default validator, SPIFFE validator only matches **URI** SAN (which equals to SVID in SPIFFE terminology) and ignore other SAN types.
 ///
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpiffeCertValidatorConfig {
     /// This field specifies trust domains used for validating incoming X.509-SVID(s).
-    #[prost(message, repeated, tag="1")]
-    pub trust_domains: ::prost::alloc::vec::Vec<spiffe_cert_validator_config::TrustDomain>,
+    #[prost(message, repeated, tag = "1")]
+    pub trust_domains: ::prost::alloc::vec::Vec<
+        spiffe_cert_validator_config::TrustDomain,
+    >,
 }
 /// Nested message and enum types in `SPIFFECertValidatorConfig`.
 pub mod spiffe_cert_validator_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct TrustDomain {
         /// Name of the trust domain, ``example.com``, ``foo.bar.gov`` for example.
         /// Note that this must *not* have "spiffe://" prefix.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// Specify a data source holding x.509 trust bundle used for validating incoming SVID(s) in this trust domain.
-        #[prost(message, optional, tag="2")]
-        pub trust_bundle: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+        #[prost(message, optional, tag = "2")]
+        pub trust_bundle: ::core::option::Option<
+            super::super::super::super::super::config::core::v3::DataSource,
+        >,
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.tls.v3` package
@@ -4300,4 +4470,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x3a, 0x29, 0x55, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf, 0x08,
     0x12, 0x12, 0x03, 0x3a, 0x2a, 0x54, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.tls.v3.serde.rs");
 // @@protoc_insertion_point(module)

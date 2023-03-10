@@ -1,8 +1,7 @@
 // @generated
-// [#protodoc-title: Circuit breakers]
-
 /// :ref:`Circuit breaking<arch_overview_circuit_break>` settings can be
 /// specified individually for each defined priority.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CircuitBreakers {
     /// If multiple :ref:`Thresholds<envoy_api_msg_cluster.CircuitBreakers.Thresholds>`
@@ -10,7 +9,7 @@ pub struct CircuitBreakers {
     /// the first one in the list is used. If no Thresholds is defined for a given
     /// :ref:`RoutingPriority<envoy_api_enum_core.RoutingPriority>`, the default values
     /// are used.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub thresholds: ::prost::alloc::vec::Vec<circuit_breakers::Thresholds>,
 }
 /// Nested message and enum types in `CircuitBreakers`.
@@ -18,27 +17,28 @@ pub mod circuit_breakers {
     /// A Thresholds defines CircuitBreaker settings for a
     /// :ref:`RoutingPriority<envoy_api_enum_core.RoutingPriority>`.
     /// [#next-free-field: 9]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Thresholds {
         /// The :ref:`RoutingPriority<envoy_api_enum_core.RoutingPriority>`
         /// the specified CircuitBreaker settings apply to.
-        #[prost(enumeration="super::super::core::RoutingPriority", tag="1")]
+        #[prost(enumeration = "super::super::core::RoutingPriority", tag = "1")]
         pub priority: i32,
         /// The maximum number of connections that Envoy will make to the upstream
         /// cluster. If not specified, the default is 1024.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub max_connections: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// The maximum number of pending requests that Envoy will allow to the
         /// upstream cluster. If not specified, the default is 1024.
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub max_pending_requests: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// The maximum number of parallel requests that Envoy will make to the
         /// upstream cluster. If not specified, the default is 1024.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub max_requests: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// The maximum number of parallel retries that Envoy will allow to the
         /// upstream cluster. If not specified, the default is 3.
-        #[prost(message, optional, tag="5")]
+        #[prost(message, optional, tag = "5")]
         pub max_retries: ::core::option::Option<::pbjson_types::UInt32Value>,
         /// Specifies a limit on concurrent retries in relation to the number of active requests. This
         /// parameter is optional.
@@ -47,7 +47,7 @@ pub mod circuit_breakers {
         ///
         ///     If this field is set, the retry budget will override any configured retry circuit
         ///     breaker.
-        #[prost(message, optional, tag="8")]
+        #[prost(message, optional, tag = "8")]
         pub retry_budget: ::core::option::Option<thresholds::RetryBudget>,
         /// If track_remaining is true, then stats will be published that expose
         /// the number of resources remaining until the circuit breakers open. If
@@ -57,18 +57,19 @@ pub mod circuit_breakers {
         ///
         ///     If a retry budget is used in lieu of the max_retries circuit breaker,
         ///     the remaining retry resources remaining will not be tracked.
-        #[prost(bool, tag="6")]
+        #[prost(bool, tag = "6")]
         pub track_remaining: bool,
         /// The maximum number of connection pools per cluster that Envoy will concurrently support at
         /// once. If not specified, the default is unlimited. Set this for clusters which create a
         /// large number of connection pools. See
         /// :ref:`Circuit Breaking <arch_overview_circuit_break_cluster_maximum_connection_pools>` for
         /// more details.
-        #[prost(message, optional, tag="7")]
+        #[prost(message, optional, tag = "7")]
         pub max_connection_pools: ::core::option::Option<::pbjson_types::UInt32Value>,
     }
     /// Nested message and enum types in `Thresholds`.
     pub mod thresholds {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct RetryBudget {
             /// Specifies the limit on concurrent retries as a percentage of the sum of active requests and
@@ -76,79 +77,80 @@ pub mod circuit_breakers {
             /// budget_percent is set to 25, there may be 25 active retries.
             ///
             /// This parameter is optional. Defaults to 20%.
-            #[prost(message, optional, tag="1")]
-            pub budget_percent: ::core::option::Option<super::super::super::super::super::r#type::Percent>,
+            #[prost(message, optional, tag = "1")]
+            pub budget_percent: ::core::option::Option<
+                super::super::super::super::super::r#type::Percent,
+            >,
             /// Specifies the minimum retry concurrency allowed for the retry budget. The limit on the
             /// number of active retries may never go below this number.
             ///
             /// This parameter is optional. Defaults to 3.
-            #[prost(message, optional, tag="2")]
-            pub min_retry_concurrency: ::core::option::Option<::pbjson_types::UInt32Value>,
+            #[prost(message, optional, tag = "2")]
+            pub min_retry_concurrency: ::core::option::Option<
+                ::pbjson_types::UInt32Value,
+            >,
         }
     }
 }
-// [#protodoc-title: Upstream filters]
-// Upstream filters apply to the connections to the upstream cluster hosts.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Filter {
     /// The name of the filter to instantiate. The name must match a
     /// :ref:`supported filter <config_network_filters>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Filter specific configuration which depends on the filter being
     /// instantiated. See the supported filters for further documentation.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub typed_config: ::core::option::Option<::pbjson_types::Any>,
 }
-// [#protodoc-title: Outlier detection]
-
 /// See the :ref:`architecture overview <arch_overview_outlier_detection>` for
 /// more information on outlier detection.
 /// [#next-free-field: 21]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutlierDetection {
     /// The number of consecutive server-side error responses (for HTTP traffic,
     /// 5xx responses; for TCP traffic, connection failures; for Redis, failure to
     /// respond PONG; etc.) before a consecutive 5xx ejection occurs. Defaults to 5.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub consecutive_5xx: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The time interval between ejection analysis sweeps. This can result in
     /// both new ejections as well as hosts being returned to service. Defaults
     /// to 10000ms or 10s.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub interval: ::core::option::Option<::pbjson_types::Duration>,
     /// The base time that a host is ejected for. The real time is equal to the
     /// base time multiplied by the number of times the host has been ejected.
     /// Defaults to 30000ms or 30s.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub base_ejection_time: ::core::option::Option<::pbjson_types::Duration>,
     /// The maximum % of an upstream cluster that can be ejected due to outlier
     /// detection. Defaults to 10% but will eject at least one host regardless of the value.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub max_ejection_percent: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The % chance that a host will be actually ejected when an outlier status
     /// is detected through consecutive 5xx. This setting can be used to disable
     /// ejection or to ramp it up slowly. Defaults to 100.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub enforcing_consecutive_5xx: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The % chance that a host will be actually ejected when an outlier status
     /// is detected through success rate statistics. This setting can be used to
     /// disable ejection or to ramp it up slowly. Defaults to 100.
-    #[prost(message, optional, tag="6")]
+    #[prost(message, optional, tag = "6")]
     pub enforcing_success_rate: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The number of hosts in a cluster that must have enough request volume to
     /// detect success rate outliers. If the number of hosts is less than this
     /// setting, outlier detection via success rate statistics is not performed
     /// for any host in the cluster. Defaults to 5.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub success_rate_minimum_hosts: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The minimum number of total requests that must be collected in one
     /// interval (as defined by the interval duration above) to include this host
     /// in success rate based outlier detection. If the volume is lower than this
     /// setting, outlier detection via success rate statistics is not performed
     /// for that host. Defaults to 100.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub success_rate_request_volume: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// This factor is used to determine the ejection threshold for success rate
     /// outlier ejection. The ejection threshold is the difference between the
@@ -157,17 +159,19 @@ pub struct OutlierDetection {
     /// success_rate_stdev_factor). This factor is divided by a thousand to get a
     /// double. That is, if the desired factor is 1.9, the runtime value should
     /// be 1900. Defaults to 1900.
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub success_rate_stdev_factor: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The number of consecutive gateway failures (502, 503, 504 status codes)
     /// before a consecutive gateway failure ejection occurs. Defaults to 5.
-    #[prost(message, optional, tag="10")]
+    #[prost(message, optional, tag = "10")]
     pub consecutive_gateway_failure: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// The % chance that a host will be actually ejected when an outlier status
     /// is detected through consecutive gateway failures. This setting can be
     /// used to disable ejection or to ramp it up slowly. Defaults to 0.
-    #[prost(message, optional, tag="11")]
-    pub enforcing_consecutive_gateway_failure: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "11")]
+    pub enforcing_consecutive_gateway_failure: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// Determines whether to distinguish local origin failures from external errors. If set to true
     /// the following configuration parameters are taken into account:
     /// :ref:`consecutive_local_origin_failure<envoy_api_field_cluster.OutlierDetection.consecutive_local_origin_failure>`,
@@ -175,59 +179,75 @@ pub struct OutlierDetection {
     /// and
     /// :ref:`enforcing_local_origin_success_rate<envoy_api_field_cluster.OutlierDetection.enforcing_local_origin_success_rate>`.
     /// Defaults to false.
-    #[prost(bool, tag="12")]
+    #[prost(bool, tag = "12")]
     pub split_external_local_origin_errors: bool,
     /// The number of consecutive locally originated failures before ejection
     /// occurs. Defaults to 5. Parameter takes effect only when
     /// :ref:`split_external_local_origin_errors<envoy_api_field_cluster.OutlierDetection.split_external_local_origin_errors>`
     /// is set to true.
-    #[prost(message, optional, tag="13")]
-    pub consecutive_local_origin_failure: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "13")]
+    pub consecutive_local_origin_failure: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The % chance that a host will be actually ejected when an outlier status
     /// is detected through consecutive locally originated failures. This setting can be
     /// used to disable ejection or to ramp it up slowly. Defaults to 100.
     /// Parameter takes effect only when
     /// :ref:`split_external_local_origin_errors<envoy_api_field_cluster.OutlierDetection.split_external_local_origin_errors>`
     /// is set to true.
-    #[prost(message, optional, tag="14")]
-    pub enforcing_consecutive_local_origin_failure: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "14")]
+    pub enforcing_consecutive_local_origin_failure: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The % chance that a host will be actually ejected when an outlier status
     /// is detected through success rate statistics for locally originated errors.
     /// This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.
     /// Parameter takes effect only when
     /// :ref:`split_external_local_origin_errors<envoy_api_field_cluster.OutlierDetection.split_external_local_origin_errors>`
     /// is set to true.
-    #[prost(message, optional, tag="15")]
-    pub enforcing_local_origin_success_rate: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "15")]
+    pub enforcing_local_origin_success_rate: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The failure percentage to use when determining failure percentage-based outlier detection. If
     /// the failure percentage of a given host is greater than or equal to this value, it will be
     /// ejected. Defaults to 85.
-    #[prost(message, optional, tag="16")]
-    pub failure_percentage_threshold: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "16")]
+    pub failure_percentage_threshold: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The % chance that a host will be actually ejected when an outlier status is detected through
     /// failure percentage statistics. This setting can be used to disable ejection or to ramp it up
     /// slowly. Defaults to 0.
     ///
     /// [#next-major-version: setting this without setting failure_percentage_threshold should be
     /// invalid in v4.]
-    #[prost(message, optional, tag="17")]
-    pub enforcing_failure_percentage: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "17")]
+    pub enforcing_failure_percentage: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The % chance that a host will be actually ejected when an outlier status is detected through
     /// local-origin failure percentage statistics. This setting can be used to disable ejection or to
     /// ramp it up slowly. Defaults to 0.
-    #[prost(message, optional, tag="18")]
-    pub enforcing_failure_percentage_local_origin: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "18")]
+    pub enforcing_failure_percentage_local_origin: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The minimum number of hosts in a cluster in order to perform failure percentage-based ejection.
     /// If the total number of hosts in the cluster is less than this value, failure percentage-based
     /// ejection will not be performed. Defaults to 5.
-    #[prost(message, optional, tag="19")]
-    pub failure_percentage_minimum_hosts: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "19")]
+    pub failure_percentage_minimum_hosts: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
     /// The minimum number of total requests that must be collected in one interval (as defined by the
     /// interval duration above) to perform failure percentage-based ejection for this host. If the
     /// volume is lower than this setting, failure percentage-based ejection will not be performed for
     /// this host. Defaults to 50.
-    #[prost(message, optional, tag="20")]
-    pub failure_percentage_request_volume: ::core::option::Option<::pbjson_types::UInt32Value>,
+    #[prost(message, optional, tag = "20")]
+    pub failure_percentage_request_volume: ::core::option::Option<
+        ::pbjson_types::UInt32Value,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.api.v2.cluster` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -1248,4 +1268,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x96, 0x01, 0x1e, 0x3f, 0x0a, 0x0d, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x13, 0x03, 0x12, 0x04, 0x96,
     0x01, 0x42, 0x44, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.api.v2.cluster.serde.rs");
 // @@protoc_insertion_point(module)

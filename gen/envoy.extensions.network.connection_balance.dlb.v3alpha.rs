@@ -1,8 +1,4 @@
 // @generated
-// [#protodoc-title: Dlb connection balancer configuration]
-// DLB :ref:`configuration overview <config_connection_balance_dlb>`.
-// [#extension: envoy.network.connection_balance.dlb]
-
 /// The Dlb is a hardware managed system of queues and arbiters connecting producers and consumers. It is a PCIE device
 /// in the CPU package. It interacts with software running on cores and potentially other devices. The Dlb implements the
 /// following balancing features:
@@ -15,15 +11,16 @@
 ///
 /// As the Dlb connection balancer provides assistance from dedicated Dlb hardware, it can be used for a proxy with a large number of connections
 /// (e.g., a gateway).
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dlb {
     /// The ID of the Dlb hardware, start from 0.
     /// If not specified, use the first available device as default.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub id: u32,
     /// Maximum number of retries when sending to DLB device fails.
     /// No retry as default.
-    #[prost(uint32, tag="2")]
+    #[prost(uint32, tag = "2")]
     pub max_retries: u32,
 }
 /// Encoded file descriptor set for the `envoy.extensions.network.connection_balance.dlb.v3alpha` package
@@ -139,4 +136,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x00, 0x02, 0x01, 0x01, 0x12, 0x03, 0x23, 0x09, 0x14, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00,
     0x02, 0x01, 0x03, 0x12, 0x03, 0x23, 0x17, 0x18, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.network.connection_balance.dlb.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

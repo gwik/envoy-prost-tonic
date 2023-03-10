@@ -1,22 +1,24 @@
 // @generated
-// [#protodoc-title: AWS X-Ray Tracer Configuration]
-// Configuration for AWS X-Ray tracer
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct XRayConfig {
     /// The UDP endpoint of the X-Ray Daemon where the spans will be sent.
     /// If this value is not set, the default value of 127.0.0.1:2000 will be used.
-    #[prost(message, optional, tag="1")]
-    pub daemon_endpoint: ::core::option::Option<super::super::super::api::v2::core::SocketAddress>,
+    #[prost(message, optional, tag = "1")]
+    pub daemon_endpoint: ::core::option::Option<
+        super::super::super::api::v2::core::SocketAddress,
+    >,
     /// The name of the X-Ray segment.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub segment_name: ::prost::alloc::string::String,
     /// The location of a local custom sampling rules JSON file.
     /// For an example of the sampling rules see:
     /// `X-Ray SDK documentation
     /// <<https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-go-configuration.html#xray-sdk-go-configuration-sampling>`_>
-    #[prost(message, optional, tag="3")]
-    pub sampling_rule_manifest: ::core::option::Option<super::super::super::api::v2::core::DataSource>,
+    #[prost(message, optional, tag = "3")]
+    pub sampling_rule_manifest: ::core::option::Option<
+        super::super::super::api::v2::core::DataSource,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.trace.v2alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -114,4 +116,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x1f, 0x32, 0x33, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.trace.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

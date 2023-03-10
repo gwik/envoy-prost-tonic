@@ -1,20 +1,16 @@
 // @generated
-// [#protodoc-title: Golang]
-//
-// For an overview of the Golang filter please see the :ref:`configuration reference documentation <config_http_filters_golang>`.
-// [#extension: envoy.filters.http.golang]
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Config {
     /// Globally unique ID for a dynamic library file.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub library_id: ::prost::alloc::string::String,
     /// Path to a dynamic library implementing the
     /// :repo:`StreamFilter API <contrib/golang/filters/http/source/go/pkg/api.StreamFilter>`
     /// interface.
     /// [#comment:TODO(wangfakang): Support for downloading libraries from remote repositories.]
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub library_path: ::prost::alloc::string::String,
     /// Globally unique name of the Go plugin.
     ///
@@ -22,7 +18,7 @@ pub struct Config {
     /// and can be used to associate :ref:`route and virtualHost plugin configuration
     /// <envoy_v3_api_field_extensions.filters.http.golang.v3alpha.ConfigsPerRoute.plugins_config>`.
     ///
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub plugin_name: ::prost::alloc::string::String,
     /// Configuration for the Go plugin.
     ///
@@ -33,7 +29,7 @@ pub struct Config {
     ///      See the :repo:`StreamFilter API <contrib/golang/filters/http/source/go/pkg/api/filter.go>`
     ///      for more information about how the plugin's configuration data can be accessed.
     ///
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub plugin_config: ::core::option::Option<::pbjson_types::Any>,
     /// Merge policy for plugin configuration.
     ///
@@ -44,7 +40,7 @@ pub struct Config {
     /// * The filter's :ref:`plugin_config <envoy_v3_api_field_extensions.filters.http.golang.v3alpha.Config.plugin_config>`
     ///
     /// \[#not-implemented-hide:\]
-    #[prost(enumeration="config::MergePolicy", tag="5")]
+    #[prost(enumeration = "config::MergePolicy", tag = "5")]
     pub merge_policy: i32,
 }
 /// Nested message and enum types in `Config`.
@@ -56,7 +52,17 @@ pub mod config {
     /// :``OVERRIDE``: Pass merged Virtual host, Router, and plugin configuration into Go plugin.
     ///
     /// \[#not-implemented-hide:\]
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum MergePolicy {
         MergeVirtualhostRouterFilter = 0,
@@ -70,40 +76,59 @@ pub mod config {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                MergePolicy::MergeVirtualhostRouterFilter => "MERGE_VIRTUALHOST_ROUTER_FILTER",
+                MergePolicy::MergeVirtualhostRouterFilter => {
+                    "MERGE_VIRTUALHOST_ROUTER_FILTER"
+                }
                 MergePolicy::MergeVirtualhostRouter => "MERGE_VIRTUALHOST_ROUTER",
                 MergePolicy::Override => "OVERRIDE",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "MERGE_VIRTUALHOST_ROUTER_FILTER" => {
+                    Some(Self::MergeVirtualhostRouterFilter)
+                }
+                "MERGE_VIRTUALHOST_ROUTER" => Some(Self::MergeVirtualhostRouter),
+                "OVERRIDE" => Some(Self::Override),
+                _ => None,
+            }
+        }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouterPlugin {
-    #[prost(oneof="router_plugin::Override", tags="1, 2")]
+    #[prost(oneof = "router_plugin::Override", tags = "1, 2")]
     pub r#override: ::core::option::Option<router_plugin::Override>,
 }
 /// Nested message and enum types in `RouterPlugin`.
 pub mod router_plugin {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Override {
         /// \[#not-implemented-hide:\]
         /// Disable the filter for this particular vhost or route.
         /// If disabled is specified in multiple per-filter-configs, the most specific one will be used.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         Disabled(bool),
         /// The config field is used for setting per-route and per-virtualhost plugin config.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Any),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigsPerRoute {
     /// Configuration of the Go plugin at the per-router or per-virtualhost level,
     /// keyed on the :ref:`plugin_name <envoy_v3_api_field_extensions.filters.http.golang.v3alpha.Config.plugin_name>`
     /// of the Go plugin.
     ///
-    #[prost(map="string, message", tag="1")]
-    pub plugins_config: ::std::collections::HashMap<::prost::alloc::string::String, RouterPlugin>,
+    #[prost(map = "string, message", tag = "1")]
+    pub plugins_config: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        RouterPlugin,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.golang.v3alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -407,4 +432,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0c, 0x0a, 0x05, 0x04, 0x02, 0x02, 0x00, 0x03, 0x12, 0x03, 0x61, 0x2d, 0x2e, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.golang.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

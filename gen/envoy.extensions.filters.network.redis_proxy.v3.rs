@@ -1,20 +1,17 @@
 // @generated
-// [#protodoc-title: Redis Proxy]
-// Redis Proxy :ref:`configuration overview <config_network_filters_redis_proxy>`.
-// [#extension: envoy.filters.network.redis_proxy]
-
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RedisProxy {
     /// The prefix to use when emitting :ref:`statistics <config_network_filters_redis_proxy_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// Network settings for the connection pool to the upstream clusters.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub settings: ::core::option::Option<redis_proxy::ConnPoolSettings>,
     /// Indicates that latency stat should be computed in microseconds. By default it is computed in
     /// milliseconds. This does not apply to upstream command stats currently.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub latency_in_micros: bool,
     /// List of **unique** prefixes used to separate keys from different workloads to different
     /// clusters. Envoy will always favor the longest match first in case of overlap. A catch-all
@@ -43,7 +40,7 @@ pub struct RedisProxy {
     /// See the :ref:`configuration section
     /// <arch_overview_redis_configuration>` of the architecture overview for recommendations on
     /// configuring the backing clusters.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub prefix_routes: ::core::option::Option<redis_proxy::PrefixRoutes>,
     /// Authenticate Redis client connections locally by forcing downstream clients to issue a `Redis
     /// AUTH command <<https://redis.io/commands/auth>`_> with this password before enabling any other
@@ -58,8 +55,10 @@ pub struct RedisProxy {
     ///    This field is deprecated. Use :ref:`downstream_auth_passwords
     ///    <envoy_v3_api_field_extensions.filters.network.redis_proxy.v3.RedisProxy.downstream_auth_passwords>`.
     #[deprecated]
-    #[prost(message, optional, tag="6")]
-    pub downstream_auth_password: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "6")]
+    pub downstream_auth_password: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Authenticate Redis client connections locally by forcing downstream clients to issue a `Redis
     /// AUTH command <<https://redis.io/commands/auth>`_> with one of these passwords before enabling any other
     /// command. If an AUTH command's password matches one of these passwords, an "OK" response will be returned
@@ -68,8 +67,10 @@ pub struct RedisProxy {
     /// password(s) are set, then a "NOAUTH Authentication required." error response will be sent to the
     /// client. If an AUTH command is received when the password is not set, then an "ERR Client sent
     /// AUTH, but no password is set" error will be returned.
-    #[prost(message, repeated, tag="9")]
-    pub downstream_auth_passwords: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, repeated, tag = "9")]
+    pub downstream_auth_passwords: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// List of faults to inject. Faults currently come in two flavors:
     /// - Delay, which delays a request.
     /// - Error, which responds to a request with an error. Errors can also have delays attached.
@@ -97,7 +98,7 @@ pub struct RedisProxy {
     ///
     /// See the :ref:`fault injection section
     /// <config_network_filters_redis_proxy_fault_injection>` for more information on how to configure this.
-    #[prost(message, repeated, tag="8")]
+    #[prost(message, repeated, tag = "8")]
     pub faults: ::prost::alloc::vec::Vec<redis_proxy::RedisFault>,
     /// If a username is provided an ACL style AUTH command will be required with a username and password.
     /// Authenticate Redis client connections locally by forcing downstream clients to issue a `Redis
@@ -109,13 +110,16 @@ pub struct RedisProxy {
     /// password is set, then a "NOAUTH Authentication required." error response will be sent to the
     /// client. If an AUTH command is received when the password is not set, then an "ERR Client sent
     /// AUTH, but no ACL is set" error will be returned.
-    #[prost(message, optional, tag="7")]
-    pub downstream_auth_username: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "7")]
+    pub downstream_auth_username: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
 }
 /// Nested message and enum types in `RedisProxy`.
 pub mod redis_proxy {
     /// Redis connection pool settings.
     /// [#next-free-field: 10]
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct ConnPoolSettings {
         /// Per-operation timeout in milliseconds. The timer starts when the first
@@ -124,7 +128,7 @@ pub mod redis_proxy {
         /// The only exception to this behavior is when a connection to a backend is not yet established.
         /// In that case, the connect timeout on the cluster will govern the timeout until the connection
         /// is ready.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub op_timeout: ::core::option::Option<::pbjson_types::Duration>,
         /// Use hash tagging on every redis key to guarantee that keys with the same hash tag will be
         /// forwarded to the same upstream. The hash key used for determining the upstream in a
@@ -136,21 +140,23 @@ pub mod redis_proxy {
         ///
         /// * '{user1000}.following' and '{user1000}.followers' **will** be sent to the same upstream
         /// * '{user1000}.following' and '{user1001}.following' **might** be sent to the same upstream
-        #[prost(bool, tag="2")]
+        #[prost(bool, tag = "2")]
         pub enable_hashtagging: bool,
         /// Accept `moved and ask redirection
         /// <<https://redis.io/topics/cluster-spec#redirection-and-resharding>`_> errors from upstream
         /// redis servers, and retry commands to the specified target server. The target server does not
         /// need to be known to the cluster manager. If the command cannot be redirected, then the
         /// original error is passed downstream unchanged. By default, this support is not enabled.
-        #[prost(bool, tag="3")]
+        #[prost(bool, tag = "3")]
         pub enable_redirection: bool,
         /// If ``enable_redirection`` is set to true this option configures the DNS cache that the
         /// connection pool will use to resolve hostnames that are returned with MOVED and ASK responses.
         /// If no configuration is provided, DNS lookups will not be performed (and thus the MOVED/ASK errors
         /// will be propagated verbatim to the user).
-        #[prost(message, optional, tag="9")]
-        pub dns_cache_config: ::core::option::Option<super::super::super::super::super::common::dynamic_forward_proxy::v3::DnsCacheConfig>,
+        #[prost(message, optional, tag = "9")]
+        pub dns_cache_config: ::core::option::Option<
+            super::super::super::super::super::common::dynamic_forward_proxy::v3::DnsCacheConfig,
+        >,
         /// Maximum size of encoded request buffer before flush is triggered and encoded requests
         /// are sent upstream. If this is unset, the buffer flushes whenever it receives data
         /// and performs no batching.
@@ -158,7 +164,7 @@ pub mod redis_proxy {
         /// them batched- for example if one is running several worker processes, each with its own
         /// Redis connection. There is no benefit to using this with a single downstream process.
         /// Recommended size (if enabled) is 1024 bytes.
-        #[prost(uint32, tag="4")]
+        #[prost(uint32, tag = "4")]
         pub max_buffer_size_before_flush: u32,
         /// The encoded request buffer is flushed N milliseconds after the first request has been
         /// encoded, unless the buffer size has already exceeded ``max_buffer_size_before_flush``.
@@ -170,21 +176,23 @@ pub mod redis_proxy {
         /// before the timer fires.
         /// If ``max_buffer_size_before_flush`` is set, but ``buffer_flush_timeout`` is not, the latter
         /// defaults to 3ms.
-        #[prost(message, optional, tag="5")]
+        #[prost(message, optional, tag = "5")]
         pub buffer_flush_timeout: ::core::option::Option<::pbjson_types::Duration>,
         /// ``max_upstream_unknown_connections`` controls how many upstream connections to unknown hosts
         /// can be created at any given time by any given worker thread (see ``enable_redirection`` for
         /// more details). If the host is unknown and a connection cannot be created due to enforcing
         /// this limit, then redirection will fail and the original redirection error will be passed
         /// downstream unchanged. This limit defaults to 100.
-        #[prost(message, optional, tag="6")]
-        pub max_upstream_unknown_connections: ::core::option::Option<::pbjson_types::UInt32Value>,
+        #[prost(message, optional, tag = "6")]
+        pub max_upstream_unknown_connections: ::core::option::Option<
+            ::pbjson_types::UInt32Value,
+        >,
         /// Enable per-command statistics per upstream cluster, in addition to the filter level aggregate
         /// count. These commands are measured in microseconds.
-        #[prost(bool, tag="8")]
+        #[prost(bool, tag = "8")]
         pub enable_command_stats: bool,
         /// Read policy. The default is to read from the primary.
-        #[prost(enumeration="conn_pool_settings::ReadPolicy", tag="7")]
+        #[prost(enumeration = "conn_pool_settings::ReadPolicy", tag = "7")]
         pub read_policy: i32,
     }
     /// Nested message and enum types in `ConnPoolSettings`.
@@ -193,7 +201,17 @@ pub mod redis_proxy {
         /// supported for Redis Cluster. All ReadPolicy settings except MASTER may return stale data
         /// because replication is asynchronous and requires some delay. You need to ensure that your
         /// application can tolerate stale data.
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum ReadPolicy {
             /// Default mode. Read from the current primary node.
@@ -224,38 +242,53 @@ pub mod redis_proxy {
                     ReadPolicy::Any => "ANY",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "MASTER" => Some(Self::Master),
+                    "PREFER_MASTER" => Some(Self::PreferMaster),
+                    "REPLICA" => Some(Self::Replica),
+                    "PREFER_REPLICA" => Some(Self::PreferReplica),
+                    "ANY" => Some(Self::Any),
+                    _ => None,
+                }
+            }
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct PrefixRoutes {
         /// List of prefix routes.
-        #[prost(message, repeated, tag="1")]
+        #[prost(message, repeated, tag = "1")]
         pub routes: ::prost::alloc::vec::Vec<prefix_routes::Route>,
         /// Indicates that prefix matching should be case insensitive.
-        #[prost(bool, tag="2")]
+        #[prost(bool, tag = "2")]
         pub case_insensitive: bool,
         /// Optional catch-all route to forward commands that doesn't match any of the routes. The
         /// catch-all route becomes required when no routes are specified.
-        #[prost(message, optional, tag="4")]
+        #[prost(message, optional, tag = "4")]
         pub catch_all_route: ::core::option::Option<prefix_routes::Route>,
     }
     /// Nested message and enum types in `PrefixRoutes`.
     pub mod prefix_routes {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct Route {
             /// String prefix that must match the beginning of the keys. Envoy will always favor the
             /// longest match.
-            #[prost(string, tag="1")]
+            #[prost(string, tag = "1")]
             pub prefix: ::prost::alloc::string::String,
             /// Indicates if the prefix needs to be removed from the key when forwarded.
-            #[prost(bool, tag="2")]
+            #[prost(bool, tag = "2")]
             pub remove_prefix: bool,
             /// Upstream cluster to forward the command to.
-            #[prost(string, tag="3")]
+            #[prost(string, tag = "3")]
             pub cluster: ::prost::alloc::string::String,
             /// Indicates that the route has a request mirroring policy.
-            #[prost(message, repeated, tag="4")]
-            pub request_mirror_policy: ::prost::alloc::vec::Vec<route::RequestMirrorPolicy>,
+            #[prost(message, repeated, tag = "4")]
+            pub request_mirror_policy: ::prost::alloc::vec::Vec<
+                route::RequestMirrorPolicy,
+            >,
         }
         /// Nested message and enum types in `Route`.
         pub mod route {
@@ -263,46 +296,62 @@ pub mod redis_proxy {
             /// implementation is "fire and forget," meaning Envoy will not wait for the shadow cluster to
             /// respond before returning the response from the primary cluster. All normal statistics are
             /// collected for the shadow cluster making this feature useful for testing.
+            #[allow(clippy::derive_partial_eq_without_eq)]
             #[derive(Clone, PartialEq, ::prost::Message)]
             pub struct RequestMirrorPolicy {
                 /// Specifies the cluster that requests will be mirrored to. The cluster must
                 /// exist in the cluster manager configuration.
-                #[prost(string, tag="1")]
+                #[prost(string, tag = "1")]
                 pub cluster: ::prost::alloc::string::String,
                 /// If not specified or the runtime key is not present, all requests to the target cluster
                 /// will be mirrored.
                 ///
                 /// If specified, Envoy will lookup the runtime key to get the percentage of requests to the
                 /// mirror.
-                #[prost(message, optional, tag="2")]
-                pub runtime_fraction: ::core::option::Option<super::super::super::super::super::super::super::super::config::core::v3::RuntimeFractionalPercent>,
+                #[prost(message, optional, tag = "2")]
+                pub runtime_fraction: ::core::option::Option<
+                    super::super::super::super::super::super::super::super::config::core::v3::RuntimeFractionalPercent,
+                >,
                 /// Set this to TRUE to only mirror write commands, this is effectively replicating the
                 /// writes in a "fire and forget" manner.
-                #[prost(bool, tag="3")]
+                #[prost(bool, tag = "3")]
                 pub exclude_read_commands: bool,
             }
         }
     }
     /// RedisFault defines faults used for fault injection.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct RedisFault {
         /// Fault type.
-        #[prost(enumeration="redis_fault::RedisFaultType", tag="1")]
+        #[prost(enumeration = "redis_fault::RedisFaultType", tag = "1")]
         pub fault_type: i32,
         /// Percentage of requests fault applies to.
-        #[prost(message, optional, tag="2")]
-        pub fault_enabled: ::core::option::Option<super::super::super::super::super::super::config::core::v3::RuntimeFractionalPercent>,
+        #[prost(message, optional, tag = "2")]
+        pub fault_enabled: ::core::option::Option<
+            super::super::super::super::super::super::config::core::v3::RuntimeFractionalPercent,
+        >,
         /// Delay for all faults. If not set, defaults to zero
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub delay: ::core::option::Option<::pbjson_types::Duration>,
         /// Commands fault is restricted to, if any. If not set, fault applies to all commands
         /// other than auth and ping (due to special handling of those commands in Envoy).
-        #[prost(string, repeated, tag="4")]
+        #[prost(string, repeated, tag = "4")]
         pub commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
     /// Nested message and enum types in `RedisFault`.
     pub mod redis_fault {
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum RedisFaultType {
             /// Delays requests. This is the base fault; other faults can have delays added.
@@ -321,22 +370,35 @@ pub mod redis_proxy {
                     RedisFaultType::Error => "ERROR",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "DELAY" => Some(Self::Delay),
+                    "ERROR" => Some(Self::Error),
+                    _ => None,
+                }
+            }
         }
     }
 }
 /// RedisProtocolOptions specifies Redis upstream protocol options. This object is used in
 /// :ref:`typed_extension_protocol_options<envoy_v3_api_field_config.cluster.v3.Cluster.typed_extension_protocol_options>`,
 /// keyed by the name ``envoy.filters.network.redis_proxy``.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RedisProtocolOptions {
     /// Upstream server password as defined by the ``requirepass`` directive
     /// `<<https://redis.io/topics/config>`_> in the server's configuration file.
-    #[prost(message, optional, tag="1")]
-    pub auth_password: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub auth_password: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
     /// Upstream server username as defined by the ``user`` directive
     /// `<<https://redis.io/topics/acl>`_> in the server's configuration file.
-    #[prost(message, optional, tag="2")]
-    pub auth_username: ::core::option::Option<super::super::super::super::super::config::core::v3::DataSource>,
+    #[prost(message, optional, tag = "2")]
+    pub auth_username: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::DataSource,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.redis_proxy.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -1612,4 +1674,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x04, 0x01, 0x02, 0x01, 0x08, 0xf7, 0xb6, 0xc1, 0x24, 0x12, 0x04, 0xd9, 0x02, 0x2f, 0x52, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.redis_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

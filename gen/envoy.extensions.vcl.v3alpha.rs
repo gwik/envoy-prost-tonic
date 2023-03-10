@@ -1,12 +1,8 @@
 // @generated
-// [#protodoc-title: VCL socket interface configuration]
-// VCL :ref:`configuration overview <config_sock_interface_vcl>`.
-// [#extension: envoy.bootstrap.vcl]
-
 /// Configuration for vcl socket interface that relies on ``vpp`` ``comms`` library (VCL)
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VclSocketInterface {
-}
+pub struct VclSocketInterface {}
 /// Encoded file descriptor set for the `envoy.extensions.vcl.v3alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf4, 0x05, 0x0a, 0x3f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x69, 0x62, 0x2f, 0x65, 0x6e, 0x76,
@@ -58,4 +54,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x6c, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x12, 0x08, 0x1a, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.vcl.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

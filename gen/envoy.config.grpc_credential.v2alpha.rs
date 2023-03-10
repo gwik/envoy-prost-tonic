@@ -1,8 +1,5 @@
 // @generated
-// [#protodoc-title: Grpc Credentials AWS IAM]
-// Configuration for AWS IAM Grpc Credentials Plugin
-// [#extension: envoy.grpc_credentials.aws_iam]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AwsIamConfig {
     /// The `service namespace
@@ -10,33 +7,32 @@ pub struct AwsIamConfig {
     /// of the Grpc endpoint.
     ///
     /// Example: appmesh
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub service_name: ::prost::alloc::string::String,
     /// The `region <<https://docs.aws.amazon.com/general/latest/gr/rande.html>`_> hosting the Grpc
     /// endpoint. If unspecified, the extension will use the value in the ``AWS_REGION`` environment
     /// variable.
     ///
     /// Example: us-west-2
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub region: ::prost::alloc::string::String,
 }
-// [#protodoc-title: Grpc Credentials File Based Metadata]
-// Configuration for File Based Metadata Grpc Credentials Plugin
-// [#extension: envoy.grpc_credentials.file_based_metadata]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileBasedMetadataConfig {
     /// Location or inline data of secret to use for authentication of the Google gRPC connection
     /// this secret will be attached to a header of the gRPC connection
-    #[prost(message, optional, tag="1")]
-    pub secret_data: ::core::option::Option<super::super::super::api::v2::core::DataSource>,
+    #[prost(message, optional, tag = "1")]
+    pub secret_data: ::core::option::Option<
+        super::super::super::api::v2::core::DataSource,
+    >,
     /// Metadata header key to use for sending the secret data
     /// if no header key is set, "authorization" header will be used
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub header_key: ::prost::alloc::string::String,
     /// Prefix to prepend to the secret in the metadata header
     /// if no prefix is set, the default is to use no prefix
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub header_prefix: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.config.grpc_credential.v2alpha` package
@@ -216,4 +212,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x01, 0x12, 0x03, 0x1e, 0x09, 0x16, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03,
     0x12, 0x03, 0x1e, 0x19, 0x1a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.grpc_credential.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

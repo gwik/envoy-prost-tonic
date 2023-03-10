@@ -142,10 +142,10 @@ pub mod aggregated_discovery_service_client {
 pub mod aggregated_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with AggregatedDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with AggregatedDiscoveryServiceServer.
     #[async_trait]
     pub trait AggregatedDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamAggregatedResources method.
+        /// Server streaming response type for the StreamAggregatedResources method.
         type StreamAggregatedResourcesStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::super::api::v2::DiscoveryResponse,
@@ -165,7 +165,7 @@ pub mod aggregated_discovery_service_server {
             tonic::Response<Self::StreamAggregatedResourcesStream>,
             tonic::Status,
         >;
-        ///Server streaming response type for the DeltaAggregatedResources method.
+        /// Server streaming response type for the DeltaAggregatedResources method.
         type DeltaAggregatedResourcesStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::super::api::v2::DeltaDiscoveryResponse,
@@ -512,10 +512,10 @@ pub mod health_discovery_service_client {
 pub mod health_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with HealthDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with HealthDiscoveryServiceServer.
     #[async_trait]
     pub trait HealthDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamHealthCheck method.
+        /// Server streaming response type for the StreamHealthCheck method.
         type StreamHealthCheckStream: futures_core::Stream<
                 Item = Result<super::HealthCheckSpecifier, tonic::Status>,
             >
@@ -880,10 +880,10 @@ pub mod runtime_discovery_service_client {
 pub mod runtime_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with RuntimeDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with RuntimeDiscoveryServiceServer.
     #[async_trait]
     pub trait RuntimeDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamRuntime method.
+        /// Server streaming response type for the StreamRuntime method.
         type StreamRuntimeStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::super::api::v2::DiscoveryResponse,
@@ -898,7 +898,7 @@ pub mod runtime_discovery_service_server {
                 tonic::Streaming<super::super::super::super::api::v2::DiscoveryRequest>,
             >,
         ) -> Result<tonic::Response<Self::StreamRuntimeStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaRuntime method.
+        /// Server streaming response type for the DeltaRuntime method.
         type DeltaRuntimeStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::super::api::v2::DeltaDiscoveryResponse,
@@ -1319,10 +1319,10 @@ pub mod secret_discovery_service_client {
 pub mod secret_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with SecretDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with SecretDiscoveryServiceServer.
     #[async_trait]
     pub trait SecretDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaSecrets method.
+        /// Server streaming response type for the DeltaSecrets method.
         type DeltaSecretsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::super::api::v2::DeltaDiscoveryResponse,
@@ -1339,7 +1339,7 @@ pub mod secret_discovery_service_server {
                 >,
             >,
         ) -> Result<tonic::Response<Self::DeltaSecretsStream>, tonic::Status>;
-        ///Server streaming response type for the StreamSecrets method.
+        /// Server streaming response type for the StreamSecrets method.
         type StreamSecretsStream: futures_core::Stream<
                 Item = Result<
                     super::super::super::super::api::v2::DiscoveryResponse,

@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Common rate limit components]
-
 /// A RateLimitDescriptor is a list of hierarchical entries that are used by the service to
 /// determine the final rate limit key and overall allowed limit. Here are some examples of how
 /// they might be used for the domain "envoy".
@@ -42,21 +40,23 @@
 ///
 /// The idea behind the API is that (1)/(2)/(3) and (4)/(5) can be sent in 1 request if desired.
 /// This enables building complex application scenarios with a generic backend.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitDescriptor {
     /// Descriptor entries.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub entries: ::prost::alloc::vec::Vec<rate_limit_descriptor::Entry>,
 }
 /// Nested message and enum types in `RateLimitDescriptor`.
 pub mod rate_limit_descriptor {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Entry {
         /// Descriptor key.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub key: ::prost::alloc::string::String,
         /// Descriptor value.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub value: ::prost::alloc::string::String,
     }
 }
@@ -236,4 +236,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x44, 0x1d, 0x49, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf,
     0x08, 0x12, 0x12, 0x03, 0x44, 0x1e, 0x48, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.api.v2.ratelimit.serde.rs");
 // @@protoc_insertion_point(module)

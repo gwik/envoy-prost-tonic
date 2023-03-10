@@ -1,11 +1,7 @@
 // @generated
-// [#protodoc-title: Proxy Protocol Filter]
-// PROXY protocol listener filter.
-// [#extension: envoy.filters.listener.proxy_protocol]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ProxyProtocol {
-}
+pub struct ProxyProtocol {}
 /// Encoded file descriptor set for the `envoy.config.filter.listener.proxy_protocol.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xa8, 0x06, 0x0a, 0x43, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69,
@@ -60,4 +56,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03,
     0x13, 0x08, 0x15, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.listener.proxy_protocol.v2.serde.rs");
 // @@protoc_insertion_point(module)

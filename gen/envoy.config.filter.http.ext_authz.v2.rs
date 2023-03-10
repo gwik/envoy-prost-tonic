@@ -1,9 +1,6 @@
 // @generated
-// [#protodoc-title: External Authorization]
-// External Authorization :ref:`configuration overview <config_http_filters_ext_authz>`.
-// [#extension: envoy.filters.http.ext_authz]
-
 /// [#next-free-field: 12]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExtAuthz {
     ///   Changes filter's behaviour on errors:
@@ -18,16 +15,16 @@ pub struct ExtAuthz {
     ///
     /// Note that errors can be *always* tracked in the :ref:`stats
     /// <config_http_filters_ext_authz_stats>`.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub failure_mode_allow: bool,
     /// [#not-implemented-hide: Support for this field has been removed.]
     #[deprecated]
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub use_alpha: bool,
     /// Enables filter to buffer the client request body and send it within the authorization request.
     /// A ``x-envoy-auth-partial-body: false|true`` metadata header will be added to the authorization
     /// request message indicating if the body data is partial.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub with_request_body: ::core::option::Option<BufferSettings>,
     /// Clears route cache in order to allow the external authorization service to correctly affect
     /// routing decisions. Filter clears all cached routes when:
@@ -39,12 +36,14 @@ pub struct ExtAuthz {
     /// 3. At least one *authorization response header* is added to the client request, or is used for
     /// altering another client request header.
     ///
-    #[prost(bool, tag="6")]
+    #[prost(bool, tag = "6")]
     pub clear_route_cache: bool,
     /// Sets the HTTP status that is returned to the client when there is a network error between the
     /// filter and the authorization server. The default status is HTTP 403 Forbidden.
-    #[prost(message, optional, tag="7")]
-    pub status_on_error: ::core::option::Option<super::super::super::super::super::r#type::HttpStatus>,
+    #[prost(message, optional, tag = "7")]
+    pub status_on_error: ::core::option::Option<
+        super::super::super::super::super::r#type::HttpStatus,
+    >,
     /// Specifies a list of metadata namespaces whose values, if present, will be passed to the
     /// ext_authz service as an opaque *protobuf::Struct*.
     ///
@@ -57,16 +56,20 @@ pub struct ExtAuthz {
     ///     metadata_context_namespaces:
     ///     - envoy.filters.http.jwt_authn
     ///
-    #[prost(string, repeated, tag="8")]
-    pub metadata_context_namespaces: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "8")]
+    pub metadata_context_namespaces: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// Specifies if the filter is enabled.
     ///
     /// If :ref:`runtime_key <envoy_api_field_core.RuntimeFractionalPercent.runtime_key>` is specified,
     /// Envoy will lookup the runtime key to get the percentage of requests to filter.
     ///
     /// If this field is not specified, the filter will be enabled for all requests.
-    #[prost(message, optional, tag="9")]
-    pub filter_enabled: ::core::option::Option<super::super::super::super::super::api::v2::core::RuntimeFractionalPercent>,
+    #[prost(message, optional, tag = "9")]
+    pub filter_enabled: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::RuntimeFractionalPercent,
+    >,
     /// Specifies whether to deny the requests, when the filter is disabled.
     /// If :ref:`runtime_key <envoy_api_field_core.RuntimeFeatureFlag.runtime_key>` is specified,
     /// Envoy will lookup the runtime key to determine whether to deny request for
@@ -74,44 +77,50 @@ pub struct ExtAuthz {
     /// typed_per_filter_config for the path, requests will not be denied.
     ///
     /// If this field is not specified, all requests will be allowed when disabled.
-    #[prost(message, optional, tag="11")]
-    pub deny_at_disable: ::core::option::Option<super::super::super::super::super::api::v2::core::RuntimeFeatureFlag>,
+    #[prost(message, optional, tag = "11")]
+    pub deny_at_disable: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::RuntimeFeatureFlag,
+    >,
     /// Specifies if the peer certificate is sent to the external service.
     ///
     /// When this field is true, Envoy will include the peer X.509 certificate, if available, in the
     /// :ref:`certificate<envoy_api_field_service.auth.v2.AttributeContext.Peer.certificate>`.
-    #[prost(bool, tag="10")]
+    #[prost(bool, tag = "10")]
     pub include_peer_certificate: bool,
     /// External authorization service configuration.
-    #[prost(oneof="ext_authz::Services", tags="1, 3")]
+    #[prost(oneof = "ext_authz::Services", tags = "1, 3")]
     pub services: ::core::option::Option<ext_authz::Services>,
 }
 /// Nested message and enum types in `ExtAuthz`.
 pub mod ext_authz {
     /// External authorization service configuration.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Services {
         /// gRPC service configuration (default timeout: 200ms).
-        #[prost(message, tag="1")]
-        GrpcService(super::super::super::super::super::super::api::v2::core::GrpcService),
+        #[prost(message, tag = "1")]
+        GrpcService(
+            super::super::super::super::super::super::api::v2::core::GrpcService,
+        ),
         /// HTTP service configuration (default timeout: 200ms).
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         HttpService(super::HttpService),
     }
 }
 /// Configuration for buffering the request data.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BufferSettings {
     /// Sets the maximum size of a message body that the filter will hold in memory. Envoy will return
     /// *HTTP 413* and will *not* initiate the authorization process when buffer reaches the number
     /// set in this field. Note that this setting will have precedence over :ref:`failure_mode_allow
     /// <envoy_api_field_config.filter.http.ext_authz.v2.ExtAuthz.failure_mode_allow>`.
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub max_request_bytes: u32,
     /// When this field is true, Envoy will buffer the message until *max_request_bytes* is reached.
     /// The authorization request will be dispatched and no 413 HTTP error will be returned by the
     /// filter.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub allow_partial_message: bool,
 }
 /// HttpService is used for raw HTTP communication between the filter and the authorization service.
@@ -139,21 +148,25 @@ pub struct BufferSettings {
 /// <envoy_api_field_config.filter.http.ext_authz.v2.AuthorizationResponse.allowed_client_headers>`
 /// for details.
 /// [#next-free-field: 9]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpService {
     /// Sets the HTTP server URI which the authorization requests must be sent to.
-    #[prost(message, optional, tag="1")]
-    pub server_uri: ::core::option::Option<super::super::super::super::super::api::v2::core::HttpUri>,
+    #[prost(message, optional, tag = "1")]
+    pub server_uri: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::HttpUri,
+    >,
     /// Sets a prefix to the value of authorization request header *Path*.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub path_prefix: ::prost::alloc::string::String,
     /// Settings used for controlling authorization request metadata.
-    #[prost(message, optional, tag="7")]
+    #[prost(message, optional, tag = "7")]
     pub authorization_request: ::core::option::Option<AuthorizationRequest>,
     /// Settings used for controlling authorization response metadata.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub authorization_response: ::core::option::Option<AuthorizationResponse>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorizationRequest {
     /// Authorization request will include the client request headers that have a correspondent match
@@ -169,44 +182,55 @@ pub struct AuthorizationRequest {
     /// consequently the value of *Content-Length* of the authorization request reflects the size of
     /// its payload size.
     ///
-    #[prost(message, optional, tag="1")]
-    pub allowed_headers: ::core::option::Option<super::super::super::super::super::r#type::matcher::ListStringMatcher>,
+    #[prost(message, optional, tag = "1")]
+    pub allowed_headers: ::core::option::Option<
+        super::super::super::super::super::r#type::matcher::ListStringMatcher,
+    >,
     /// Sets a list of headers that will be included to the request to authorization service. Note that
     /// client request of the same key will be overridden.
-    #[prost(message, repeated, tag="2")]
-    pub headers_to_add: ::prost::alloc::vec::Vec<super::super::super::super::super::api::v2::core::HeaderValue>,
+    #[prost(message, repeated, tag = "2")]
+    pub headers_to_add: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::api::v2::core::HeaderValue,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorizationResponse {
     /// When this :ref:`list <envoy_api_msg_type.matcher.ListStringMatcher>` is set, authorization
     /// response headers that have a correspondent match will be added to the original client request.
     /// Note that coexistent headers will be overridden.
-    #[prost(message, optional, tag="1")]
-    pub allowed_upstream_headers: ::core::option::Option<super::super::super::super::super::r#type::matcher::ListStringMatcher>,
+    #[prost(message, optional, tag = "1")]
+    pub allowed_upstream_headers: ::core::option::Option<
+        super::super::super::super::super::r#type::matcher::ListStringMatcher,
+    >,
     /// When this :ref:`list <envoy_api_msg_type.matcher.ListStringMatcher>` is set, authorization
     /// response headers that have a correspondent match will be added to the client's response. Note
     /// that when this list is *not* set, all the authorization response headers, except *Authority
     /// (Host)* will be in the response to the client. When a header is included in this list, *Path*,
     /// *Status*, *Content-Length*, *WWWAuthenticate* and *Location* are automatically added.
-    #[prost(message, optional, tag="2")]
-    pub allowed_client_headers: ::core::option::Option<super::super::super::super::super::r#type::matcher::ListStringMatcher>,
+    #[prost(message, optional, tag = "2")]
+    pub allowed_client_headers: ::core::option::Option<
+        super::super::super::super::super::r#type::matcher::ListStringMatcher,
+    >,
 }
 /// Extra settings on a per virtualhost/route/weighted-cluster level.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExtAuthzPerRoute {
-    #[prost(oneof="ext_authz_per_route::Override", tags="1, 2")]
+    #[prost(oneof = "ext_authz_per_route::Override", tags = "1, 2")]
     pub r#override: ::core::option::Option<ext_authz_per_route::Override>,
 }
 /// Nested message and enum types in `ExtAuthzPerRoute`.
 pub mod ext_authz_per_route {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Override {
         /// Disable the ext auth filter for this particular vhost or route.
         /// If disabled is specified in multiple per-filter-configs, the most specific one will be used.
-        #[prost(bool, tag="1")]
+        #[prost(bool, tag = "1")]
         Disabled(bool),
         /// Check request settings for this route.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         CheckSettings(super::CheckSettings),
     }
 }
@@ -215,6 +239,7 @@ pub mod ext_authz_per_route {
 /// extension on the virtual host level can give the ext-authz server information on what virtual
 /// host is used without needing to parse the host header. If CheckSettings is specified in multiple
 /// per-filter-configs, they will be merged in order, and the result will be used.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckSettings {
     /// Context extensions to set on the CheckRequest's
@@ -226,8 +251,11 @@ pub struct CheckSettings {
     ///
     ///    These settings are only applied to a filter configured with a
     ///    :ref:`grpc_service<envoy_api_field_config.filter.http.ext_authz.v2.ExtAuthz.grpc_service>`.
-    #[prost(map="string, string", tag="1")]
-    pub context_extensions: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "1")]
+    pub context_extensions: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.ext_authz.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -1070,4 +1098,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x06, 0x02, 0x00, 0x03, 0x12, 0x04, 0xe9, 0x01, 0x2b, 0x2c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.ext_authz.v2.serde.rs");
 // @@protoc_insertion_point(module)

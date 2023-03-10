@@ -1,4 +1,5 @@
 // @generated
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitQuotaUsageReports {
     /// All quota requests must specify the domain. This enables sharing the quota
@@ -8,12 +9,14 @@ pub struct RateLimitQuotaUsageReports {
     /// Should only be provided in the first report, all subsequent messages on the same
     /// stream are considered to be in the same domain. In case the domain needs to be
     /// changes, close the stream, and reopen a new one with the different domain.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub domain: ::prost::alloc::string::String,
     /// A list of quota usage reports. The list is processed by the RLQS server in the same order
     /// it's provided by the client.
-    #[prost(message, repeated, tag="2")]
-    pub bucket_quota_usages: ::prost::alloc::vec::Vec<rate_limit_quota_usage_reports::BucketQuotaUsage>,
+    #[prost(message, repeated, tag = "2")]
+    pub bucket_quota_usages: ::prost::alloc::vec::Vec<
+        rate_limit_quota_usage_reports::BucketQuotaUsage,
+    >,
 }
 /// Nested message and enum types in `RateLimitQuotaUsageReports`.
 pub mod rate_limit_quota_usage_reports {
@@ -22,39 +25,42 @@ pub mod rate_limit_quota_usage_reports {
     /// .. note::
     ///    Note that the first report sent for a ``BucketId`` indicates to the RLQS server that
     ///    the RLQS client is subscribing for the future assignments for this ``BucketId``.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BucketQuotaUsage {
         /// ``BucketId`` for which request quota usage is reported.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub bucket_id: ::core::option::Option<super::BucketId>,
         /// Time elapsed since the last report.
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub time_elapsed: ::core::option::Option<::pbjson_types::Duration>,
         /// Requests the data plane has allowed through.
-        #[prost(uint64, tag="3")]
+        #[prost(uint64, tag = "3")]
         pub num_requests_allowed: u64,
         /// Requests throttled.
-        #[prost(uint64, tag="4")]
+        #[prost(uint64, tag = "4")]
         pub num_requests_denied: u64,
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimitQuotaResponse {
     /// An ordered list of actions to be applied to the buckets. The actions are applied in the
     /// given order, from top to bottom.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub bucket_action: ::prost::alloc::vec::Vec<rate_limit_quota_response::BucketAction>,
 }
 /// Nested message and enum types in `RateLimitQuotaResponse`.
 pub mod rate_limit_quota_response {
     /// Commands the data plane to apply one of the actions to the bucket with the
     /// :ref:`bucket_id <envoy_v3_api_field_service.rate_limit_quota.v3.RateLimitQuotaResponse.BucketAction.bucket_id>`.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct BucketAction {
         /// ``BucketId`` for which request the action is applied.
-        #[prost(message, optional, tag="1")]
+        #[prost(message, optional, tag = "1")]
         pub bucket_id: ::core::option::Option<super::BucketId>,
-        #[prost(oneof="bucket_action::BucketAction", tags="2, 3")]
+        #[prost(oneof = "bucket_action::BucketAction", tags = "2, 3")]
         pub bucket_action: ::core::option::Option<bucket_action::BucketAction>,
     }
     /// Nested message and enum types in `BucketAction`.
@@ -92,6 +98,7 @@ pub mod rate_limit_quota_response {
         ///    for the duration of the new assignment provided in the :ref:`assignment_time_to_live
         ///    <envoy_v3_api_field_service.rate_limit_quota.v3.RateLimitQuotaResponse.BucketAction.QuotaAssignmentAction.assignment_time_to_live>`
         ///    field. The ``active`` assignment is considered unchanged.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
         pub struct QuotaAssignmentAction {
             /// A duration after which the assignment is be considered ``expired``. The process of the
@@ -115,12 +122,16 @@ pub mod rate_limit_quota_response {
             ///    the assignment. While expiring the assignment just transitions the bucket to
             ///    the "expired assignment" state; abandoning the assignment completely erases
             ///    the bucket from the data plane memory, and stops the usage reports.
-            #[prost(message, optional, tag="2")]
-            pub assignment_time_to_live: ::core::option::Option<::pbjson_types::Duration>,
+            #[prost(message, optional, tag = "2")]
+            pub assignment_time_to_live: ::core::option::Option<
+                ::pbjson_types::Duration,
+            >,
             /// Configures the local rate limiter for the request matched to the bucket.
             /// If not set, allow all requests.
-            #[prost(message, optional, tag="3")]
-            pub rate_limit_strategy: ::core::option::Option<super::super::super::super::super::r#type::v3::RateLimitStrategy>,
+            #[prost(message, optional, tag = "3")]
+            pub rate_limit_strategy: ::core::option::Option<
+                super::super::super::super::super::r#type::v3::RateLimitStrategy,
+            >,
         }
         /// Abandon action for the bucket. Indicates that the RLQS server will no longer be
         /// sending updates for the given :ref:`bucket_id
@@ -152,9 +163,10 @@ pub mod rate_limit_quota_response {
         /// 3. Once the new assignment is received, it's applied per
         ///     "Applying the first assignment to the bucket" section of the :ref:`QuotaAssignmentAction
         ///     <envoy_v3_api_msg_service.rate_limit_quota.v3.RateLimitQuotaResponse.BucketAction.QuotaAssignmentAction>`.
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct AbandonAction {
-        }
+        pub struct AbandonAction {}
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum BucketAction {
             /// Apply the quota assignment to the bucket.
@@ -164,7 +176,7 @@ pub mod rate_limit_quota_response {
             /// :ref:`QuotaAssignmentAction
             /// <envoy_v3_api_msg_service.rate_limit_quota.v3.RateLimitQuotaResponse.BucketAction.QuotaAssignmentAction>`
             /// message.
-            #[prost(message, tag="2")]
+            #[prost(message, tag = "2")]
             QuotaAssignmentAction(QuotaAssignmentAction),
             /// Abandon the bucket.
             ///
@@ -172,7 +184,7 @@ pub mod rate_limit_quota_response {
             /// The process of abandoning the bucket is described in the :ref:`AbandonAction
             /// <envoy_v3_api_msg_service.rate_limit_quota.v3.RateLimitQuotaResponse.BucketAction.AbandonAction>`
             /// message.
-            #[prost(message, tag="3")]
+            #[prost(message, tag = "3")]
             AbandonAction(AbandonAction),
         }
     }
@@ -197,10 +209,14 @@ pub mod rate_limit_quota_response {
 /// .. note::
 ///    The order of ``BucketId`` keys do not matter. Buckets ``{ a: 'A', b: 'B' }`` and
 ///    ``{ b: 'B', a: 'A' }`` are identical.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BucketId {
-    #[prost(map="string, string", tag="1")]
-    pub bucket: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "1")]
+    pub bucket: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.service.rate_limit_quota.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -1065,5 +1081,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x04, 0x02, 0x02, 0x00, 0x08, 0xaf, 0x08, 0x13, 0x12, 0x06, 0xf4, 0x01, 0x22, 0xf8, 0x01,
     0x03, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.rate_limit_quota.v3.serde.rs");
 include!("envoy.service.rate_limit_quota.v3.tonic.rs");
 // @@protoc_insertion_point(module)

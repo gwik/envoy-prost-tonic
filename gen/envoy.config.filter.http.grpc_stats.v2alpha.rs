@@ -1,27 +1,29 @@
 // @generated
-// [#protodoc-title: gRPC statistics] gRPC statistics filter
-// :ref:`configuration overview <config_http_filters_grpc_stats>`.
-// [#extension: envoy.filters.http.grpc_stats]
-
 /// gRPC statistics filter configuration
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterConfig {
     /// If true, the filter maintains a filter state object with the request and response message
     /// counts.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub emit_filter_state: bool,
-    #[prost(oneof="filter_config::PerMethodStatSpecifier", tags="2, 3")]
-    pub per_method_stat_specifier: ::core::option::Option<filter_config::PerMethodStatSpecifier>,
+    #[prost(oneof = "filter_config::PerMethodStatSpecifier", tags = "2, 3")]
+    pub per_method_stat_specifier: ::core::option::Option<
+        filter_config::PerMethodStatSpecifier,
+    >,
 }
 /// Nested message and enum types in `FilterConfig`.
 pub mod filter_config {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum PerMethodStatSpecifier {
         /// If set, specifies an allowlist of service/methods that will have individual stats
         /// emitted for them. Any call that does not match the allowlist will be counted
         /// in a stat with no method specifier: `cluster.<name>.grpc.*`.
-        #[prost(message, tag="2")]
-        IndividualMethodStatsAllowlist(super::super::super::super::super::super::api::v2::core::GrpcMethodList),
+        #[prost(message, tag = "2")]
+        IndividualMethodStatsAllowlist(
+            super::super::super::super::super::super::api::v2::core::GrpcMethodList,
+        ),
         /// If set to true, emit stats for all service/method names.
         ///
         /// If set to false, emit stats for all service/message types to the same stats without including
@@ -38,18 +40,19 @@ pub mod filter_config {
         ///    behavior will default to `stats_for_all_methods=false`. This default value is changed due
         ///    to the previous value being deprecated. This behavior can be changed with runtime override
         ///    `envoy.deprecated_features.grpc_stats_filter_enable_stats_for_all_methods_by_default`.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         StatsForAllMethods(::pbjson_types::BoolValue),
     }
 }
 /// gRPC statistics filter state object in protobuf form.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FilterObject {
     /// Count of request messages in the request stream.
-    #[prost(uint64, tag="1")]
+    #[prost(uint64, tag = "1")]
     pub request_message_count: u64,
     /// Count of response messages in the response stream.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub response_message_count: u64,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.grpc_stats.v2alpha` package
@@ -252,4 +255,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x01, 0x02, 0x01, 0x03, 0x12, 0x03, 0x3d, 0x22, 0x23, 0x62, 0x06, 0x70, 0x72,
     0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.grpc_stats.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

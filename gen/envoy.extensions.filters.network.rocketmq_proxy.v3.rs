@@ -1,65 +1,69 @@
 // @generated
-// [#protodoc-title: Rocketmq Proxy Route Configuration]
-// Rocketmq Proxy :ref:`configuration overview <config_network_filters_rocketmq_proxy>`.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteConfiguration {
     /// The name of the route configuration.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The list of routes that will be matched, in order, against incoming requests. The first route
     /// that matches will be used.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub routes: ::prost::alloc::vec::Vec<Route>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Route {
     /// Route matching parameters.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub r#match: ::core::option::Option<RouteMatch>,
     /// Route request to some upstream cluster.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub route: ::core::option::Option<RouteAction>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteMatch {
     /// The name of the topic.
-    #[prost(message, optional, tag="1")]
-    pub topic: ::core::option::Option<super::super::super::super::super::r#type::matcher::v3::StringMatcher>,
+    #[prost(message, optional, tag = "1")]
+    pub topic: ::core::option::Option<
+        super::super::super::super::super::r#type::matcher::v3::StringMatcher,
+    >,
     /// Specifies a set of headers that the route should match on. The router will check the request’s
     /// headers against all the specified headers in the route config. A match will happen if all the
     /// headers in the route are present in the request with the same values (or based on presence if
     /// the value field is not in the config).
-    #[prost(message, repeated, tag="2")]
-    pub headers: ::prost::alloc::vec::Vec<super::super::super::super::super::config::route::v3::HeaderMatcher>,
+    #[prost(message, repeated, tag = "2")]
+    pub headers: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::route::v3::HeaderMatcher,
+    >,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteAction {
     /// Indicates the upstream cluster to which the request should be routed.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cluster: ::prost::alloc::string::String,
     /// Optional endpoint metadata match criteria used by the subset load balancer.
-    #[prost(message, optional, tag="2")]
-    pub metadata_match: ::core::option::Option<super::super::super::super::super::config::core::v3::Metadata>,
+    #[prost(message, optional, tag = "2")]
+    pub metadata_match: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::Metadata,
+    >,
 }
-// [#protodoc-title: RocketMQ Proxy]
-// RocketMQ Proxy :ref:`configuration overview <config_network_filters_rocketmq_proxy>`.
-// [#extension: envoy.filters.network.rocketmq_proxy]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RocketmqProxy {
     /// The human readable prefix to use when emitting statistics.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The route table for the connection manager is specified in this property.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub route_config: ::core::option::Option<RouteConfiguration>,
     /// The largest duration transient object expected to live, more than 10s is recommended.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub transient_object_life_span: ::core::option::Option<::pbjson_types::Duration>,
     /// If develop_mode is enabled, this proxy plugin may work without dedicated traffic intercepting
     /// facility without considering backward compatibility of exiting RocketMQ client SDK.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub develop_mode: bool,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.rocketmq_proxy.v3` package
@@ -361,4 +365,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x03, 0x01, 0x12, 0x03, 0x21, 0x07, 0x13, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x03, 0x03, 0x12, 0x03, 0x21, 0x16, 0x17, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.rocketmq_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

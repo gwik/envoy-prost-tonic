@@ -1,22 +1,20 @@
 // @generated
-// [#protodoc-title: Common SSL matching inputs]
-
 /// List of comma-delimited URIs in the SAN field of the peer certificate for a downstream.
 /// [#extension: envoy.matching.inputs.uri_san]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UriSanInput {
-}
+pub struct UriSanInput {}
 /// List of comma-delimited DNS entries in the SAN field of the peer certificate for a downstream.
 /// [#extension: envoy.matching.inputs.dns_san]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DnsSanInput {
-}
+pub struct DnsSanInput {}
 /// Input that matches the subject field of the peer certificate in RFC 2253 format for a
 /// downstream.
 /// [#extension: envoy.matching.inputs.subject]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SubjectInput {
-}
+pub struct SubjectInput {}
 /// Encoded file descriptor set for the `envoy.extensions.matching.common_inputs.ssl.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xbe, 0x08, 0x0a, 0x3f, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -89,4 +87,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x04, 0x02, 0x01, 0x12, 0x03, 0x1b, 0x08, 0x14, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.matching.common_inputs.ssl.v3.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,19 +1,13 @@
 // @generated
-// [#protodoc-title: UDP packet writer config]
-// [#extension: envoy.udp_packet_writer.default]
-
 /// Configuration for the default UDP packet writer factory which simply
 /// uses the kernel's sendmsg() to send UDP packets.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UdpDefaultWriterFactory {
-}
-// [#protodoc-title: UDP GSO batch packet writer config]
-// [#extension: envoy.udp_packet_writer.gso]
-
+pub struct UdpDefaultWriterFactory {}
 /// Configuration for the UDP GSO batch packet writer factory.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UdpGsoBatchWriterFactory {
-}
+pub struct UdpGsoBatchWriterFactory {}
 /// Encoded file descriptor set for the `envoy.extensions.udp_packet_writer.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xfb, 0x05, 0x0a, 0x46, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -110,4 +104,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x2e, 0x67, 0x73, 0x6f, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x10,
     0x08, 0x20, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.udp_packet_writer.v3.serde.rs");
 // @@protoc_insertion_point(module)

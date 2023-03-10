@@ -1,19 +1,21 @@
 // @generated
-// [#protodoc-title: Round Robin Load Balancing Policy]
-// [#extension: envoy.load_balancing_policies.round_robin]
-
 /// This configuration allows the built-in ROUND_ROBIN LB policy to be configured via the LB policy
 /// extension point. See the :ref:`load balancing architecture overview
 /// <arch_overview_load_balancing_types>` for more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RoundRobin {
     /// Configuration for slow start mode.
     /// If this configuration is not set, slow start will not be not enabled.
-    #[prost(message, optional, tag="1")]
-    pub slow_start_config: ::core::option::Option<super::super::common::v3::SlowStartConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub slow_start_config: ::core::option::Option<
+        super::super::common::v3::SlowStartConfig,
+    >,
     /// Configuration for local zone aware load balancing or locality weighted load balancing.
-    #[prost(message, optional, tag="2")]
-    pub locality_lb_config: ::core::option::Option<super::super::common::v3::LocalityLbConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub locality_lb_config: ::core::option::Option<
+        super::super::common::v3::LocalityLbConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.load_balancing_policies.round_robin.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -114,4 +116,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x01, 0x01, 0x12, 0x03, 0x1a, 0x1d, 0x2f, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x01, 0x03, 0x12, 0x03, 0x1a, 0x32, 0x33, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.load_balancing_policies.round_robin.v3.serde.rs");
 // @@protoc_insertion_point(module)

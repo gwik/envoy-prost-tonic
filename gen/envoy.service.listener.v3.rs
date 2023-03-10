@@ -1,9 +1,9 @@
 // @generated
 /// \[#not-implemented-hide:\] Not configuration. Workaround c++ protobuf issue with importing
 /// services: <https://github.com/google/protobuf/issues/4221> and protoxform to upgrade the file.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LdsDummy {
-}
+pub struct LdsDummy {}
 /// Encoded file descriptor set for the `envoy.service.listener.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xff, 0x0f, 0x0a, 0x23, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -136,5 +136,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0xd3, 0x88, 0xe1, 0x03, 0x01, 0x12, 0x03, 0x2d, 0x02, 0x57, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("envoy.service.listener.v3.serde.rs");
 include!("envoy.service.listener.v3.tonic.rs");
 // @@protoc_insertion_point(module)

@@ -1,11 +1,9 @@
 // @generated
-// [#protodoc-title: Default socket interface configuration]
-
 /// Configuration for default socket interface that relies on OS dependent syscall to create
 /// sockets.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DefaultSocketInterface {
-}
+pub struct DefaultSocketInterface {}
 /// Encoded file descriptor set for the `envoy.extensions.network.socket_interface.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xdd, 0x05, 0x0a, 0x4b, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -55,4 +53,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03,
     0x04, 0x00, 0x01, 0x12, 0x03, 0x10, 0x08, 0x1e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.network.socket_interface.v3.serde.rs");
 // @@protoc_insertion_point(module)

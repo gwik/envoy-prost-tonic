@@ -1,12 +1,10 @@
 // @generated
-// [#protodoc-title: Previous routes internal redirect predicate]
-
 /// An internal redirect predicate that rejects redirect targets that are pointing
 /// to a route that has been followed by a previous redirect from the current route.
 /// [#extension: envoy.internal_redirect_predicates.previous_routes]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PreviousRoutesConfig {
-}
+pub struct PreviousRoutesConfig {}
 /// Encoded file descriptor set for the `envoy.extensions.internal_redirect.previous_routes.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x82, 0x07, 0x0a, 0x52, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -67,4 +65,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x11, 0x08, 0x1c, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.internal_redirect.previous_routes.v3.serde.rs");
 // @@protoc_insertion_point(module)

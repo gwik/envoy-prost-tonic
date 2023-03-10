@@ -1,14 +1,13 @@
 // @generated
-// [#protodoc-title: Aggregate cluster configuration]
-
 /// Configuration for the aggregate cluster. See the :ref:`architecture overview
 /// <arch_overview_aggregate_cluster>` for more information.
 /// [#extension: envoy.clusters.aggregate]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClusterConfig {
     /// Load balancing clusters in aggregate cluster. Clusters are prioritized based on the order they
     /// appear in this list.
-    #[prost(string, repeated, tag="1")]
+    #[prost(string, repeated, tag = "1")]
     pub clusters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.clusters.aggregate.v3` package
@@ -87,4 +86,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0x12, 0x03, 0x19, 0x1f, 0x4b, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x00, 0x08, 0xaf,
     0x08, 0x12, 0x12, 0x03, 0x19, 0x20, 0x4a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.clusters.aggregate.v3.serde.rs");
 // @@protoc_insertion_point(module)

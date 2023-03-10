@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Rate limit descriptor expression]
-// [#extension: envoy.rate_limit_descriptors.expr]
-
 /// The following descriptor entry is appended with a value computed
 /// from a symbolic Common Expression Language expression.
 /// See :ref:`attributes <arch_overview_attributes>` for the set of
@@ -10,28 +7,32 @@
 /// .. code-block:: cpp
 ///
 ///    ("<descriptor_key>", "<expression_value>")
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Descriptor {
     /// The key to use in the descriptor entry.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub descriptor_key: ::prost::alloc::string::String,
     /// If set to true, Envoy skips the descriptor if the expression evaluates to an error.
     /// By default, the rate limit is not applied when an expression produces an error.
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub skip_if_error: bool,
-    #[prost(oneof="descriptor::ExprSpecifier", tags="3, 4")]
+    #[prost(oneof = "descriptor::ExprSpecifier", tags = "3, 4")]
     pub expr_specifier: ::core::option::Option<descriptor::ExprSpecifier>,
 }
 /// Nested message and enum types in `Descriptor`.
 pub mod descriptor {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ExprSpecifier {
         /// Expression in a text form, e.g. "connection.requested_server_name".
-        #[prost(string, tag="3")]
+        #[prost(string, tag = "3")]
         Text(::prost::alloc::string::String),
         /// Parsed expression in AST form.
-        #[prost(message, tag="4")]
-        Parsed(super::super::super::super::super::super::google::api::expr::v1alpha1::Expr),
+        #[prost(message, tag = "4")]
+        Parsed(
+            super::super::super::super::super::super::google::api::expr::v1alpha1::Expr,
+        ),
     }
 }
 /// Encoded file descriptor set for the `envoy.extensions.rate_limit_descriptors.expr.v3` package
@@ -151,4 +152,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x28, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x27, 0x2b, 0x2c, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.rate_limit_descriptors.expr.v3.serde.rs");
 // @@protoc_insertion_point(module)

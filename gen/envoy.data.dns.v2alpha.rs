@@ -1,28 +1,29 @@
 // @generated
-// [#protodoc-title: DNS Filter Table Data]
-// :ref:`DNS Filter config overview <config_udp_listener_filters_dns_filter>`.
-
 /// This message contains the configuration for the DNS Filter if populated
 /// from the control plane
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DnsTable {
     /// Control how many times envoy makes an attempt to forward a query to
     /// an external server
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub external_retry_count: u32,
     /// Fully qualified domain names for which Envoy will respond to queries
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub virtual_domains: ::prost::alloc::vec::Vec<dns_table::DnsVirtualDomain>,
     /// This field serves to help Envoy determine whether it can authoritatively
     /// answer a query for a name matching a suffix in this list. If the query
     /// name does not match a suffix in this list, Envoy will forward
     /// the query to an upstream DNS server
-    #[prost(message, repeated, tag="3")]
-    pub known_suffixes: ::prost::alloc::vec::Vec<super::super::super::r#type::matcher::StringMatcher>,
+    #[prost(message, repeated, tag = "3")]
+    pub known_suffixes: ::prost::alloc::vec::Vec<
+        super::super::super::r#type::matcher::StringMatcher,
+    >,
 }
 /// Nested message and enum types in `DnsTable`.
 pub mod dns_table {
     /// This message contains a list of IP addresses returned for a query for a known name
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct AddressList {
         /// This field contains a well formed IP address that is returned
@@ -32,36 +33,39 @@ pub mod dns_table {
         /// Envoy will return one randomly chosen entry from this list in the
         /// DNS response. The random index will vary per query so that we prevent
         /// clients pinning on a single address for a configured domain
-        #[prost(string, repeated, tag="1")]
+        #[prost(string, repeated, tag = "1")]
         pub address: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     }
     /// This message type is extensible and can contain a list of addresses
     /// or dictate some other method for resolving the addresses for an
     /// endpoint
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DnsEndpoint {
-        #[prost(oneof="dns_endpoint::EndpointConfig", tags="1")]
+        #[prost(oneof = "dns_endpoint::EndpointConfig", tags = "1")]
         pub endpoint_config: ::core::option::Option<dns_endpoint::EndpointConfig>,
     }
     /// Nested message and enum types in `DnsEndpoint`.
     pub mod dns_endpoint {
+        #[allow(clippy::derive_partial_eq_without_eq)]
         #[derive(Clone, PartialEq, ::prost::Oneof)]
         pub enum EndpointConfig {
-            #[prost(message, tag="1")]
+            #[prost(message, tag = "1")]
             AddressList(super::AddressList),
         }
     }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct DnsVirtualDomain {
         /// The domain name for which Envoy will respond to query requests
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub name: ::prost::alloc::string::String,
         /// The configuration containing the method to determine the address
         /// of this endpoint
-        #[prost(message, optional, tag="2")]
+        #[prost(message, optional, tag = "2")]
         pub endpoint: ::core::option::Option<DnsEndpoint>,
         /// Sets the TTL in dns answers from Envoy returned to the client
-        #[prost(message, optional, tag="3")]
+        #[prost(message, optional, tag = "3")]
         pub answer_ttl: ::core::option::Option<::pbjson_types::Duration>,
     }
 }
@@ -289,4 +293,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x49, 0x26, 0x34, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x49, 0x37,
     0x38, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.data.dns.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

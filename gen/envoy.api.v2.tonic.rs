@@ -141,10 +141,10 @@ pub mod cluster_discovery_service_client {
 pub mod cluster_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ClusterDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ClusterDiscoveryServiceServer.
     #[async_trait]
     pub trait ClusterDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamClusters method.
+        /// Server streaming response type for the StreamClusters method.
         type StreamClustersStream: futures_core::Stream<
                 Item = Result<super::DiscoveryResponse, tonic::Status>,
             >
@@ -154,7 +154,7 @@ pub mod cluster_discovery_service_server {
             &self,
             request: tonic::Request<tonic::Streaming<super::DiscoveryRequest>>,
         ) -> Result<tonic::Response<Self::StreamClustersStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaClusters method.
+        /// Server streaming response type for the DeltaClusters method.
         type DeltaClustersStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >
@@ -537,10 +537,10 @@ pub mod endpoint_discovery_service_client {
 pub mod endpoint_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with EndpointDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with EndpointDiscoveryServiceServer.
     #[async_trait]
     pub trait EndpointDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamEndpoints method.
+        /// Server streaming response type for the StreamEndpoints method.
         type StreamEndpointsStream: futures_core::Stream<
                 Item = Result<super::DiscoveryResponse, tonic::Status>,
             >
@@ -550,7 +550,7 @@ pub mod endpoint_discovery_service_server {
             &self,
             request: tonic::Request<tonic::Streaming<super::DiscoveryRequest>>,
         ) -> Result<tonic::Response<Self::StreamEndpointsStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaEndpoints method.
+        /// Server streaming response type for the DeltaEndpoints method.
         type DeltaEndpointsStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >
@@ -933,10 +933,10 @@ pub mod listener_discovery_service_client {
 pub mod listener_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ListenerDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ListenerDiscoveryServiceServer.
     #[async_trait]
     pub trait ListenerDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaListeners method.
+        /// Server streaming response type for the DeltaListeners method.
         type DeltaListenersStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >
@@ -946,7 +946,7 @@ pub mod listener_discovery_service_server {
             &self,
             request: tonic::Request<tonic::Streaming<super::DeltaDiscoveryRequest>>,
         ) -> Result<tonic::Response<Self::DeltaListenersStream>, tonic::Status>;
-        ///Server streaming response type for the StreamListeners method.
+        /// Server streaming response type for the StreamListeners method.
         type StreamListenersStream: futures_core::Stream<
                 Item = Result<super::DiscoveryResponse, tonic::Status>,
             >
@@ -1329,10 +1329,10 @@ pub mod route_discovery_service_client {
 pub mod route_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with RouteDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with RouteDiscoveryServiceServer.
     #[async_trait]
     pub trait RouteDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamRoutes method.
+        /// Server streaming response type for the StreamRoutes method.
         type StreamRoutesStream: futures_core::Stream<
                 Item = Result<super::DiscoveryResponse, tonic::Status>,
             >
@@ -1342,7 +1342,7 @@ pub mod route_discovery_service_server {
             &self,
             request: tonic::Request<tonic::Streaming<super::DiscoveryRequest>>,
         ) -> Result<tonic::Response<Self::StreamRoutesStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaRoutes method.
+        /// Server streaming response type for the DeltaRoutes method.
         type DeltaRoutesStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >
@@ -1697,10 +1697,10 @@ pub mod virtual_host_discovery_service_client {
 pub mod virtual_host_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with VirtualHostDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with VirtualHostDiscoveryServiceServer.
     #[async_trait]
     pub trait VirtualHostDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the DeltaVirtualHosts method.
+        /// Server streaming response type for the DeltaVirtualHosts method.
         type DeltaVirtualHostsStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >
@@ -2009,10 +2009,10 @@ pub mod scoped_routes_discovery_service_client {
 pub mod scoped_routes_discovery_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with ScopedRoutesDiscoveryServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with ScopedRoutesDiscoveryServiceServer.
     #[async_trait]
     pub trait ScopedRoutesDiscoveryService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamScopedRoutes method.
+        /// Server streaming response type for the StreamScopedRoutes method.
         type StreamScopedRoutesStream: futures_core::Stream<
                 Item = Result<super::DiscoveryResponse, tonic::Status>,
             >
@@ -2022,7 +2022,7 @@ pub mod scoped_routes_discovery_service_server {
             &self,
             request: tonic::Request<tonic::Streaming<super::DiscoveryRequest>>,
         ) -> Result<tonic::Response<Self::StreamScopedRoutesStream>, tonic::Status>;
-        ///Server streaming response type for the DeltaScopedRoutes method.
+        /// Server streaming response type for the DeltaScopedRoutes method.
         type DeltaScopedRoutesStream: futures_core::Stream<
                 Item = Result<super::DeltaDiscoveryResponse, tonic::Status>,
             >

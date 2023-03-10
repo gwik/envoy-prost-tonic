@@ -1,28 +1,32 @@
 // @generated
 /// A load report Envoy sends to the management server.
 /// \[#not-implemented-hide:\] Not configuration. TBD how to doc proto APIs.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoadStatsRequest {
     /// Node identifier for Envoy instance.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub node: ::core::option::Option<super::super::super::api::v2::core::Node>,
     /// A list of load stats to report.
-    #[prost(message, repeated, tag="2")]
-    pub cluster_stats: ::prost::alloc::vec::Vec<super::super::super::api::v2::endpoint::ClusterStats>,
+    #[prost(message, repeated, tag = "2")]
+    pub cluster_stats: ::prost::alloc::vec::Vec<
+        super::super::super::api::v2::endpoint::ClusterStats,
+    >,
 }
 /// The management server sends envoy a LoadStatsResponse with all clusters it
 /// is interested in learning load stats about.
 /// \[#not-implemented-hide:\] Not configuration. TBD how to doc proto APIs.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoadStatsResponse {
     /// Clusters to report stats for.
     /// Not populated if *send_all_clusters* is true.
-    #[prost(string, repeated, tag="1")]
+    #[prost(string, repeated, tag = "1")]
     pub clusters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If true, the client should send all clusters it knows about.
     /// Only clients that advertise the "envoy.lrs.supports_send_all_clusters" capability in their
     /// :ref:`client_features<envoy_api_field_core.Node.client_features>` field will honor this field.
-    #[prost(bool, tag="4")]
+    #[prost(bool, tag = "4")]
     pub send_all_clusters: bool,
     /// The minimum interval of time to collect stats over. This is only a minimum for two reasons:
     /// 1. There may be some delay from when the timer fires until stats sampling occurs.
@@ -31,11 +35,11 @@ pub struct LoadStatsResponse {
     ///     *LoadStatsResponse* will also be accumulated and billed to the cluster. This avoids a period
     ///     of inobservability that might otherwise exists between the messages. New clusters are not
     ///     subject to this consideration.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub load_reporting_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// Set to *true* if the management server supports endpoint granularity
     /// report.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub report_endpoint_granularity: bool,
 }
 /// Encoded file descriptor set for the `envoy.service.load_stats.v2` package
@@ -335,5 +339,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0c, 0x0a, 0x05, 0x04, 0x01, 0x02, 0x03, 0x03, 0x12, 0x03, 0x56, 0x25, 0x26, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.load_stats.v2.serde.rs");
 include!("envoy.service.load_stats.v2.tonic.rs");
 // @@protoc_insertion_point(module)

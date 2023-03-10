@@ -1,26 +1,25 @@
 // @generated
-// [#protodoc-title: Gzip]
-
 /// [#next-free-field: 11]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gzip {
     /// Value from 1 to 9 that controls the amount of internal memory used by zlib. Higher values
     /// use more memory, but are faster and produce better compression results. The default value is 5.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub memory_level: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Minimum response length, in bytes, which will trigger compression. The default value is 30.
     /// .. attention:
     ///
     ///     **This field is deprecated**. Set the `compressor` field instead.
     #[deprecated]
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub content_length: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// A value used for selecting the zlib compression level. This setting will affect speed and
     /// amount of compression applied to the content. "BEST" provides higher compression at the cost of
     /// higher latency, "SPEED" provides lower compression with minimum impact on response time.
     /// "DEFAULT" provides an optimal result between speed and compression. This field will be set to
     /// "DEFAULT" if not specified.
-    #[prost(enumeration="gzip::compression_level::Enum", tag="3")]
+    #[prost(enumeration = "gzip::compression_level::Enum", tag = "3")]
     pub compression_level: i32,
     /// A value used for selecting the zlib compression strategy which is directly related to the
     /// characteristics of the content. Most of the time "DEFAULT" will be the best choice, though
@@ -28,7 +27,7 @@ pub struct Gzip {
     /// run-length encoding (RLE) is typically used when the content is known for having sequences
     /// which same data occurs many consecutive times. For more information about each strategy, please
     /// refer to zlib manual.
-    #[prost(enumeration="gzip::CompressionStrategy", tag="4")]
+    #[prost(enumeration = "gzip::CompressionStrategy", tag = "4")]
     pub compression_strategy: i32,
     /// Set of strings that allows specifying which mime-types yield compression; e.g.,
     /// application/json, text/html, etc. When this field is not defined, compression will be applied
@@ -38,7 +37,7 @@ pub struct Gzip {
     ///
     ///     **This field is deprecated**. Set the `compressor` field instead.
     #[deprecated]
-    #[prost(string, repeated, tag="6")]
+    #[prost(string, repeated, tag = "6")]
     pub content_type: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// If true, disables compression when the response contains an etag header. When it is false, the
     /// filter will preserve weak etags and remove the ones that require strong validation.
@@ -46,7 +45,7 @@ pub struct Gzip {
     ///
     ///     **This field is deprecated**. Set the `compressor` field instead.
     #[deprecated]
-    #[prost(bool, tag="7")]
+    #[prost(bool, tag = "7")]
     pub disable_on_etag_header: bool,
     /// If true, removes accept-encoding from the request headers before dispatching it to the upstream
     /// so that responses do not get compressed before reaching the filter.
@@ -54,28 +53,38 @@ pub struct Gzip {
     ///
     ///     **This field is deprecated**. Set the `compressor` field instead.
     #[deprecated]
-    #[prost(bool, tag="8")]
+    #[prost(bool, tag = "8")]
     pub remove_accept_encoding_header: bool,
     /// Value from 9 to 15 that represents the base two logarithmic of the compressor's window size.
     /// Larger window results in better compression at the expense of memory usage. The default is 12
     /// which will produce a 4096 bytes window. For more details about this parameter, please refer to
     /// zlib manual > deflateInit2.
-    #[prost(message, optional, tag="9")]
+    #[prost(message, optional, tag = "9")]
     pub window_bits: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Set of configuration parameters common for all compression filters. If this field is set then
     /// the fields `content_length`, `content_type`, `disable_on_etag_header` and
     /// `remove_accept_encoding_header` are ignored.
-    #[prost(message, optional, tag="10")]
+    #[prost(message, optional, tag = "10")]
     pub compressor: ::core::option::Option<super::super::compressor::v2::Compressor>,
 }
 /// Nested message and enum types in `Gzip`.
 pub mod gzip {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CompressionLevel {
-    }
+    pub struct CompressionLevel {}
     /// Nested message and enum types in `CompressionLevel`.
     pub mod compression_level {
-        #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
         #[repr(i32)]
         pub enum Enum {
             Default = 0,
@@ -94,9 +103,28 @@ pub mod gzip {
                     Enum::Speed => "SPEED",
                 }
             }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "DEFAULT" => Some(Self::Default),
+                    "BEST" => Some(Self::Best),
+                    "SPEED" => Some(Self::Speed),
+                    _ => None,
+                }
+            }
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum CompressionStrategy {
         Default = 0,
@@ -115,6 +143,16 @@ pub mod gzip {
                 CompressionStrategy::Filtered => "FILTERED",
                 CompressionStrategy::Huffman => "HUFFMAN",
                 CompressionStrategy::Rle => "RLE",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "DEFAULT" => Some(Self::Default),
+                "FILTERED" => Some(Self::Filtered),
+                "HUFFMAN" => Some(Self::Huffman),
+                "RLE" => Some(Self::Rle),
+                _ => None,
             }
         }
     }
@@ -471,4 +509,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x1b, 0x25, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x08, 0x03, 0x12, 0x03, 0x5f, 0x28, 0x2a,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.gzip.v2.serde.rs");
 // @@protoc_insertion_point(module)

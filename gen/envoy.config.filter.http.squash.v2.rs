@@ -1,13 +1,10 @@
 // @generated
-// [#protodoc-title: Squash]
-// Squash :ref:`configuration overview <config_http_filters_squash>`.
-// [#extension: envoy.filters.http.squash]
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Squash {
     /// The name of the cluster that hosts the Squash server.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub cluster: ::prost::alloc::string::String,
     /// When the filter requests the Squash server to create a DebugAttachment, it will use this
     /// structure as template for the body of the request. It can contain reference to environment
@@ -28,18 +25,18 @@ pub struct Squash {
     ///   }
     ///
     /// (where POD_NAME, POD_NAMESPACE are configured in the pod via the Downward API)
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub attachment_template: ::core::option::Option<::pbjson_types::Struct>,
     /// The timeout for individual requests sent to the Squash cluster. Defaults to 1 second.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub request_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The total timeout Squash will delay a request and wait for it to be attached. Defaults to 60
     /// seconds.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub attachment_timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// Amount of time to poll for the status of the attachment object in the Squash server
     /// (to check if has been attached). Defaults to 1 second.
-    #[prost(message, optional, tag="5")]
+    #[prost(message, optional, tag = "5")]
     pub attachment_poll_period: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.squash.v2` package
@@ -209,4 +206,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x05, 0x04, 0x00, 0x02, 0x04, 0x03, 0x12, 0x03, 0x39, 0x34, 0x35, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.squash.v2.serde.rs");
 // @@protoc_insertion_point(module)

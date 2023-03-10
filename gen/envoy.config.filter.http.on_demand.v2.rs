@@ -1,11 +1,7 @@
 // @generated
-// [#protodoc-title: OnDemand]
-// IP tagging :ref:`configuration overview <config_http_filters_on_demand>`.
-// [#extension: envoy.filters.http.on_demand]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct OnDemand {
-}
+pub struct OnDemand {}
 /// Encoded file descriptor set for the `envoy.config.filter.http.on_demand.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xfb, 0x05, 0x0a, 0x35, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69,
@@ -57,4 +53,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x6e, 0x5f, 0x64, 0x65, 0x6d, 0x61, 0x6e, 0x64, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00,
     0x01, 0x12, 0x03, 0x13, 0x08, 0x10, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.on_demand.v2.serde.rs");
 // @@protoc_insertion_point(module)

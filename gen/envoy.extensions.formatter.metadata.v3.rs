@@ -1,52 +1,7 @@
 // @generated
-// [#protodoc-title: Formatter extension for printing various types of metadata]
-// [#extension: envoy.formatter.metadata]
-
-// Metadata formatter extension implements METADATA command operator that
-// prints all types of metadata. The first parameter taken by METADATA operator defines
-// type of metadata. The following types of metadata are supported (case sensitive):
-//
-// * DYNAMIC
-// * CLUSTER
-// * ROUTE
-// * UPSTREAM_HOST
-//
-// See :ref:`here <config_access_log>` for more information on access log configuration.
-
-// %METADATA(TYPE:NAMESPACE:KEY):Z%
-//     :ref:`Metadata <envoy_v3_api_msg_config.core.v3.Metadata>` info,
-//     where TYPE is type of metadata (see above for supported types),
-//     NAMESPACE is the filter namespace used when setting the metadata, KEY is an optional
-//     lookup key in the namespace with the option of specifying nested keys separated by ':',
-//     and Z is an optional parameter denoting string truncation up to Z characters long.
-//     The data will be logged as a JSON string. For example, for the following ROUTE metadata:
-//
-//     ``com.test.my_filter: {"test_key": "foo", "test_object": {"inner_key": "bar"}}``
-//
-//     * %METADATA(ROUTE:com.test.my_filter)% will log: ``{"test_key": "foo", "test_object": {"inner_key": "bar"}}``
-//     * %METADATA(ROUTE:com.test.my_filter:test_key)% will log: ``foo``
-//     * %METADATA(ROUTE:com.test.my_filter:test_object)% will log: ``{"inner_key": "bar"}``
-//     * %METADATA(ROUTE:com.test.my_filter:test_object:inner_key)% will log: ``bar``
-//     * %METADATA(ROUTE:com.unknown_filter)% will log: ``-``
-//     * %METADATA(ROUTE:com.test.my_filter:unknown_key)% will log: ``-``
-//     * %METADATA(ROUTE:com.test.my_filter):25% will log (truncation at 25 characters): ``{"test_key": "foo", "test``
-//
-//   .. note::
-//
-//     For typed JSON logs, this operator renders a single value with string, numeric, or boolean type
-//     when the referenced key is a simple value. If the referenced key is a struct or list value, a
-//     JSON struct or list is rendered. Structs and lists may be nested. In any event, the maximum
-//     length is ignored.
-//
-//   .. note::
-//
-//     METADATA(DYNAMIC:NAMESPACE:KEY):Z is equivalent to :ref:`DYNAMIC_METADATA(NAMESPACE:KEY):Z<config_access_log_format_dynamic_metadata>`
-//     METADATA(CLUSTER:NAMESPACE:KEY):Z is equivalent to :ref:`CLUSTER_METADATA(NAMESPACE:KEY):Z<config_access_log_format_cluster_metadata>`
-//     METADATA(UPSTREAM_HOST:NAMESPACE:KEY):Z is equivalent to :ref:`UPSTREAM_METADATA(NAMESPACE:KEY):Z<config_access_log_format_upstream_host_metadata>`
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Metadata {
-}
+pub struct Metadata {}
 /// Encoded file descriptor set for the `envoy.extensions.formatter.metadata.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xb4, 0x17, 0x0a, 0x35, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -238,4 +193,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x3e, 0x60, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x39, 0x08, 0x10, 0x62,
     0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.formatter.metadata.v3.serde.rs");
 // @@protoc_insertion_point(module)

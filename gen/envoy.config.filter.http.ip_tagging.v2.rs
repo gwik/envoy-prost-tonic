@@ -1,31 +1,31 @@
 // @generated
-// [#protodoc-title: IP tagging]
-// IP tagging :ref:`configuration overview <config_http_filters_ip_tagging>`.
-// [#extension: envoy.filters.http.ip_tagging]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IpTagging {
     /// The type of request the filter should apply to.
-    #[prost(enumeration="ip_tagging::RequestType", tag="1")]
+    #[prost(enumeration = "ip_tagging::RequestType", tag = "1")]
     pub request_type: i32,
     /// [#comment:TODO(ccaraman): Extend functionality to load IP tags from file system.
     /// Tracked by issue <https://github.com/envoyproxy/envoy/issues/2695]>
     /// The set of IP tags for the filter.
-    #[prost(message, repeated, tag="4")]
+    #[prost(message, repeated, tag = "4")]
     pub ip_tags: ::prost::alloc::vec::Vec<ip_tagging::IpTag>,
 }
 /// Nested message and enum types in `IPTagging`.
 pub mod ip_tagging {
     /// Supplies the IP tag name and the IP address subnets.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct IpTag {
         /// Specifies the IP tag name to apply.
-        #[prost(string, tag="1")]
+        #[prost(string, tag = "1")]
         pub ip_tag_name: ::prost::alloc::string::String,
         /// A list of IP address subnets that will be tagged with
         /// ip_tag_name. Both IPv4 and IPv6 are supported.
-        #[prost(message, repeated, tag="2")]
-        pub ip_list: ::prost::alloc::vec::Vec<super::super::super::super::super::super::api::v2::core::CidrRange>,
+        #[prost(message, repeated, tag = "2")]
+        pub ip_list: ::prost::alloc::vec::Vec<
+            super::super::super::super::super::super::api::v2::core::CidrRange,
+        >,
     }
     /// The type of requests the filter should apply to. The supported types
     /// are internal, external or both. The
@@ -33,7 +33,17 @@ pub mod ip_tagging {
     /// used to determine if a request is internal and will result in
     /// :ref:`x-envoy-internal<config_http_conn_man_headers_x-envoy-internal>`
     /// being set. The filter defaults to both, and it will apply to all request types.
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum RequestType {
         /// Both external and internal requests will be tagged. This is the default value.
@@ -53,6 +63,15 @@ pub mod ip_tagging {
                 RequestType::Both => "BOTH",
                 RequestType::Internal => "INTERNAL",
                 RequestType::External => "EXTERNAL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BOTH" => Some(Self::Both),
+                "INTERNAL" => Some(Self::Internal),
+                "EXTERNAL" => Some(Self::External),
+                _ => None,
             }
         }
     }
@@ -233,4 +252,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x1d, 0x49, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x12, 0x12, 0x03,
     0x38, 0x1e, 0x48, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.ip_tagging.v2.serde.rs");
 // @@protoc_insertion_point(module)

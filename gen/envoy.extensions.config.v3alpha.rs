@@ -9,12 +9,15 @@
 /// The KV Store based delegate's handling of wildcard resources (empty resource list or "*") is
 /// designed for use with O(100) resources or fewer, so it's not currently advised to use this
 /// feature for large configurations with heavy use of wildcard resources.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyValueStoreXdsDelegateConfig {
     /// Configuration for the KeyValueStore that holds the xDS resources.
     /// \[#allow-fully-qualified-name:\]
-    #[prost(message, optional, tag="1")]
-    pub key_value_store_config: ::core::option::Option<super::super::super::config::common::key_value::v3::KeyValueStoreConfig>,
+    #[prost(message, optional, tag = "1")]
+    pub key_value_store_config: ::core::option::Option<
+        super::super::super::config::common::key_value::v3::KeyValueStoreConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.config.v3alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -113,4 +116,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x01, 0x12, 0x03, 0x1b, 0x38, 0x4e, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03,
     0x12, 0x03, 0x1b, 0x51, 0x52, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.config.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

@@ -1,96 +1,106 @@
 // @generated
-// [#protodoc-title: gRPC Access Log Service (ALS)]
-
 /// Configuration for the built-in *envoy.access_loggers.http_grpc*
 /// :ref:`AccessLog <envoy_api_msg_config.filter.accesslog.v2.AccessLog>`. This configuration will
 /// populate :ref:`StreamAccessLogsMessage.http_logs
 /// <envoy_api_field_service.accesslog.v2.StreamAccessLogsMessage.http_logs>`.
 /// [#extension: envoy.access_loggers.http_grpc]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpGrpcAccessLogConfig {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub common_config: ::core::option::Option<CommonGrpcAccessLogConfig>,
     /// Additional request headers to log in :ref:`HTTPRequestProperties.request_headers
     /// <envoy_api_field_data.accesslog.v2.HTTPRequestProperties.request_headers>`.
-    #[prost(string, repeated, tag="2")]
-    pub additional_request_headers_to_log: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "2")]
+    pub additional_request_headers_to_log: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// Additional response headers to log in :ref:`HTTPResponseProperties.response_headers
     /// <envoy_api_field_data.accesslog.v2.HTTPResponseProperties.response_headers>`.
-    #[prost(string, repeated, tag="3")]
-    pub additional_response_headers_to_log: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "3")]
+    pub additional_response_headers_to_log: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
     /// Additional response trailers to log in :ref:`HTTPResponseProperties.response_trailers
     /// <envoy_api_field_data.accesslog.v2.HTTPResponseProperties.response_trailers>`.
-    #[prost(string, repeated, tag="4")]
-    pub additional_response_trailers_to_log: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "4")]
+    pub additional_response_trailers_to_log: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
 /// Configuration for the built-in *envoy.access_loggers.tcp_grpc* type. This configuration will
 /// populate *StreamAccessLogsMessage.tcp_logs*.
 /// [#extension: envoy.access_loggers.tcp_grpc]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TcpGrpcAccessLogConfig {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub common_config: ::core::option::Option<CommonGrpcAccessLogConfig>,
 }
 /// Common configuration for gRPC access logs.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonGrpcAccessLogConfig {
     /// The friendly name of the access log to be returned in :ref:`StreamAccessLogsMessage.Identifier
     /// <envoy_api_msg_service.accesslog.v2.StreamAccessLogsMessage.Identifier>`. This allows the
     /// access log server to differentiate between different access logs coming from the same Envoy.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub log_name: ::prost::alloc::string::String,
     /// The gRPC service for the access log service.
-    #[prost(message, optional, tag="2")]
-    pub grpc_service: ::core::option::Option<super::super::super::api::v2::core::GrpcService>,
+    #[prost(message, optional, tag = "2")]
+    pub grpc_service: ::core::option::Option<
+        super::super::super::api::v2::core::GrpcService,
+    >,
     /// Interval for flushing access logs to the gRPC stream. Logger will flush requests every time
     /// this interval is elapsed, or when batch size limit is hit, whichever comes first. Defaults to
     /// 1 second.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub buffer_flush_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// Soft size limit in bytes for access log entries buffer. Logger will buffer requests until
     /// this limit it hit, or every time flush interval is elapsed, whichever comes first. Setting it
     /// to zero effectively disables the batching. Defaults to 16384.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub buffer_size_bytes: ::core::option::Option<::pbjson_types::UInt32Value>,
     /// Additional filter state objects to log in :ref:`filter_state_objects
     /// <envoy_api_field_data.accesslog.v2.AccessLogCommon.filter_state_objects>`.
     /// Logger will call `FilterState::Object::serializeAsProto` to serialize the filter state object.
-    #[prost(string, repeated, tag="5")]
-    pub filter_state_objects_to_log: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "5")]
+    pub filter_state_objects_to_log: ::prost::alloc::vec::Vec<
+        ::prost::alloc::string::String,
+    >,
 }
-// [#protodoc-title: File access log]
-// [#extension: envoy.access_loggers.file]
-
 /// Custom configuration for an :ref:`AccessLog <envoy_api_msg_config.filter.accesslog.v2.AccessLog>`
 /// that writes log entries directly to a file. Configures the built-in *envoy.access_loggers.file*
 /// AccessLog.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileAccessLog {
     /// A path to a local file to which to write the access log entries.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
-    #[prost(oneof="file_access_log::AccessLogFormat", tags="2, 3, 4")]
+    #[prost(oneof = "file_access_log::AccessLogFormat", tags = "2, 3, 4")]
     pub access_log_format: ::core::option::Option<file_access_log::AccessLogFormat>,
 }
 /// Nested message and enum types in `FileAccessLog`.
 pub mod file_access_log {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum AccessLogFormat {
         /// Access log :ref:`format string<config_access_log_format_strings>`.
         /// Envoy supports :ref:`custom access log formats <config_access_log_format>` as well as a
         /// :ref:`default format <config_access_log_default_format>`.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         Format(::prost::alloc::string::String),
         /// Access log :ref:`format dictionary<config_access_log_format_dictionaries>`. All values
         /// are rendered as strings.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         JsonFormat(::pbjson_types::Struct),
         /// Access log :ref:`format dictionary<config_access_log_format_dictionaries>`. Values are
         /// rendered as strings, numbers, or boolean values as appropriate. Nested JSON objects may
         /// be produced by some command operators (e.g.FILTER_STATE or DYNAMIC_METADATA). See the
         /// documentation for a specific command operator for details.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         TypedJsonFormat(::pbjson_types::Struct),
     }
 }
@@ -516,4 +526,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x03, 0x29, 0x1b, 0x2c, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03, 0x29,
     0x2f, 0x30, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.accesslog.v2.serde.rs");
 // @@protoc_insertion_point(module)

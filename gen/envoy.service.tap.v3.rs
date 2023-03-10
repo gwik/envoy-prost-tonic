@@ -1,37 +1,41 @@
 // @generated
 /// \[#not-implemented-hide:\] Stream message for the Tap API. Envoy will open a stream to the server
 /// and stream taps without ever expecting a response.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamTapsRequest {
     /// Identifier data effectively is a structured metadata. As a performance optimization this will
     /// only be sent in the first message on the stream.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub identifier: ::core::option::Option<stream_taps_request::Identifier>,
     /// The trace id. this can be used to merge together a streaming trace. Note that the trace_id
     /// is not guaranteed to be spatially or temporally unique.
-    #[prost(uint64, tag="2")]
+    #[prost(uint64, tag = "2")]
     pub trace_id: u64,
     /// The trace data.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub trace: ::core::option::Option<super::super::super::data::tap::v3::TraceWrapper>,
 }
 /// Nested message and enum types in `StreamTapsRequest`.
 pub mod stream_taps_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Identifier {
         /// The node sending taps over the stream.
-        #[prost(message, optional, tag="1")]
-        pub node: ::core::option::Option<super::super::super::super::config::core::v3::Node>,
+        #[prost(message, optional, tag = "1")]
+        pub node: ::core::option::Option<
+            super::super::super::super::config::core::v3::Node,
+        >,
         /// The opaque identifier that was set in the :ref:`output config
         /// <envoy_v3_api_field_config.tap.v3.StreamingGrpcSink.tap_id>`.
-        #[prost(string, tag="2")]
+        #[prost(string, tag = "2")]
         pub tap_id: ::prost::alloc::string::String,
     }
 }
 /// \[#not-implemented-hide:\]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StreamTapsResponse {
-}
+pub struct StreamTapsResponse {}
 /// Encoded file descriptor set for the `envoy.service.tap.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf0, 0x15, 0x0a, 0x1e, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
@@ -211,5 +215,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0xd3, 0x88, 0xe1, 0x03, 0x01, 0x12, 0x04, 0x3d, 0x02, 0x3e, 0x35, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.tap.v3.serde.rs");
 include!("envoy.service.tap.v3.tonic.rs");
 // @@protoc_insertion_point(module)

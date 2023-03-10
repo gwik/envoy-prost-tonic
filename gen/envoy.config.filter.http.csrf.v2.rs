@@ -1,9 +1,6 @@
 // @generated
-// [#protodoc-title: CSRF]
-// Cross-Site Request Forgery :ref:`configuration overview <config_http_filters_csrf>`.
-// [#extension: envoy.filters.http.csrf]
-
 /// CSRF filter config.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CsrfPolicy {
     /// Specifies the % of requests for which the CSRF filter is enabled.
@@ -15,8 +12,10 @@ pub struct CsrfPolicy {
     ///
     ///    This field defaults to 100/:ref:`HUNDRED
     ///    <envoy_api_enum_type.FractionalPercent.DenominatorType>`.
-    #[prost(message, optional, tag="1")]
-    pub filter_enabled: ::core::option::Option<super::super::super::super::super::api::v2::core::RuntimeFractionalPercent>,
+    #[prost(message, optional, tag = "1")]
+    pub filter_enabled: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::RuntimeFractionalPercent,
+    >,
     /// Specifies that CSRF policies will be evaluated and tracked, but not enforced.
     ///
     /// This is intended to be used when ``filter_enabled`` is off and will be ignored otherwise.
@@ -25,15 +24,19 @@ pub struct CsrfPolicy {
     /// Envoy will lookup the runtime key to get the percentage of requests for which it will evaluate
     /// and track the request's *Origin* and *Destination* to determine if it's valid, but will not
     /// enforce any policies.
-    #[prost(message, optional, tag="2")]
-    pub shadow_enabled: ::core::option::Option<super::super::super::super::super::api::v2::core::RuntimeFractionalPercent>,
+    #[prost(message, optional, tag = "2")]
+    pub shadow_enabled: ::core::option::Option<
+        super::super::super::super::super::api::v2::core::RuntimeFractionalPercent,
+    >,
     /// Specifies additional source origins that will be allowed in addition to
     /// the destination origin.
     ///
     /// More information on how this can be configured via runtime can be found
     /// :ref:`here <csrf-configuration>`.
-    #[prost(message, repeated, tag="3")]
-    pub additional_origins: ::prost::alloc::vec::Vec<super::super::super::super::super::r#type::matcher::StringMatcher>,
+    #[prost(message, repeated, tag = "3")]
+    pub additional_origins: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::r#type::matcher::StringMatcher,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.csrf.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -189,4 +192,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x26, 0x38, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x02, 0x03, 0x12, 0x03, 0x33, 0x3b, 0x3c,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.csrf.v2.serde.rs");
 // @@protoc_insertion_point(module)

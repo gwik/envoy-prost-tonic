@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: UUID]
-// [#extension: envoy.request_id.uuid]
-
 /// Configuration for the default UUID request ID extension which has the following behavior:
 ///
 /// 1. Request ID is propagated using the :ref:`x-request-id
@@ -21,6 +18,7 @@
 ///
 ///     See the :ref:`x-request-id <config_http_conn_man_headers_x-request-id>` documentation for
 ///     more information.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UuidRequestIdConfig {
     /// Whether the implementation alters the UUID to contain the trace sampling decision as per the
@@ -28,13 +26,15 @@ pub struct UuidRequestIdConfig {
     /// modification to the UUID will be performed. It is important to note that if disabled,
     /// stable sampling of traces, access logs, etc. will no longer work and only random sampling will
     /// be possible.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub pack_trace_reason: ::core::option::Option<::pbjson_types::BoolValue>,
     /// Set whether to use :ref:`x-request-id<config_http_conn_man_headers_x-request-id>` for sampling or not.
     /// This defaults to true. See the :ref:`context propagation <arch_overview_tracing_context_propagation>`
     /// overview for more information.
-    #[prost(message, optional, tag="2")]
-    pub use_request_id_for_trace_sampling: ::core::option::Option<::pbjson_types::BoolValue>,
+    #[prost(message, optional, tag = "2")]
+    pub use_request_id_for_trace_sampling: ::core::option::Option<
+        ::pbjson_types::BoolValue,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.request_id.uuid.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -197,4 +197,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x01, 0x03, 0x12, 0x03, 0x2f, 0x40, 0x41, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.request_id.uuid.v3.serde.rs");
 // @@protoc_insertion_point(module)

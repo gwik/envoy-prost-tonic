@@ -2,6 +2,7 @@
 /// This represents the different types of messages that Envoy can send
 /// to an external processing server.
 /// [#next-free-field: 8]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessingRequest {
     /// Specify whether the filter that sent this request is running in synchronous
@@ -15,12 +16,12 @@ pub struct ProcessingRequest {
     ///    message, although it may still close the stream to indicate that no more messages
     ///    are needed.
     ///
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub async_mode: bool,
     /// Each request message will include one of the following sub-messages. Which
     /// ones are set for a particular HTTP request/response depend on the
     /// processing mode.
-    #[prost(oneof="processing_request::Request", tags="2, 3, 4, 5, 6, 7")]
+    #[prost(oneof = "processing_request::Request", tags = "2, 3, 4, 5, 6, 7")]
     pub request: ::core::option::Option<processing_request::Request>,
 }
 /// Nested message and enum types in `ProcessingRequest`.
@@ -28,25 +29,26 @@ pub mod processing_request {
     /// Each request message will include one of the following sub-messages. Which
     /// ones are set for a particular HTTP request/response depend on the
     /// processing mode.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Request {
         /// Information about the HTTP request headers, as well as peer info and additional
         /// properties. Unless ``async_mode`` is ``true``, the server must send back a
         /// HeaderResponse message, an ImmediateResponse message, or close the stream.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         RequestHeaders(super::HttpHeaders),
         /// Information about the HTTP response headers, as well as peer info and additional
         /// properties. Unless ``async_mode`` is ``true``, the server must send back a
         /// HeaderResponse message or close the stream.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         ResponseHeaders(super::HttpHeaders),
         /// A chunk of the HTTP request body. Unless ``async_mode`` is true, the server must send back
         /// a BodyResponse message, an ImmediateResponse message, or close the stream.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         RequestBody(super::HttpBody),
         /// A chunk of the HTTP request body. Unless ``async_mode`` is ``true``, the server must send back
         /// a BodyResponse message or close the stream.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         ResponseBody(super::HttpBody),
         /// The HTTP trailers for the request path. Unless ``async_mode`` is ``true``, the server
         /// must send back a TrailerResponse message or close the stream.
@@ -56,7 +58,7 @@ pub mod processing_request {
         /// will only be sent (with empty trailers waiting to be populated) if the
         /// processing mode is set before the request headers are sent, such as
         /// in the filter configuration.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         RequestTrailers(super::HttpTrailers),
         /// The HTTP trailers for the response path. Unless ``async_mode`` is ``true``, the server
         /// must send back a TrailerResponse message or close the stream.
@@ -66,56 +68,60 @@ pub mod processing_request {
         /// will only be sent (with empty trailers waiting to be populated) if the
         /// processing mode is set before the request headers are sent, such as
         /// in the filter configuration.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         ResponseTrailers(super::HttpTrailers),
     }
 }
 /// For every ProcessingRequest received by the server with the ``async_mode`` field
 /// set to false, the server must send back exactly one ProcessingResponse message.
 /// [#next-free-field: 10]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProcessingResponse {
     /// \[#not-implemented-hide:\]
     /// Optional metadata that will be emitted as dynamic metadata to be consumed by the next
     /// filter. This metadata will be placed in the namespace ``envoy.filters.http.ext_proc``.
-    #[prost(message, optional, tag="8")]
+    #[prost(message, optional, tag = "8")]
     pub dynamic_metadata: ::core::option::Option<::pbjson_types::Struct>,
     /// Override how parts of the HTTP request and response are processed
     /// for the duration of this particular request/response only. Servers
     /// may use this to intelligently control how requests are processed
     /// based on the headers and other metadata that they see.
-    #[prost(message, optional, tag="9")]
-    pub mode_override: ::core::option::Option<super::super::super::extensions::filters::http::ext_proc::v3::ProcessingMode>,
-    #[prost(oneof="processing_response::Response", tags="1, 2, 3, 4, 5, 6, 7")]
+    #[prost(message, optional, tag = "9")]
+    pub mode_override: ::core::option::Option<
+        super::super::super::extensions::filters::http::ext_proc::v3::ProcessingMode,
+    >,
+    #[prost(oneof = "processing_response::Response", tags = "1, 2, 3, 4, 5, 6, 7")]
     pub response: ::core::option::Option<processing_response::Response>,
 }
 /// Nested message and enum types in `ProcessingResponse`.
 pub mod processing_response {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Response {
         /// The server must send back this message in response to a message with the
         /// ``request_headers`` field set.
-        #[prost(message, tag="1")]
+        #[prost(message, tag = "1")]
         RequestHeaders(super::HeadersResponse),
         /// The server must send back this message in response to a message with the
         /// ``response_headers`` field set.
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         ResponseHeaders(super::HeadersResponse),
         /// The server must send back this message in response to a message with
         /// the ``request_body`` field set.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         RequestBody(super::BodyResponse),
         /// The server must send back this message in response to a message with
         /// the ``response_body`` field set.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         ResponseBody(super::BodyResponse),
         /// The server must send back this message in response to a message with
         /// the ``request_trailers`` field set.
-        #[prost(message, tag="5")]
+        #[prost(message, tag = "5")]
         RequestTrailers(super::TrailersResponse),
         /// The server must send back this message in response to a message with
         /// the ``response_trailers`` field set.
-        #[prost(message, tag="6")]
+        #[prost(message, tag = "6")]
         ResponseTrailers(super::TrailersResponse),
         /// If specified, attempt to create a locally generated response, send it
         /// downstream, and stop processing additional filters and ignore any
@@ -124,102 +130,124 @@ pub mod processing_response {
         /// message is sent response to a ``response_body`` message -- then
         /// this will either ship the reply directly to the downstream codec,
         /// or reset the stream.
-        #[prost(message, tag="7")]
+        #[prost(message, tag = "7")]
         ImmediateResponse(super::ImmediateResponse),
     }
 }
-// The following are messages that are sent to the server.
-
 /// This message is sent to the external server when the HTTP request and responses
 /// are first received.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpHeaders {
     /// The HTTP request headers. All header keys will be
     /// lower-cased, because HTTP header keys are case-insensitive.
-    #[prost(message, optional, tag="1")]
-    pub headers: ::core::option::Option<super::super::super::config::core::v3::HeaderMap>,
+    #[prost(message, optional, tag = "1")]
+    pub headers: ::core::option::Option<
+        super::super::super::config::core::v3::HeaderMap,
+    >,
     /// \[#not-implemented-hide:\]
     /// The values of properties selected by the ``request_attributes``
     /// or ``response_attributes`` list in the configuration. Each entry
     /// in the list is populated
     /// from the standard :ref:`attributes <arch_overview_attributes>`
     /// supported across Envoy.
-    #[prost(map="string, message", tag="2")]
-    pub attributes: ::std::collections::HashMap<::prost::alloc::string::String, ::pbjson_types::Struct>,
+    #[prost(map = "string, message", tag = "2")]
+    pub attributes: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::pbjson_types::Struct,
+    >,
     /// If true, then there is no message body associated with this
     /// request or response.
-    #[prost(bool, tag="3")]
+    #[prost(bool, tag = "3")]
     pub end_of_stream: bool,
 }
 /// This message contains the message body that Envoy sends to the external server.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpBody {
-    #[prost(bytes="bytes", tag="1")]
+    #[prost(bytes = "bytes", tag = "1")]
     pub body: ::prost::bytes::Bytes,
-    #[prost(bool, tag="2")]
+    #[prost(bool, tag = "2")]
     pub end_of_stream: bool,
 }
 /// This message contains the trailers.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpTrailers {
-    #[prost(message, optional, tag="1")]
-    pub trailers: ::core::option::Option<super::super::super::config::core::v3::HeaderMap>,
+    #[prost(message, optional, tag = "1")]
+    pub trailers: ::core::option::Option<
+        super::super::super::config::core::v3::HeaderMap,
+    >,
 }
-// The following are messages that may be sent back by the server.
-
 /// This message must be sent in response to an HttpHeaders message.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeadersResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub response: ::core::option::Option<CommonResponse>,
 }
 /// This message must be sent in response to an HttpTrailers message.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrailersResponse {
     /// Instructions on how to manipulate the trailers
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub header_mutation: ::core::option::Option<HeaderMutation>,
 }
 /// This message must be sent in response to an HttpBody message.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BodyResponse {
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub response: ::core::option::Option<CommonResponse>,
 }
 /// This message contains common fields between header and body responses.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonResponse {
     /// If set, provide additional direction on how the Envoy proxy should
     /// handle the rest of the HTTP filter chain.
-    #[prost(enumeration="common_response::ResponseStatus", tag="1")]
+    #[prost(enumeration = "common_response::ResponseStatus", tag = "1")]
     pub status: i32,
     /// Instructions on how to manipulate the headers. When responding to an
     /// HttpBody request, header mutations will only take effect if
     /// the current processing mode for the body is BUFFERED.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub header_mutation: ::core::option::Option<HeaderMutation>,
     /// Replace the body of the last message sent to the remote server on this
     /// stream. If responding to an HttpBody request, simply replace or clear
     /// the body chunk that was sent with that request. Body mutations only take
     /// effect in response to ``body`` messages and are ignored otherwise.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub body_mutation: ::core::option::Option<BodyMutation>,
     /// \[#not-implemented-hide:\]
     /// Add new trailers to the message. This may be used when responding to either a
     /// HttpHeaders or HttpBody message, but only if this message is returned
     /// along with the CONTINUE_AND_REPLACE status.
-    #[prost(message, optional, tag="4")]
-    pub trailers: ::core::option::Option<super::super::super::config::core::v3::HeaderMap>,
+    #[prost(message, optional, tag = "4")]
+    pub trailers: ::core::option::Option<
+        super::super::super::config::core::v3::HeaderMap,
+    >,
     /// Clear the route cache for the current request.
     /// This is necessary if the remote server
     /// modified headers that are used to calculate the route.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub clear_route_cache: bool,
 }
 /// Nested message and enum types in `CommonResponse`.
 pub mod common_response {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ResponseStatus {
         /// Apply the mutation instructions in this message to the
@@ -251,6 +279,14 @@ pub mod common_response {
                 ResponseStatus::ContinueAndReplace => "CONTINUE_AND_REPLACE",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CONTINUE" => Some(Self::Continue),
+                "CONTINUE_AND_REPLACE" => Some(Self::ContinueAndReplace),
+                _ => None,
+            }
+        }
     }
 }
 /// This message causes the filter to attempt to create a locally
@@ -260,64 +296,71 @@ pub mod common_response {
 /// has already started, then  this will either ship the reply directly
 /// to the downstream codec, or reset the stream.
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImmediateResponse {
     /// The response code to return
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub status: ::core::option::Option<super::super::super::r#type::v3::HttpStatus>,
     /// Apply changes to the default headers, which will include content-type.
-    #[prost(message, optional, tag="2")]
+    #[prost(message, optional, tag = "2")]
     pub headers: ::core::option::Option<HeaderMutation>,
     /// The message body to return with the response which is sent using the
     /// text/plain content type, or encoded in the grpc-message header.
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub body: ::prost::alloc::string::String,
     /// If set, then include a gRPC status trailer.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub grpc_status: ::core::option::Option<GrpcStatus>,
     /// A string detailing why this local reply was sent, which may be included
     /// in log and debug output (e.g. this populates the %RESPONSE_CODE_DETAILS%
     /// command operator field for use in access logging).
-    #[prost(string, tag="5")]
+    #[prost(string, tag = "5")]
     pub details: ::prost::alloc::string::String,
 }
 /// This message specifies a gRPC status for an ImmediateResponse message.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GrpcStatus {
     /// The actual gRPC status
-    #[prost(uint32, tag="1")]
+    #[prost(uint32, tag = "1")]
     pub status: u32,
 }
 /// Change HTTP headers or trailers by appending, replacing, or removing
 /// headers.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HeaderMutation {
     /// Add or replace HTTP headers. Attempts to set the value of
     /// any ``x-envoy`` header, and attempts to set the ``:method``,
     /// ``:authority``, ``:scheme``, or ``host`` headers will be ignored.
-    #[prost(message, repeated, tag="1")]
-    pub set_headers: ::prost::alloc::vec::Vec<super::super::super::config::core::v3::HeaderValueOption>,
+    #[prost(message, repeated, tag = "1")]
+    pub set_headers: ::prost::alloc::vec::Vec<
+        super::super::super::config::core::v3::HeaderValueOption,
+    >,
     /// Remove these HTTP headers. Attempts to remove system headers --
     /// any header starting with ``:``, plus ``host`` -- will be ignored.
-    #[prost(string, repeated, tag="2")]
+    #[prost(string, repeated, tag = "2")]
     pub remove_headers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Replace the entire message body chunk received in the corresponding
 /// HttpBody message with this new body, or clear the body.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BodyMutation {
-    #[prost(oneof="body_mutation::Mutation", tags="1, 2")]
+    #[prost(oneof = "body_mutation::Mutation", tags = "1, 2")]
     pub mutation: ::core::option::Option<body_mutation::Mutation>,
 }
 /// Nested message and enum types in `BodyMutation`.
 pub mod body_mutation {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Mutation {
         /// The entire body to replace
-        #[prost(bytes, tag="1")]
+        #[prost(bytes, tag = "1")]
         Body(::prost::bytes::Bytes),
         /// Clear the corresponding body chunk
-        #[prost(bool, tag="2")]
+        #[prost(bool, tag = "2")]
         ClearBody(bool),
     }
 }
@@ -1417,5 +1460,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x05, 0x04, 0x0c, 0x02, 0x01, 0x03, 0x12, 0x04, 0xcb, 0x02, 0x16, 0x17, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.service.ext_proc.v3.serde.rs");
 include!("envoy.service.ext_proc.v3.tonic.rs");
 // @@protoc_insertion_point(module)

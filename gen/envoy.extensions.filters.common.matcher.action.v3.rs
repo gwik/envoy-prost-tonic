@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Common match actions]
-
 /// Configuration for the SkipFilter match action. When matching results in this action, the
 /// associated filter will be ignored for all filter callbacks (e.g. ``encodeHeaders``, ``encodeData``,
 /// etc. for HTTP filters) after the matcher arrives at the match, including the callback that
@@ -10,9 +8,9 @@
 ///
 /// As a result, if this match action is resolved before the first filter callback (e.g. HTTP request
 /// headers), the filter will be completely skipped.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SkipFilter {
-}
+pub struct SkipFilter {}
 /// Encoded file descriptor set for the `envoy.extensions.filters.common.matcher.action.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xd2, 0x09, 0x0a, 0x43, 0x65, 0x6e, 0x76, 0x6f, 0x79, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e,
@@ -94,4 +92,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x17, 0x08, 0x12, 0x62, 0x06, 0x70,
     0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.common.matcher.action.v3.serde.rs");
 // @@protoc_insertion_point(module)

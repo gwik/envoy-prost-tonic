@@ -1,6 +1,4 @@
 // @generated
-// [#protodoc-title: Generic Proxy Route Configuration]
-
 /// The generic proxy makes use of the `xds matching API` for routing configurations.
 ///
 /// In the below example, we combine a top level tree matcher with a linear matcher to match
@@ -46,62 +44,72 @@
 ///                        typed_config:
 ///                          "@type": type.googleapis.com/envoy.extensions.filters.network.generic_proxy.action.v3.routeAction
 ///                          cluster: cluster_0
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteConfiguration {
     /// The name of the route configuration. For example, it might match route_config_name in
     /// envoy.extensions.filters.network.generic_proxy.v3.Rds.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// The match tree to use when resolving route actions for incoming requests.
-    #[prost(message, optional, tag="2")]
-    pub routes: ::core::option::Option<super::super::super::super::super::super::xds::r#type::matcher::v3::Matcher>,
+    #[prost(message, optional, tag = "2")]
+    pub routes: ::core::option::Option<
+        super::super::super::super::super::super::xds::r#type::matcher::v3::Matcher,
+    >,
 }
-// [#protodoc-title: Generic Proxy]
-// Generic proxy.
-// [#extension: envoy.filters.network.generic_proxy]
-
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenericProxy {
     /// The human readable prefix to use when emitting statistics.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The codec which encodes and decodes the application protocol.
     /// [#extension-category: envoy.generic_proxy.codecs]
-    #[prost(message, optional, tag="2")]
-    pub codec_config: ::core::option::Option<super::super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, optional, tag = "2")]
+    pub codec_config: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
     /// A list of individual Layer-7 filters that make up the filter chain for requests made to the
     /// proxy. Order matters as the filters are processed sequentially as request events
     /// happen.
     /// [#extension-category: envoy.generic_proxy.filters]
-    #[prost(message, repeated, tag="5")]
-    pub filters: ::prost::alloc::vec::Vec<super::super::super::super::super::config::core::v3::TypedExtensionConfig>,
+    #[prost(message, repeated, tag = "5")]
+    pub filters: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::core::v3::TypedExtensionConfig,
+    >,
     /// Tracing configuration for the generic proxy.
-    #[prost(message, optional, tag="6")]
-    pub tracing: ::core::option::Option<super::super::http_connection_manager::v3::http_connection_manager::Tracing>,
-    #[prost(oneof="generic_proxy::RouteSpecifier", tags="3, 4")]
+    #[prost(message, optional, tag = "6")]
+    pub tracing: ::core::option::Option<
+        super::super::http_connection_manager::v3::http_connection_manager::Tracing,
+    >,
+    #[prost(oneof = "generic_proxy::RouteSpecifier", tags = "3, 4")]
     pub route_specifier: ::core::option::Option<generic_proxy::RouteSpecifier>,
 }
 /// Nested message and enum types in `GenericProxy`.
 pub mod generic_proxy {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RouteSpecifier {
         /// The generic proxies route table will be dynamically loaded via the meta RDS API.
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         GenericRds(super::GenericRds),
         /// The route table for the generic proxy is static and is specified in this property.
-        #[prost(message, tag="4")]
+        #[prost(message, tag = "4")]
         RouteConfig(super::RouteConfiguration),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenericRds {
     /// Configuration source specifier for RDS.
-    #[prost(message, optional, tag="1")]
-    pub config_source: ::core::option::Option<super::super::super::super::super::config::core::v3::ConfigSource>,
+    #[prost(message, optional, tag = "1")]
+    pub config_source: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::ConfigSource,
+    >,
     /// The name of the route configuration. This name will be passed to the RDS API. This allows an
     /// Envoy configuration with multiple generic proxies to use different route configurations.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub route_config_name: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.generic_proxy.v3` package
@@ -516,4 +524,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x3d, 0x20, 0x46, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
     0x33,
 ];
+include!("envoy.extensions.filters.network.generic_proxy.v3.serde.rs");
 // @@protoc_insertion_point(module)

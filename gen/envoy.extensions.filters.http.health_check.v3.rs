@@ -1,17 +1,14 @@
 // @generated
-// [#protodoc-title: Health check]
-// Health check :ref:`configuration overview <config_http_filters_health_check>`.
-// [#extension: envoy.filters.http.health_check]
-
 /// [#next-free-field: 6]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HealthCheck {
     /// Specifies whether the filter operates in pass through mode or not.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub pass_through_mode: ::core::option::Option<::pbjson_types::BoolValue>,
     /// If operating in pass through mode, the amount of time in milliseconds
     /// that the filter should cache the upstream response.
-    #[prost(message, optional, tag="3")]
+    #[prost(message, optional, tag = "3")]
     pub cache_time: ::core::option::Option<::pbjson_types::Duration>,
     /// If operating in non-pass-through mode, specifies a set of upstream cluster
     /// names and the minimum percentage of servers in each of those clusters that
@@ -21,13 +18,18 @@ pub struct HealthCheck {
     ///
     ///     This value is interpreted as an integer by truncating, so 12.50% will be calculated
     ///     as if it were 12%.
-    #[prost(map="string, message", tag="4")]
-    pub cluster_min_healthy_percentages: ::std::collections::HashMap<::prost::alloc::string::String, super::super::super::super::super::r#type::v3::Percent>,
+    #[prost(map = "string, message", tag = "4")]
+    pub cluster_min_healthy_percentages: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        super::super::super::super::super::r#type::v3::Percent,
+    >,
     /// Specifies a set of health check request headers to match on. The health check filter will
     /// check a request’s headers against all the specified headers. To specify the health check
     /// endpoint, set the ``:path`` header to match on.
-    #[prost(message, repeated, tag="5")]
-    pub headers: ::prost::alloc::vec::Vec<super::super::super::super::super::config::route::v3::HeaderMatcher>,
+    #[prost(message, repeated, tag = "5")]
+    pub headers: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::config::route::v3::HeaderMatcher,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.filters.http.health_check.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -199,4 +201,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x33, 0x29, 0x30, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x03, 0x03, 0x12, 0x03,
     0x33, 0x33, 0x34, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.http.health_check.v3.serde.rs");
 // @@protoc_insertion_point(module)

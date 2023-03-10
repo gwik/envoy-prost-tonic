@@ -1,10 +1,7 @@
 // @generated
-// [#protodoc-title: Router]
-// [#extension: envoy.filters.sip.router]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Router {
-}
+pub struct Router {}
 /// Encoded file descriptor set for the `envoy.extensions.filters.network.sip_proxy.router.v3alpha` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0xf5, 0x04, 0x0a, 0x4e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x69, 0x62, 0x2f, 0x65, 0x6e, 0x76,
@@ -48,4 +45,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x65, 0x72, 0x5d, 0x0a, 0x0a, 0x0a, 0x0a, 0x03, 0x04, 0x00, 0x01, 0x12, 0x03, 0x0f, 0x08, 0x0e,
     0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.filters.network.sip_proxy.router.v3alpha.serde.rs");
 // @@protoc_insertion_point(module)

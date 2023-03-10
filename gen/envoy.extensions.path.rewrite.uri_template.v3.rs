@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: Uri Template Rewrite Config]
-// [#extension: envoy.path.rewrite.uri_template.uri_template_rewriter]
-
 /// Indicates that during forwarding, portions of the path that match the
 /// pattern should be rewritten, even allowing the substitution of variables
 /// from the match pattern into the new path as specified by the rewrite template.
@@ -41,9 +38,10 @@
 /// * The path pattern ``/content/{format}/{lang}/{id}/{file}.vtt`` paired with a substitution
 ///    string of ``/{lang}/{format}/{file}.vtt`` would transform ``/content/hls/en-us/12345/en_193913.vtt``
 ///    into ``/en-us/hls/en_193913.vtt``.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UriTemplateRewriteConfig {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub path_template_rewrite: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.extensions.path.rewrite.uri_template.v3` package
@@ -226,4 +224,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x00, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x38, 0x24, 0x57, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.path.rewrite.uri_template.v3.serde.rs");
 // @@protoc_insertion_point(module)

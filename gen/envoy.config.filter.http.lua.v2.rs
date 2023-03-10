@@ -1,15 +1,12 @@
 // @generated
-// [#protodoc-title: Lua]
-// Lua :ref:`configuration overview <config_http_filters_lua>`.
-// [#extension: envoy.filters.http.lua]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Lua {
     /// The Lua code that Envoy will execute. This can be a very small script that
     /// further loads code from disk if desired. Note that if JSON configuration is used, the code must
     /// be properly escaped. YAML configuration may be easier to read since YAML supports multi-line
     /// strings so complex scripts can be easily expressed inline in the configuration.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub inline_code: ::prost::alloc::string::String,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.http.lua.v2` package
@@ -91,4 +88,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x00, 0x08, 0xaf, 0x08, 0x0e, 0x12, 0x03, 0x18, 0x1a, 0x42, 0x62, 0x06, 0x70, 0x72, 0x6f,
     0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.http.lua.v2.serde.rs");
 // @@protoc_insertion_point(module)

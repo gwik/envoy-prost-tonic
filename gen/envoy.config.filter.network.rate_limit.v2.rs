@@ -1,35 +1,36 @@
 // @generated
-// [#protodoc-title: Rate limit]
-// Rate limit :ref:`configuration overview <config_network_filters_rate_limit>`.
-// [#extension: envoy.filters.network.ratelimit]
-
 /// [#next-free-field: 7]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RateLimit {
     /// The prefix to use when emitting :ref:`statistics <config_network_filters_rate_limit_stats>`.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub stat_prefix: ::prost::alloc::string::String,
     /// The rate limit domain to use in the rate limit service request.
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub domain: ::prost::alloc::string::String,
     /// The rate limit descriptor list to use in the rate limit service request.
-    #[prost(message, repeated, tag="3")]
-    pub descriptors: ::prost::alloc::vec::Vec<super::super::super::super::super::api::v2::ratelimit::RateLimitDescriptor>,
+    #[prost(message, repeated, tag = "3")]
+    pub descriptors: ::prost::alloc::vec::Vec<
+        super::super::super::super::super::api::v2::ratelimit::RateLimitDescriptor,
+    >,
     /// The timeout in milliseconds for the rate limit service RPC. If not
     /// set, this defaults to 20ms.
-    #[prost(message, optional, tag="4")]
+    #[prost(message, optional, tag = "4")]
     pub timeout: ::core::option::Option<::pbjson_types::Duration>,
     /// The filter's behaviour in case the rate limiting service does
     /// not respond back. When it is set to true, Envoy will not allow traffic in case of
     /// communication failure between rate limiting service and the proxy.
     /// Defaults to false.
-    #[prost(bool, tag="5")]
+    #[prost(bool, tag = "5")]
     pub failure_mode_deny: bool,
     /// Configuration for an external rate limit service provider. If not
     /// specified, any calls to the rate limit service will immediately return
     /// success.
-    #[prost(message, optional, tag="6")]
-    pub rate_limit_service: ::core::option::Option<super::super::super::super::ratelimit::v2::RateLimitServiceConfig>,
+    #[prost(message, optional, tag = "6")]
+    pub rate_limit_service: ::core::option::Option<
+        super::super::super::super::ratelimit::v2::RateLimitServiceConfig,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.config.filter.network.rate_limit.v2` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -195,4 +196,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x00, 0x02, 0x05, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x33, 0x07,
     0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.filter.network.rate_limit.v2.serde.rs");
 // @@protoc_insertion_point(module)

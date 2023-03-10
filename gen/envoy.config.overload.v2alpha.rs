@@ -1,11 +1,5 @@
 // @generated
-// [#protodoc-title: Overload Manager]
-
-// The Overload Manager provides an extensible framework to protect Envoy instances
-// from overload of various resources (memory, cpu, file descriptors, etc).
-// It monitors a configurable set of resources and notifies registered listeners
-// when triggers related to those resources fire.
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceMonitor {
     /// The name of the resource monitor to instantiate. Must match a registered
@@ -15,69 +9,75 @@ pub struct ResourceMonitor {
     ///    <envoy_api_msg_config.resource_monitor.fixed_heap.v2alpha.FixedHeapConfig>`
     /// * :ref:`envoy.resource_monitors.injected_resource
     ///    <envoy_api_msg_config.resource_monitor.injected_resource.v2alpha.InjectedResourceConfig>`
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Configuration for the resource monitor being instantiated.
-    #[prost(oneof="resource_monitor::ConfigType", tags="2, 3")]
+    #[prost(oneof = "resource_monitor::ConfigType", tags = "2, 3")]
     pub config_type: ::core::option::Option<resource_monitor::ConfigType>,
 }
 /// Nested message and enum types in `ResourceMonitor`.
 pub mod resource_monitor {
     /// Configuration for the resource monitor being instantiated.
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum ConfigType {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Config(::pbjson_types::Struct),
-        #[prost(message, tag="3")]
+        #[prost(message, tag = "3")]
         TypedConfig(::pbjson_types::Any),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ThresholdTrigger {
     /// If the resource pressure is greater than or equal to this value, the trigger
     /// will fire.
-    #[prost(double, tag="1")]
+    #[prost(double, tag = "1")]
     pub value: f64,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Trigger {
     /// The name of the resource this is a trigger for.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
-    #[prost(oneof="trigger::TriggerOneof", tags="2")]
+    #[prost(oneof = "trigger::TriggerOneof", tags = "2")]
     pub trigger_oneof: ::core::option::Option<trigger::TriggerOneof>,
 }
 /// Nested message and enum types in `Trigger`.
 pub mod trigger {
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum TriggerOneof {
-        #[prost(message, tag="2")]
+        #[prost(message, tag = "2")]
         Threshold(super::ThresholdTrigger),
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OverloadAction {
     /// The name of the overload action. This is just a well-known string that listeners can
     /// use for registering callbacks. Custom overload actions should be named using reverse
     /// DNS to ensure uniqueness.
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// A set of triggers for this action. If any of these triggers fire the overload action
     /// is activated. Listeners are notified when the overload action transitions from
     /// inactivated to activated, or vice versa.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub triggers: ::prost::alloc::vec::Vec<Trigger>,
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OverloadManager {
     /// The interval for refreshing resource usage.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub refresh_interval: ::core::option::Option<::pbjson_types::Duration>,
     /// The set of resources to monitor.
-    #[prost(message, repeated, tag="2")]
+    #[prost(message, repeated, tag = "2")]
     pub resource_monitors: ::prost::alloc::vec::Vec<ResourceMonitor>,
     /// The set of overload actions.
-    #[prost(message, repeated, tag="3")]
+    #[prost(message, repeated, tag = "3")]
     pub actions: ::prost::alloc::vec::Vec<OverloadAction>,
 }
 /// Encoded file descriptor set for the `envoy.config.overload.v2alpha` package
@@ -326,4 +326,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x02, 0x02, 0x01, 0x12, 0x03, 0x4f, 0x1a, 0x21, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x04, 0x02, 0x02,
     0x03, 0x12, 0x03, 0x4f, 0x24, 0x25, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.config.overload.v2alpha.serde.rs");
 // @@protoc_insertion_point(module)

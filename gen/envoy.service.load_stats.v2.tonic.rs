@@ -96,10 +96,10 @@ pub mod load_reporting_service_client {
 pub mod load_reporting_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with LoadReportingServiceServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with LoadReportingServiceServer.
     #[async_trait]
     pub trait LoadReportingService: Send + Sync + 'static {
-        ///Server streaming response type for the StreamLoadStats method.
+        /// Server streaming response type for the StreamLoadStats method.
         type StreamLoadStatsStream: futures_core::Stream<
                 Item = Result<super::LoadStatsResponse, tonic::Status>,
             >

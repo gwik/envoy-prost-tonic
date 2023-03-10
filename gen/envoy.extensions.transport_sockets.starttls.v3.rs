@@ -1,40 +1,39 @@
 // @generated
-// [#protodoc-title: StartTls]
-// [#extension: envoy.transport_sockets.starttls]
-
-// StartTls transport socket addresses situations when a protocol starts in clear-text and
-// negotiates an in-band switch to TLS. StartTls transport socket is protocol agnostic. In the
-// case of downstream StartTls a network filter is required which understands protocol exchange
-// and a state machine to signal to the StartTls transport socket when a switch to TLS is
-// required. Similarly, upstream StartTls requires the owner of an upstream transport socket to
-// manage the state machine necessary to properly coordinate negotiation with the upstream and
-// signal to the transport socket when a switch to secure transport is required.
-
 /// Configuration for a downstream StartTls transport socket.
 /// StartTls transport socket wraps two sockets:
 /// * raw_buffer socket which is used at the beginning of the session
 /// * TLS socket used when a protocol negotiates a switch to encrypted traffic.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartTlsConfig {
     /// (optional) Configuration for clear-text socket used at the beginning of the session.
-    #[prost(message, optional, tag="1")]
-    pub cleartext_socket_config: ::core::option::Option<super::super::raw_buffer::v3::RawBuffer>,
+    #[prost(message, optional, tag = "1")]
+    pub cleartext_socket_config: ::core::option::Option<
+        super::super::raw_buffer::v3::RawBuffer,
+    >,
     /// Configuration for a downstream TLS socket.
-    #[prost(message, optional, tag="2")]
-    pub tls_socket_config: ::core::option::Option<super::super::tls::v3::DownstreamTlsContext>,
+    #[prost(message, optional, tag = "2")]
+    pub tls_socket_config: ::core::option::Option<
+        super::super::tls::v3::DownstreamTlsContext,
+    >,
 }
 /// Configuration for an upstream StartTls transport socket.
 /// StartTls transport socket wraps two sockets:
 /// * raw_buffer socket which is used at the beginning of the session
 /// * TLS socket used when a protocol negotiates a switch to encrypted traffic.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpstreamStartTlsConfig {
     /// (optional) Configuration for clear-text socket used at the beginning of the session.
-    #[prost(message, optional, tag="1")]
-    pub cleartext_socket_config: ::core::option::Option<super::super::raw_buffer::v3::RawBuffer>,
+    #[prost(message, optional, tag = "1")]
+    pub cleartext_socket_config: ::core::option::Option<
+        super::super::raw_buffer::v3::RawBuffer,
+    >,
     /// Configuration for an upstream TLS socket.
-    #[prost(message, optional, tag="2")]
-    pub tls_socket_config: ::core::option::Option<super::super::tls::v3::UpstreamTlsContext>,
+    #[prost(message, optional, tag = "2")]
+    pub tls_socket_config: ::core::option::Option<
+        super::super::tls::v3::UpstreamTlsContext,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.transport_sockets.starttls.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -227,4 +226,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x33, 0x0a, 0x0f, 0x0a, 0x08, 0x04, 0x01, 0x02, 0x01, 0x08, 0xaf, 0x08, 0x11, 0x12, 0x03, 0x32,
     0x07, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.transport_sockets.starttls.v3.serde.rs");
 // @@protoc_insertion_point(module)

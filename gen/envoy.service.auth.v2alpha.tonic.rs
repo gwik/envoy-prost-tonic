@@ -93,7 +93,7 @@ pub mod authorization_client {
 pub mod authorization_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with AuthorizationServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with AuthorizationServer.
     #[async_trait]
     pub trait Authorization: Send + Sync + 'static {
         async fn check(

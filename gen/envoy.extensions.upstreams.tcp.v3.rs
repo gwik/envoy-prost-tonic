@@ -1,23 +1,5 @@
 // @generated
-// [#protodoc-title: TCP Protocol Options]
-// [#extension: envoy.upstreams.tcp.tcp_protocol_options]
-
-// TCProtocolOptions specifies TCP upstream protocol options. This object
-// is used in
-// :ref:`typed_extension_protocol_options<envoy_v3_api_field_config.cluster.v3.Cluster.typed_extension_protocol_options>`,
-// keyed by the name ``envoy.extensions.upstreams.tcp.v3.TcpProtocolOptions``.
-//
-// .. code::
-//
-//    clusters:
-//      - name: some_service
-//        connect_timeout: 5s
-//        typed_extension_protocol_options:
-//          envoy.extensions.upstreams.tcp.v3.TcpProtocolOptions:
-//            "@type": type.googleapis.com/envoy.extensions.upstreams.tcp.v3.TcpProtocolOptions
-//            idle_timeout: 10m
-//         .... [further cluster config]
-
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TcpProtocolOptions {
     /// The idle timeout for the connection. The idle timeout is defined as the period in which
@@ -29,7 +11,7 @@ pub struct TcpProtocolOptions {
     /// .. warning::
     ///    Disabling this timeout has a highly likelihood of yielding connection leaks due to lost TCP
     ///    FIN packets, etc.
-    #[prost(message, optional, tag="1")]
+    #[prost(message, optional, tag = "1")]
     pub idle_timeout: ::core::option::Option<::pbjson_types::Duration>,
 }
 /// Encoded file descriptor set for the `envoy.extensions.upstreams.tcp.v3` package
@@ -151,4 +133,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x12, 0x03, 0x2b, 0x1b, 0x27, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02, 0x00, 0x03, 0x12, 0x03,
     0x2b, 0x2a, 0x2b, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.upstreams.tcp.v3.serde.rs");
 // @@protoc_insertion_point(module)

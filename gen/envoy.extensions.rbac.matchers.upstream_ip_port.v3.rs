@@ -1,7 +1,4 @@
 // @generated
-// [#protodoc-title: RBAC upstream IP and port matcher plugin]
-// [#extension: envoy.rbac.matchers.upstream_ip_port]
-
 /// This is configuration for matching upstream ip and port.
 /// Note that although both fields are optional, at least one of IP or port must be supplied. If only
 /// one is supplied the other is a wildcard match.
@@ -11,15 +8,20 @@
 /// :repo:`upstream_address.h<source/common/stream_info/upstream_address.h>`).
 /// Also, See :repo:`proxy_filter.cc<source/extensions/filters/http/dynamic_forward_proxy/proxy_filter.cc>`
 /// for an example of a filter which populates the FilterState.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpstreamIpPortMatcher {
     /// A CIDR block that will be used to match the upstream IP.
     /// Both Ipv4 and Ipv6 ranges can be matched.
-    #[prost(message, optional, tag="1")]
-    pub upstream_ip: ::core::option::Option<super::super::super::super::super::config::core::v3::CidrRange>,
+    #[prost(message, optional, tag = "1")]
+    pub upstream_ip: ::core::option::Option<
+        super::super::super::super::super::config::core::v3::CidrRange,
+    >,
     /// A port range that will be used to match the upstream port.
-    #[prost(message, optional, tag="2")]
-    pub upstream_port_range: ::core::option::Option<super::super::super::super::super::r#type::v3::Int64Range>,
+    #[prost(message, optional, tag = "2")]
+    pub upstream_port_range: ::core::option::Option<
+        super::super::super::super::super::r#type::v3::Int64Range,
+    >,
 }
 /// Encoded file descriptor set for the `envoy.extensions.rbac.matchers.upstream_ip_port.v3` package
 pub const FILE_DESCRIPTOR_SET: &[u8] = &[
@@ -142,4 +144,5 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x00, 0x02, 0x01, 0x01, 0x12, 0x03, 0x21, 0x15, 0x28, 0x0a, 0x0c, 0x0a, 0x05, 0x04, 0x00, 0x02,
     0x01, 0x03, 0x12, 0x03, 0x21, 0x2b, 0x2c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 ];
+include!("envoy.extensions.rbac.matchers.upstream_ip_port.v3.serde.rs");
 // @@protoc_insertion_point(module)
