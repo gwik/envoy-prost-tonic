@@ -2,6 +2,13 @@
 name = "envoy-prost-tonic"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["envoy", "grpc", "protobuf", "control-plane"]
+repository = "https://github.com/gwik/envoy-prost-tonic"
+authors = ["Antonin Amand <antonin.amand@gmail.com>"]
+
+description = "Envoy's protobuf messages and services for rust and tonic"
+
 
 [dependencies]
 bytes = "1"
